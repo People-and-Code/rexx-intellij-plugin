@@ -1,8 +1,8 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.neppord.rexxintellijplugin</id>
-    <name>rexx-intellij-plugin Template</name>
-    <vendor>neppord</vendor>
+    <name>Rexx</name>
+    <vendor>Samuel Ytterbrink</vendor>
 
     <depends>com.intellij.modules.platform</depends>
 
