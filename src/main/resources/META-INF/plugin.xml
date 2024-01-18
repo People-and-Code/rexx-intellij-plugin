@@ -9,10 +9,16 @@
     <resource-bundle>messages.MyBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.neppord.rexxintellijplugin.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
+        <!-- The File Type -->
+        <fileType
+            name="Rexx File"
+            implementationClass="com.github.neppord.rexxintellijplugin.RexxFileType"
+            fieldName="INSTANCE"
+            language="Rexx"
+            extensions="rex"/>
+        <!-- The Language -->
+        <language
+            id="Rexx"
+            class="com.github.neppord.rexxintellijplugin.RexxLanguage"/>
     </extensions>
-
-    <applicationListeners>
-        <listener class="com.github.neppord.rexxintellijplugin.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
-    </applicationListeners>
 </idea-plugin>
