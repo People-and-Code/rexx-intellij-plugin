@@ -11,6 +11,7 @@ plugins {
     alias(libs.plugins.changelog) // Gradle Changelog Plugin
     alias(libs.plugins.qodana) // Gradle Qodana Plugin
     alias(libs.plugins.kover) // Gradle Kover Plugin
+    alias(libs.plugins.grammarkit) // Gradle Grammar Kit Plugin
 }
 
 group = properties("pluginGroup").get()
@@ -148,5 +149,23 @@ tasks {
                 )
             }
         channels = newChannels
+    }
+    generateLexer.configure {
+        sourceFile.set(file("src/main/flex/rexx.flex"))
+        targetDir.set("src/main/gen/com/github/neppord/rexxintellijplugin")
+        targetClass.set("_RexxLexer")
+        purgeOldFiles.set(true)
+    }
+
+    generateParser.configure {
+        sourceFile.set(file("src/main/bnf/rexx.bnf"))
+        purgeOldFiles.set(true)
+    }
+}
+sourceSets {
+    main {
+        java {
+            srcDir("src/main/gen")
+        }
     }
 }

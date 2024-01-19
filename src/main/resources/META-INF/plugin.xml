@@ -9,16 +9,14 @@
     <resource-bundle>messages.MyBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <!-- The File Type -->
         <fileType
+            language="Rexx"
             name="Rexx File"
             implementationClass="com.github.neppord.rexxintellijplugin.RexxFileType"
             fieldName="INSTANCE"
-            language="Rexx"
             extensions="rex"/>
-        <!-- The Language -->
-        <language
-            id="Rexx"
-            class="com.github.neppord.rexxintellijplugin.RexxLanguage"/>
+        <syntaxHighlighter
+            implementationClass="com.github.neppord.rexxintellijplugin.RexxSyntaxHighlighter"
+        />
     </extensions>
 </idea-plugin>
