@@ -327,3 +327,11 @@ import static com.intellij.psi.TokenType.BAD_CHARACTER;
 [0-9]*"."?[0-9]+  {return NUMBER_DECIMAL;}
 [0-9]*\.[0-9]+([eE][+-]?[0-9]+) { return NUMBER_SCIENTIFIC; }
 0[xX][0-9a-fA-F]+ { return NUMBER_HEXADECIMAL; }
+
+// OO
+
+"::class"               { return KEYWORD_CLASS; }
+"::attribute"           { return KEYWORD_ATTRIBUTE; }
+"::method"              { return KEYWORD_METHOD; }
+"."                     { return DOT; }
+"~"                     { return TILDE; }

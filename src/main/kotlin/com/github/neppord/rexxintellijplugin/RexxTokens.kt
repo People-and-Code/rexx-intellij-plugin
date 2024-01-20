@@ -8,6 +8,12 @@ import com.intellij.psi.tree.TokenSet
 @JvmField val MULTILINE_COMMENT = RexxElementType("MULTILINE_COMMENT")
 
 
+@JvmField val KEYWORD_CLASS = RexxElementType("KEYWORD_CLASS")
+@JvmField val KEYWORD_ATTRIBUTE = RexxElementType("KEYWORD_ATTRIBUTE")
+@JvmField val KEYWORD_METHOD = RexxElementType("KEYWORD_METHOD")
+@JvmField val DOT = RexxElementType("DOT")
+@JvmField val TILDE = RexxElementType("TILDE")
+
 @JvmField val STRING = RexxElementType("STRING")
 @JvmField val IDENTIFIER = RexxElementType("IDENTIFIER")
 @JvmField val NUMBER_INT = RexxElementType("NUMBER_INT")
