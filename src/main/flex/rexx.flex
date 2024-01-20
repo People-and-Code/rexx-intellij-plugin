@@ -29,6 +29,7 @@ import static com.intellij.psi.TokenType.BAD_CHARACTER;
 
 [ \t\f\r\n]+          { return WHITE_SPACE; }
 "\"" [^"\\\n"]*? "\"" { return STRING;}
+'[^']*' { return STRING;}
 
 // OPERATORS
 
