@@ -4,6 +4,7 @@ import com.intellij.psi.tree.TokenSet
 
 
 @JvmField val STRING = RexxElementType("STRING")
+@JvmField val IDENTIFIER = RexxElementType("IDENTIFIER")
 
 @JvmField val OPERATOR_PLUS = RexxElementType("OPERATOR_PLUS")
 @JvmField val OPERATOR_SUBTRACT = RexxElementType("OPERATOR_SUBTRACT")

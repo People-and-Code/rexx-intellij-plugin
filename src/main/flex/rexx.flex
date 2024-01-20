@@ -27,9 +27,6 @@ import static com.intellij.psi.TokenType.BAD_CHARACTER;
 
 %%
 
-[ \t\f\r\n]+          { return WHITE_SPACE; }
-"\"" [^"\\\n"]*? "\"" { return STRING;}
-'[^']*' { return STRING;}
 
 // OPERATORS
 
@@ -316,3 +313,11 @@ import static com.intellij.psi.TokenType.BAD_CHARACTER;
 "TRACE"          {return SUBDIRECTIVE_TRACE;}
 "UNGUARDED"      {return SUBDIRECTIVE_UNGUARDED;}
 "UNPROTECTED"    {return SUBDIRECTIVE_UNPROTECTED;}
+
+
+// complex
+
+[ \t\f\r\n]+          { return WHITE_SPACE; }
+"\"" [^"\\\n"]*? "\"" { return STRING;}
+'[^']*' { return STRING;}
+[a-zA-Z][a-zA-Z0-9._]* {return IDENTIFIER;}
