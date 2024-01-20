@@ -3,6 +3,11 @@ package com.github.neppord.rexxintellijplugin
 import com.intellij.psi.tree.TokenSet
 
 
+@JvmField val SHEBANG = RexxElementType("SHEBANG")
+@JvmField val LINE_COMMENT = RexxElementType("LINE_COMMENT")
+@JvmField val MULTILINE_COMMENT = RexxElementType("MULTILINE_COMMENT")
+
+
 @JvmField val STRING = RexxElementType("STRING")
 @JvmField val IDENTIFIER = RexxElementType("IDENTIFIER")
 @JvmField val NUMBER_INT = RexxElementType("NUMBER_INT")

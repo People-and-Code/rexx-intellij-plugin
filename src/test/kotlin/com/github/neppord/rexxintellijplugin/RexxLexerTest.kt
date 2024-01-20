@@ -1,7 +1,6 @@
 package com.github.neppord.rexxintellijplugin
 
 import com.intellij.testFramework.LexerTestCase
-import com.intellij.testFramework.fixtures.IdeaTestExecutionPolicy
 
 class RexxLexerTest : LexerTestCase() {
     override fun createLexer() = RexxLexer
@@ -9,6 +8,7 @@ class RexxLexerTest : LexerTestCase() {
     fun testHelloWorld() = doFileTest("rex")
     fun testVariable() = doFileTest("rex")
     fun testNumbers() = doFileTest("rex")
+    fun testComments() = doFileTest("rex")
     override fun getPathToTestDataFile(extension: String?): String {
         val root = ""
         val testName = getTestName(false)

@@ -311,6 +311,11 @@ import static com.intellij.psi.TokenType.BAD_CHARACTER;
 "UNPROTECTED"    {return SUBDIRECTIVE_UNPROTECTED;}
 
 
+// Comments
+"#!"[^\n]*       { return SHEBANG; }
+"--"[^\n]* { return LINE_COMMENT; }
+"/*"[^*]*"*"+(("/"[^*]*"*"+)*"/") { return MULTILINE_COMMENT; }
+
 // complex
 
 [ \t\f\r\n]+          { return WHITE_SPACE; }
