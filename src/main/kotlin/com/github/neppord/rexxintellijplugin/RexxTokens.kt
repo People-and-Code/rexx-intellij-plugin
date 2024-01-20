@@ -5,6 +5,11 @@ import com.intellij.psi.tree.TokenSet
 
 @JvmField val STRING = RexxElementType("STRING")
 @JvmField val IDENTIFIER = RexxElementType("IDENTIFIER")
+@JvmField val NUMBER_INT = RexxElementType("NUMBER_INT")
+@JvmField val NUMBER_DECIMAL = RexxElementType("NUMBER_DECIMAL")
+@JvmField val NUMBER_SCIENTIFIC = RexxElementType("NUMBER_SCIENTIFIC")
+@JvmField val NUMBER_BINARY = RexxElementType("NUMBER_BINARY")
+@JvmField val NUMBER_HEXADECIMAL = RexxElementType("NUMBER_HEXADECIMAL")
 
 @JvmField val OPERATOR_PLUS = RexxElementType("OPERATOR_PLUS")
 @JvmField val OPERATOR_SUBTRACT = RexxElementType("OPERATOR_SUBTRACT")

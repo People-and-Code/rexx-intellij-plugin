@@ -20,10 +20,6 @@ import static com.intellij.psi.TokenType.BAD_CHARACTER;
 %eof}
 
 //line_comment = "--" [^"\n"]*
-//identifier = [a-zA-Z][a-zA-Z0-9._]*
-//binary_number = "0b" [01]+
-//decimal_number = [0-9]*"."?[0-9]+
-
 
 %%
 
@@ -321,3 +317,8 @@ import static com.intellij.psi.TokenType.BAD_CHARACTER;
 "\"" [^"\\\n"]*? "\"" { return STRING;}
 '[^']*' { return STRING;}
 [a-zA-Z][a-zA-Z0-9._]* {return IDENTIFIER;}
+"0b" [01]+ {return NUMBER_BINARY;}
+[0-9]+  {return NUMBER_INT;}
+[0-9]*"."?[0-9]+  {return NUMBER_DECIMAL;}
+[0-9]*\.[0-9]+([eE][+-]?[0-9]+) { return NUMBER_SCIENTIFIC; }
+0[xX][0-9a-fA-F]+ { return NUMBER_HEXADECIMAL; }
