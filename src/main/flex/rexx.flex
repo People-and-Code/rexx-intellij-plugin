@@ -2,6 +2,7 @@ package com.github.neppord.rexxintellijplugin;
 
 import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;
+import java.lang.invoke.StringConcatFactory;
 import static com.github.neppord.rexxintellijplugin.RexxTokensKt.*;
 import static com.intellij.psi.TokenType.WHITE_SPACE;
 import static com.intellij.psi.TokenType.BAD_CHARACTER;
@@ -18,9 +19,7 @@ import static com.intellij.psi.TokenType.BAD_CHARACTER;
   return;
 %eof}
 
-whitespace = '\t' | ' ' | '\n' 
 //line_comment = "--" [^"\n"]*
-//string = "\"" [^"\\\n"]*? "\""
 //identifier = [a-zA-Z][a-zA-Z0-9._]*
 //binary_number = "0b" [01]+
 //decimal_number = [0-9]*"."?[0-9]+
@@ -28,45 +27,46 @@ whitespace = '\t' | ' ' | '\n'
 
 %%
 
-{whitespace}+ {return WHITE_SPACE; }
+[ \t\f\r\n]+          { return WHITE_SPACE; }
+"\"" [^"\\\n"]*? "\"" { return STRING;}
 
 // OPERATORS
 
-"+"  { return OPERATOR_PLUS; }
-"-"  { return OPERATOR_SUBTRACT; }
-"*"  { return OPERATOR_MULTIPLY; }
-"/"  { return OPERATOR_DIVIDE; }
-"\\" { return OPERATOR_INTDIV; }
-"%"  { return OPERATOR_REMAINDER; }
-"**" { return OPERATOR_POWER; }
-"||" { return OPERATOR_CONCATENATE; }
-"&&" { return OPERATOR_AND; }
+"+"            { return OPERATOR_PLUS; }
+"-"            { return OPERATOR_SUBTRACT; }
+"*"            { return OPERATOR_MULTIPLY; }
+"/"            { return OPERATOR_DIVIDE; }
+"\\"           { return OPERATOR_INTDIV; }
+"%"            { return OPERATOR_REMAINDER; }
+"**"           { return OPERATOR_POWER; }
+"||"           { return OPERATOR_CONCATENATE; }
+"&&"           { return OPERATOR_AND; }
       
-"&"  { return OPERATOR_BITWISE_AND; }
-"|"  { return OPERATOR_OR; }
-"^^"  { return OPERATOR_XOR; }
+"&"            { return OPERATOR_BITWISE_AND; }
+"|"            { return OPERATOR_OR; }
+"^^"           { return OPERATOR_XOR; }
 
-"="  { return OPERATOR_EQUAL; }
-"\\="  { return OPERATOR_BACKSLASH_EQUAL; }
-">"  { return OPERATOR_GREATERTHAN; }
-"\\>"  { return OPERATOR_BACKSLASH_GREATERTHAN; }
-"<"  { return OPERATOR_LESSTHAN; }
-"\\<"  { return OPERATOR_BACKSLASH_LESSTHAN; }
-">="  { return OPERATOR_GREATERTHAN_EQUAL; }
-"=<"  { return OPERATOR_LESSTHAN_EQUAL; }
+"="            { return OPERATOR_EQUAL; }
+"\\="          { return OPERATOR_BACKSLASH_EQUAL; }
+">"            { return OPERATOR_GREATERTHAN; }
+"\\>"          { return OPERATOR_BACKSLASH_GREATERTHAN; }
+"<"            { return OPERATOR_LESSTHAN; }
+"\\<"          { return OPERATOR_BACKSLASH_LESSTHAN; }
+">="           { return OPERATOR_GREATERTHAN_EQUAL; }
+"=<"           { return OPERATOR_LESSTHAN_EQUAL; }
 
-"=="  { return OPERATOR_STRICT_EQUAL; }
-"\\=="  { return OPERATOR_STRICT_BACKSLASH_EQUAL; }
-"==>"  { return OPERATOR_STRICT_GREATERTHAN; }
-"\\==>"  { return OPERATOR_STRICT_BACKSLASH_GREATERTHAN; }
-"==<"  { return OPERATOR_STRICT_LESSTHAN; }
-"\\==<"  { return OPERATOR_STRICT_BACKSLASH_LESSTHAN; }
-"==>="  { return OPERATOR_STRICT_GREATERTHAN_EQUAL; }
-"==<="  { return OPERATOR_STRICT_LESSTHAN_EQUAL; }
-"<>"  { return OPERATOR_LESSTHAN_GREATERTHAN; }
-"><"  { return OPERATOR_GREATERTHAN_LESSTHAN; }
+"=="           { return OPERATOR_STRICT_EQUAL; }
+"\\=="         { return OPERATOR_STRICT_BACKSLASH_EQUAL; }
+"==>"          { return OPERATOR_STRICT_GREATERTHAN; }
+"\\==>"        { return OPERATOR_STRICT_BACKSLASH_GREATERTHAN; }
+"==<"          { return OPERATOR_STRICT_LESSTHAN; }
+"\\==<"        { return OPERATOR_STRICT_BACKSLASH_LESSTHAN; }
+"==>="         { return OPERATOR_STRICT_GREATERTHAN_EQUAL; }
+"==<="         { return OPERATOR_STRICT_LESSTHAN_EQUAL; }
+"<>"           { return OPERATOR_LESSTHAN_GREATERTHAN; }
+"><"           { return OPERATOR_GREATERTHAN_LESSTHAN; }
 
-"\\\\"  { return OPERATOR_BACKSLASH; }
+"\\\\"         { return OPERATOR_BACKSLASH; }
       
 // KEYWORDS
 

@@ -8,16 +8,12 @@ import com.intellij.psi.tree.IElementType
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors as Default
 
 class RexxSyntaxHighlighter: SyntaxHighlighterBase() {
-    override fun getHighlightingLexer(): Lexer {
-        return FlexAdapter(_RexxLexer(null))
-    }
-
-    override fun getTokenHighlights(tokenType: IElementType?): Array<TextAttributesKey> {
-        return when {
-            operator.contains(tokenType) -> arrayOf(Default.OPERATION_SIGN)
-            keyword.contains(tokenType) -> arrayOf(Default.KEYWORD)
-            else -> arrayOf()
-        }
+    override fun getHighlightingLexer() = RexxLexer
+    override fun getTokenHighlights(tokenType: IElementType?) = when {
+        operator.contains(tokenType) -> arrayOf(Default.OPERATION_SIGN)
+        keyword.contains(tokenType) -> arrayOf(Default.KEYWORD)
+        STRING == tokenType -> arrayOf(Default.STRING)
+        else -> arrayOf()
     }
 
 }

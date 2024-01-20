@@ -10,13 +10,14 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <fileType
-            language="Rexx"
-            name="Rexx File"
-            implementationClass="com.github.neppord.rexxintellijplugin.RexxFileType"
-            fieldName="INSTANCE"
-            extensions="rex"/>
-        <syntaxHighlighter
-            implementationClass="com.github.neppord.rexxintellijplugin.RexxSyntaxHighlighter"
+                language="Rexx"
+                name="Rexx File"
+                implementationClass="com.github.neppord.rexxintellijplugin.RexxFileType"
+                fieldName="INSTANCE"
+                extensions="rex"/>
+        <lang.syntaxHighlighter
+                language="Rexx"
+                implementationClass="com.github.neppord.rexxintellijplugin.RexxSyntaxHighlighter"
         />
     </extensions>
 </idea-plugin>
