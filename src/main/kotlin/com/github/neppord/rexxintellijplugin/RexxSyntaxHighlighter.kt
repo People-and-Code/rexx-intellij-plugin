@@ -1,8 +1,5 @@
 package com.github.neppord.rexxintellijplugin
 
-import com.intellij.lexer.FlexAdapter
-import com.intellij.lexer.Lexer
-import com.intellij.openapi.editor.colors.TextAttributesKey
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase
 import com.intellij.psi.tree.IElementType
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors as Default
