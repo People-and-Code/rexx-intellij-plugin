@@ -6,7 +6,11 @@ import com.intellij.psi.tree.TokenSet
 @JvmField val SHEBANG = RexxElementType("SHEBANG")
 @JvmField val LINE_COMMENT = RexxElementType("LINE_COMMENT")
 @JvmField val MULTILINE_COMMENT = RexxElementType("MULTILINE_COMMENT")
-
+val comment = TokenSet.create(
+    SHEBANG,
+    LINE_COMMENT,
+    MULTILINE_COMMENT
+)
 
 @JvmField val KEYWORD_CLASS = RexxElementType("KEYWORD_CLASS")
 @JvmField val KEYWORD_ATTRIBUTE = RexxElementType("KEYWORD_ATTRIBUTE")
@@ -15,12 +19,22 @@ import com.intellij.psi.tree.TokenSet
 @JvmField val TILDE = RexxElementType("TILDE")
 
 @JvmField val STRING = RexxElementType("STRING")
+
 @JvmField val IDENTIFIER = RexxElementType("IDENTIFIER")
+
 @JvmField val NUMBER_INT = RexxElementType("NUMBER_INT")
 @JvmField val NUMBER_DECIMAL = RexxElementType("NUMBER_DECIMAL")
 @JvmField val NUMBER_SCIENTIFIC = RexxElementType("NUMBER_SCIENTIFIC")
 @JvmField val NUMBER_BINARY = RexxElementType("NUMBER_BINARY")
 @JvmField val NUMBER_HEXADECIMAL = RexxElementType("NUMBER_HEXADECIMAL")
+
+val number = TokenSet.create(
+    NUMBER_INT,
+    NUMBER_DECIMAL,
+    NUMBER_SCIENTIFIC,
+    NUMBER_BINARY,
+    NUMBER_HEXADECIMAL,
+)
 
 @JvmField val OPERATOR_PLUS = RexxElementType("OPERATOR_PLUS")
 @JvmField val OPERATOR_SUBTRACT = RexxElementType("OPERATOR_SUBTRACT")
@@ -31,7 +45,7 @@ import com.intellij.psi.tree.TokenSet
 @JvmField val OPERATOR_POWER = RexxElementType("OPERATOR_POWER")
 @JvmField val OPERATOR_CONCATENATE = RexxElementType("OPERATOR_CONCATENATE")
 @JvmField val OPERATOR_AND = RexxElementType("OPERATOR_AND")
-      
+
 @JvmField val OPERATOR_BITWISE_AND = RexxElementType("OPERATOR_BITWISE_AND")
 @JvmField val OPERATOR_OR = RexxElementType("OPERATOR_OR")
 @JvmField val OPERATOR_XOR = RexxElementType("OPERATOR_XOR")

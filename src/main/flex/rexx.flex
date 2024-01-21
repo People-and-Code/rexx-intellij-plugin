@@ -335,3 +335,6 @@ import static com.intellij.psi.TokenType.BAD_CHARACTER;
 "::method"              { return KEYWORD_METHOD; }
 "."                     { return DOT; }
 "~"                     { return TILDE; }
+
+// accept everything else as a bad character
+[^] {return BAD_CHARACTER;}
