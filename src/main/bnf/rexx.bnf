@@ -1,0 +1,39 @@
+{
+    parserClass="com.github.neppord.rexxintellijplugin.RexxParser"
+
+    extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+    psiClassPrefix="Rexx"
+    psiImplClassSuffix="Impl"
+    psiPackage="com.github.neppord.rexxintellijplugin.psi"
+    psiImplPackage="com.github.neppord.rexxintellijplugin.psi"
+    elementTypeHolderClass="com.github.neppord.rexxintellijplugin.RexxTokensKt"
+    elementTypeClass="com.github.neppord.rexxintellijplugin.RexxElementType"
+    tokenTypeClass="com.github.neppord.rexxintellijplugin.RexxTokenType"
+    tokens=[
+
+      KEYWORD_SAY="regexp:SAY"
+
+      STRING="regexp:\"[^\"\n]*\"|'[^'\n]*'"
+      IDENTIFIER="regexp:[a-zA-Z][a-zA-Z0-9._]*"
+
+      // Comments
+      SHEBANG="regexp:\"#!\"[^\n]*"
+      LINE_COMMENT="regexp:--[^\n]*"
+      MULTILINE_COMMENT="regexp:/[*][^*]*[*]+(/[^*]*[*]+)*/"
+
+      // Numbers
+      NUMBER_BINARY="regexp:0b[01]+"
+      NUMBER_INT="regexp:[0-9]+"
+      NUMBER_DECIMAL="regexp:[0-9]*[.]?[0-9]+"
+      NUMBER_SCIENTIFIC="regexp:[0-9]*[.][0-9]+([eE][+-]?[0-9]+)"
+      NUMBER_HEXADECIMAL="regexp:0[xX][0-9a-fA-F]+"
+    ]
+}
+
+
+rexx_file ::= clause*
+
+private clause ::= instruction // | assignment | command | function_call | label | comment
+
+instruction ::= KEYWORD_SAY STRING

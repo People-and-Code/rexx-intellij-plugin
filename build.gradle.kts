@@ -151,7 +151,7 @@ tasks {
         channels = newChannels
     }
     generateLexer.configure {
-        sourceFile.set(file("src/main/flex/rexx.flex"))
+        sourceFile.set(file("src/main/flex/Parse.flex"))
         targetDir.set("src/main/gen/com/github/neppord/rexxintellijplugin")
         targetClass.set("_RexxLexer")
         purgeOldFiles.set(true)
@@ -159,6 +159,9 @@ tasks {
 
     generateParser.configure {
         sourceFile.set(file("src/main/bnf/rexx.bnf"))
+        pathToParser.set("parser")
+        pathToPsiRoot.set("psi")
+        targetRoot.set("src/main/gen")
         purgeOldFiles.set(true)
     }
 }

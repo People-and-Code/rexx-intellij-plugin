@@ -1,9 +1,7 @@
 package com.github.neppord.rexxintellijplugin;
 
-import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;
-import java.lang.invoke.StringConcatFactory;
-import static com.github.neppord.rexxintellijplugin.RexxTokensKt.*;
+import static com.github.neppord.rexxintellijplugin.HighlightRexxTokensKt.*;
 import static com.intellij.psi.TokenType.WHITE_SPACE;
 import static com.intellij.psi.TokenType.BAD_CHARACTER;
 
@@ -312,8 +310,8 @@ import static com.intellij.psi.TokenType.BAD_CHARACTER;
 
 
 // Comments
-"#!"[^\n]*       { return SHEBANG; }
-"--"[^\n]* { return LINE_COMMENT; }
+"#!"[^\n]*                        { return SHEBANG; }
+"--"[^\n]*                        { return LINE_COMMENT; }
 "/*"[^*]*"*"+(("/"[^*]*"*"+)*"/") { return MULTILINE_COMMENT; }
 
 // complex
@@ -322,10 +320,10 @@ import static com.intellij.psi.TokenType.BAD_CHARACTER;
 "\"" [^"\\\n"]*? "\"" { return STRING;}
 '[^']*' { return STRING;}
 [a-zA-Z][a-zA-Z0-9._]* {return IDENTIFIER;}
-"0b" [01]+ {return NUMBER_BINARY;}
+0b[01]+ {return NUMBER_BINARY;}
 [0-9]+  {return NUMBER_INT;}
-[0-9]*"."?[0-9]+  {return NUMBER_DECIMAL;}
-[0-9]*\.[0-9]+([eE][+-]?[0-9]+) { return NUMBER_SCIENTIFIC; }
+[0-9]*[.]?[0-9]+  {return NUMBER_DECIMAL;}
+[0-9]*[.][0-9]+([eE][+-]?[0-9]+) { return NUMBER_SCIENTIFIC; }
 0[xX][0-9a-fA-F]+ { return NUMBER_HEXADECIMAL; }
 
 // OO

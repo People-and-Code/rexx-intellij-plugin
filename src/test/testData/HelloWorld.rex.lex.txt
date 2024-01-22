@@ -1,0 +1,7 @@
+KEYWORD_SAY ('SAY')
+WHITE_SPACE (' ')
+STRING ('"hello world"')
+WHITE_SPACE ('\n')
+KEYWORD_SAY ('say')
+WHITE_SPACE (' ')
+STRING (''Hello World'')

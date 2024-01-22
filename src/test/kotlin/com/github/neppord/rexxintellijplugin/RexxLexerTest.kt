@@ -5,6 +5,8 @@ import com.intellij.testFramework.LexerTestCase
 class RexxLexerTest : LexerTestCase() {
     override fun createLexer() = RexxLexer()
     override fun getDirPath() = "src/test/testData"
+    override fun getExpectedFileExtension() = ".rex.lex.txt"
+
     fun testHelloWorld() = doFileTest("rex")
     fun testVariable() = doFileTest("rex")
     fun testNumbers() = doFileTest("rex")
