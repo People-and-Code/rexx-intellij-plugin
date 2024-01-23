@@ -28,6 +28,12 @@ public class RexxExpressionImpl extends ASTWrapperPsiElement implements RexxExpr
 
   @Override
   @Nullable
+  public PsiElement getNumberDecimal() {
+    return findChildByType(NUMBER_DECIMAL);
+  }
+
+  @Override
+  @Nullable
   public PsiElement getNumberInt() {
     return findChildByType(NUMBER_INT);
   }

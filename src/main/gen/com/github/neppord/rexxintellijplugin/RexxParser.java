@@ -42,14 +42,14 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // STRING | NUMBER_INT
+  // STRING | NUMBER_INT | NUMBER_DECIMAL
   public static boolean expression(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "expression")) return false;
-    if (!nextTokenIs(builder_, "<expression>", NUMBER_INT, STRING)) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_, level_, _NONE_, EXPRESSION, "<expression>");
     result_ = consumeToken(builder_, STRING);
     if (!result_) result_ = consumeToken(builder_, NUMBER_INT);
+    if (!result_) result_ = consumeToken(builder_, NUMBER_DECIMAL);
     exit_section_(builder_, level_, marker_, result_, false, null);
     return result_;
   }

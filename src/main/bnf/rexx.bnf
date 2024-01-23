@@ -335,6 +335,6 @@ private clause ::= instruction // | assignment | command | function_call | label
 instruction ::= say_instruction
 say_instruction ::= KEYWORD_SAY expression
 
-expression ::= STRING | NUMBER_INT
+expression ::= STRING | NUMBER_INT | NUMBER_DECIMAL
 
 

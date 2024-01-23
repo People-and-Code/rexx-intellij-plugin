@@ -1,0 +1,7 @@
+FILE
+  RexxInstructionImpl(INSTRUCTION)
+    RexxSayInstructionImpl(SAY_INSTRUCTION)
+      PsiElement(KEYWORD_SAY)('SAY')
+      PsiWhiteSpace(' ')
+      RexxExpressionImpl(EXPRESSION)
+        PsiElement(NUMBER_DECIMAL)('3.14')
