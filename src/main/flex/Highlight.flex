@@ -33,7 +33,8 @@ import static com.intellij.psi.TokenType.BAD_CHARACTER;
 "**"           { return OPERATOR_POWER; }
 "||"           { return OPERATOR_CONCATENATE; }
 "&&"           { return OPERATOR_AND; }
-      
+
+// Bitwise
 "&"            { return OPERATOR_BITWISE_AND; }
 "|"            { return OPERATOR_OR; }
 "^^"           { return OPERATOR_XOR; }
@@ -320,6 +321,8 @@ import static com.intellij.psi.TokenType.BAD_CHARACTER;
 "\"" [^"\\\n"]*? "\"" { return STRING;}
 '[^']*' { return STRING;}
 [a-zA-Z][a-zA-Z0-9._]* {return IDENTIFIER;}
+
+// Numbers
 0b[01]+ {return NUMBER_BINARY;}
 [0-9]+  {return NUMBER_INT;}
 [0-9]*[.]?[0-9]+  {return NUMBER_DECIMAL;}
