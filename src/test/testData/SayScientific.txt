@@ -6,5 +6,5 @@ FILE
       RexxExpressionImpl(EXPRESSION)
         RexxExpressionTermImpl(EXPRESSION_TERM)
           RexxNumericConstantImpl(NUMERIC_CONSTANT)
-            RexxDecimalConstantImpl(DECIMAL_CONSTANT)
-              PsiElement(NUMBER_DECIMAL)('3.14')
+            RexxScientificConstantImpl(SCIENTIFIC_CONSTANT)
+              PsiElement(NUMBER_SCIENTIFIC)('1.23E4')

@@ -7,7 +7,15 @@ import com.intellij.psi.PsiElement;
 
 public class RexxVisitor extends PsiElementVisitor {
 
+  public void visitDecimalConstant(@NotNull RexxDecimalConstant o) {
+    visitPsiElement(o);
+  }
+
   public void visitExpression(@NotNull RexxExpression o) {
+    visitPsiElement(o);
+  }
+
+  public void visitExpressionTerm(@NotNull RexxExpressionTerm o) {
     visitPsiElement(o);
   }
 
@@ -15,7 +23,23 @@ public class RexxVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitIntegerConstant(@NotNull RexxIntegerConstant o) {
+    visitPsiElement(o);
+  }
+
+  public void visitNumericConstant(@NotNull RexxNumericConstant o) {
+    visitPsiElement(o);
+  }
+
   public void visitSayInstruction(@NotNull RexxSayInstruction o) {
+    visitPsiElement(o);
+  }
+
+  public void visitScientificConstant(@NotNull RexxScientificConstant o) {
+    visitPsiElement(o);
+  }
+
+  public void visitStringLiteral(@NotNull RexxStringLiteral o) {
     visitPsiElement(o);
   }
 

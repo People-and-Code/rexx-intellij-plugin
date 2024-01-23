@@ -5,9 +5,12 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface RexxExpression extends PsiElement {
+public interface RexxExpressionTerm extends PsiElement {
 
-  @NotNull
-  RexxExpressionTerm getExpressionTerm();
+  @Nullable
+  RexxNumericConstant getNumericConstant();
+
+  @Nullable
+  RexxStringLiteral getStringLiteral();
 
 }

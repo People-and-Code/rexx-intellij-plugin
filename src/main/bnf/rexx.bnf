@@ -335,6 +335,13 @@ private clause ::= instruction // | assignment | command | function_call | label
 instruction ::= say_instruction
 say_instruction ::= KEYWORD_SAY expression
 
-expression ::= STRING | NUMBER_INT | NUMBER_DECIMAL
+expression ::= expressionTerm
+expressionTerm ::= stringLiteral | numericConstant
+stringLiteral ::= STRING
+numericConstant ::= integerConstant | decimalConstant | scientificConstant
+integerConstant ::= NUMBER_INT
+decimalConstant ::= NUMBER_DECIMAL
+scientificConstant ::= NUMBER_SCIENTIFIC
+
 
 

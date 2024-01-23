@@ -42,14 +42,36 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // STRING | NUMBER_INT | NUMBER_DECIMAL
+  // NUMBER_DECIMAL
+  public static boolean decimalConstant(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "decimalConstant")) return false;
+    if (!nextTokenIs(builder_, NUMBER_DECIMAL)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, NUMBER_DECIMAL);
+    exit_section_(builder_, marker_, DECIMAL_CONSTANT, result_);
+    return result_;
+  }
+
+  /* ********************************************************** */
+  // expressionTerm
   public static boolean expression(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "expression")) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_, level_, _NONE_, EXPRESSION, "<expression>");
-    result_ = consumeToken(builder_, STRING);
-    if (!result_) result_ = consumeToken(builder_, NUMBER_INT);
-    if (!result_) result_ = consumeToken(builder_, NUMBER_DECIMAL);
+    result_ = expressionTerm(builder_, level_ + 1);
+    exit_section_(builder_, level_, marker_, result_, false, null);
+    return result_;
+  }
+
+  /* ********************************************************** */
+  // stringLiteral | numericConstant
+  public static boolean expressionTerm(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "expressionTerm")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_, level_, _NONE_, EXPRESSION_TERM, "<expression term>");
+    result_ = stringLiteral(builder_, level_ + 1);
+    if (!result_) result_ = numericConstant(builder_, level_ + 1);
     exit_section_(builder_, level_, marker_, result_, false, null);
     return result_;
   }
@@ -63,6 +85,31 @@ public class RexxParser implements PsiParser, LightPsiParser {
     Marker marker_ = enter_section_(builder_);
     result_ = say_instruction(builder_, level_ + 1);
     exit_section_(builder_, marker_, INSTRUCTION, result_);
+    return result_;
+  }
+
+  /* ********************************************************** */
+  // NUMBER_INT
+  public static boolean integerConstant(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "integerConstant")) return false;
+    if (!nextTokenIs(builder_, NUMBER_INT)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, NUMBER_INT);
+    exit_section_(builder_, marker_, INTEGER_CONSTANT, result_);
+    return result_;
+  }
+
+  /* ********************************************************** */
+  // integerConstant | decimalConstant | scientificConstant
+  public static boolean numericConstant(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "numericConstant")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_, level_, _NONE_, NUMERIC_CONSTANT, "<numeric constant>");
+    result_ = integerConstant(builder_, level_ + 1);
+    if (!result_) result_ = decimalConstant(builder_, level_ + 1);
+    if (!result_) result_ = scientificConstant(builder_, level_ + 1);
+    exit_section_(builder_, level_, marker_, result_, false, null);
     return result_;
   }
 
@@ -88,6 +135,30 @@ public class RexxParser implements PsiParser, LightPsiParser {
     result_ = consumeToken(builder_, KEYWORD_SAY);
     result_ = result_ && expression(builder_, level_ + 1);
     exit_section_(builder_, marker_, SAY_INSTRUCTION, result_);
+    return result_;
+  }
+
+  /* ********************************************************** */
+  // NUMBER_SCIENTIFIC
+  public static boolean scientificConstant(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "scientificConstant")) return false;
+    if (!nextTokenIs(builder_, NUMBER_SCIENTIFIC)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, NUMBER_SCIENTIFIC);
+    exit_section_(builder_, marker_, SCIENTIFIC_CONSTANT, result_);
+    return result_;
+  }
+
+  /* ********************************************************** */
+  // STRING
+  public static boolean stringLiteral(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "stringLiteral")) return false;
+    if (!nextTokenIs(builder_, STRING)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, STRING);
+    exit_section_(builder_, marker_, STRING_LITERAL, result_);
     return result_;
   }
 

@@ -8,9 +8,15 @@ import com.github.neppord.rexxintellijplugin.psi.*;
 
 public interface RexxTokensKt {
 
+  IElementType DECIMAL_CONSTANT = new RexxElementType("DECIMAL_CONSTANT");
   IElementType EXPRESSION = new RexxElementType("EXPRESSION");
+  IElementType EXPRESSION_TERM = new RexxElementType("EXPRESSION_TERM");
   IElementType INSTRUCTION = new RexxElementType("INSTRUCTION");
+  IElementType INTEGER_CONSTANT = new RexxElementType("INTEGER_CONSTANT");
+  IElementType NUMERIC_CONSTANT = new RexxElementType("NUMERIC_CONSTANT");
   IElementType SAY_INSTRUCTION = new RexxElementType("SAY_INSTRUCTION");
+  IElementType SCIENTIFIC_CONSTANT = new RexxElementType("SCIENTIFIC_CONSTANT");
+  IElementType STRING_LITERAL = new RexxElementType("STRING_LITERAL");
 
   IElementType BUILTIN_ABBREV = new RexxTokenType("BUILTIN_ABBREV");
   IElementType BUILTIN_ABS = new RexxTokenType("BUILTIN_ABS");
@@ -177,14 +183,32 @@ public interface RexxTokensKt {
   class Factory {
     public static PsiElement createElement(ASTNode node) {
       IElementType type = node.getElementType();
-      if (type == EXPRESSION) {
+      if (type == DECIMAL_CONSTANT) {
+        return new RexxDecimalConstantImpl(node);
+      }
+      else if (type == EXPRESSION) {
         return new RexxExpressionImpl(node);
+      }
+      else if (type == EXPRESSION_TERM) {
+        return new RexxExpressionTermImpl(node);
       }
       else if (type == INSTRUCTION) {
         return new RexxInstructionImpl(node);
       }
+      else if (type == INTEGER_CONSTANT) {
+        return new RexxIntegerConstantImpl(node);
+      }
+      else if (type == NUMERIC_CONSTANT) {
+        return new RexxNumericConstantImpl(node);
+      }
       else if (type == SAY_INSTRUCTION) {
         return new RexxSayInstructionImpl(node);
+      }
+      else if (type == SCIENTIFIC_CONSTANT) {
+        return new RexxScientificConstantImpl(node);
+      }
+      else if (type == STRING_LITERAL) {
+        return new RexxStringLiteralImpl(node);
       }
       throw new AssertionError("Unknown element type: " + type);
     }

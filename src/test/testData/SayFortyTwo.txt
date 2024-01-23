@@ -4,4 +4,7 @@ FILE
       PsiElement(KEYWORD_SAY)('SAY')
       PsiWhiteSpace(' ')
       RexxExpressionImpl(EXPRESSION)
-        PsiElement(NUMBER_INT)('42')
+        RexxExpressionTermImpl(EXPRESSION_TERM)
+          RexxNumericConstantImpl(NUMERIC_CONSTANT)
+            RexxIntegerConstantImpl(INTEGER_CONSTANT)
+              PsiElement(NUMBER_INT)('42')
