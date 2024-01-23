@@ -31,6 +31,10 @@ public class RexxVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitParentheticalExpression(@NotNull RexxParentheticalExpression o) {
+    visitPsiElement(o);
+  }
+
   public void visitSayInstruction(@NotNull RexxSayInstruction o) {
     visitPsiElement(o);
   }

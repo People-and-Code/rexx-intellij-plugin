@@ -193,6 +193,8 @@ TILDE=[~]
 <YYINITIAL> {
   {WHITE_SPACE}                                 { return WHITE_SPACE; }
 
+  "("                                           { return TOKEN_LEFT; }
+  ")"                                           { return TOKEN_RIGHT; }
 
   {OPERATOR_PLUS}                               { return OPERATOR_PLUS; }
   {OPERATOR_SUBTRACT}                           { return OPERATOR_SUBTRACT; }

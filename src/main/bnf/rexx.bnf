@@ -11,6 +11,26 @@
     elementTypeClass="com.github.neppord.rexxintellijplugin.RexxElementType"
     tokenTypeClass="com.github.neppord.rexxintellijplugin.RexxTokenType"
     tokens=[
+        // MAJOR TOKEN TYPES
+        // TOKEN_NULL
+        //     TOKEN_BLANK
+        //     TOKEN_SYMBOL
+        //     TOKEN_LITERAL
+        //     TOKEN_OPERATOR
+        //     TOKEN_EOC
+        //     TOKEN_COMMA
+        //     TOKEN_PREFIX
+        TOKEN_LEFT="("
+        TOKEN_RIGHT=")"
+        //     TOKEN_POINT
+        //     TOKEN_COLON
+        //     TOKEN_TILDE
+        //     TOKEN_DTILDE
+        //     TOKEN_SQLEFT
+        //     TOKEN_SQRIGHT
+        //     TOKEN_DCOLON
+        //     TOKEN_CONTINUE
+        //     TOKEN_ASSIGNMENT
 
         // OPERATORS
         OPERATOR_PLUS="regexp:\\+"
@@ -336,12 +356,16 @@ instruction ::= say_instruction
 say_instruction ::= KEYWORD_SAY expression
 
 expression ::= expressionTerm
-expressionTerm ::= stringLiteral | numericConstant
+expressionTerm ::= stringLiteral | numericConstant | parentheticalExpression
 stringLiteral ::= STRING
 numericConstant ::= integerConstant | decimalConstant | scientificConstant
 integerConstant ::= NUMBER_INT
 decimalConstant ::= NUMBER_DECIMAL
 scientificConstant ::= NUMBER_SCIENTIFIC
+
+parentheticalExpression ::= TOKEN_LEFT expression TOKEN_RIGHT
+
+
 
 
 

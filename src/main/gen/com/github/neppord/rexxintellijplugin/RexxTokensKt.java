@@ -14,6 +14,7 @@ public interface RexxTokensKt {
   IElementType INSTRUCTION = new RexxElementType("INSTRUCTION");
   IElementType INTEGER_CONSTANT = new RexxElementType("INTEGER_CONSTANT");
   IElementType NUMERIC_CONSTANT = new RexxElementType("NUMERIC_CONSTANT");
+  IElementType PARENTHETICAL_EXPRESSION = new RexxElementType("PARENTHETICAL_EXPRESSION");
   IElementType SAY_INSTRUCTION = new RexxElementType("SAY_INSTRUCTION");
   IElementType SCIENTIFIC_CONSTANT = new RexxElementType("SCIENTIFIC_CONSTANT");
   IElementType STRING_LITERAL = new RexxElementType("STRING_LITERAL");
@@ -179,6 +180,8 @@ public interface RexxTokensKt {
   IElementType SUBKEY_WHILE = new RexxTokenType("SUBKEY_WHILE");
   IElementType SUBKEY_WITH = new RexxTokenType("SUBKEY_WITH");
   IElementType TILDE = new RexxTokenType("TILDE");
+  IElementType TOKEN_LEFT = new RexxTokenType("(");
+  IElementType TOKEN_RIGHT = new RexxTokenType(")");
 
   class Factory {
     public static PsiElement createElement(ASTNode node) {
@@ -200,6 +203,9 @@ public interface RexxTokensKt {
       }
       else if (type == NUMERIC_CONSTANT) {
         return new RexxNumericConstantImpl(node);
+      }
+      else if (type == PARENTHETICAL_EXPRESSION) {
+        return new RexxParentheticalExpressionImpl(node);
       }
       else if (type == SAY_INSTRUCTION) {
         return new RexxSayInstructionImpl(node);
