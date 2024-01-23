@@ -5,9 +5,12 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface RexxInstruction extends PsiElement {
+public interface RexxSayInstruction extends PsiElement {
 
   @NotNull
-  RexxSayInstruction getSayInstruction();
+  RexxExpression getExpression();
+
+  @NotNull
+  PsiElement getKeywordSay();
 
 }

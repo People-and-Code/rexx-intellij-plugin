@@ -10,14 +10,14 @@ import com.intellij.psi.util.PsiTreeUtil;
 import static com.github.neppord.rexxintellijplugin.RexxTokensKt.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 
-public class RexxInstructionImpl extends ASTWrapperPsiElement implements RexxInstruction {
+public class RexxSayInstructionImpl extends ASTWrapperPsiElement implements RexxSayInstruction {
 
-  public RexxInstructionImpl(@NotNull ASTNode node) {
+  public RexxSayInstructionImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull RexxVisitor visitor) {
-    visitor.visitInstruction(this);
+    visitor.visitSayInstruction(this);
   }
 
   @Override
@@ -28,8 +28,14 @@ public class RexxInstructionImpl extends ASTWrapperPsiElement implements RexxIns
 
   @Override
   @NotNull
-  public RexxSayInstruction getSayInstruction() {
-    return findNotNullChildByClass(RexxSayInstruction.class);
+  public RexxExpression getExpression() {
+    return findNotNullChildByClass(RexxExpression.class);
+  }
+
+  @Override
+  @NotNull
+  public PsiElement getKeywordSay() {
+    return findNotNullChildByType(KEYWORD_SAY);
   }
 
 }

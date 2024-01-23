@@ -332,4 +332,9 @@ rexx_file ::= clause*
 
 private clause ::= instruction // | assignment | command | function_call | label | comment
 
-instruction ::= KEYWORD_SAY STRING
+instruction ::= say_instruction
+say_instruction ::= KEYWORD_SAY expression
+
+expression ::= STRING | NUMBER_INT
+
+

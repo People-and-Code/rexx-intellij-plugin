@@ -9,4 +9,5 @@ class RexxParserTest : ParsingTestCase(
 ) {
     override fun getTestDataPath() = "."
     fun testHelloWorld() = doTest(true)
+    fun testSayFortyTwo() = doTest(true)
 }

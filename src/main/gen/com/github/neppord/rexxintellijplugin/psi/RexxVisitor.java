@@ -7,7 +7,15 @@ import com.intellij.psi.PsiElement;
 
 public class RexxVisitor extends PsiElementVisitor {
 
+  public void visitExpression(@NotNull RexxExpression o) {
+    visitPsiElement(o);
+  }
+
   public void visitInstruction(@NotNull RexxInstruction o) {
+    visitPsiElement(o);
+  }
+
+  public void visitSayInstruction(@NotNull RexxSayInstruction o) {
     visitPsiElement(o);
   }
 

@@ -8,7 +8,9 @@ import com.github.neppord.rexxintellijplugin.psi.*;
 
 public interface RexxTokensKt {
 
+  IElementType EXPRESSION = new RexxElementType("EXPRESSION");
   IElementType INSTRUCTION = new RexxElementType("INSTRUCTION");
+  IElementType SAY_INSTRUCTION = new RexxElementType("SAY_INSTRUCTION");
 
   IElementType BUILTIN_ABBREV = new RexxTokenType("BUILTIN_ABBREV");
   IElementType BUILTIN_ABS = new RexxTokenType("BUILTIN_ABS");
@@ -175,8 +177,14 @@ public interface RexxTokensKt {
   class Factory {
     public static PsiElement createElement(ASTNode node) {
       IElementType type = node.getElementType();
-      if (type == INSTRUCTION) {
+      if (type == EXPRESSION) {
+        return new RexxExpressionImpl(node);
+      }
+      else if (type == INSTRUCTION) {
         return new RexxInstructionImpl(node);
+      }
+      else if (type == SAY_INSTRUCTION) {
+        return new RexxSayInstructionImpl(node);
       }
       throw new AssertionError("Unknown element type: " + type);
     }

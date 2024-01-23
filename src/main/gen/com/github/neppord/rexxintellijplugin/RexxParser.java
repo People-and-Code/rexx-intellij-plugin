@@ -42,13 +42,26 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // KEYWORD_SAY STRING
+  // STRING | NUMBER_INT
+  public static boolean expression(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "expression")) return false;
+    if (!nextTokenIs(builder_, "<expression>", NUMBER_INT, STRING)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_, level_, _NONE_, EXPRESSION, "<expression>");
+    result_ = consumeToken(builder_, STRING);
+    if (!result_) result_ = consumeToken(builder_, NUMBER_INT);
+    exit_section_(builder_, level_, marker_, result_, false, null);
+    return result_;
+  }
+
+  /* ********************************************************** */
+  // say_instruction
   public static boolean instruction(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "instruction")) return false;
     if (!nextTokenIs(builder_, KEYWORD_SAY)) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_);
-    result_ = consumeTokens(builder_, 0, KEYWORD_SAY, STRING);
+    result_ = say_instruction(builder_, level_ + 1);
     exit_section_(builder_, marker_, INSTRUCTION, result_);
     return result_;
   }
@@ -63,6 +76,19 @@ public class RexxParser implements PsiParser, LightPsiParser {
       if (!empty_element_parsed_guard_(builder_, "rexx_file", pos_)) break;
     }
     return true;
+  }
+
+  /* ********************************************************** */
+  // KEYWORD_SAY expression
+  public static boolean say_instruction(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "say_instruction")) return false;
+    if (!nextTokenIs(builder_, KEYWORD_SAY)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, KEYWORD_SAY);
+    result_ = result_ && expression(builder_, level_ + 1);
+    exit_section_(builder_, marker_, SAY_INSTRUCTION, result_);
+    return result_;
   }
 
 }
