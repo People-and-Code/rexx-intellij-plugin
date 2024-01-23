@@ -356,12 +356,13 @@ instruction ::= say_instruction
 say_instruction ::= KEYWORD_SAY expression
 
 expression ::= expressionTerm
-expressionTerm ::= stringLiteral | numericConstant | parentheticalExpression
+expressionTerm ::= stringLiteral | numericConstant | variableExpression | parentheticalExpression
 stringLiteral ::= STRING
 numericConstant ::= integerConstant | decimalConstant | scientificConstant
 integerConstant ::= NUMBER_INT
 decimalConstant ::= NUMBER_DECIMAL
 scientificConstant ::= NUMBER_SCIENTIFIC
+variableExpression ::= IDENTIFIER
 
 parentheticalExpression ::= TOKEN_LEFT expression TOKEN_RIGHT
 

@@ -65,13 +65,14 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // stringLiteral | numericConstant | parentheticalExpression
+  // stringLiteral | numericConstant | variableExpression | parentheticalExpression
   public static boolean expressionTerm(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "expressionTerm")) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_, level_, _NONE_, EXPRESSION_TERM, "<expression term>");
     result_ = stringLiteral(builder_, level_ + 1);
     if (!result_) result_ = numericConstant(builder_, level_ + 1);
+    if (!result_) result_ = variableExpression(builder_, level_ + 1);
     if (!result_) result_ = parentheticalExpression(builder_, level_ + 1);
     exit_section_(builder_, level_, marker_, result_, false, null);
     return result_;
@@ -174,6 +175,18 @@ public class RexxParser implements PsiParser, LightPsiParser {
     Marker marker_ = enter_section_(builder_);
     result_ = consumeToken(builder_, STRING);
     exit_section_(builder_, marker_, STRING_LITERAL, result_);
+    return result_;
+  }
+
+  /* ********************************************************** */
+  // IDENTIFIER
+  public static boolean variableExpression(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "variableExpression")) return false;
+    if (!nextTokenIs(builder_, IDENTIFIER)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, IDENTIFIER);
+    exit_section_(builder_, marker_, VARIABLE_EXPRESSION, result_);
     return result_;
   }
 

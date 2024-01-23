@@ -44,4 +44,10 @@ public class RexxExpressionTermImpl extends ASTWrapperPsiElement implements Rexx
     return findChildByClass(RexxStringLiteral.class);
   }
 
+  @Override
+  @Nullable
+  public RexxVariableExpression getVariableExpression() {
+    return findChildByClass(RexxVariableExpression.class);
+  }
+
 }

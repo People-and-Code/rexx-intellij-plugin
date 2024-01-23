@@ -18,6 +18,7 @@ public interface RexxTokensKt {
   IElementType SAY_INSTRUCTION = new RexxElementType("SAY_INSTRUCTION");
   IElementType SCIENTIFIC_CONSTANT = new RexxElementType("SCIENTIFIC_CONSTANT");
   IElementType STRING_LITERAL = new RexxElementType("STRING_LITERAL");
+  IElementType VARIABLE_EXPRESSION = new RexxElementType("VARIABLE_EXPRESSION");
 
   IElementType BUILTIN_ABBREV = new RexxTokenType("BUILTIN_ABBREV");
   IElementType BUILTIN_ABS = new RexxTokenType("BUILTIN_ABS");
@@ -215,6 +216,9 @@ public interface RexxTokensKt {
       }
       else if (type == STRING_LITERAL) {
         return new RexxStringLiteralImpl(node);
+      }
+      else if (type == VARIABLE_EXPRESSION) {
+        return new RexxVariableExpressionImpl(node);
       }
       throw new AssertionError("Unknown element type: " + type);
     }

@@ -1,0 +1,9 @@
+FILE
+  RexxInstructionImpl(INSTRUCTION)
+    RexxSayInstructionImpl(SAY_INSTRUCTION)
+      PsiElement(KEYWORD_SAY)('SAY')
+      PsiWhiteSpace(' ')
+      RexxExpressionImpl(EXPRESSION)
+        RexxExpressionTermImpl(EXPRESSION_TERM)
+          RexxVariableExpressionImpl(VARIABLE_EXPRESSION)
+            PsiElement(IDENTIFIER)('myVar')

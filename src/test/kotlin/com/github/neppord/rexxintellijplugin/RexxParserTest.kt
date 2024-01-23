@@ -13,4 +13,5 @@ class RexxParserTest : ParsingTestCase(
     fun testSayPi() = doTest(true)
     fun testSayScientific() = doTest(true)
     fun testSayParenthesis() = doTest(true)
+    fun testSayVar() = doTest(true)
 }
