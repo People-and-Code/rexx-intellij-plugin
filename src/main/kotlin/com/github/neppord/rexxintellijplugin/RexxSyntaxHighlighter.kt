@@ -7,9 +7,23 @@ import com.intellij.psi.tree.TokenSet
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors as Default
 
 class RexxSyntaxHighlighter: SyntaxHighlighterBase() {
-    private val operator: TokenSet = TokenSet.create()
+    private val parentheses: TokenSet = TokenSet.create(
+        TOKEN_LEFT,
+        TOKEN_RIGHT
+    )
+    private val operator: TokenSet = TokenSet.create(
+        OPERATOR_PLUS,
+        OPERATOR_SUBTRACT,
+        OPERATOR_MULTIPLY,
+        OPERATOR_DIVIDE,
+        //OPERATOR_INTDIV,
+        OPERATOR_REMAINDER,
+        OPERATOR_POWER,
+        OPERATOR_CONCATENATE,
+        OPERATOR_AND,
+    )
     private val keyword: TokenSet = TokenSet.create(
-        KEYWORD_SAY
+        KEYWORD_SAY,
     )
     private val number: TokenSet = TokenSet.create(
         NUMBER_INT,
@@ -24,6 +38,7 @@ class RexxSyntaxHighlighter: SyntaxHighlighterBase() {
         operator.contains(tokenType) -> arrayOf(Default.OPERATION_SIGN)
         keyword.contains(tokenType) -> arrayOf(Default.KEYWORD)
         number.contains(tokenType) -> arrayOf(Default.NUMBER)
+        parentheses.contains(tokenType) -> arrayOf(Default.PARENTHESES)
         SHEBANG == tokenType -> arrayOf(Default.LINE_COMMENT)
         LINE_COMMENT == tokenType -> arrayOf(Default.LINE_COMMENT)
         MULTILINE_COMMENT == tokenType -> arrayOf(Default.BLOCK_COMMENT)
