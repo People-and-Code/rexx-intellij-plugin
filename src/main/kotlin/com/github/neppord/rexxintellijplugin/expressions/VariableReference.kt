@@ -13,16 +13,19 @@ class VariableReference(private val variable: Variable) :
     PsiReferenceBase<RexxVariable>(variable, variable.identifier.textRangeInParent) {
     override fun resolve(): PsiElement? {
         val variableName = variable.name
+        return candidates().firstOrNull() {
+            it.name == variableName
+        }
+    }
+
+    override fun getVariants(): Array<Any> = candidates().toList().toTypedArray()
+
+    fun candidates(): Sequence<Assignment> {
         val instruction = variable.parents(true).firstOrNull {
             it is RexxAssignment || it is RexxSayInstruction
-        } ?: return null
-        val previousInstructions = instruction.siblings(forward = false)
-        return previousInstructions.firstOrNull {
-            when (it) {
-                is Assignment -> it.name == variableName
-                else -> false
-            }
         }
+        val previousInstructions = instruction?.siblings(forward = false) ?: emptySequence()
+        return previousInstructions.filterIsInstance<Assignment>()
     }
 
     override fun handleElementRename(newElementName: String): PsiElement =
