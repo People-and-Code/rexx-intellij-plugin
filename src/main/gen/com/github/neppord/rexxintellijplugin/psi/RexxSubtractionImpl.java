@@ -10,14 +10,14 @@ import com.intellij.psi.util.PsiTreeUtil;
 import static com.github.neppord.rexxintellijplugin.RexxTokensKt.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 
-public class RexxAdditionImpl extends ASTWrapperPsiElement implements RexxAddition {
+public class RexxSubtractionImpl extends ASTWrapperPsiElement implements RexxSubtraction {
 
-  public RexxAdditionImpl(@NotNull ASTNode node) {
+  public RexxSubtractionImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull RexxVisitor visitor) {
-    visitor.visitAddition(this);
+    visitor.visitSubtraction(this);
   }
 
   @Override
@@ -33,9 +33,15 @@ public class RexxAdditionImpl extends ASTWrapperPsiElement implements RexxAdditi
   }
 
   @Override
+  @Nullable
+  public RexxSubtraction getSubtraction() {
+    return findChildByClass(RexxSubtraction.class);
+  }
+
+  @Override
   @NotNull
-  public List<RexxSubtraction> getSubtractionList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxSubtraction.class);
+  public PsiElement getOperatorSubtract() {
+    return findNotNullChildByType(OPERATOR_SUBTRACT);
   }
 
 }

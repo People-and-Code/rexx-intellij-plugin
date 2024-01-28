@@ -19,6 +19,10 @@ public class RexxVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitDivision(@NotNull RexxDivision o) {
+    visitPsiElement(o);
+  }
+
   public void visitExpression(@NotNull RexxExpression o) {
     visitPsiElement(o);
   }
@@ -32,6 +36,10 @@ public class RexxVisitor extends PsiElementVisitor {
   }
 
   public void visitIntegerConstant(@NotNull RexxIntegerConstant o) {
+    visitPsiElement(o);
+  }
+
+  public void visitMultiplication(@NotNull RexxMultiplication o) {
     visitPsiElement(o);
   }
 
@@ -52,6 +60,10 @@ public class RexxVisitor extends PsiElementVisitor {
   }
 
   public void visitStringLiteral(@NotNull RexxStringLiteral o) {
+    visitPsiElement(o);
+  }
+
+  public void visitSubtraction(@NotNull RexxSubtraction o) {
     visitPsiElement(o);
   }
 

@@ -11,15 +11,18 @@ public interface RexxTokensKt {
   IElementType ADDITION = new RexxElementType("ADDITION");
   IElementType CONCATENATION = new RexxElementType("CONCATENATION");
   IElementType DECIMAL_CONSTANT = new RexxElementType("DECIMAL_CONSTANT");
+  IElementType DIVISION = new RexxElementType("DIVISION");
   IElementType EXPRESSION = new RexxElementType("EXPRESSION");
   IElementType EXPRESSION_TERM = new RexxElementType("EXPRESSION_TERM");
   IElementType INSTRUCTION = new RexxElementType("INSTRUCTION");
   IElementType INTEGER_CONSTANT = new RexxElementType("INTEGER_CONSTANT");
+  IElementType MULTIPLICATION = new RexxElementType("MULTIPLICATION");
   IElementType NUMERIC_CONSTANT = new RexxElementType("NUMERIC_CONSTANT");
   IElementType PARENTHETICAL_EXPRESSION = new RexxElementType("PARENTHETICAL_EXPRESSION");
   IElementType SAY_INSTRUCTION = new RexxElementType("SAY_INSTRUCTION");
   IElementType SCIENTIFIC_CONSTANT = new RexxElementType("SCIENTIFIC_CONSTANT");
   IElementType STRING_LITERAL = new RexxElementType("STRING_LITERAL");
+  IElementType SUBTRACTION = new RexxElementType("SUBTRACTION");
   IElementType VARIABLE_EXPRESSION = new RexxElementType("VARIABLE_EXPRESSION");
 
   IElementType DOT = new RexxTokenType("DOT");
@@ -108,6 +111,9 @@ public interface RexxTokensKt {
       else if (type == DECIMAL_CONSTANT) {
         return new RexxDecimalConstantImpl(node);
       }
+      else if (type == DIVISION) {
+        return new RexxDivisionImpl(node);
+      }
       else if (type == EXPRESSION) {
         return new RexxExpressionImpl(node);
       }
@@ -119,6 +125,9 @@ public interface RexxTokensKt {
       }
       else if (type == INTEGER_CONSTANT) {
         return new RexxIntegerConstantImpl(node);
+      }
+      else if (type == MULTIPLICATION) {
+        return new RexxMultiplicationImpl(node);
       }
       else if (type == NUMERIC_CONSTANT) {
         return new RexxNumericConstantImpl(node);
@@ -134,6 +143,9 @@ public interface RexxTokensKt {
       }
       else if (type == STRING_LITERAL) {
         return new RexxStringLiteralImpl(node);
+      }
+      else if (type == SUBTRACTION) {
+        return new RexxSubtractionImpl(node);
       }
       else if (type == VARIABLE_EXPRESSION) {
         return new RexxVariableExpressionImpl(node);

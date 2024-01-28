@@ -5,12 +5,12 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface RexxAddition extends PsiElement {
+public interface RexxMultiplication extends PsiElement {
 
   @NotNull
-  List<RexxMultiplication> getMultiplicationList();
+  List<RexxDivision> getDivisionList();
 
   @NotNull
-  List<RexxSubtraction> getSubtractionList();
+  List<RexxExpressionTerm> getExpressionTermList();
 
 }

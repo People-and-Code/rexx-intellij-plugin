@@ -70,7 +70,7 @@
 
         OPERATOR_BACKSLASH="regexp:\\\\"
 
-        // KEYWORDS
+        // region KEYWORDS
 
         // language directive table
         // DIRECTIVE_ANNOTATE="regexp:ANNOTATE"
@@ -317,7 +317,7 @@
 //"TRACE"          {return SUBDIRECTIVE_TRACE;}
 //"UNGUARDED"      {return SUBDIRECTIVE_UNGUARDED;}
 //"UNPROTECTED"    {return SUBDIRECTIVE_UNPROTECTED;}
-
+ // endregion
 
         // Comments
         SHEBANG="regexp:[#][!][^\n]*"
@@ -359,7 +359,17 @@ expression ::= concatenation
 
 concatenation ::= addition (OPERATOR_CONCATENATE addition)*
 
-addition ::= expressionTerm (OPERATOR_PLUS expressionTerm)*
+addition ::= subtraction_ (OPERATOR_PLUS subtraction_)*
+
+private subtraction_ ::= multiplication (subtraction)*
+
+left subtraction ::= OPERATOR_SUBTRACT multiplication
+
+multiplication ::= division_ (OPERATOR_MULTIPLY division_)*
+
+private division_ ::= expressionTerm division*
+
+left division ::= OPERATOR_DIVIDE expressionTerm
 
 expressionTerm ::= stringLiteral | numericConstant | variableExpression | parentheticalExpression
 stringLiteral ::= STRING

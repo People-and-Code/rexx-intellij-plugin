@@ -10,14 +10,14 @@ import com.intellij.psi.util.PsiTreeUtil;
 import static com.github.neppord.rexxintellijplugin.RexxTokensKt.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 
-public class RexxAdditionImpl extends ASTWrapperPsiElement implements RexxAddition {
+public class RexxDivisionImpl extends ASTWrapperPsiElement implements RexxDivision {
 
-  public RexxAdditionImpl(@NotNull ASTNode node) {
+  public RexxDivisionImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull RexxVisitor visitor) {
-    visitor.visitAddition(this);
+    visitor.visitDivision(this);
   }
 
   @Override
@@ -27,15 +27,21 @@ public class RexxAdditionImpl extends ASTWrapperPsiElement implements RexxAdditi
   }
 
   @Override
-  @NotNull
-  public List<RexxMultiplication> getMultiplicationList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxMultiplication.class);
+  @Nullable
+  public RexxDivision getDivision() {
+    return findChildByClass(RexxDivision.class);
   }
 
   @Override
   @NotNull
-  public List<RexxSubtraction> getSubtractionList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxSubtraction.class);
+  public List<RexxExpressionTerm> getExpressionTermList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxExpressionTerm.class);
+  }
+
+  @Override
+  @NotNull
+  public PsiElement getOperatorDivide() {
+    return findNotNullChildByType(OPERATOR_DIVIDE);
   }
 
 }
