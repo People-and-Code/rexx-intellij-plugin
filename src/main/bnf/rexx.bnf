@@ -356,32 +356,20 @@ instruction ::= say_instruction
 say_instruction ::= KEYWORD_SAY expression*
 
 expression ::= concatenation
-
 concatenation ::= addition (OPERATOR_CONCATENATE addition)*
-
 addition ::= subtraction_ (OPERATOR_PLUS subtraction_)*
-
 private subtraction_ ::= multiplication (subtraction)*
-
 left subtraction ::= OPERATOR_SUBTRACT multiplication
-
 multiplication ::= division_ (OPERATOR_MULTIPLY division_)*
-
 private division_ ::= expressionTerm division*
-
 left division ::= OPERATOR_DIVIDE expressionTerm
 
 expressionTerm ::= stringLiteral | numericConstant | variableExpression | parentheticalExpression
+parentheticalExpression ::= TOKEN_LEFT expression TOKEN_RIGHT
 stringLiteral ::= STRING
 numericConstant ::= integerConstant | decimalConstant | scientificConstant
 integerConstant ::= NUMBER_INT
 decimalConstant ::= NUMBER_DECIMAL
 scientificConstant ::= NUMBER_SCIENTIFIC
 variableExpression ::= IDENTIFIER
-
-parentheticalExpression ::= TOKEN_LEFT expression TOKEN_RIGHT
-
-
-
-
 
