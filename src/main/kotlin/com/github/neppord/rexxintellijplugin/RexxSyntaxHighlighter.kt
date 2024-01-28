@@ -43,6 +43,7 @@ class RexxSyntaxHighlighter: SyntaxHighlighterBase() {
         LINE_COMMENT == tokenType -> arrayOf(Default.LINE_COMMENT)
         MULTILINE_COMMENT == tokenType -> arrayOf(Default.BLOCK_COMMENT)
         STRING == tokenType -> arrayOf(Default.STRING)
+        IDENTIFIER == tokenType -> arrayOf(Default.IDENTIFIER)
         else -> arrayOf()
     }
 
