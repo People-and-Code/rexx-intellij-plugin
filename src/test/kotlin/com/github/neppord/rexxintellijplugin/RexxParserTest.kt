@@ -21,4 +21,5 @@ class RexxParserTest : ParsingTestCase(
     fun testSayVar() = doTest(true)
     fun testAssignment() = doTest(true)
     fun testParseArg() = doTest(true)
+    fun testParseValue() = doTest(true)
 }

@@ -1,7 +1,8 @@
 package com.github.neppord.rexxintellijplugin.expressions
 
 import com.github.neppord.rexxintellijplugin.gen.psi.RexxAssignment
-import com.github.neppord.rexxintellijplugin.gen.psi.RexxParseInstruction
+import com.github.neppord.rexxintellijplugin.gen.psi.RexxParseArgInstruction
+import com.github.neppord.rexxintellijplugin.gen.psi.RexxParseVarInstruction
 import com.github.neppord.rexxintellijplugin.gen.psi.RexxSayInstruction
 import com.github.neppord.rexxintellijplugin.gen.psi.RexxVariable
 import com.intellij.psi.PsiElement
@@ -14,14 +15,14 @@ class VariableReference(private val variable: Variable) :
     PsiReferenceBase<RexxVariable>(variable, variable.identifier.textRangeInParent) {
     override fun resolve(): PsiElement? {
         val variableName = variable.name
-        return candidates().firstOrNull() {
+        return candidates().firstOrNull {
             it.name == variableName
         }
     }
 
     override fun getVariants(): Array<Any> = candidates().toList().toTypedArray()
 
-    fun candidates(): Sequence<PsiNameIdentifierOwner> {
+    private fun candidates(): Sequence<PsiNameIdentifierOwner> {
         val instruction = variable.parents(true).firstOrNull {
             it is RexxAssignment || it is RexxSayInstruction
         }
@@ -29,7 +30,8 @@ class VariableReference(private val variable: Variable) :
         return previousInstructions.flatMap {
             when(it) {
                 is RexxAssignment -> sequenceOf(it.nameDeclaration)
-                is RexxParseInstruction -> it.nameDeclarationList.asSequence()
+                is RexxParseArgInstruction -> it.nameDeclarationList.asSequence()
+                is RexxParseVarInstruction -> it.nameDeclarationList.asSequence()
                 else -> sequenceOf()
             }
         }.filterIsInstance<PsiNameIdentifierOwner>()

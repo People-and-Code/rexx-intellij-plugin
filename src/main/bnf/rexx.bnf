@@ -70,22 +70,11 @@
 
         OPERATOR_BACKSLASH="regexp:\\\\"
 
-        // region KEYWORDS
-
-        // language directive table
-        // DIRECTIVE_ANNOTATE="regexp:ANNOTATE"
-        // DIRECTIVE_ATTRIBUTE="regexp:ATTRIBUTE"
-        // DIRECTIVE_CLASS="regexp:CLASS"
-        // DIRECTIVE_CONSTANT="regexp:CONSTANT"
-        // DIRECTIVE_METHOD="regexp:METHOD"
-        // DIRECTIVE_OPTIONS="regexp:OPTIONS"
-        // DIRECTIVE_REQUIRES="regexp:REQUIRES"
-        // DIRECTIVE_RESOURCE="regexp:RESOURCE"
-        // DIRECTIVE_ROUTINE="regexp:ROUTINE"
-
-        // The keyword instruction table
         // KEYWORD_ADDRESS="regexp:ADDRESS"
         KEYWORD_ARG="regexp:ARG"
+        KEYWORD_VAR="regexp:VAR"
+        KEYWORD_VALUE="regexp:VALUE"
+        KEYWORD_WITH="regexp:WITH"
         KEYWORD_CALL="regexp:CALL"
         KEYWORD_DO="regexp:DO"
         KEYWORD_DROP="regexp:DROP"
@@ -120,204 +109,6 @@
         KEYWORD_USE="regexp:USE"
         //KEYWORD_WHEN="regexp:WHEN"
 
-        // instruction subkeyword table
-        // SUBKEY_ADDITIONAL="regexp:ADDITIONAL"
-        // SUBKEY_APPEND="regexp:APPEND"
-        // SUBKEY_ARG="regexp:ARG"
-        // SUBKEY_ARGUMENTS="regexp:ARGUMENTS"
-        // SUBKEY_ARRAY="regexp:ARRAY"
-        // SUBKEY_BY="regexp:BY"
-        // SUBKEY_CASE="regexp:CASE"
-        // SUBKEY_CLASS="regexp:CLASS"
-        // SUBKEY_CONTINUE="regexp:CONTINUE"
-        // SUBKEY_COUNTER="regexp:COUNTER"
-        // SUBKEY_DESCRIPTION="regexp:DESCRIPTION"
-        // SUBKEY_DIGITS="regexp:DIGITS"
-        // SUBKEY_ENGINEERING="regexp:ENGINEERING"
-        // SUBKEY_ERROR="regexp:ERROR"
-        // SUBKEY_EXIT="regexp:EXIT"
-        // SUBKEY_EXPOSE="regexp:EXPOSE"
-        // SUBKEY_FALSE="regexp:FALSE"
-        // SUBKEY_FOR="regexp:FOR"
-        // SUBKEY_FOREVER="regexp:FOREVER"
-        // SUBKEY_FORM="regexp:FORM"
-        // SUBKEY_FUZZ="regexp:FUZZ"
-        // SUBKEY_INDEX="regexp:INDEX"
-        // SUBKEY_INPUT="regexp:INPUT"
-        // SUBKEY_ITEM="regexp:ITEM"
-        // SUBKEY_LABEL="regexp:LABEL"
-        // SUBKEY_LOCAL="regexp:LOCAL"
-        // SUBKEY_MESSAGE="regexp:MESSAGE"
-        // SUBKEY_NAME="regexp:NAME"
-        // SUBKEY_NORMAL="regexp:NORMAL"
-        // SUBKEY_OFF="regexp:OFF"
-        // SUBKEY_ON="regexp:ON"
-        // SUBKEY_OUTPUT="regexp:OUTPUT"
-        // SUBKEY_OVER="regexp:OVER"
-        // SUBKEY_REPLACE="regexp:REPLACE"
-        // SUBKEY_RETURN="regexp:RETURN"
-        // SUBKEY_SCIENTIFIC="regexp:SCIENTIFIC"
-        // SUBKEY_STEM="regexp:STEM"
-        // SUBKEY_STREAM="regexp:STREAM"
-        // SUBKEY_STRICT="regexp:STRICT"
-        // SUBKEY_THEN="regexp:THEN"
-        // SUBKEY_TO="regexp:TO"
-        // SUBKEY_TRUE="regexp:TRUE"
-        // SUBKEY_UNTIL="regexp:UNTIL"
-        // SUBKEY_USING="regexp:USING"
-        // SUBKEY_VALUE="regexp:VALUE"
-        // SUBKEY_WHEN="regexp:WHEN"
-        // SUBKEY_WHILE="regexp:WHILE"
-        // SUBKEY_WITH="regexp:WITH"
-
-        // parse option subkeywords
-        // SUBKEY_CASELESS="regexp:CASELESS"
-        // SUBKEY_LINEIN="regexp:LINEIN"
-        // SUBKEY_LOWER="regexp:LOWER"
-        // SUBKEY_PULL="regexp:PULL"
-        // SUBKEY_SOURCE="regexp:SOURCE"
-        // SUBKEY_UPPER="regexp:UPPER"
-        // SUBKEY_VAR="regexp:VAR"
-        // SUBKEY_VERSION="regexp:VERSION"
-
-        // table of builtin functions
-        // BUILTIN_ABBREV="regexp:ABBREV"
-        // BUILTIN_ABS="regexp:ABS"
-        // BUILTIN_ADDRESS="regexp:ADDRESS"
-        // BUILTIN_ARG="regexp:ARG"
-        // BUILTIN_B2X="regexp:B2X"
-        // BUILTIN_BITAND="regexp:BITAND"
-        // BUILTIN_BITOR="regexp:BITOR"
-        // BUILTIN_BITXOR="regexp:BITXOR"
-        // BUILTIN_C2D="regexp:C2D"
-        // BUILTIN_C2X="regexp:C2X"
-        // BUILTIN_CENTER="regexp:CENTER"
-        // BUILTIN_CENTRE="regexp:CENTRE"
-        // BUILTIN_CHANGESTR="regexp:CHANGESTR"
-        // BUILTIN_CHARIN="regexp:CHARIN"
-        // BUILTIN_CHAROUT="regexp:CHAROUT"
-        // BUILTIN_CHARS="regexp:CHARS"
-        // BUILTIN_COMPARE="regexp:COMPARE"
-        // BUILTIN_CONDITION="regexp:CONDITION"
-        // BUILTIN_COPIES="regexp:COPIES"
-        // BUILTIN_COUNTSTR="regexp:COUNTSTR"
-        // BUILTIN_D2C="regexp:D2C"
-        // BUILTIN_D2X="regexp:D2X"
-        // BUILTIN_DATATYPE="regexp:DATATYPE"
-        // BUILTIN_DATE="regexp:DATE"
-        // BUILTIN_DELSTR="regexp:DELSTR"
-        // BUILTIN_DELWORD="regexp:DELWORD"
-        // BUILTIN_DIGITS="regexp:DIGITS"
-        // "ENDLOCAL"       {return BUILTIN_ENDLOCAL;}
-        // BUILTIN_ERRORTEXT="regexp:ERRORTEXT"
-        // BUILTIN_FORM="regexp:FORM"
-        // BUILTIN_FORMAT="regexp:FORMAT"
-        // BUILTIN_FUZZ="regexp:FUZZ"
-        // "INSERT"         {return BUILTIN_INSERT;}
-        // "LASTPOS"        {return BUILTIN_LASTPOS;}
-        // "LEFT"           {return BUILTIN_LEFT;}
-        // "LENGTH"         {return BUILTIN_LENGTH;}
-        // "LINEIN"         {return BUILTIN_LINEIN;}
-        // "LINEOUT"        {return BUILTIN_LINEOUT;}
-        // "LINES"          {return BUILTIN_LINES;}
-        // "LOWER"          {return BUILTIN_LOWER;}
-        // "MAX"            {return BUILTIN_MAX;}
-        // "MIN"            {return BUILTIN_MIN;}
-        // "OVERLAY"        {return BUILTIN_OVERLAY;}
-        // "POS"            {return BUILTIN_POS;}
-        // "QUALIFY"        {return BUILTIN_QUALIFY;}
-        // "QUEUED"         {return BUILTIN_QUEUED;}
-        // "RANDOM"         {return BUILTIN_RANDOM;}
-        // "REVERSE"        {return BUILTIN_REVERSE;}
-        // "RIGHT"          {return BUILTIN_RIGHT;}
-        // "RXFUNCADD"      {return BUILTIN_RXFUNCADD;}
-        // "RXFUNCDROP"     {return BUILTIN_RXFUNCDROP;}
-        // "RXFUNCQUERY"    {return BUILTIN_RXFUNCQUERY;}
-        // "RXQUEUE"        {return BUILTIN_RXQUEUE;}
-        // "SETLOCAL"       {return BUILTIN_SETLOCAL;}
-        // "SIGN"           {return BUILTIN_SIGN;}
-        // "SOURCELINE"     {return BUILTIN_SOURCELINE;}
-        // "SPACE"          {return BUILTIN_SPACE;}
-        // "STREAM"         {return BUILTIN_STREAM;}
-        // "STRIP"          {return BUILTIN_STRIP;}
-        // "SUBSTR"         {return BUILTIN_SUBSTR;}
-        // "SUBWORD"        {return BUILTIN_SUBWORD;}
-        // "SYMBOL"         {return BUILTIN_SYMBOL;}
-        // "TIME"           {return BUILTIN_TIME;}
-        // "TRACE"          {return BUILTIN_TRACE;}
-        // "TRANSLATE"      {return BUILTIN_TRANSLATE;}
-        // "TRUNC"          {return BUILTIN_TRUNC;}
-        // "UPPER"          {return BUILTIN_UPPER;}
-        // "USERID"         {return BUILTIN_USERID;}
-        // "VALUE"          {return BUILTIN_VALUE;}
-        // "VAR"            {return BUILTIN_VAR;}
-        // "VERIFY"         {return BUILTIN_VERIFY;}
-        // "WORD"           {return BUILTIN_WORD;}
-        // "WORDINDEX"      {return BUILTIN_WORDINDEX;}
-        // "WORDLENGTH"     {return BUILTIN_WORDLENGTH;}
-        // "WORDPOS"        {return BUILTIN_WORDPOS;}
-        // "WORDS"          {return BUILTIN_WORDS;}
-        // "X2B"            {return BUILTIN_X2B;}
-        // "X2C"            {return BUILTIN_X2C;}
-        // "X2D"            {return BUILTIN_X2D;}
-        // "XRANGE"         {return BUILTIN_XRANGE;}
-
-        // Condition name table
-// "ANY"            {return CONDITION_ANY;}
-// "ERROR"          {return CONDITION_ERROR;}
-// "FAILURE"        {return CONDITION_FAILURE;}
-// "HALT"           {return CONDITION_HALT;}
-// "LOSTDIGITS"     {return CONDITION_LOSTDIGITS;}
-// "NOMETHOD"       {return CONDITION_NOMETHOD;}
-// "NOSTRING"       {return CONDITION_NOSTRING;}
-// "NOTREADY"       {return CONDITION_NOTREADY;}
-// "NOVALUE"        {return CONDITION_NOVALUE;}
-// "PROPAGATE"      {return CONDITION_PROPAGATE;}
-// "SYNTAX"         {return CONDITION_SYNTAX;}
-// "USER"           {return CONDITION_USER;}
-
-
-        // subkeywords on directive instructions
-//"ABSTRACT"       {return SUBDIRECTIVE_ABSTRACT;}
-//"ALL"            {return SUBDIRECTIVE_ALL;}
-//"ATTRIBUTE"      {return SUBDIRECTIVE_ATTRIBUTE;}
-//"CLASS"          {return SUBDIRECTIVE_CLASS;}
-//"CONDITION"      {return SUBDIRECTIVE_CONDITION;}
-//"CONSTANT"       {return SUBDIRECTIVE_CONSTANT;}
-//"DELEGATE"       {return SUBDIRECTIVE_DELEGATE;}
-//"DIGITS"         {return SUBDIRECTIVE_DIGITS;}
-//"END"            {return SUBDIRECTIVE_END;}
-//"ERROR"          {return SUBDIRECTIVE_ERROR;}
-//"EXTERNAL"       {return SUBDIRECTIVE_EXTERNAL;}
-//"FAILURE"        {return SUBDIRECTIVE_FAILURE;}
-//"FORM"           {return SUBDIRECTIVE_FORM;}
-//"FUZZ"           {return SUBDIRECTIVE_FUZZ;}
-//"GET"            {return SUBDIRECTIVE_GET;}
-//"GUARDED"        {return SUBDIRECTIVE_GUARDED;}
-//"INHERIT"        {return SUBDIRECTIVE_INHERIT;}
-//"LIBRARY"        {return SUBDIRECTIVE_LIBRARY;}
-//"LOSTDIGITS"     {return SUBDIRECTIVE_LOSTDIGITS;}
-//"METACLASS"      {return SUBDIRECTIVE_METACLASS;}
-//"METHOD"         {return SUBDIRECTIVE_METHOD;}
-//"MIXINCLASS"     {return SUBDIRECTIVE_MIXINCLASS;}
-//"NAMESPACE"      {return SUBDIRECTIVE_NAMESPACE;}
-//"NOPROLOG"       {return SUBDIRECTIVE_NOPROLOG;}
-//"NOSTRING"       {return SUBDIRECTIVE_NOSTRING;}
-//"NOTREADY"       {return SUBDIRECTIVE_NOTREADY;}
-//"NOVALUE"        {return SUBDIRECTIVE_NOVALUE;}
-//"PACKAGE"        {return SUBDIRECTIVE_PACKAGE;}
-//"PRIVATE"        {return SUBDIRECTIVE_PRIVATE;}
-//"PROLOG"         {return SUBDIRECTIVE_PROLOG;}
-//"PROTECTED"      {return SUBDIRECTIVE_PROTECTED;}
-//"PUBLIC"         {return SUBDIRECTIVE_PUBLIC;}
-//"ROUTINE"        {return SUBDIRECTIVE_ROUTINE;}
-//"SET"            {return SUBDIRECTIVE_SET;}
-//"SUBCLASS"       {return SUBDIRECTIVE_SUBCLASS;}
-//"SYNTAX"         {return SUBDIRECTIVE_SYNTAX;}
-//"TRACE"          {return SUBDIRECTIVE_TRACE;}
-//"UNGUARDED"      {return SUBDIRECTIVE_UNGUARDED;}
-//"UNPROTECTED"    {return SUBDIRECTIVE_UNPROTECTED;}
- // endregion
 
         // Comments
         SHEBANG="regexp:[#][!][^\n]*"
@@ -350,10 +141,17 @@
 
 rexx_file ::= instruction*
 
-private instruction ::=  assignment | say_instruction | parse_instruction
+private instruction ::=  assignment | say_instruction | parse_arg_instruction| parse_value_instruction
+parse_arg_instruction ::= KEYWORD_PARSE KEYWORD_ARG parse_target*
+parse_var_instruction ::= KEYWORD_PARSE KEYWORD_VAR parse_target*
+parse_value_instruction ::= KEYWORD_PARSE KEYWORD_VALUE expression* KEYWORD_WITH parse_target*
+private parse_target
+    ::= name_declaration
+    | stringLiteral
+    | integerConstant
+    | remainder // | range | offset
 
-parse_instruction ::= KEYWORD_PARSE KEYWORD_ARG parse_target*
-private parse_target ::= name_declaration | stringLiteral | integerConstant // | remainder | range | offset
+remainder ::= DOT
 
 assignment ::= name_declaration OPERATOR_EQUAL expression
 
@@ -371,7 +169,14 @@ multiplication ::= division_ (OPERATOR_MULTIPLY division_)*
 private division_ ::= expressionTerm division*
 left division ::= OPERATOR_DIVIDE expressionTerm
 
-expressionTerm ::= stringLiteral | numericConstant | variable | parentheticalExpression
+expressionTerm
+    ::= stringLiteral
+    | numericConstant
+    | variable
+    | parentheticalExpression
+    | functionCall
+
+functionCall ::= variable TOKEN_LEFT expression? TOKEN_RIGHT
 parentheticalExpression ::= TOKEN_LEFT expression TOKEN_RIGHT
 stringLiteral ::= STRING
 numericConstant ::= integerConstant | decimalConstant | scientificConstant

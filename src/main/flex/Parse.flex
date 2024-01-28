@@ -56,6 +56,9 @@ OPERATOR_LESSTHAN_GREATERTHAN=<>
 OPERATOR_GREATERTHAN_LESSTHAN=><
 OPERATOR_BACKSLASH=\\\\
 KEYWORD_ARG=ARG
+KEYWORD_VAR=VAR
+KEYWORD_VALUE=VALUE
+KEYWORD_WITH=WITH
 KEYWORD_CALL=CALL
 KEYWORD_DO=DO
 KEYWORD_DROP=DROP
@@ -136,6 +139,9 @@ TILDE=[~]
   {OPERATOR_GREATERTHAN_LESSTHAN}               { return OPERATOR_GREATERTHAN_LESSTHAN; }
   {OPERATOR_BACKSLASH}                          { return OPERATOR_BACKSLASH; }
   {KEYWORD_ARG}                                 { return KEYWORD_ARG; }
+  {KEYWORD_VAR}                                 { return KEYWORD_VAR; }
+  {KEYWORD_VALUE}                               { return KEYWORD_VALUE; }
+  {KEYWORD_WITH}                                { return KEYWORD_WITH; }
   {KEYWORD_CALL}                                { return KEYWORD_CALL; }
   {KEYWORD_DO}                                  { return KEYWORD_DO; }
   {KEYWORD_DROP}                                { return KEYWORD_DROP; }

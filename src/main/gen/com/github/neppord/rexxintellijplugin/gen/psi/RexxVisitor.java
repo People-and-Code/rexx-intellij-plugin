@@ -35,6 +35,10 @@ public class RexxVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitFunctionCall(@NotNull RexxFunctionCall o) {
+    visitPsiElement(o);
+  }
+
   public void visitIntegerConstant(@NotNull RexxIntegerConstant o) {
     visitPsiElement(o);
   }
@@ -55,7 +59,19 @@ public class RexxVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitParseInstruction(@NotNull RexxParseInstruction o) {
+  public void visitParseArgInstruction(@NotNull RexxParseArgInstruction o) {
+    visitPsiElement(o);
+  }
+
+  public void visitParseValueInstruction(@NotNull RexxParseValueInstruction o) {
+    visitPsiElement(o);
+  }
+
+  public void visitParseVarInstruction(@NotNull RexxParseVarInstruction o) {
+    visitPsiElement(o);
+  }
+
+  public void visitRemainder(@NotNull RexxRemainder o) {
     visitPsiElement(o);
   }
 

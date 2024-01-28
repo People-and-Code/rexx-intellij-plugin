@@ -1,0 +1,1 @@
+parse value sourceline(1) with . sVersion

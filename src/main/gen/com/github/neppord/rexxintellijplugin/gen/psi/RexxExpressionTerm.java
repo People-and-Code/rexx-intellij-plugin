@@ -8,6 +8,9 @@ import com.intellij.psi.PsiElement;
 public interface RexxExpressionTerm extends PsiElement {
 
   @Nullable
+  RexxFunctionCall getFunctionCall();
+
+  @Nullable
   RexxNumericConstant getNumericConstant();
 
   @Nullable

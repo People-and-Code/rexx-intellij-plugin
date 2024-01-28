@@ -11,14 +11,14 @@ import static com.github.neppord.rexxintellijplugin.gen.RexxTokens.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.github.neppord.rexxintellijplugin.gen.psi.*;
 
-public class RexxParseInstructionImpl extends ASTWrapperPsiElement implements RexxParseInstruction {
+public class RexxParseArgInstructionImpl extends ASTWrapperPsiElement implements RexxParseArgInstruction {
 
-  public RexxParseInstructionImpl(@NotNull ASTNode node) {
+  public RexxParseArgInstructionImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull RexxVisitor visitor) {
-    visitor.visitParseInstruction(this);
+    visitor.visitParseArgInstruction(this);
   }
 
   @Override
@@ -37,6 +37,12 @@ public class RexxParseInstructionImpl extends ASTWrapperPsiElement implements Re
   @NotNull
   public List<RexxNameDeclaration> getNameDeclarationList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxNameDeclaration.class);
+  }
+
+  @Override
+  @NotNull
+  public List<RexxRemainder> getRemainderList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxRemainder.class);
   }
 
   @Override

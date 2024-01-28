@@ -5,7 +5,7 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface RexxParseInstruction extends PsiElement {
+public interface RexxParseVarInstruction extends PsiElement {
 
   @NotNull
   List<RexxIntegerConstant> getIntegerConstantList();
@@ -14,12 +14,15 @@ public interface RexxParseInstruction extends PsiElement {
   List<RexxNameDeclaration> getNameDeclarationList();
 
   @NotNull
+  List<RexxRemainder> getRemainderList();
+
+  @NotNull
   List<RexxStringLiteral> getStringLiteralList();
 
   @NotNull
-  PsiElement getKeywordArg();
+  PsiElement getKeywordParse();
 
   @NotNull
-  PsiElement getKeywordParse();
+  PsiElement getKeywordVar();
 
 }

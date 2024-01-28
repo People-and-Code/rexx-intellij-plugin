@@ -11,14 +11,14 @@ import static com.github.neppord.rexxintellijplugin.gen.RexxTokens.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.github.neppord.rexxintellijplugin.gen.psi.*;
 
-public class RexxExpressionTermImpl extends ASTWrapperPsiElement implements RexxExpressionTerm {
+public class RexxFunctionCallImpl extends ASTWrapperPsiElement implements RexxFunctionCall {
 
-  public RexxExpressionTermImpl(@NotNull ASTNode node) {
+  public RexxFunctionCallImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull RexxVisitor visitor) {
-    visitor.visitExpressionTerm(this);
+    visitor.visitFunctionCall(this);
   }
 
   @Override
@@ -29,32 +29,14 @@ public class RexxExpressionTermImpl extends ASTWrapperPsiElement implements Rexx
 
   @Override
   @Nullable
-  public RexxFunctionCall getFunctionCall() {
-    return findChildByClass(RexxFunctionCall.class);
+  public RexxExpression getExpression() {
+    return findChildByClass(RexxExpression.class);
   }
 
   @Override
-  @Nullable
-  public RexxNumericConstant getNumericConstant() {
-    return findChildByClass(RexxNumericConstant.class);
-  }
-
-  @Override
-  @Nullable
-  public RexxParentheticalExpression getParentheticalExpression() {
-    return findChildByClass(RexxParentheticalExpression.class);
-  }
-
-  @Override
-  @Nullable
-  public RexxStringLiteral getStringLiteral() {
-    return findChildByClass(RexxStringLiteral.class);
-  }
-
-  @Override
-  @Nullable
+  @NotNull
   public RexxVariable getVariable() {
-    return findChildByClass(RexxVariable.class);
+    return findNotNullChildByClass(RexxVariable.class);
   }
 
 }

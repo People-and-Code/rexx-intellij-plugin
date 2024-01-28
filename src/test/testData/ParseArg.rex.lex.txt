@@ -1,0 +1,7 @@
+KEYWORD_PARSE ('parse')
+WHITE_SPACE (' ')
+KEYWORD_ARG ('arg')
+WHITE_SPACE (' ')
+IDENTIFIER ('first')
+WHITE_SPACE (' ')
+IDENTIFIER ('second')

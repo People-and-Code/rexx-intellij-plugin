@@ -1,5 +1,5 @@
 FILE
-  RexxParseInstructionImpl(PARSE_INSTRUCTION)
+  RexxParseArgInstructionImpl(PARSE_ARG_INSTRUCTION)
     PsiElement(KEYWORD_PARSE)('parse')
     PsiWhiteSpace(' ')
     PsiElement(KEYWORD_ARG)('arg')
