@@ -27,21 +27,9 @@ public class RexxExpressionImpl extends ASTWrapperPsiElement implements RexxExpr
   }
 
   @Override
-  @Nullable
-  public RexxAddition getAddition() {
-    return findChildByClass(RexxAddition.class);
-  }
-
-  @Override
-  @Nullable
+  @NotNull
   public RexxConcatenation getConcatenation() {
-    return findChildByClass(RexxConcatenation.class);
-  }
-
-  @Override
-  @Nullable
-  public RexxExpressionTerm getExpressionTerm() {
-    return findChildByClass(RexxExpressionTerm.class);
+    return findNotNullChildByClass(RexxConcatenation.class);
   }
 
 }

@@ -36,7 +36,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // expressionTerm (OPERATOR_PLUS expressionTerm)+
+  // expressionTerm (OPERATOR_PLUS expressionTerm)*
   public static boolean addition(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "addition")) return false;
     boolean result_;
@@ -47,19 +47,15 @@ public class RexxParser implements PsiParser, LightPsiParser {
     return result_;
   }
 
-  // (OPERATOR_PLUS expressionTerm)+
+  // (OPERATOR_PLUS expressionTerm)*
   private static boolean addition_1(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "addition_1")) return false;
-    boolean result_;
-    Marker marker_ = enter_section_(builder_);
-    result_ = addition_1_0(builder_, level_ + 1);
-    while (result_) {
+    while (true) {
       int pos_ = current_position_(builder_);
       if (!addition_1_0(builder_, level_ + 1)) break;
       if (!empty_element_parsed_guard_(builder_, "addition_1", pos_)) break;
     }
-    exit_section_(builder_, marker_, null, result_);
-    return result_;
+    return true;
   }
 
   // OPERATOR_PLUS expressionTerm
@@ -80,39 +76,35 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // expressionTerm (OPERATOR_CONCATENATE expressionTerm)+
+  // addition (OPERATOR_CONCATENATE addition)*
   public static boolean concatenation(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "concatenation")) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_, level_, _NONE_, CONCATENATION, "<concatenation>");
-    result_ = expressionTerm(builder_, level_ + 1);
+    result_ = addition(builder_, level_ + 1);
     result_ = result_ && concatenation_1(builder_, level_ + 1);
     exit_section_(builder_, level_, marker_, result_, false, null);
     return result_;
   }
 
-  // (OPERATOR_CONCATENATE expressionTerm)+
+  // (OPERATOR_CONCATENATE addition)*
   private static boolean concatenation_1(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "concatenation_1")) return false;
-    boolean result_;
-    Marker marker_ = enter_section_(builder_);
-    result_ = concatenation_1_0(builder_, level_ + 1);
-    while (result_) {
+    while (true) {
       int pos_ = current_position_(builder_);
       if (!concatenation_1_0(builder_, level_ + 1)) break;
       if (!empty_element_parsed_guard_(builder_, "concatenation_1", pos_)) break;
     }
-    exit_section_(builder_, marker_, null, result_);
-    return result_;
+    return true;
   }
 
-  // OPERATOR_CONCATENATE expressionTerm
+  // OPERATOR_CONCATENATE addition
   private static boolean concatenation_1_0(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "concatenation_1_0")) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_);
     result_ = consumeToken(builder_, OPERATOR_CONCATENATE);
-    result_ = result_ && expressionTerm(builder_, level_ + 1);
+    result_ = result_ && addition(builder_, level_ + 1);
     exit_section_(builder_, marker_, null, result_);
     return result_;
   }
@@ -130,14 +122,12 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // concatenation | addition | expressionTerm
+  // concatenation
   public static boolean expression(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "expression")) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_, level_, _NONE_, EXPRESSION, "<expression>");
     result_ = concatenation(builder_, level_ + 1);
-    if (!result_) result_ = addition(builder_, level_ + 1);
-    if (!result_) result_ = expressionTerm(builder_, level_ + 1);
     exit_section_(builder_, level_, marker_, result_, false, null);
     return result_;
   }

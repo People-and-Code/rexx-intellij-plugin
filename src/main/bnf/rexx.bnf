@@ -355,9 +355,12 @@ private clause ::= instruction // | assignment | command | function_call | label
 instruction ::= say_instruction
 say_instruction ::= KEYWORD_SAY expression*
 
-expression ::= concatenation | addition | expressionTerm
-addition ::= expressionTerm (OPERATOR_PLUS expressionTerm)+
-concatenation ::= expressionTerm (OPERATOR_CONCATENATE expressionTerm)+
+expression ::= concatenation
+
+concatenation ::= addition (OPERATOR_CONCATENATE addition)*
+
+addition ::= expressionTerm (OPERATOR_PLUS expressionTerm)*
+
 expressionTerm ::= stringLiteral | numericConstant | variableExpression | parentheticalExpression
 stringLiteral ::= STRING
 numericConstant ::= integerConstant | decimalConstant | scientificConstant

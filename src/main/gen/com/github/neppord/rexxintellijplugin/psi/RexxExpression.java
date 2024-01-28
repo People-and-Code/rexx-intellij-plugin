@@ -7,13 +7,7 @@ import com.intellij.psi.PsiElement;
 
 public interface RexxExpression extends PsiElement {
 
-  @Nullable
-  RexxAddition getAddition();
-
-  @Nullable
+  @NotNull
   RexxConcatenation getConcatenation();
-
-  @Nullable
-  RexxExpressionTerm getExpressionTerm();
 
 }

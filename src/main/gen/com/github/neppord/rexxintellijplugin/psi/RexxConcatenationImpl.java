@@ -28,8 +28,8 @@ public class RexxConcatenationImpl extends ASTWrapperPsiElement implements RexxC
 
   @Override
   @NotNull
-  public List<RexxExpressionTerm> getExpressionTermList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxExpressionTerm.class);
+  public List<RexxAddition> getAdditionList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxAddition.class);
   }
 
 }
