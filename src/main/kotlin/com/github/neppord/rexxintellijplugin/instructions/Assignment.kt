@@ -25,4 +25,5 @@ abstract class Assignment(@JvmField val node: ASTNode):
     }
 
     override fun getNameIdentifier(): PsiElement = identifier
+    override fun getName(): String? = nameIdentifier.text
 }

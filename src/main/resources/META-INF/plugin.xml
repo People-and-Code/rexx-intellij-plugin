@@ -23,5 +23,14 @@
                 language="Rexx"
                 implementationClass="com.github.neppord.rexxintellijplugin.RexxParserDefinition"
         />
+        <lang.refactoringSupport
+                language="Rexx"
+                implementationClass="com.github.neppord.rexxintellijplugin.refactoring.RexxRefactoringSupportProvider"
+        />
+        <lang.findUsagesProvider
+                language="Rexx"
+                implementationClass="com.github.neppord.rexxintellijplugin.RexxFindUsageProvider"
+        />
+
     </extensions>
 </idea-plugin>

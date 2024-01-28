@@ -26,5 +26,6 @@ abstract class Variable(@JvmField val node: ASTNode) :
     }
 
     override fun getReference(): PsiReference? = VariableReference(this)
+    override fun getName(): String? = identifier.text
 }
 
