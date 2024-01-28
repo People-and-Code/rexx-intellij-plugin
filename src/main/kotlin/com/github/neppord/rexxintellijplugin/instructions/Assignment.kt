@@ -7,8 +7,11 @@ import com.intellij.lang.ASTNode
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFileFactory
 import com.intellij.psi.PsiNameIdentifierOwner
-import com.intellij.psi.PsiNamedElement
+import com.intellij.psi.impl.ResolveScopeManager
+import com.intellij.psi.search.LocalSearchScope
+import com.intellij.psi.search.SearchScope
 import com.intellij.psi.util.descendantsOfType
+import com.intellij.psi.util.siblings
 
 abstract class Assignment(@JvmField val node: ASTNode):
     PsiNameIdentifierOwner,
@@ -26,4 +29,5 @@ abstract class Assignment(@JvmField val node: ASTNode):
 
     override fun getNameIdentifier(): PsiElement = identifier
     override fun getName(): String? = nameIdentifier.text
+    override fun getUseScope(): SearchScope = LocalSearchScope(this.containingFile)
 }
