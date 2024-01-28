@@ -1,5 +1,7 @@
 package com.github.neppord.rexxintellijplugin
 
+import com.github.neppord.rexxintellijplugin.gen.RexxParser
+import com.github.neppord.rexxintellijplugin.gen.RexxTokens
 import com.intellij.extapi.psi.PsiFileBase
 import com.intellij.lang.ASTNode
 import com.intellij.lang.ParserDefinition
@@ -19,7 +21,7 @@ class RexxParserDefinition : ParserDefinition {
     override fun getCommentTokens() = TokenSet.EMPTY
     override fun getStringLiteralElements(): TokenSet = TokenSet.EMPTY
     override fun createElement(node: ASTNode?): PsiElement =
-        RexxTokensKt.Factory.createElement(node)
+        RexxTokens.Factory.createElement(node)
 
     override fun createFile(viewProvider: FileViewProvider): PsiFile =
         object : PsiFileBase(viewProvider, RexxLanguage) {

@@ -1,11 +1,11 @@
-package com.github.neppord.rexxintellijplugin;
+package com.github.neppord.rexxintellijplugin.gen;
 
 import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;
 
 import static com.intellij.psi.TokenType.BAD_CHARACTER;
 import static com.intellij.psi.TokenType.WHITE_SPACE;
-import static com.github.neppord.rexxintellijplugin.RexxTokensKt.*;
+import static com.github.neppord.rexxintellijplugin.gen.RexxTokens.*;
 
 %%
 

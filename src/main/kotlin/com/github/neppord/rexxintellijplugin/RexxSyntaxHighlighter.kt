@@ -1,6 +1,6 @@
 package com.github.neppord.rexxintellijplugin
 
-import com.github.neppord.rexxintellijplugin.RexxTokensKt.*
+import com.github.neppord.rexxintellijplugin.gen.RexxTokens.*
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase
 import com.intellij.psi.tree.IElementType
 import com.intellij.psi.tree.TokenSet

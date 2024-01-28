@@ -1,13 +1,13 @@
 {
-    parserClass="com.github.neppord.rexxintellijplugin.RexxParser"
+    parserClass="com.github.neppord.rexxintellijplugin.gen.RexxParser"
 
     extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
 
     psiClassPrefix="Rexx"
     psiImplClassSuffix="Impl"
-    psiPackage="com.github.neppord.rexxintellijplugin.psi"
-    psiImplPackage="com.github.neppord.rexxintellijplugin.psi"
-    elementTypeHolderClass="com.github.neppord.rexxintellijplugin.RexxTokensKt"
+    psiPackage="com.github.neppord.rexxintellijplugin.gen.psi"
+    psiImplPackage="com.github.neppord.rexxintellijplugin.gen.impl"
+    elementTypeHolderClass="com.github.neppord.rexxintellijplugin.gen.RexxTokens"
     elementTypeClass="com.github.neppord.rexxintellijplugin.RexxElementType"
     tokenTypeClass="com.github.neppord.rexxintellijplugin.RexxTokenType"
     tokens=[
@@ -348,13 +348,15 @@
 }
 
 
-rexx_file ::= clause*
+rexx_file ::= instruction*
 
-private clause ::= instruction // | assignment | command | function_call | label | comment
+private instruction ::=  assignment | say_instruction
 
-instruction ::= say_instruction
+assignment ::= IDENTIFIER OPERATOR_EQUAL expression {
+    mixin="com.github.neppord.rexxintellijplugin.instructions.Assignment"
+}
+
 say_instruction ::= KEYWORD_SAY expression*
-
 expression ::= concatenation
 concatenation ::= addition (OPERATOR_CONCATENATE addition)*
 addition ::= subtraction_ (OPERATOR_PLUS subtraction_)*
@@ -364,12 +366,14 @@ multiplication ::= division_ (OPERATOR_MULTIPLY division_)*
 private division_ ::= expressionTerm division*
 left division ::= OPERATOR_DIVIDE expressionTerm
 
-expressionTerm ::= stringLiteral | numericConstant | variableExpression | parentheticalExpression
+expressionTerm ::= stringLiteral | numericConstant | variable | parentheticalExpression
 parentheticalExpression ::= TOKEN_LEFT expression TOKEN_RIGHT
 stringLiteral ::= STRING
 numericConstant ::= integerConstant | decimalConstant | scientificConstant
 integerConstant ::= NUMBER_INT
 decimalConstant ::= NUMBER_DECIMAL
 scientificConstant ::= NUMBER_SCIENTIFIC
-variableExpression ::= IDENTIFIER
+variable ::= IDENTIFIER {
+    mixin="com.github.neppord.rexxintellijplugin.expressions.Variable"
+}
 
