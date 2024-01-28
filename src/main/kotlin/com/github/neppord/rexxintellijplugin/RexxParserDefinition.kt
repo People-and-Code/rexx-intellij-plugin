@@ -12,7 +12,7 @@ import com.intellij.psi.PsiFile
 import com.intellij.psi.tree.IFileElementType
 import com.intellij.psi.tree.TokenSet
 
-object RexxParserDefinition : ParserDefinition {
+class RexxParserDefinition : ParserDefinition {
     override fun createLexer(project: Project?) = RexxLexer()
     override fun createParser(project: Project?): PsiParser = RexxParser()
     override fun getFileNodeType(): IFileElementType = IFileElementType(RexxLanguage)
@@ -20,6 +20,7 @@ object RexxParserDefinition : ParserDefinition {
     override fun getStringLiteralElements(): TokenSet = TokenSet.EMPTY
     override fun createElement(node: ASTNode?): PsiElement =
         RexxTokensKt.Factory.createElement(node)
+
     override fun createFile(viewProvider: FileViewProvider): PsiFile =
         object : PsiFileBase(viewProvider, RexxLanguage) {
             override fun getFileType(): FileType = RexxFileType

@@ -12,6 +12,7 @@ class RexxLexerTest : LexerTestCase() {
     fun testNumbers() = doFileTest("rex")
     fun testComments() = doFileTest("rex")
     fun testObject() = doFileTest("rex")
+    fun testSayConcat() = doFileTest("rex")
     override fun getPathToTestDataFile(extension: String?): String {
         val root = ""
         val testName = getTestName(false)

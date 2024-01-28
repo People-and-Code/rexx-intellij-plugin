@@ -5,7 +5,7 @@ import com.intellij.testFramework.ParsingTestCase
 class RexxParserTest : ParsingTestCase(
     "src/test/testData",
     "rex",
-    RexxParserDefinition
+    RexxParserDefinition()
 ) {
     override fun getTestDataPath() = "."
     fun testHelloWorld() = doTest(true)
@@ -13,5 +13,6 @@ class RexxParserTest : ParsingTestCase(
     fun testSayPi() = doTest(true)
     fun testSayScientific() = doTest(true)
     fun testSayParenthesis() = doTest(true)
+    fun testSayConcat() = doTest(true)
     fun testSayVar() = doTest(true)
 }

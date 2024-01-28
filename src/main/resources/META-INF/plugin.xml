@@ -19,5 +19,9 @@
                 language="Rexx"
                 implementationClass="com.github.neppord.rexxintellijplugin.RexxSyntaxHighlighter"
         />
+        <lang.parserDefinition
+                language="Rexx"
+                implementationClass="com.github.neppord.rexxintellijplugin.RexxParserDefinition"
+        />
     </extensions>
 </idea-plugin>

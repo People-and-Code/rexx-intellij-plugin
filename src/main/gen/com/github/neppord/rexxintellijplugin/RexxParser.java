@@ -54,13 +54,36 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // expressionTerm
+  // expressionTerm (OPERATOR_CONCATENATE expressionTerm)*
   public static boolean expression(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "expression")) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_, level_, _NONE_, EXPRESSION, "<expression>");
     result_ = expressionTerm(builder_, level_ + 1);
+    result_ = result_ && expression_1(builder_, level_ + 1);
     exit_section_(builder_, level_, marker_, result_, false, null);
+    return result_;
+  }
+
+  // (OPERATOR_CONCATENATE expressionTerm)*
+  private static boolean expression_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "expression_1")) return false;
+    while (true) {
+      int pos_ = current_position_(builder_);
+      if (!expression_1_0(builder_, level_ + 1)) break;
+      if (!empty_element_parsed_guard_(builder_, "expression_1", pos_)) break;
+    }
+    return true;
+  }
+
+  // OPERATOR_CONCATENATE expressionTerm
+  private static boolean expression_1_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "expression_1_0")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, OPERATOR_CONCATENATE);
+    result_ = result_ && expressionTerm(builder_, level_ + 1);
+    exit_section_(builder_, marker_, null, result_);
     return result_;
   }
 

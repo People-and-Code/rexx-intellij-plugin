@@ -28,8 +28,8 @@ public class RexxExpressionImpl extends ASTWrapperPsiElement implements RexxExpr
 
   @Override
   @NotNull
-  public RexxExpressionTerm getExpressionTerm() {
-    return findNotNullChildByClass(RexxExpressionTerm.class);
+  public List<RexxExpressionTerm> getExpressionTermList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxExpressionTerm.class);
   }
 
 }
