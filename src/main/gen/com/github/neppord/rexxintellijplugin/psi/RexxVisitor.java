@@ -7,6 +7,14 @@ import com.intellij.psi.PsiElement;
 
 public class RexxVisitor extends PsiElementVisitor {
 
+  public void visitAddition(@NotNull RexxAddition o) {
+    visitPsiElement(o);
+  }
+
+  public void visitConcatenation(@NotNull RexxConcatenation o) {
+    visitPsiElement(o);
+  }
+
   public void visitDecimalConstant(@NotNull RexxDecimalConstant o) {
     visitPsiElement(o);
   }

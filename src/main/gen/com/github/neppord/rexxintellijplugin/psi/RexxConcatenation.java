@@ -5,15 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface RexxExpression extends PsiElement {
+public interface RexxConcatenation extends PsiElement {
 
-  @Nullable
-  RexxAddition getAddition();
-
-  @Nullable
-  RexxConcatenation getConcatenation();
-
-  @Nullable
-  RexxExpressionTerm getExpressionTerm();
+  @NotNull
+  List<RexxExpressionTerm> getExpressionTermList();
 
 }

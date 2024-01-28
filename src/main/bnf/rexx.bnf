@@ -33,11 +33,11 @@
         //     TOKEN_ASSIGNMENT
 
         // OPERATORS
-        OPERATOR_PLUS="regexp:\\+"
+        OPERATOR_PLUS="regexp:[+]"
         OPERATOR_SUBTRACT="regexp:-"
         OPERATOR_MULTIPLY="regexp:[*]"
         OPERATOR_DIVIDE="regexp:/"
-        OPERATOR_INTDIV="regexp:\\\\"
+        //OPERATOR_INTDIV="regexp:\\\\"
         OPERATOR_REMAINDER="regexp:%"
         OPERATOR_POWER="regexp:[*][*]"
         OPERATOR_CONCATENATE="regexp:[|][|]"
@@ -355,7 +355,9 @@ private clause ::= instruction // | assignment | command | function_call | label
 instruction ::= say_instruction
 say_instruction ::= KEYWORD_SAY expression*
 
-expression ::= expressionTerm (OPERATOR_CONCATENATE expressionTerm)*
+expression ::= concatenation | addition | expressionTerm
+addition ::= expressionTerm (OPERATOR_PLUS expressionTerm)+
+concatenation ::= expressionTerm (OPERATOR_CONCATENATE expressionTerm)+
 expressionTerm ::= stringLiteral | numericConstant | variableExpression | parentheticalExpression
 stringLiteral ::= STRING
 numericConstant ::= integerConstant | decimalConstant | scientificConstant

@@ -10,14 +10,14 @@ import com.intellij.psi.util.PsiTreeUtil;
 import static com.github.neppord.rexxintellijplugin.RexxTokensKt.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 
-public class RexxExpressionImpl extends ASTWrapperPsiElement implements RexxExpression {
+public class RexxConcatenationImpl extends ASTWrapperPsiElement implements RexxConcatenation {
 
-  public RexxExpressionImpl(@NotNull ASTNode node) {
+  public RexxConcatenationImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull RexxVisitor visitor) {
-    visitor.visitExpression(this);
+    visitor.visitConcatenation(this);
   }
 
   @Override
@@ -27,21 +27,9 @@ public class RexxExpressionImpl extends ASTWrapperPsiElement implements RexxExpr
   }
 
   @Override
-  @Nullable
-  public RexxAddition getAddition() {
-    return findChildByClass(RexxAddition.class);
-  }
-
-  @Override
-  @Nullable
-  public RexxConcatenation getConcatenation() {
-    return findChildByClass(RexxConcatenation.class);
-  }
-
-  @Override
-  @Nullable
-  public RexxExpressionTerm getExpressionTerm() {
-    return findChildByClass(RexxExpressionTerm.class);
+  @NotNull
+  public List<RexxExpressionTerm> getExpressionTermList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxExpressionTerm.class);
   }
 
 }

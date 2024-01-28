@@ -26,11 +26,10 @@ import static com.github.neppord.rexxintellijplugin.RexxTokensKt.*;
 EOL=\R
 WHITE_SPACE=\s+
 
-OPERATOR_PLUS=\\+
+OPERATOR_PLUS=[+]
 OPERATOR_SUBTRACT=-
 OPERATOR_MULTIPLY=[*]
 OPERATOR_DIVIDE="/"
-OPERATOR_INTDIV=\\\\
 OPERATOR_REMAINDER=%
 OPERATOR_POWER=[*][*]
 OPERATOR_CONCATENATE=[|][|]
@@ -110,7 +109,6 @@ TILDE=[~]
   {OPERATOR_SUBTRACT}                           { return OPERATOR_SUBTRACT; }
   {OPERATOR_MULTIPLY}                           { return OPERATOR_MULTIPLY; }
   {OPERATOR_DIVIDE}                             { return OPERATOR_DIVIDE; }
-  {OPERATOR_INTDIV}                             { return OPERATOR_INTDIV; }
   {OPERATOR_REMAINDER}                          { return OPERATOR_REMAINDER; }
   {OPERATOR_POWER}                              { return OPERATOR_POWER; }
   {OPERATOR_CONCATENATE}                        { return OPERATOR_CONCATENATE; }

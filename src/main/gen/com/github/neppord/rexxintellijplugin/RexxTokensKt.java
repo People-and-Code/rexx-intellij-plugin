@@ -8,6 +8,8 @@ import com.github.neppord.rexxintellijplugin.psi.*;
 
 public interface RexxTokensKt {
 
+  IElementType ADDITION = new RexxElementType("ADDITION");
+  IElementType CONCATENATION = new RexxElementType("CONCATENATION");
   IElementType DECIMAL_CONSTANT = new RexxElementType("DECIMAL_CONSTANT");
   IElementType EXPRESSION = new RexxElementType("EXPRESSION");
   IElementType EXPRESSION_TERM = new RexxElementType("EXPRESSION_TERM");
@@ -97,7 +99,13 @@ public interface RexxTokensKt {
   class Factory {
     public static PsiElement createElement(ASTNode node) {
       IElementType type = node.getElementType();
-      if (type == DECIMAL_CONSTANT) {
+      if (type == ADDITION) {
+        return new RexxAdditionImpl(node);
+      }
+      else if (type == CONCATENATION) {
+        return new RexxConcatenationImpl(node);
+      }
+      else if (type == DECIMAL_CONSTANT) {
         return new RexxDecimalConstantImpl(node);
       }
       else if (type == EXPRESSION) {
