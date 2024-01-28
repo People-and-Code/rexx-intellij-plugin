@@ -85,7 +85,7 @@
 
         // The keyword instruction table
         // KEYWORD_ADDRESS="regexp:ADDRESS"
-        // KEYWORD_ARG="regexp:ARG"
+        KEYWORD_ARG="regexp:ARG"
         KEYWORD_CALL="regexp:CALL"
         KEYWORD_DO="regexp:DO"
         KEYWORD_DROP="regexp:DROP"
@@ -350,10 +350,15 @@
 
 rexx_file ::= instruction*
 
-private instruction ::=  assignment | say_instruction
+private instruction ::=  assignment | say_instruction | parse_instruction
 
-assignment ::= IDENTIFIER OPERATOR_EQUAL expression {
-    mixin="com.github.neppord.rexxintellijplugin.instructions.Assignment"
+parse_instruction ::= KEYWORD_PARSE KEYWORD_ARG parse_target*
+private parse_target ::= name_declaration | stringLiteral | integerConstant // | remainder | range | offset
+
+assignment ::= name_declaration OPERATOR_EQUAL expression
+
+name_declaration ::= IDENTIFIER {
+   mixin="com.github.neppord.rexxintellijplugin.instructions.NameDeclaration"
 }
 
 say_instruction ::= KEYWORD_SAY expression*

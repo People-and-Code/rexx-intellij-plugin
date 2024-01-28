@@ -20,7 +20,7 @@ abstract class Variable(@JvmField val node: ASTNode) :
             .createFileFromText(RexxLanguage, "${name} = 1")
             .descendantsOfType<RexxAssignment>()
             .first()
-            .identifier
+            .nameDeclaration.identifier
         identifier.replace(new)
         return this
     }

@@ -8,17 +8,17 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static com.github.neppord.rexxintellijplugin.gen.RexxTokens.*;
-import com.intellij.extapi.psi.ASTWrapperPsiElement;
+import com.github.neppord.rexxintellijplugin.instructions.NameDeclaration;
 import com.github.neppord.rexxintellijplugin.gen.psi.*;
 
-public class RexxAssignmentImpl extends ASTWrapperPsiElement implements RexxAssignment {
+public class RexxNameDeclarationImpl extends NameDeclaration implements RexxNameDeclaration {
 
-  public RexxAssignmentImpl(@NotNull ASTNode node) {
+  public RexxNameDeclarationImpl(ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull RexxVisitor visitor) {
-    visitor.visitAssignment(this);
+    visitor.visitNameDeclaration(this);
   }
 
   @Override
@@ -29,20 +29,8 @@ public class RexxAssignmentImpl extends ASTWrapperPsiElement implements RexxAssi
 
   @Override
   @NotNull
-  public RexxExpression getExpression() {
-    return findNotNullChildByClass(RexxExpression.class);
-  }
-
-  @Override
-  @NotNull
-  public RexxNameDeclaration getNameDeclaration() {
-    return findNotNullChildByClass(RexxNameDeclaration.class);
-  }
-
-  @Override
-  @NotNull
-  public PsiElement getOperatorEqual() {
-    return findNotNullChildByType(OPERATOR_EQUAL);
+  public PsiElement getIdentifier() {
+    return findNotNullChildByType(IDENTIFIER);
   }
 
 }

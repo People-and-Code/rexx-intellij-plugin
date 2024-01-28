@@ -1,6 +1,7 @@
 FILE
   RexxAssignmentImpl(ASSIGNMENT)
-    PsiElement(IDENTIFIER)('x')
+    RexxNameDeclarationImpl(NAME_DECLARATION)
+      PsiElement(IDENTIFIER)('x')
     PsiWhiteSpace(' ')
     PsiElement(OPERATOR_EQUAL)('=')
     PsiWhiteSpace(' ')
@@ -22,7 +23,8 @@ FILE
                   PsiElement(NUMBER_INT)('3')
   PsiWhiteSpace('\n')
   RexxAssignmentImpl(ASSIGNMENT)
-    PsiElement(IDENTIFIER)('y')
+    RexxNameDeclarationImpl(NAME_DECLARATION)
+      PsiElement(IDENTIFIER)('y')
     PsiWhiteSpace(' ')
     PsiElement(OPERATOR_EQUAL)('=')
     PsiWhiteSpace(' ')

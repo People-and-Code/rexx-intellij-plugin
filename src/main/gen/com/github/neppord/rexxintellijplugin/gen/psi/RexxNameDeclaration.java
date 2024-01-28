@@ -5,15 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface RexxAssignment extends PsiElement {
+public interface RexxNameDeclaration extends PsiElement {
 
   @NotNull
-  RexxExpression getExpression();
-
-  @NotNull
-  RexxNameDeclaration getNameDeclaration();
-
-  @NotNull
-  PsiElement getOperatorEqual();
+  PsiElement getIdentifier();
 
 }

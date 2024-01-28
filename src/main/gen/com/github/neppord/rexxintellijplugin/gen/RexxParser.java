@@ -70,13 +70,14 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // IDENTIFIER OPERATOR_EQUAL expression
+  // name_declaration OPERATOR_EQUAL expression
   public static boolean assignment(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "assignment")) return false;
     if (!nextTokenIs(builder_, IDENTIFIER)) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_);
-    result_ = consumeTokens(builder_, 0, IDENTIFIER, OPERATOR_EQUAL);
+    result_ = name_declaration(builder_, level_ + 1);
+    result_ = result_ && consumeToken(builder_, OPERATOR_EQUAL);
     result_ = result_ && expression(builder_, level_ + 1);
     exit_section_(builder_, marker_, ASSIGNMENT, result_);
     return result_;
@@ -190,13 +191,13 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // assignment | say_instruction
+  // assignment | say_instruction | parse_instruction
   static boolean instruction(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "instruction")) return false;
-    if (!nextTokenIs(builder_, "", IDENTIFIER, KEYWORD_SAY)) return false;
     boolean result_;
     result_ = assignment(builder_, level_ + 1);
     if (!result_) result_ = say_instruction(builder_, level_ + 1);
+    if (!result_) result_ = parse_instruction(builder_, level_ + 1);
     return result_;
   }
 
@@ -247,6 +248,18 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // IDENTIFIER
+  public static boolean name_declaration(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "name_declaration")) return false;
+    if (!nextTokenIs(builder_, IDENTIFIER)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, IDENTIFIER);
+    exit_section_(builder_, marker_, NAME_DECLARATION, result_);
+    return result_;
+  }
+
+  /* ********************************************************** */
   // integerConstant | decimalConstant | scientificConstant
   public static boolean numericConstant(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "numericConstant")) return false;
@@ -270,6 +283,41 @@ public class RexxParser implements PsiParser, LightPsiParser {
     result_ = result_ && expression(builder_, level_ + 1);
     result_ = result_ && consumeToken(builder_, TOKEN_RIGHT);
     exit_section_(builder_, marker_, PARENTHETICAL_EXPRESSION, result_);
+    return result_;
+  }
+
+  /* ********************************************************** */
+  // KEYWORD_PARSE KEYWORD_ARG parse_target*
+  public static boolean parse_instruction(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "parse_instruction")) return false;
+    if (!nextTokenIs(builder_, KEYWORD_PARSE)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeTokens(builder_, 0, KEYWORD_PARSE, KEYWORD_ARG);
+    result_ = result_ && parse_instruction_2(builder_, level_ + 1);
+    exit_section_(builder_, marker_, PARSE_INSTRUCTION, result_);
+    return result_;
+  }
+
+  // parse_target*
+  private static boolean parse_instruction_2(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "parse_instruction_2")) return false;
+    while (true) {
+      int pos_ = current_position_(builder_);
+      if (!parse_target(builder_, level_ + 1)) break;
+      if (!empty_element_parsed_guard_(builder_, "parse_instruction_2", pos_)) break;
+    }
+    return true;
+  }
+
+  /* ********************************************************** */
+  // name_declaration | stringLiteral | integerConstant
+  static boolean parse_target(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "parse_target")) return false;
+    boolean result_;
+    result_ = name_declaration(builder_, level_ + 1);
+    if (!result_) result_ = stringLiteral(builder_, level_ + 1);
+    if (!result_) result_ = integerConstant(builder_, level_ + 1);
     return result_;
   }
 

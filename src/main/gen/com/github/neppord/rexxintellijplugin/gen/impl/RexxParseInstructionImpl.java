@@ -11,14 +11,14 @@ import static com.github.neppord.rexxintellijplugin.gen.RexxTokens.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.github.neppord.rexxintellijplugin.gen.psi.*;
 
-public class RexxAssignmentImpl extends ASTWrapperPsiElement implements RexxAssignment {
+public class RexxParseInstructionImpl extends ASTWrapperPsiElement implements RexxParseInstruction {
 
-  public RexxAssignmentImpl(@NotNull ASTNode node) {
+  public RexxParseInstructionImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull RexxVisitor visitor) {
-    visitor.visitAssignment(this);
+    visitor.visitParseInstruction(this);
   }
 
   @Override
@@ -29,20 +29,32 @@ public class RexxAssignmentImpl extends ASTWrapperPsiElement implements RexxAssi
 
   @Override
   @NotNull
-  public RexxExpression getExpression() {
-    return findNotNullChildByClass(RexxExpression.class);
+  public List<RexxIntegerConstant> getIntegerConstantList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxIntegerConstant.class);
   }
 
   @Override
   @NotNull
-  public RexxNameDeclaration getNameDeclaration() {
-    return findNotNullChildByClass(RexxNameDeclaration.class);
+  public List<RexxNameDeclaration> getNameDeclarationList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxNameDeclaration.class);
   }
 
   @Override
   @NotNull
-  public PsiElement getOperatorEqual() {
-    return findNotNullChildByType(OPERATOR_EQUAL);
+  public List<RexxStringLiteral> getStringLiteralList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxStringLiteral.class);
+  }
+
+  @Override
+  @NotNull
+  public PsiElement getKeywordArg() {
+    return findNotNullChildByType(KEYWORD_ARG);
+  }
+
+  @Override
+  @NotNull
+  public PsiElement getKeywordParse() {
+    return findNotNullChildByType(KEYWORD_PARSE);
   }
 
 }

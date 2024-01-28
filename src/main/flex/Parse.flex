@@ -55,6 +55,7 @@ OPERATOR_STRICT_LESSTHAN_EQUAL===<=
 OPERATOR_LESSTHAN_GREATERTHAN=<>
 OPERATOR_GREATERTHAN_LESSTHAN=><
 OPERATOR_BACKSLASH=\\\\
+KEYWORD_ARG=ARG
 KEYWORD_CALL=CALL
 KEYWORD_DO=DO
 KEYWORD_DROP=DROP
@@ -134,6 +135,7 @@ TILDE=[~]
   {OPERATOR_LESSTHAN_GREATERTHAN}               { return OPERATOR_LESSTHAN_GREATERTHAN; }
   {OPERATOR_GREATERTHAN_LESSTHAN}               { return OPERATOR_GREATERTHAN_LESSTHAN; }
   {OPERATOR_BACKSLASH}                          { return OPERATOR_BACKSLASH; }
+  {KEYWORD_ARG}                                 { return KEYWORD_ARG; }
   {KEYWORD_CALL}                                { return KEYWORD_CALL; }
   {KEYWORD_DO}                                  { return KEYWORD_DO; }
   {KEYWORD_DROP}                                { return KEYWORD_DROP; }

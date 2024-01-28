@@ -1,6 +1,6 @@
 package com.github.neppord.rexxintellijplugin.expressions
 
-import com.github.neppord.rexxintellijplugin.instructions.Assignment
+import com.github.neppord.rexxintellijplugin.instructions.NameDeclaration
 import com.intellij.psi.util.descendantsOfType
 import com.intellij.testFramework.fixtures.BasePlatformTestCase
 
@@ -17,7 +17,7 @@ class VariableReferenceTest : BasePlatformTestCase() {
             """.trimMargin()
         )
         val actual = file.descendantsOfType<Variable>().first().reference?.resolve()
-        val expected = file.descendantsOfType<Assignment>().first()
+        val expected = file.descendantsOfType<NameDeclaration>().first()
 
         assertEquals(expected, actual)
     }

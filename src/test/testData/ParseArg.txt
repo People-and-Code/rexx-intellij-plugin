@@ -1,0 +1,11 @@
+FILE
+  RexxParseInstructionImpl(PARSE_INSTRUCTION)
+    PsiElement(KEYWORD_PARSE)('parse')
+    PsiWhiteSpace(' ')
+    PsiElement(KEYWORD_ARG)('arg')
+    PsiWhiteSpace(' ')
+    RexxNameDeclarationImpl(NAME_DECLARATION)
+      PsiElement(IDENTIFIER)('first')
+    PsiWhiteSpace(' ')
+    RexxNameDeclarationImpl(NAME_DECLARATION)
+      PsiElement(IDENTIFIER)('second')
