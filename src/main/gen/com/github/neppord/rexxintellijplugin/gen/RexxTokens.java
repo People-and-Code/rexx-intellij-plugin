@@ -107,6 +107,7 @@ public interface RexxTokens {
   IElementType OPERATOR_XOR = new RexxTokenType("OPERATOR_XOR");
   IElementType SHEBANG = new RexxTokenType("SHEBANG");
   IElementType STRING = new RexxTokenType("STRING");
+  IElementType TERMINATOR = new RexxTokenType("TERMINATOR");
   IElementType TILDE = new RexxTokenType("TILDE");
   IElementType TOKEN_LEFT = new RexxTokenType("(");
   IElementType TOKEN_RIGHT = new RexxTokenType(")");

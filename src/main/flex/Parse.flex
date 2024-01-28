@@ -26,6 +26,8 @@ import static com.github.neppord.rexxintellijplugin.gen.RexxTokens.*;
 EOL=\R
 WHITE_SPACE=\s+
 
+WHITE_SPACE=[ \t\f\r\v]
+TERMINATOR=[\n;]
 OPERATOR_PLUS=[+]
 OPERATOR_SUBTRACT=-
 OPERATOR_MULTIPLY=[*]
@@ -109,6 +111,8 @@ TILDE=[~]
   "("                                           { return TOKEN_LEFT; }
   ")"                                           { return TOKEN_RIGHT; }
 
+  {WHITE_SPACE}                                 { return WHITE_SPACE; }
+  {TERMINATOR}                                  { return TERMINATOR; }
   {OPERATOR_PLUS}                               { return OPERATOR_PLUS; }
   {OPERATOR_SUBTRACT}                           { return OPERATOR_SUBTRACT; }
   {OPERATOR_MULTIPLY}                           { return OPERATOR_MULTIPLY; }

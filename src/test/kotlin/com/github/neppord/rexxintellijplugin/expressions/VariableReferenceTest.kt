@@ -21,4 +21,17 @@ class VariableReferenceTest : BasePlatformTestCase() {
 
         assertEquals(expected, actual)
     }
+    fun testParseValueReference() {
+        val file = myFixture.configureByText(
+            "foo.rex",
+            """
+                | parse value 1 with foo
+                | say foo
+            """.trimMargin()
+        )
+        val actual = file.descendantsOfType<Variable>().first().reference?.resolve()
+        val expected = file.descendantsOfType<NameDeclaration>().first()
+
+        assertEquals(expected, actual)
+    }
 }

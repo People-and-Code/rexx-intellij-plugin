@@ -9,7 +9,7 @@ FILE
             RexxExpressionTermImpl(EXPRESSION_TERM)
               RexxStringLiteralImpl(STRING_LITERAL)
                 PsiElement(STRING)('"hello world"')
-  PsiWhiteSpace('\n')
+  PsiElement(TERMINATOR)('\n')
   RexxSayInstructionImpl(SAY_INSTRUCTION)
     PsiElement(KEYWORD_SAY)('say')
     PsiWhiteSpace(' ')

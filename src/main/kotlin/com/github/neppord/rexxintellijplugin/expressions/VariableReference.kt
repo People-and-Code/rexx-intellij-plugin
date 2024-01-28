@@ -1,10 +1,6 @@
 package com.github.neppord.rexxintellijplugin.expressions
 
-import com.github.neppord.rexxintellijplugin.gen.psi.RexxAssignment
-import com.github.neppord.rexxintellijplugin.gen.psi.RexxParseArgInstruction
-import com.github.neppord.rexxintellijplugin.gen.psi.RexxParseVarInstruction
-import com.github.neppord.rexxintellijplugin.gen.psi.RexxSayInstruction
-import com.github.neppord.rexxintellijplugin.gen.psi.RexxVariable
+import com.github.neppord.rexxintellijplugin.gen.psi.*
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import com.intellij.psi.PsiReferenceBase
@@ -31,6 +27,7 @@ class VariableReference(private val variable: Variable) :
             when(it) {
                 is RexxAssignment -> sequenceOf(it.nameDeclaration)
                 is RexxParseArgInstruction -> it.nameDeclarationList.asSequence()
+                is RexxParseValueInstruction -> it.nameDeclarationList.asSequence()
                 is RexxParseVarInstruction -> it.nameDeclarationList.asSequence()
                 else -> sequenceOf()
             }

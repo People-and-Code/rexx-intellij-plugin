@@ -11,6 +11,8 @@
     elementTypeClass="com.github.neppord.rexxintellijplugin.RexxElementType"
     tokenTypeClass="com.github.neppord.rexxintellijplugin.RexxTokenType"
     tokens=[
+        WHITE_SPACE="regexp:[ \t\f\r\v]"
+        TERMINATOR="regexp:[\n;]"
         // MAJOR TOKEN TYPES
         // TOKEN_NULL
         //     TOKEN_BLANK
@@ -139,7 +141,7 @@
 }
 
 
-rexx_file ::= instruction*
+rexx_file ::= TERMINATOR* instruction (TERMINATOR+ instruction)*
 
 private instruction ::=  assignment | say_instruction | parse_arg_instruction| parse_value_instruction
 parse_arg_instruction ::= KEYWORD_PARSE KEYWORD_ARG parse_target*

@@ -427,15 +427,64 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // instruction*
+  // TERMINATOR* instruction (TERMINATOR+ instruction)*
   static boolean rexx_file(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "rexx_file")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = rexx_file_0(builder_, level_ + 1);
+    result_ = result_ && instruction(builder_, level_ + 1);
+    result_ = result_ && rexx_file_2(builder_, level_ + 1);
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // TERMINATOR*
+  private static boolean rexx_file_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "rexx_file_0")) return false;
     while (true) {
       int pos_ = current_position_(builder_);
-      if (!instruction(builder_, level_ + 1)) break;
-      if (!empty_element_parsed_guard_(builder_, "rexx_file", pos_)) break;
+      if (!consumeToken(builder_, TERMINATOR)) break;
+      if (!empty_element_parsed_guard_(builder_, "rexx_file_0", pos_)) break;
     }
     return true;
+  }
+
+  // (TERMINATOR+ instruction)*
+  private static boolean rexx_file_2(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "rexx_file_2")) return false;
+    while (true) {
+      int pos_ = current_position_(builder_);
+      if (!rexx_file_2_0(builder_, level_ + 1)) break;
+      if (!empty_element_parsed_guard_(builder_, "rexx_file_2", pos_)) break;
+    }
+    return true;
+  }
+
+  // TERMINATOR+ instruction
+  private static boolean rexx_file_2_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "rexx_file_2_0")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = rexx_file_2_0_0(builder_, level_ + 1);
+    result_ = result_ && instruction(builder_, level_ + 1);
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // TERMINATOR+
+  private static boolean rexx_file_2_0_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "rexx_file_2_0_0")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, TERMINATOR);
+    while (result_) {
+      int pos_ = current_position_(builder_);
+      if (!consumeToken(builder_, TERMINATOR)) break;
+      if (!empty_element_parsed_guard_(builder_, "rexx_file_2_0_0", pos_)) break;
+    }
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
   }
 
   /* ********************************************************** */
