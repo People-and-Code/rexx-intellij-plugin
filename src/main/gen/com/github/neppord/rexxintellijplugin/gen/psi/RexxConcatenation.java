@@ -8,6 +8,6 @@ import com.intellij.psi.PsiElement;
 public interface RexxConcatenation extends PsiElement {
 
   @NotNull
-  List<RexxAddition> getAdditionList();
+  List<RexxCompare> getCompareList();
 
 }

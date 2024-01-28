@@ -5,15 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface RexxAssignment extends PsiElement {
+public interface RexxExitInstruction extends PsiElement {
 
   @NotNull
-  List<RexxExpression> getExpressionList();
-
-  @NotNull
-  RexxNameDeclaration getNameDeclaration();
-
-  @NotNull
-  PsiElement getOperatorEqual();
+  PsiElement getKeywordExit();
 
 }

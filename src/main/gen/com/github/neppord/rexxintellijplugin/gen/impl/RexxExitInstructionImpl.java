@@ -11,14 +11,14 @@ import static com.github.neppord.rexxintellijplugin.gen.RexxTokens.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.github.neppord.rexxintellijplugin.gen.psi.*;
 
-public class RexxConcatenationImpl extends ASTWrapperPsiElement implements RexxConcatenation {
+public class RexxExitInstructionImpl extends ASTWrapperPsiElement implements RexxExitInstruction {
 
-  public RexxConcatenationImpl(@NotNull ASTNode node) {
+  public RexxExitInstructionImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull RexxVisitor visitor) {
-    visitor.visitConcatenation(this);
+    visitor.visitExitInstruction(this);
   }
 
   @Override
@@ -29,8 +29,8 @@ public class RexxConcatenationImpl extends ASTWrapperPsiElement implements RexxC
 
   @Override
   @NotNull
-  public List<RexxCompare> getCompareList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxCompare.class);
+  public PsiElement getKeywordExit() {
+    return findNotNullChildByType(KEYWORD_EXIT);
   }
 
 }

@@ -23,7 +23,18 @@ class RexxSyntaxHighlighter: SyntaxHighlighterBase() {
         OPERATOR_AND,
     )
     private val keyword: TokenSet = TokenSet.create(
+        KEYWORD_ARG,
+        KEYWORD_DO,
+        KEYWORD_ELSE,
+        KEYWORD_END,
+        KEYWORD_EXIT,
+        KEYWORD_IF,
+        KEYWORD_PARSE,
         KEYWORD_SAY,
+        KEYWORD_SOURCE,
+        KEYWORD_THEN,
+        KEYWORD_VALUE,
+        KEYWORD_VAR,
     )
     private val number: TokenSet = TokenSet.create(
         NUMBER_INT,

@@ -15,6 +15,10 @@ public class RexxVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitCompare(@NotNull RexxCompare o) {
+    visitPsiElement(o);
+  }
+
   public void visitConcatenation(@NotNull RexxConcatenation o) {
     visitPsiElement(o);
   }
@@ -27,6 +31,10 @@ public class RexxVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitExitInstruction(@NotNull RexxExitInstruction o) {
+    visitPsiElement(o);
+  }
+
   public void visitExpression(@NotNull RexxExpression o) {
     visitPsiElement(o);
   }
@@ -36,6 +44,14 @@ public class RexxVisitor extends PsiElementVisitor {
   }
 
   public void visitFunctionCall(@NotNull RexxFunctionCall o) {
+    visitPsiElement(o);
+  }
+
+  public void visitIfInstruction(@NotNull RexxIfInstruction o) {
+    visitPsiElement(o);
+  }
+
+  public void visitInstructionBlock(@NotNull RexxInstructionBlock o) {
     visitPsiElement(o);
   }
 
@@ -60,6 +76,10 @@ public class RexxVisitor extends PsiElementVisitor {
   }
 
   public void visitParseArgInstruction(@NotNull RexxParseArgInstruction o) {
+    visitPsiElement(o);
+  }
+
+  public void visitParseSourceInstruction(@NotNull RexxParseSourceInstruction o) {
     visitPsiElement(o);
   }
 

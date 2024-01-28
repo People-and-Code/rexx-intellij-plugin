@@ -26,8 +26,8 @@ import static com.github.neppord.rexxintellijplugin.gen.RexxTokens.*;
 EOL=\R
 WHITE_SPACE=\s+
 
-WHITE_SPACE=[ \t\f\r\v]
-TERMINATOR=[\n;]
+WHITE_SPACE=[ \t]+
+TERMINATOR=[\n;]+
 OPERATOR_PLUS=[+]
 OPERATOR_SUBTRACT=-
 OPERATOR_MULTIPLY=[*]
@@ -66,6 +66,7 @@ KEYWORD_DO=DO
 KEYWORD_DROP=DROP
 KEYWORD_ELSE=ELSE
 KEYWORD_END=END
+KEYWORD_EXIT=EXIT
 KEYWORD_FORWARD=FORWARD
 KEYWORD_GUARD=GUARD
 KEYWORD_IF=IF
@@ -85,7 +86,9 @@ KEYWORD_RAISE=RAISE
 KEYWORD_REPLY=REPLY
 KEYWORD_SAY=SAY
 KEYWORD_SELECT=SELECT
+KEYWORD_SOURCE=SOURCE
 KEYWORD_SIGNAL=SIGNAL
+KEYWORD_THEN=THEN
 KEYWORD_TRACE=TRACE
 KEYWORD_USE=USE
 SHEBANG=[#][!][^\n]*
@@ -151,6 +154,7 @@ TILDE=[~]
   {KEYWORD_DROP}                                { return KEYWORD_DROP; }
   {KEYWORD_ELSE}                                { return KEYWORD_ELSE; }
   {KEYWORD_END}                                 { return KEYWORD_END; }
+  {KEYWORD_EXIT}                                { return KEYWORD_EXIT; }
   {KEYWORD_FORWARD}                             { return KEYWORD_FORWARD; }
   {KEYWORD_GUARD}                               { return KEYWORD_GUARD; }
   {KEYWORD_IF}                                  { return KEYWORD_IF; }
@@ -170,7 +174,9 @@ TILDE=[~]
   {KEYWORD_REPLY}                               { return KEYWORD_REPLY; }
   {KEYWORD_SAY}                                 { return KEYWORD_SAY; }
   {KEYWORD_SELECT}                              { return KEYWORD_SELECT; }
+  {KEYWORD_SOURCE}                              { return KEYWORD_SOURCE; }
   {KEYWORD_SIGNAL}                              { return KEYWORD_SIGNAL; }
+  {KEYWORD_THEN}                                { return KEYWORD_THEN; }
   {KEYWORD_TRACE}                               { return KEYWORD_TRACE; }
   {KEYWORD_USE}                                 { return KEYWORD_USE; }
   {SHEBANG}                                     { return SHEBANG; }

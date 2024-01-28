@@ -11,8 +11,8 @@
     elementTypeClass="com.github.neppord.rexxintellijplugin.RexxElementType"
     tokenTypeClass="com.github.neppord.rexxintellijplugin.RexxTokenType"
     tokens=[
-        WHITE_SPACE="regexp:[ \t\f\r\v]"
-        TERMINATOR="regexp:[\n;]"
+        WHITE_SPACE="regexp:[ \t]+"
+        TERMINATOR="regexp:[\n;]+"
         // MAJOR TOKEN TYPES
         // TOKEN_NULL
         //     TOKEN_BLANK
@@ -82,7 +82,7 @@
         KEYWORD_DROP="regexp:DROP"
         KEYWORD_ELSE="regexp:ELSE"
         KEYWORD_END="regexp:END"
-        // KEYWORD_EXIT="regexp:EXIT"
+        KEYWORD_EXIT="regexp:EXIT"
         // KEYWORD_EXPOSE="regexp:EXPOSE"
         KEYWORD_FORWARD="regexp:FORWARD"
         KEYWORD_GUARD="regexp:GUARD"
@@ -105,8 +105,9 @@
         // KEYWORD_RETURN="regexp:RETURN"
         KEYWORD_SAY="regexp:SAY"
         KEYWORD_SELECT="regexp:SELECT"
+        KEYWORD_SOURCE="regexp:SOURCE"
         KEYWORD_SIGNAL="regexp:SIGNAL"
-        //KEYWORD_THEN="regexp:THEN"
+        KEYWORD_THEN="regexp:THEN"
         KEYWORD_TRACE="regexp:TRACE"
         KEYWORD_USE="regexp:USE"
         //KEYWORD_WHEN="regexp:WHEN"
@@ -141,12 +142,29 @@
 }
 
 
-rexx_file ::= TERMINATOR* instruction (TERMINATOR+ instruction)*
+rexx_file ::= instructions
 
-private instruction ::=  assignment | say_instruction | parse_arg_instruction| parse_value_instruction
+private terminator ::= TERMINATOR+
+private instructions ::= terminator? instruction (terminator instruction)* terminator?
+
+private instruction
+    ::=  assignment
+    | say_instruction
+    | parse_arg_instruction
+    | parse_var_instruction
+    | parse_value_instruction
+    | parse_source_instruction
+    | if_instruction
+    | instruction_block
+    | exit_instruction
+
+exit_instruction ::= KEYWORD_EXIT
+
+instruction_block ::= KEYWORD_DO instructions KEYWORD_END
 parse_arg_instruction ::= KEYWORD_PARSE KEYWORD_ARG parse_target*
 parse_var_instruction ::= KEYWORD_PARSE KEYWORD_VAR parse_target*
 parse_value_instruction ::= KEYWORD_PARSE KEYWORD_VALUE expression* KEYWORD_WITH parse_target*
+parse_source_instruction ::= KEYWORD_PARSE KEYWORD_SOURCE parse_target*
 private parse_target
     ::= name_declaration
     | stringLiteral
@@ -154,16 +172,24 @@ private parse_target
     | remainder // | range | offset
 
 remainder ::= DOT
+if_instruction
+    ::= KEYWORD_IF expression terminator?
+        KEYWORD_THEN terminator?
+            instruction
+        (terminator? KEYWORD_ELSE terminator?
+            instruction)?
 
-assignment ::= name_declaration OPERATOR_EQUAL expression
+assignment ::= name_declaration OPERATOR_EQUAL expressions
 
 name_declaration ::= IDENTIFIER {
    mixin="com.github.neppord.rexxintellijplugin.instructions.NameDeclaration"
 }
 
-say_instruction ::= KEYWORD_SAY expression*
+say_instruction ::= KEYWORD_SAY expressions?
+private expressions ::= expression+
 expression ::= concatenation
-concatenation ::= addition (OPERATOR_CONCATENATE addition)*
+concatenation ::= compare (OPERATOR_CONCATENATE compare)*
+compare ::= addition (OPERATOR_EQUAL addition)?
 addition ::= subtraction_ (OPERATOR_PLUS subtraction_)*
 private subtraction_ ::= multiplication (subtraction)*
 left subtraction ::= OPERATOR_SUBTRACT multiplication

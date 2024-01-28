@@ -20,15 +20,18 @@ class VariableReference(private val variable: Variable) :
 
     private fun candidates(): Sequence<PsiNameIdentifierOwner> {
         val instruction = variable.parents(true).firstOrNull {
-            it is RexxAssignment || it is RexxSayInstruction
+            it is RexxAssignment ||
+                    it is RexxSayInstruction ||
+                    it is RexxIfInstruction
         }
-        val previousInstructions = instruction?.siblings(forward = false) ?: emptySequence()
+        val previousInstructions = instruction?.siblings(forward = false, withSelf = false) ?: emptySequence()
         return previousInstructions.flatMap {
             when(it) {
                 is RexxAssignment -> sequenceOf(it.nameDeclaration)
                 is RexxParseArgInstruction -> it.nameDeclarationList.asSequence()
                 is RexxParseValueInstruction -> it.nameDeclarationList.asSequence()
                 is RexxParseVarInstruction -> it.nameDeclarationList.asSequence()
+                is RexxParseSourceInstruction -> it.nameDeclarationList.asSequence()
                 else -> sequenceOf()
             }
         }.filterIsInstance<PsiNameIdentifierOwner>()

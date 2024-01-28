@@ -12,18 +12,23 @@ public interface RexxTokens {
 
   IElementType ADDITION = new RexxElementType("ADDITION");
   IElementType ASSIGNMENT = new RexxElementType("ASSIGNMENT");
+  IElementType COMPARE = new RexxElementType("COMPARE");
   IElementType CONCATENATION = new RexxElementType("CONCATENATION");
   IElementType DECIMAL_CONSTANT = new RexxElementType("DECIMAL_CONSTANT");
   IElementType DIVISION = new RexxElementType("DIVISION");
+  IElementType EXIT_INSTRUCTION = new RexxElementType("EXIT_INSTRUCTION");
   IElementType EXPRESSION = new RexxElementType("EXPRESSION");
   IElementType EXPRESSION_TERM = new RexxElementType("EXPRESSION_TERM");
   IElementType FUNCTION_CALL = new RexxElementType("FUNCTION_CALL");
+  IElementType IF_INSTRUCTION = new RexxElementType("IF_INSTRUCTION");
+  IElementType INSTRUCTION_BLOCK = new RexxElementType("INSTRUCTION_BLOCK");
   IElementType INTEGER_CONSTANT = new RexxElementType("INTEGER_CONSTANT");
   IElementType MULTIPLICATION = new RexxElementType("MULTIPLICATION");
   IElementType NAME_DECLARATION = new RexxElementType("NAME_DECLARATION");
   IElementType NUMERIC_CONSTANT = new RexxElementType("NUMERIC_CONSTANT");
   IElementType PARENTHETICAL_EXPRESSION = new RexxElementType("PARENTHETICAL_EXPRESSION");
   IElementType PARSE_ARG_INSTRUCTION = new RexxElementType("PARSE_ARG_INSTRUCTION");
+  IElementType PARSE_SOURCE_INSTRUCTION = new RexxElementType("PARSE_SOURCE_INSTRUCTION");
   IElementType PARSE_VALUE_INSTRUCTION = new RexxElementType("PARSE_VALUE_INSTRUCTION");
   IElementType PARSE_VAR_INSTRUCTION = new RexxElementType("PARSE_VAR_INSTRUCTION");
   IElementType REMAINDER = new RexxElementType("REMAINDER");
@@ -43,6 +48,7 @@ public interface RexxTokens {
   IElementType KEYWORD_DROP = new RexxTokenType("KEYWORD_DROP");
   IElementType KEYWORD_ELSE = new RexxTokenType("KEYWORD_ELSE");
   IElementType KEYWORD_END = new RexxTokenType("KEYWORD_END");
+  IElementType KEYWORD_EXIT = new RexxTokenType("KEYWORD_EXIT");
   IElementType KEYWORD_FORWARD = new RexxTokenType("KEYWORD_FORWARD");
   IElementType KEYWORD_GUARD = new RexxTokenType("KEYWORD_GUARD");
   IElementType KEYWORD_IF = new RexxTokenType("KEYWORD_IF");
@@ -64,6 +70,8 @@ public interface RexxTokens {
   IElementType KEYWORD_SAY = new RexxTokenType("KEYWORD_SAY");
   IElementType KEYWORD_SELECT = new RexxTokenType("KEYWORD_SELECT");
   IElementType KEYWORD_SIGNAL = new RexxTokenType("KEYWORD_SIGNAL");
+  IElementType KEYWORD_SOURCE = new RexxTokenType("KEYWORD_SOURCE");
+  IElementType KEYWORD_THEN = new RexxTokenType("KEYWORD_THEN");
   IElementType KEYWORD_TRACE = new RexxTokenType("KEYWORD_TRACE");
   IElementType KEYWORD_USE = new RexxTokenType("KEYWORD_USE");
   IElementType KEYWORD_VALUE = new RexxTokenType("KEYWORD_VALUE");
@@ -121,6 +129,9 @@ public interface RexxTokens {
       else if (type == ASSIGNMENT) {
         return new RexxAssignmentImpl(node);
       }
+      else if (type == COMPARE) {
+        return new RexxCompareImpl(node);
+      }
       else if (type == CONCATENATION) {
         return new RexxConcatenationImpl(node);
       }
@@ -130,6 +141,9 @@ public interface RexxTokens {
       else if (type == DIVISION) {
         return new RexxDivisionImpl(node);
       }
+      else if (type == EXIT_INSTRUCTION) {
+        return new RexxExitInstructionImpl(node);
+      }
       else if (type == EXPRESSION) {
         return new RexxExpressionImpl(node);
       }
@@ -138,6 +152,12 @@ public interface RexxTokens {
       }
       else if (type == FUNCTION_CALL) {
         return new RexxFunctionCallImpl(node);
+      }
+      else if (type == IF_INSTRUCTION) {
+        return new RexxIfInstructionImpl(node);
+      }
+      else if (type == INSTRUCTION_BLOCK) {
+        return new RexxInstructionBlockImpl(node);
       }
       else if (type == INTEGER_CONSTANT) {
         return new RexxIntegerConstantImpl(node);
@@ -156,6 +176,9 @@ public interface RexxTokens {
       }
       else if (type == PARSE_ARG_INSTRUCTION) {
         return new RexxParseArgInstructionImpl(node);
+      }
+      else if (type == PARSE_SOURCE_INSTRUCTION) {
+        return new RexxParseSourceInstructionImpl(node);
       }
       else if (type == PARSE_VALUE_INSTRUCTION) {
         return new RexxParseValueInstructionImpl(node);
