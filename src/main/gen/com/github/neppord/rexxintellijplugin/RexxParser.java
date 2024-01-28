@@ -165,16 +165,27 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // KEYWORD_SAY expression
+  // KEYWORD_SAY expression*
   public static boolean say_instruction(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "say_instruction")) return false;
     if (!nextTokenIs(builder_, KEYWORD_SAY)) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_);
     result_ = consumeToken(builder_, KEYWORD_SAY);
-    result_ = result_ && expression(builder_, level_ + 1);
+    result_ = result_ && say_instruction_1(builder_, level_ + 1);
     exit_section_(builder_, marker_, SAY_INSTRUCTION, result_);
     return result_;
+  }
+
+  // expression*
+  private static boolean say_instruction_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "say_instruction_1")) return false;
+    while (true) {
+      int pos_ = current_position_(builder_);
+      if (!expression(builder_, level_ + 1)) break;
+      if (!empty_element_parsed_guard_(builder_, "say_instruction_1", pos_)) break;
+    }
+    return true;
   }
 
   /* ********************************************************** */

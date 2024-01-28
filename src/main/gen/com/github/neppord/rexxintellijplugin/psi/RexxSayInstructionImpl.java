@@ -28,8 +28,8 @@ public class RexxSayInstructionImpl extends ASTWrapperPsiElement implements Rexx
 
   @Override
   @NotNull
-  public RexxExpression getExpression() {
-    return findNotNullChildByClass(RexxExpression.class);
+  public List<RexxExpression> getExpressionList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxExpression.class);
   }
 
   @Override
