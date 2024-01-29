@@ -34,8 +34,10 @@ public interface RexxTokens {
   IElementType REMAINDER = new RexxElementType("REMAINDER");
   IElementType SAY_INSTRUCTION = new RexxElementType("SAY_INSTRUCTION");
   IElementType SCIENTIFIC_CONSTANT = new RexxElementType("SCIENTIFIC_CONSTANT");
+  IElementType SIGNAL_INSTRUCTION = new RexxElementType("SIGNAL_INSTRUCTION");
   IElementType STRING_LITERAL = new RexxElementType("STRING_LITERAL");
   IElementType SUBTRACTION = new RexxElementType("SUBTRACTION");
+  IElementType TRACE_INSTRUCTION = new RexxElementType("TRACE_INSTRUCTION");
   IElementType VARIABLE = new RexxElementType("VARIABLE");
 
   IElementType DOT = new RexxTokenType("DOT");
@@ -195,11 +197,17 @@ public interface RexxTokens {
       else if (type == SCIENTIFIC_CONSTANT) {
         return new RexxScientificConstantImpl(node);
       }
+      else if (type == SIGNAL_INSTRUCTION) {
+        return new RexxSignalInstructionImpl(node);
+      }
       else if (type == STRING_LITERAL) {
         return new RexxStringLiteralImpl(node);
       }
       else if (type == SUBTRACTION) {
         return new RexxSubtractionImpl(node);
+      }
+      else if (type == TRACE_INSTRUCTION) {
+        return new RexxTraceInstructionImpl(node);
       }
       else if (type == VARIABLE) {
         return new RexxVariableImpl(node);

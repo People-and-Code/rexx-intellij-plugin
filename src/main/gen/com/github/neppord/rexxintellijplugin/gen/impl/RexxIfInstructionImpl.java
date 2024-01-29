@@ -88,6 +88,18 @@ public class RexxIfInstructionImpl extends ASTWrapperPsiElement implements RexxI
   }
 
   @Override
+  @NotNull
+  public List<RexxSignalInstruction> getSignalInstructionList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxSignalInstruction.class);
+  }
+
+  @Override
+  @NotNull
+  public List<RexxTraceInstruction> getTraceInstructionList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxTraceInstruction.class);
+  }
+
+  @Override
   @Nullable
   public PsiElement getKeywordElse() {
     return findChildByType(KEYWORD_ELSE);

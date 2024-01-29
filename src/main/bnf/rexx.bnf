@@ -157,8 +157,14 @@ private instruction
     | if_instruction
     | instruction_block
     | exit_instruction
+    | trace_instruction
+    | signal_instruction
 
-exit_instruction ::= KEYWORD_EXIT
+signal_instruction ::= KEYWORD_SIGNAL expressions
+
+trace_instruction ::= KEYWORD_TRACE ("o"|"i"|"r")
+
+exit_instruction ::= KEYWORD_EXIT expression?
 
 instruction_block ::= KEYWORD_DO instructions KEYWORD_END
 parse_arg_instruction ::= KEYWORD_PARSE KEYWORD_ARG parse_target*

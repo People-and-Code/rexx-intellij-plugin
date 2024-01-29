@@ -103,11 +103,19 @@ public class RexxVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitSignalInstruction(@NotNull RexxSignalInstruction o) {
+    visitPsiElement(o);
+  }
+
   public void visitStringLiteral(@NotNull RexxStringLiteral o) {
     visitPsiElement(o);
   }
 
   public void visitSubtraction(@NotNull RexxSubtraction o) {
+    visitPsiElement(o);
+  }
+
+  public void visitTraceInstruction(@NotNull RexxTraceInstruction o) {
     visitPsiElement(o);
   }
 

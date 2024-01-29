@@ -11,14 +11,14 @@ import static com.github.neppord.rexxintellijplugin.gen.RexxTokens.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.github.neppord.rexxintellijplugin.gen.psi.*;
 
-public class RexxExitInstructionImpl extends ASTWrapperPsiElement implements RexxExitInstruction {
+public class RexxTraceInstructionImpl extends ASTWrapperPsiElement implements RexxTraceInstruction {
 
-  public RexxExitInstructionImpl(@NotNull ASTNode node) {
+  public RexxTraceInstructionImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull RexxVisitor visitor) {
-    visitor.visitExitInstruction(this);
+    visitor.visitTraceInstruction(this);
   }
 
   @Override
@@ -28,15 +28,9 @@ public class RexxExitInstructionImpl extends ASTWrapperPsiElement implements Rex
   }
 
   @Override
-  @Nullable
-  public RexxExpression getExpression() {
-    return findChildByClass(RexxExpression.class);
-  }
-
-  @Override
   @NotNull
-  public PsiElement getKeywordExit() {
-    return findNotNullChildByType(KEYWORD_EXIT);
+  public PsiElement getKeywordTrace() {
+    return findNotNullChildByType(KEYWORD_TRACE);
   }
 
 }

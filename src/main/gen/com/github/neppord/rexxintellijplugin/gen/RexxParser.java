@@ -196,15 +196,23 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // KEYWORD_EXIT
+  // KEYWORD_EXIT expression?
   public static boolean exit_instruction(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "exit_instruction")) return false;
     if (!nextTokenIs(builder_, KEYWORD_EXIT)) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_);
     result_ = consumeToken(builder_, KEYWORD_EXIT);
+    result_ = result_ && exit_instruction_1(builder_, level_ + 1);
     exit_section_(builder_, marker_, EXIT_INSTRUCTION, result_);
     return result_;
+  }
+
+  // expression?
+  private static boolean exit_instruction_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "exit_instruction_1")) return false;
+    expression(builder_, level_ + 1);
+    return true;
   }
 
   /* ********************************************************** */
@@ -356,7 +364,9 @@ public class RexxParser implements PsiParser, LightPsiParser {
   //     | parse_source_instruction
   //     | if_instruction
   //     | instruction_block
-  //     | exit_instruction
+  //     | exit_instruction
+  //     | trace_instruction
+  //     | signal_instruction
   static boolean instruction(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "instruction")) return false;
     boolean result_;
@@ -369,6 +379,8 @@ public class RexxParser implements PsiParser, LightPsiParser {
     if (!result_) result_ = if_instruction(builder_, level_ + 1);
     if (!result_) result_ = instruction_block(builder_, level_ + 1);
     if (!result_) result_ = exit_instruction(builder_, level_ + 1);
+    if (!result_) result_ = trace_instruction(builder_, level_ + 1);
+    if (!result_) result_ = signal_instruction(builder_, level_ + 1);
     return result_;
   }
 
@@ -696,6 +708,19 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // KEYWORD_SIGNAL expressions
+  public static boolean signal_instruction(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "signal_instruction")) return false;
+    if (!nextTokenIs(builder_, KEYWORD_SIGNAL)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, KEYWORD_SIGNAL);
+    result_ = result_ && expressions(builder_, level_ + 1);
+    exit_section_(builder_, marker_, SIGNAL_INSTRUCTION, result_);
+    return result_;
+  }
+
+  /* ********************************************************** */
   // STRING
   public static boolean stringLiteral(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "stringLiteral")) return false;
@@ -767,6 +792,29 @@ public class RexxParser implements PsiParser, LightPsiParser {
       if (!empty_element_parsed_guard_(builder_, "terminator", pos_)) break;
     }
     exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  /* ********************************************************** */
+  // KEYWORD_TRACE ("o"|"i"|"r")
+  public static boolean trace_instruction(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "trace_instruction")) return false;
+    if (!nextTokenIs(builder_, KEYWORD_TRACE)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, KEYWORD_TRACE);
+    result_ = result_ && trace_instruction_1(builder_, level_ + 1);
+    exit_section_(builder_, marker_, TRACE_INSTRUCTION, result_);
+    return result_;
+  }
+
+  // "o"|"i"|"r"
+  private static boolean trace_instruction_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "trace_instruction_1")) return false;
+    boolean result_;
+    result_ = consumeToken(builder_, "o");
+    if (!result_) result_ = consumeToken(builder_, "i");
+    if (!result_) result_ = consumeToken(builder_, "r");
     return result_;
   }
 
