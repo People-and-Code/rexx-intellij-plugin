@@ -230,6 +230,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
   // stringLiteral
   //     | numericConstant
   //     | functionCall
+  //     | methodCall
   //     | variable
   //     | parentheticalExpression
   public static boolean expressionTerm(PsiBuilder builder_, int level_) {
@@ -239,8 +240,20 @@ public class RexxParser implements PsiParser, LightPsiParser {
     result_ = stringLiteral(builder_, level_ + 1);
     if (!result_) result_ = numericConstant(builder_, level_ + 1);
     if (!result_) result_ = functionCall(builder_, level_ + 1);
+    if (!result_) result_ = methodCall(builder_, level_ + 1);
     if (!result_) result_ = variable(builder_, level_ + 1);
     if (!result_) result_ = parentheticalExpression(builder_, level_ + 1);
+    exit_section_(builder_, level_, marker_, result_, false, null);
+    return result_;
+  }
+
+  /* ********************************************************** */
+  // expression
+  public static boolean expression_instruction(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "expression_instruction")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_, level_, _NONE_, EXPRESSION_INSTRUCTION, "<expression instruction>");
+    result_ = expression(builder_, level_ + 1);
     exit_section_(builder_, level_, marker_, result_, false, null);
     return result_;
   }
@@ -396,7 +409,8 @@ public class RexxParser implements PsiParser, LightPsiParser {
   //     | instruction_block
   //     | exit_instruction
   //     | trace_instruction
-  //     | signal_instruction
+  //     | signal_instruction
+  //     | expression_instruction
   static boolean instruction(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "instruction")) return false;
     boolean result_;
@@ -411,6 +425,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
     if (!result_) result_ = exit_instruction(builder_, level_ + 1);
     if (!result_) result_ = trace_instruction(builder_, level_ + 1);
     if (!result_) result_ = signal_instruction(builder_, level_ + 1);
+    if (!result_) result_ = expression_instruction(builder_, level_ + 1);
     return result_;
   }
 
@@ -488,6 +503,58 @@ public class RexxParser implements PsiParser, LightPsiParser {
     result_ = consumeToken(builder_, NUMBER_INT);
     exit_section_(builder_, marker_, INTEGER_CONSTANT, result_);
     return result_;
+  }
+
+  /* ********************************************************** */
+  // variable TILDE IDENTIFIER TOKEN_LEFT expression? (COMMA expression?)* TOKEN_RIGHT
+  public static boolean methodCall(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "methodCall")) return false;
+    if (!nextTokenIs(builder_, IDENTIFIER)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = variable(builder_, level_ + 1);
+    result_ = result_ && consumeTokens(builder_, 0, TILDE, IDENTIFIER, TOKEN_LEFT);
+    result_ = result_ && methodCall_4(builder_, level_ + 1);
+    result_ = result_ && methodCall_5(builder_, level_ + 1);
+    result_ = result_ && consumeToken(builder_, TOKEN_RIGHT);
+    exit_section_(builder_, marker_, METHOD_CALL, result_);
+    return result_;
+  }
+
+  // expression?
+  private static boolean methodCall_4(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "methodCall_4")) return false;
+    expression(builder_, level_ + 1);
+    return true;
+  }
+
+  // (COMMA expression?)*
+  private static boolean methodCall_5(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "methodCall_5")) return false;
+    while (true) {
+      int pos_ = current_position_(builder_);
+      if (!methodCall_5_0(builder_, level_ + 1)) break;
+      if (!empty_element_parsed_guard_(builder_, "methodCall_5", pos_)) break;
+    }
+    return true;
+  }
+
+  // COMMA expression?
+  private static boolean methodCall_5_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "methodCall_5_0")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, COMMA);
+    result_ = result_ && methodCall_5_0_1(builder_, level_ + 1);
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // expression?
+  private static boolean methodCall_5_0_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "methodCall_5_0_1")) return false;
+    expression(builder_, level_ + 1);
+    return true;
   }
 
   /* ********************************************************** */

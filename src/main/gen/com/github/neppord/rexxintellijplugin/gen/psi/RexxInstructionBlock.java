@@ -14,6 +14,9 @@ public interface RexxInstructionBlock extends PsiElement {
   List<RexxExitInstruction> getExitInstructionList();
 
   @NotNull
+  List<RexxExpressionInstruction> getExpressionInstructionList();
+
+  @NotNull
   List<RexxIfInstruction> getIfInstructionList();
 
   @NotNull

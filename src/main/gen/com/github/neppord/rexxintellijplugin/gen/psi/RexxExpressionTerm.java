@@ -11,6 +11,9 @@ public interface RexxExpressionTerm extends PsiElement {
   RexxFunctionCall getFunctionCall();
 
   @Nullable
+  RexxMethodCall getMethodCall();
+
+  @Nullable
   RexxNumericConstant getNumericConstant();
 
   @Nullable

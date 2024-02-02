@@ -35,6 +35,12 @@ public class RexxExpressionTermImpl extends ASTWrapperPsiElement implements Rexx
 
   @Override
   @Nullable
+  public RexxMethodCall getMethodCall() {
+    return findChildByClass(RexxMethodCall.class);
+  }
+
+  @Override
+  @Nullable
   public RexxNumericConstant getNumericConstant() {
     return findChildByClass(RexxNumericConstant.class);
   }

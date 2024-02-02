@@ -17,6 +17,9 @@ public interface RexxIfInstruction extends PsiElement {
   RexxExpression getExpression();
 
   @NotNull
+  List<RexxExpressionInstruction> getExpressionInstructionList();
+
+  @NotNull
   List<RexxIfInstruction> getIfInstructionList();
 
   @NotNull
