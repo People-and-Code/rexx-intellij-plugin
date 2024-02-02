@@ -138,6 +138,7 @@
         KEYWORD_METHOD="regexp:::method"
         DOT="regexp:[.]"
         TILDE="regexp:[~]"
+        COMMA="regexp:[,]"
     ]
 }
 
@@ -206,11 +207,11 @@ left division ::= OPERATOR_DIVIDE expressionTerm
 expressionTerm
     ::= stringLiteral
     | numericConstant
+    | functionCall
     | variable
     | parentheticalExpression
-    | functionCall
 
-functionCall ::= variable TOKEN_LEFT expression? TOKEN_RIGHT
+functionCall ::= variable TOKEN_LEFT expression? (COMMA expression?)* TOKEN_RIGHT
 parentheticalExpression ::= TOKEN_LEFT expression TOKEN_RIGHT
 stringLiteral ::= STRING
 numericConstant ::= integerConstant | decimalConstant | scientificConstant

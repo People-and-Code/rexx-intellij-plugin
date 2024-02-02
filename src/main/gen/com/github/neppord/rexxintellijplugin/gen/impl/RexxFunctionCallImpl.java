@@ -28,9 +28,9 @@ public class RexxFunctionCallImpl extends ASTWrapperPsiElement implements RexxFu
   }
 
   @Override
-  @Nullable
-  public RexxExpression getExpression() {
-    return findChildByClass(RexxExpression.class);
+  @NotNull
+  public List<RexxExpression> getExpressionList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxExpression.class);
   }
 
   @Override

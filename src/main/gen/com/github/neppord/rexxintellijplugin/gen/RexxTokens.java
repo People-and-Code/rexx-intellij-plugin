@@ -40,6 +40,7 @@ public interface RexxTokens {
   IElementType TRACE_INSTRUCTION = new RexxElementType("TRACE_INSTRUCTION");
   IElementType VARIABLE = new RexxElementType("VARIABLE");
 
+  IElementType COMMA = new RexxTokenType("COMMA");
   IElementType DOT = new RexxTokenType("DOT");
   IElementType IDENTIFIER = new RexxTokenType("IDENTIFIER");
   IElementType KEYWORD_ARG = new RexxTokenType("KEYWORD_ARG");

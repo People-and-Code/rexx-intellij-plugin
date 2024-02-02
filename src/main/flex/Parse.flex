@@ -106,6 +106,7 @@ KEYWORD_ATTRIBUTE=::attribute
 KEYWORD_METHOD=::method
 DOT=[.]
 TILDE=[~]
+COMMA=[,]
 
 %%
 <YYINITIAL> {
@@ -194,6 +195,7 @@ TILDE=[~]
   {KEYWORD_METHOD}                              { return KEYWORD_METHOD; }
   {DOT}                                         { return DOT; }
   {TILDE}                                       { return TILDE; }
+  {COMMA}                                       { return COMMA; }
 
 }
 
