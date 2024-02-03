@@ -11,6 +11,7 @@ import com.github.neppord.rexxintellijplugin.gen.impl.*;
 public interface RexxTokens {
 
   IElementType ADDITION = new RexxElementType("ADDITION");
+  IElementType ADDRESS_INSTRUCTION = new RexxElementType("ADDRESS_INSTRUCTION");
   IElementType ASSIGNMENT = new RexxElementType("ASSIGNMENT");
   IElementType CALL_INSTRUCTION = new RexxElementType("CALL_INSTRUCTION");
   IElementType COMPARE = new RexxElementType("COMPARE");
@@ -48,6 +49,7 @@ public interface RexxTokens {
   IElementType DOT = new RexxTokenType("DOT");
   IElementType EXCLAMATION = new RexxTokenType("EXCLAMATION");
   IElementType IDENTIFIER = new RexxTokenType("IDENTIFIER");
+  IElementType KEYWORD_ADDRESS = new RexxTokenType("KEYWORD_ADDRESS");
   IElementType KEYWORD_ARG = new RexxTokenType("KEYWORD_ARG");
   IElementType KEYWORD_ATTRIBUTE = new RexxTokenType("KEYWORD_ATTRIBUTE");
   IElementType KEYWORD_CALL = new RexxTokenType("KEYWORD_CALL");
@@ -94,7 +96,6 @@ public interface RexxTokens {
   IElementType NUMBER_SCIENTIFIC = new RexxTokenType("NUMBER_SCIENTIFIC");
   IElementType OPERATOR_AND = new RexxTokenType("OPERATOR_AND");
   IElementType OPERATOR_BACKSLASH = new RexxTokenType("OPERATOR_BACKSLASH");
-  IElementType OPERATOR_BACKSLASH_EQUAL = new RexxTokenType("OPERATOR_BACKSLASH_EQUAL");
   IElementType OPERATOR_BACKSLASH_GREATERTHAN = new RexxTokenType("OPERATOR_BACKSLASH_GREATERTHAN");
   IElementType OPERATOR_BACKSLASH_LESSTHAN = new RexxTokenType("OPERATOR_BACKSLASH_LESSTHAN");
   IElementType OPERATOR_BITWISE_AND = new RexxTokenType("OPERATOR_BITWISE_AND");
@@ -108,6 +109,7 @@ public interface RexxTokens {
   IElementType OPERATOR_LESSTHAN_EQUAL = new RexxTokenType("OPERATOR_LESSTHAN_EQUAL");
   IElementType OPERATOR_LESSTHAN_GREATERTHAN = new RexxTokenType("OPERATOR_LESSTHAN_GREATERTHAN");
   IElementType OPERATOR_MULTIPLY = new RexxTokenType("OPERATOR_MULTIPLY");
+  IElementType OPERATOR_NOT_EQUAL = new RexxTokenType("OPERATOR_NOT_EQUAL");
   IElementType OPERATOR_OR = new RexxTokenType("OPERATOR_OR");
   IElementType OPERATOR_PLUS = new RexxTokenType("OPERATOR_PLUS");
   IElementType OPERATOR_POWER = new RexxTokenType("OPERATOR_POWER");
@@ -133,6 +135,9 @@ public interface RexxTokens {
       IElementType type = node.getElementType();
       if (type == ADDITION) {
         return new RexxAdditionImpl(node);
+      }
+      else if (type == ADDRESS_INSTRUCTION) {
+        return new RexxAddressInstructionImpl(node);
       }
       else if (type == ASSIGNMENT) {
         return new RexxAssignmentImpl(node);

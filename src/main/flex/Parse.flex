@@ -40,7 +40,7 @@ OPERATOR_BITWISE_AND=&
 OPERATOR_OR=[|]
 OPERATOR_XOR=\^\^
 OPERATOR_EQUAL==
-OPERATOR_BACKSLASH_EQUAL=\\=
+OPERATOR_NOT_EQUAL=<>|><|[\\]=|¬=
 OPERATOR_GREATERTHAN=>
 OPERATOR_BACKSLASH_GREATERTHAN=\\>
 OPERATOR_LESSTHAN=<
@@ -57,6 +57,7 @@ OPERATOR_STRICT_LESSTHAN_EQUAL===<=
 OPERATOR_LESSTHAN_GREATERTHAN=<>
 OPERATOR_GREATERTHAN_LESSTHAN=><
 OPERATOR_BACKSLASH=\\\\
+KEYWORD_ADDRESS=ADDRESS
 KEYWORD_ARG=ARG
 KEYWORD_VAR=VAR
 KEYWORD_VALUE=VALUE
@@ -130,7 +131,7 @@ COMMA=[,]
   {OPERATOR_OR}                                 { return OPERATOR_OR; }
   {OPERATOR_XOR}                                { return OPERATOR_XOR; }
   {OPERATOR_EQUAL}                              { return OPERATOR_EQUAL; }
-  {OPERATOR_BACKSLASH_EQUAL}                    { return OPERATOR_BACKSLASH_EQUAL; }
+  {OPERATOR_NOT_EQUAL}                          { return OPERATOR_NOT_EQUAL; }
   {OPERATOR_GREATERTHAN}                        { return OPERATOR_GREATERTHAN; }
   {OPERATOR_BACKSLASH_GREATERTHAN}              { return OPERATOR_BACKSLASH_GREATERTHAN; }
   {OPERATOR_LESSTHAN}                           { return OPERATOR_LESSTHAN; }
@@ -147,6 +148,7 @@ COMMA=[,]
   {OPERATOR_LESSTHAN_GREATERTHAN}               { return OPERATOR_LESSTHAN_GREATERTHAN; }
   {OPERATOR_GREATERTHAN_LESSTHAN}               { return OPERATOR_GREATERTHAN_LESSTHAN; }
   {OPERATOR_BACKSLASH}                          { return OPERATOR_BACKSLASH; }
+  {KEYWORD_ADDRESS}                             { return KEYWORD_ADDRESS; }
   {KEYWORD_ARG}                                 { return KEYWORD_ARG; }
   {KEYWORD_VAR}                                 { return KEYWORD_VAR; }
   {KEYWORD_VALUE}                               { return KEYWORD_VALUE; }

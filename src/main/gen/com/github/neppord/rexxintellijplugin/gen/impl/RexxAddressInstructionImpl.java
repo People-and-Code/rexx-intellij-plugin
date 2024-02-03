@@ -11,14 +11,14 @@ import static com.github.neppord.rexxintellijplugin.gen.RexxTokens.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.github.neppord.rexxintellijplugin.gen.psi.*;
 
-public class RexxCompareImpl extends ASTWrapperPsiElement implements RexxCompare {
+public class RexxAddressInstructionImpl extends ASTWrapperPsiElement implements RexxAddressInstruction {
 
-  public RexxCompareImpl(@NotNull ASTNode node) {
+  public RexxAddressInstructionImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull RexxVisitor visitor) {
-    visitor.visitCompare(this);
+    visitor.visitAddressInstruction(this);
   }
 
   @Override
@@ -29,20 +29,14 @@ public class RexxCompareImpl extends ASTWrapperPsiElement implements RexxCompare
 
   @Override
   @NotNull
-  public List<RexxAddition> getAdditionList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxAddition.class);
+  public List<RexxExpression> getExpressionList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxExpression.class);
   }
 
   @Override
-  @Nullable
-  public PsiElement getOperatorEqual() {
-    return findChildByType(OPERATOR_EQUAL);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getOperatorNotEqual() {
-    return findChildByType(OPERATOR_NOT_EQUAL);
+  @NotNull
+  public PsiElement getKeywordAddress() {
+    return findNotNullChildByType(KEYWORD_ADDRESS);
   }
 
 }

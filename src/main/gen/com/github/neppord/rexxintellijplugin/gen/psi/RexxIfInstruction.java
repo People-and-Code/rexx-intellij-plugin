@@ -8,6 +8,9 @@ import com.intellij.psi.PsiElement;
 public interface RexxIfInstruction extends PsiElement {
 
   @NotNull
+  List<RexxAddressInstruction> getAddressInstructionList();
+
+  @NotNull
   List<RexxAssignment> getAssignmentList();
 
   @NotNull

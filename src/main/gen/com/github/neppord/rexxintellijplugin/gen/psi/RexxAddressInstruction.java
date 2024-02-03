@@ -5,15 +5,12 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface RexxCompare extends PsiElement {
+public interface RexxAddressInstruction extends PsiElement {
 
   @NotNull
-  List<RexxAddition> getAdditionList();
+  List<RexxExpression> getExpressionList();
 
-  @Nullable
-  PsiElement getOperatorEqual();
-
-  @Nullable
-  PsiElement getOperatorNotEqual();
+  @NotNull
+  PsiElement getKeywordAddress();
 
 }

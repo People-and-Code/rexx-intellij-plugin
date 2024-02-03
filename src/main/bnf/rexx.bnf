@@ -51,7 +51,7 @@
         OPERATOR_XOR="regexp:\^\^"
 
         OPERATOR_EQUAL="regexp:="
-        OPERATOR_BACKSLASH_EQUAL="regexp:\\="
+        OPERATOR_NOT_EQUAL="regexp:<>|><|[\\]=|¬="
         OPERATOR_GREATERTHAN="regexp:>"
         OPERATOR_BACKSLASH_GREATERTHAN="regexp:\\>"
         OPERATOR_LESSTHAN="regexp:<"
@@ -72,7 +72,7 @@
 
         OPERATOR_BACKSLASH="regexp:\\\\"
 
-        // KEYWORD_ADDRESS="regexp:ADDRESS"
+        KEYWORD_ADDRESS="regexp:ADDRESS"
         KEYWORD_ARG="regexp:ARG"
         KEYWORD_VAR="regexp:VAR"
         KEYWORD_VALUE="regexp:VALUE"
@@ -162,6 +162,7 @@ private instruction
     | trace_instruction
     | signal_instruction
     | call_instruction
+    | address_instruction
     | expression_instruction
 
 signal_instruction ::= KEYWORD_SIGNAL expressions
@@ -170,7 +171,9 @@ trace_instruction ::= KEYWORD_TRACE ("o"|"i"|"r")
 
 exit_instruction ::= KEYWORD_EXIT expression?
 
-call_instruction ::= KEYWORD_CALL IDENTIFIER expression
+call_instruction ::= KEYWORD_CALL IDENTIFIER comma_seperated_arguments
+
+address_instruction ::= KEYWORD_ADDRESS expressions
 
 expression_instruction ::= expression
 
@@ -205,7 +208,7 @@ say_instruction ::= KEYWORD_SAY expressions?
 private expressions ::= expression+
 expression ::= concatenation
 concatenation ::= compare (OPERATOR_CONCATENATE compare)*
-compare ::= addition (OPERATOR_EQUAL addition)?
+compare ::= addition ((OPERATOR_EQUAL|OPERATOR_NOT_EQUAL) addition)?
 addition ::= subtraction_ (OPERATOR_PLUS subtraction_)*
 private subtraction_ ::= multiplication (subtraction)*
 left subtraction ::= OPERATOR_SUBTRACT multiplication
@@ -223,7 +226,8 @@ expressionTerm
     | parentheticalExpression
 
 stem ::= variable DOT EXCLAMATION? IDENTIFIER
-functionCall ::= variable TOKEN_LEFT expression? (COMMA expression?)* TOKEN_RIGHT
+functionCall ::= variable TOKEN_LEFT comma_seperated_arguments TOKEN_RIGHT
+private comma_seperated_arguments ::= expression? (COMMA expression?)*
 methodCall ::= variable TILDE IDENTIFIER TOKEN_LEFT expression? (COMMA expression?)* TOKEN_RIGHT
 parentheticalExpression ::= TOKEN_LEFT expression TOKEN_RIGHT
 stringLiteral ::= STRING
