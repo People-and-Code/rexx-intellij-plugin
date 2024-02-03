@@ -26,6 +26,7 @@ public interface RexxTokens {
   IElementType IF_INSTRUCTION = new RexxElementType("IF_INSTRUCTION");
   IElementType INSTRUCTION_BLOCK = new RexxElementType("INSTRUCTION_BLOCK");
   IElementType INTEGER_CONSTANT = new RexxElementType("INTEGER_CONSTANT");
+  IElementType LABEL_INSTRUCTION = new RexxElementType("LABEL_INSTRUCTION");
   IElementType METHOD_CALL = new RexxElementType("METHOD_CALL");
   IElementType MULTIPLICATION = new RexxElementType("MULTIPLICATION");
   IElementType NAME_DECLARATION = new RexxElementType("NAME_DECLARATION");
@@ -36,6 +37,7 @@ public interface RexxTokens {
   IElementType PARSE_VALUE_INSTRUCTION = new RexxElementType("PARSE_VALUE_INSTRUCTION");
   IElementType PARSE_VAR_INSTRUCTION = new RexxElementType("PARSE_VAR_INSTRUCTION");
   IElementType REMAINDER = new RexxElementType("REMAINDER");
+  IElementType RETURN_INSTRUCTION = new RexxElementType("RETURN_INSTRUCTION");
   IElementType SAY_INSTRUCTION = new RexxElementType("SAY_INSTRUCTION");
   IElementType SCIENTIFIC_CONSTANT = new RexxElementType("SCIENTIFIC_CONSTANT");
   IElementType SIGNAL_INSTRUCTION = new RexxElementType("SIGNAL_INSTRUCTION");
@@ -45,6 +47,7 @@ public interface RexxTokens {
   IElementType TRACE_INSTRUCTION = new RexxElementType("TRACE_INSTRUCTION");
   IElementType VARIABLE = new RexxElementType("VARIABLE");
 
+  IElementType COLON = new RexxTokenType("COLON");
   IElementType COMMA = new RexxTokenType("COMMA");
   IElementType DOT = new RexxTokenType("DOT");
   IElementType EXCLAMATION = new RexxTokenType("EXCLAMATION");
@@ -59,6 +62,7 @@ public interface RexxTokens {
   IElementType KEYWORD_ELSE = new RexxTokenType("KEYWORD_ELSE");
   IElementType KEYWORD_END = new RexxTokenType("KEYWORD_END");
   IElementType KEYWORD_EXIT = new RexxTokenType("KEYWORD_EXIT");
+  IElementType KEYWORD_EXPOSE = new RexxTokenType("KEYWORD_EXPOSE");
   IElementType KEYWORD_FORWARD = new RexxTokenType("KEYWORD_FORWARD");
   IElementType KEYWORD_GUARD = new RexxTokenType("KEYWORD_GUARD");
   IElementType KEYWORD_IF = new RexxTokenType("KEYWORD_IF");
@@ -77,6 +81,7 @@ public interface RexxTokens {
   IElementType KEYWORD_QUEUE = new RexxTokenType("KEYWORD_QUEUE");
   IElementType KEYWORD_RAISE = new RexxTokenType("KEYWORD_RAISE");
   IElementType KEYWORD_REPLY = new RexxTokenType("KEYWORD_REPLY");
+  IElementType KEYWORD_RETURN = new RexxTokenType("KEYWORD_RETURN");
   IElementType KEYWORD_SAY = new RexxTokenType("KEYWORD_SAY");
   IElementType KEYWORD_SELECT = new RexxTokenType("KEYWORD_SELECT");
   IElementType KEYWORD_SIGNAL = new RexxTokenType("KEYWORD_SIGNAL");
@@ -181,6 +186,9 @@ public interface RexxTokens {
       else if (type == INTEGER_CONSTANT) {
         return new RexxIntegerConstantImpl(node);
       }
+      else if (type == LABEL_INSTRUCTION) {
+        return new RexxLabelInstructionImpl(node);
+      }
       else if (type == METHOD_CALL) {
         return new RexxMethodCallImpl(node);
       }
@@ -210,6 +218,9 @@ public interface RexxTokens {
       }
       else if (type == REMAINDER) {
         return new RexxRemainderImpl(node);
+      }
+      else if (type == RETURN_INSTRUCTION) {
+        return new RexxReturnInstructionImpl(node);
       }
       else if (type == SAY_INSTRUCTION) {
         return new RexxSayInstructionImpl(node);

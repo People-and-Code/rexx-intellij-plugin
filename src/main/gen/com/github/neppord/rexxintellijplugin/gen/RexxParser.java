@@ -460,6 +460,8 @@ public class RexxParser implements PsiParser, LightPsiParser {
   //     | signal_instruction
   //     | call_instruction
   //     | address_instruction
+  //     | label_instruction
+  //     | return_instruction
   //     | expression_instruction
   static boolean instruction(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "instruction")) return false;
@@ -477,6 +479,8 @@ public class RexxParser implements PsiParser, LightPsiParser {
     if (!result_) result_ = signal_instruction(builder_, level_ + 1);
     if (!result_) result_ = call_instruction(builder_, level_ + 1);
     if (!result_) result_ = address_instruction(builder_, level_ + 1);
+    if (!result_) result_ = label_instruction(builder_, level_ + 1);
+    if (!result_) result_ = return_instruction(builder_, level_ + 1);
     if (!result_) result_ = expression_instruction(builder_, level_ + 1);
     return result_;
   }
@@ -555,6 +559,45 @@ public class RexxParser implements PsiParser, LightPsiParser {
     result_ = consumeToken(builder_, NUMBER_INT);
     exit_section_(builder_, marker_, INTEGER_CONSTANT, result_);
     return result_;
+  }
+
+  /* ********************************************************** */
+  // name_declaration COLON (KEYWORD_PROCEDURE KEYWORD_EXPOSE IDENTIFIER DOT?)?
+  public static boolean label_instruction(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "label_instruction")) return false;
+    if (!nextTokenIs(builder_, IDENTIFIER)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = name_declaration(builder_, level_ + 1);
+    result_ = result_ && consumeToken(builder_, COLON);
+    result_ = result_ && label_instruction_2(builder_, level_ + 1);
+    exit_section_(builder_, marker_, LABEL_INSTRUCTION, result_);
+    return result_;
+  }
+
+  // (KEYWORD_PROCEDURE KEYWORD_EXPOSE IDENTIFIER DOT?)?
+  private static boolean label_instruction_2(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "label_instruction_2")) return false;
+    label_instruction_2_0(builder_, level_ + 1);
+    return true;
+  }
+
+  // KEYWORD_PROCEDURE KEYWORD_EXPOSE IDENTIFIER DOT?
+  private static boolean label_instruction_2_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "label_instruction_2_0")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeTokens(builder_, 0, KEYWORD_PROCEDURE, KEYWORD_EXPOSE, IDENTIFIER);
+    result_ = result_ && label_instruction_2_0_3(builder_, level_ + 1);
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // DOT?
+  private static boolean label_instruction_2_0_3(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "label_instruction_2_0_3")) return false;
+    consumeToken(builder_, DOT);
+    return true;
   }
 
   /* ********************************************************** */
@@ -839,6 +882,26 @@ public class RexxParser implements PsiParser, LightPsiParser {
     result_ = consumeToken(builder_, DOT);
     exit_section_(builder_, marker_, REMAINDER, result_);
     return result_;
+  }
+
+  /* ********************************************************** */
+  // KEYWORD_RETURN expression?
+  public static boolean return_instruction(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "return_instruction")) return false;
+    if (!nextTokenIs(builder_, KEYWORD_RETURN)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, KEYWORD_RETURN);
+    result_ = result_ && return_instruction_1(builder_, level_ + 1);
+    exit_section_(builder_, marker_, RETURN_INSTRUCTION, result_);
+    return result_;
+  }
+
+  // expression?
+  private static boolean return_instruction_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "return_instruction_1")) return false;
+    expression(builder_, level_ + 1);
+    return true;
   }
 
   /* ********************************************************** */

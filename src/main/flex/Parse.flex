@@ -68,6 +68,7 @@ KEYWORD_DROP=DROP
 KEYWORD_ELSE=ELSE
 KEYWORD_END=END
 KEYWORD_EXIT=EXIT
+KEYWORD_EXPOSE=EXPOSE
 KEYWORD_FORWARD=FORWARD
 KEYWORD_GUARD=GUARD
 KEYWORD_IF=IF
@@ -85,6 +86,7 @@ KEYWORD_PUSH=PUSH
 KEYWORD_QUEUE=QUEUE
 KEYWORD_RAISE=RAISE
 KEYWORD_REPLY=REPLY
+KEYWORD_RETURN=RETURN
 KEYWORD_SAY=SAY
 KEYWORD_SELECT=SELECT
 KEYWORD_SOURCE=SOURCE
@@ -109,6 +111,7 @@ DOT=[.]
 EXCLAMATION=[!]
 TILDE=[~]
 COMMA=[,]
+COLON=[:]
 
 %%
 <YYINITIAL> {
@@ -159,6 +162,7 @@ COMMA=[,]
   {KEYWORD_ELSE}                                { return KEYWORD_ELSE; }
   {KEYWORD_END}                                 { return KEYWORD_END; }
   {KEYWORD_EXIT}                                { return KEYWORD_EXIT; }
+  {KEYWORD_EXPOSE}                              { return KEYWORD_EXPOSE; }
   {KEYWORD_FORWARD}                             { return KEYWORD_FORWARD; }
   {KEYWORD_GUARD}                               { return KEYWORD_GUARD; }
   {KEYWORD_IF}                                  { return KEYWORD_IF; }
@@ -176,6 +180,7 @@ COMMA=[,]
   {KEYWORD_QUEUE}                               { return KEYWORD_QUEUE; }
   {KEYWORD_RAISE}                               { return KEYWORD_RAISE; }
   {KEYWORD_REPLY}                               { return KEYWORD_REPLY; }
+  {KEYWORD_RETURN}                              { return KEYWORD_RETURN; }
   {KEYWORD_SAY}                                 { return KEYWORD_SAY; }
   {KEYWORD_SELECT}                              { return KEYWORD_SELECT; }
   {KEYWORD_SOURCE}                              { return KEYWORD_SOURCE; }
@@ -200,6 +205,7 @@ COMMA=[,]
   {EXCLAMATION}                                 { return EXCLAMATION; }
   {TILDE}                                       { return TILDE; }
   {COMMA}                                       { return COMMA; }
+  {COLON}                                       { return COLON; }
 
 }
 

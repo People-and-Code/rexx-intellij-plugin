@@ -83,7 +83,7 @@
         KEYWORD_ELSE="regexp:ELSE"
         KEYWORD_END="regexp:END"
         KEYWORD_EXIT="regexp:EXIT"
-        // KEYWORD_EXPOSE="regexp:EXPOSE"
+        KEYWORD_EXPOSE="regexp:EXPOSE"
         KEYWORD_FORWARD="regexp:FORWARD"
         KEYWORD_GUARD="regexp:GUARD"
         KEYWORD_IF="regexp:IF"
@@ -102,7 +102,7 @@
         KEYWORD_QUEUE="regexp:QUEUE"
         KEYWORD_RAISE="regexp:RAISE"
         KEYWORD_REPLY="regexp:REPLY"
-        // KEYWORD_RETURN="regexp:RETURN"
+        KEYWORD_RETURN="regexp:RETURN"
         KEYWORD_SAY="regexp:SAY"
         KEYWORD_SELECT="regexp:SELECT"
         KEYWORD_SOURCE="regexp:SOURCE"
@@ -140,6 +140,7 @@
         EXCLAMATION="regexp:[!]"
         TILDE="regexp:[~]"
         COMMA="regexp:[,]"
+        COLON="regexp:[:]"
     ]
 }
 
@@ -163,7 +164,12 @@ private instruction
     | signal_instruction
     | call_instruction
     | address_instruction
+    | label_instruction
+    | return_instruction
     | expression_instruction
+
+label_instruction ::= name_declaration COLON (KEYWORD_PROCEDURE KEYWORD_EXPOSE IDENTIFIER DOT?)?
+return_instruction ::= KEYWORD_RETURN expression?
 
 signal_instruction ::= KEYWORD_SIGNAL expressions
 
