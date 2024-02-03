@@ -20,6 +20,9 @@ public interface RexxExpressionTerm extends PsiElement {
   RexxParentheticalExpression getParentheticalExpression();
 
   @Nullable
+  RexxStem getStem();
+
+  @Nullable
   RexxStringLiteral getStringLiteral();
 
   @Nullable

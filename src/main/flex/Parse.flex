@@ -95,7 +95,7 @@ SHEBANG=[#][!][^\n]*
 LINE_COMMENT=--[^\n]*
 MULTILINE_COMMENT=[/][*]([^*]+|[*]+[^/*])*[*]+[/]
 STRING=\"[^\"\n]*\"|'[^'\n]*'
-IDENTIFIER=[a-zA-Z][a-zA-Z0-9._]*
+IDENTIFIER=[a-zA-Z][a-zA-Z0-9_]*
 NUMBER_BINARY=0b[01]+
 NUMBER_INT=[0-9]+
 NUMBER_DECIMAL=[0-9]*[.]?[0-9]+
@@ -105,6 +105,7 @@ KEYWORD_CLASS=::class
 KEYWORD_ATTRIBUTE=::attribute
 KEYWORD_METHOD=::method
 DOT=[.]
+EXCLAMATION=[!]
 TILDE=[~]
 COMMA=[,]
 
@@ -194,6 +195,7 @@ COMMA=[,]
   {KEYWORD_ATTRIBUTE}                           { return KEYWORD_ATTRIBUTE; }
   {KEYWORD_METHOD}                              { return KEYWORD_METHOD; }
   {DOT}                                         { return DOT; }
+  {EXCLAMATION}                                 { return EXCLAMATION; }
   {TILDE}                                       { return TILDE; }
   {COMMA}                                       { return COMMA; }
 

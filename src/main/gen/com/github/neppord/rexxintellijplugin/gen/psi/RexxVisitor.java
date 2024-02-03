@@ -15,6 +15,10 @@ public class RexxVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitCallInstruction(@NotNull RexxCallInstruction o) {
+    visitPsiElement(o);
+  }
+
   public void visitCompare(@NotNull RexxCompare o) {
     visitPsiElement(o);
   }
@@ -112,6 +116,10 @@ public class RexxVisitor extends PsiElementVisitor {
   }
 
   public void visitSignalInstruction(@NotNull RexxSignalInstruction o) {
+    visitPsiElement(o);
+  }
+
+  public void visitStem(@NotNull RexxStem o) {
     visitPsiElement(o);
   }
 

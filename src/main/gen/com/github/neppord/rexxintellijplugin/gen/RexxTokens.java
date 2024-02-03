@@ -12,6 +12,7 @@ public interface RexxTokens {
 
   IElementType ADDITION = new RexxElementType("ADDITION");
   IElementType ASSIGNMENT = new RexxElementType("ASSIGNMENT");
+  IElementType CALL_INSTRUCTION = new RexxElementType("CALL_INSTRUCTION");
   IElementType COMPARE = new RexxElementType("COMPARE");
   IElementType CONCATENATION = new RexxElementType("CONCATENATION");
   IElementType DECIMAL_CONSTANT = new RexxElementType("DECIMAL_CONSTANT");
@@ -37,6 +38,7 @@ public interface RexxTokens {
   IElementType SAY_INSTRUCTION = new RexxElementType("SAY_INSTRUCTION");
   IElementType SCIENTIFIC_CONSTANT = new RexxElementType("SCIENTIFIC_CONSTANT");
   IElementType SIGNAL_INSTRUCTION = new RexxElementType("SIGNAL_INSTRUCTION");
+  IElementType STEM = new RexxElementType("STEM");
   IElementType STRING_LITERAL = new RexxElementType("STRING_LITERAL");
   IElementType SUBTRACTION = new RexxElementType("SUBTRACTION");
   IElementType TRACE_INSTRUCTION = new RexxElementType("TRACE_INSTRUCTION");
@@ -44,6 +46,7 @@ public interface RexxTokens {
 
   IElementType COMMA = new RexxTokenType("COMMA");
   IElementType DOT = new RexxTokenType("DOT");
+  IElementType EXCLAMATION = new RexxTokenType("EXCLAMATION");
   IElementType IDENTIFIER = new RexxTokenType("IDENTIFIER");
   IElementType KEYWORD_ARG = new RexxTokenType("KEYWORD_ARG");
   IElementType KEYWORD_ATTRIBUTE = new RexxTokenType("KEYWORD_ATTRIBUTE");
@@ -134,6 +137,9 @@ public interface RexxTokens {
       else if (type == ASSIGNMENT) {
         return new RexxAssignmentImpl(node);
       }
+      else if (type == CALL_INSTRUCTION) {
+        return new RexxCallInstructionImpl(node);
+      }
       else if (type == COMPARE) {
         return new RexxCompareImpl(node);
       }
@@ -208,6 +214,9 @@ public interface RexxTokens {
       }
       else if (type == SIGNAL_INSTRUCTION) {
         return new RexxSignalInstructionImpl(node);
+      }
+      else if (type == STEM) {
+        return new RexxStemImpl(node);
       }
       else if (type == STRING_LITERAL) {
         return new RexxStringLiteralImpl(node);

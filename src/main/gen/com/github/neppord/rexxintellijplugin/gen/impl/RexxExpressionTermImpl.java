@@ -53,6 +53,12 @@ public class RexxExpressionTermImpl extends ASTWrapperPsiElement implements Rexx
 
   @Override
   @Nullable
+  public RexxStem getStem() {
+    return findChildByClass(RexxStem.class);
+  }
+
+  @Override
+  @Nullable
   public RexxStringLiteral getStringLiteral() {
     return findChildByClass(RexxStringLiteral.class);
   }

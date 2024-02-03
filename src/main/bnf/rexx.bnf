@@ -121,7 +121,7 @@
         // complex
 
         STRING="regexp:\"[^\"\n]*\"|'[^'\n]*'"
-        IDENTIFIER="regexp:[a-zA-Z][a-zA-Z0-9._]*"
+        IDENTIFIER="regexp:[a-zA-Z][a-zA-Z0-9_]*"
 
 
         // Numbers
@@ -137,6 +137,7 @@
         KEYWORD_ATTRIBUTE="regexp:::attribute"
         KEYWORD_METHOD="regexp:::method"
         DOT="regexp:[.]"
+        EXCLAMATION="regexp:[!]"
         TILDE="regexp:[~]"
         COMMA="regexp:[,]"
     ]
@@ -160,6 +161,7 @@ private instruction
     | exit_instruction
     | trace_instruction
     | signal_instruction
+    | call_instruction
     | expression_instruction
 
 signal_instruction ::= KEYWORD_SIGNAL expressions
@@ -168,7 +170,10 @@ trace_instruction ::= KEYWORD_TRACE ("o"|"i"|"r")
 
 exit_instruction ::= KEYWORD_EXIT expression?
 
+call_instruction ::= KEYWORD_CALL IDENTIFIER expression
+
 expression_instruction ::= expression
+
 
 instruction_block ::= KEYWORD_DO instructions KEYWORD_END
 parse_arg_instruction ::= KEYWORD_PARSE KEYWORD_ARG parse_target*
@@ -176,7 +181,8 @@ parse_var_instruction ::= KEYWORD_PARSE KEYWORD_VAR parse_target*
 parse_value_instruction ::= KEYWORD_PARSE KEYWORD_VALUE expression* KEYWORD_WITH parse_target*
 parse_source_instruction ::= KEYWORD_PARSE KEYWORD_SOURCE parse_target*
 private parse_target
-    ::= name_declaration
+    ::= IDENTIFIER DOT EXCLAMATION? IDENTIFIER
+    | name_declaration
     | stringLiteral
     | integerConstant
     | remainder // | range | offset
@@ -212,9 +218,11 @@ expressionTerm
     | numericConstant
     | functionCall
     | methodCall
+    | stem
     | variable
     | parentheticalExpression
 
+stem ::= variable DOT EXCLAMATION? IDENTIFIER
 functionCall ::= variable TOKEN_LEFT expression? (COMMA expression?)* TOKEN_RIGHT
 methodCall ::= variable TILDE IDENTIFIER TOKEN_LEFT expression? (COMMA expression?)* TOKEN_RIGHT
 parentheticalExpression ::= TOKEN_LEFT expression TOKEN_RIGHT
