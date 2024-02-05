@@ -14,6 +14,18 @@ public interface RexxCompare extends PsiElement {
   PsiElement getOperatorEqual();
 
   @Nullable
+  PsiElement getOperatorGreaterthan();
+
+  @Nullable
+  PsiElement getOperatorGreaterthanEqual();
+
+  @Nullable
+  PsiElement getOperatorLessthan();
+
+  @Nullable
+  PsiElement getOperatorLessthanEqual();
+
+  @Nullable
   PsiElement getOperatorNotEqual();
 
 }

@@ -216,7 +216,15 @@ say_instruction ::= KEYWORD_SAY expressions?
 private expressions ::= expression+
 expression ::= concatenation
 concatenation ::= compare (OPERATOR_CONCATENATE compare)*
-compare ::= addition ((OPERATOR_EQUAL|OPERATOR_NOT_EQUAL) addition)?
+compare ::= addition (compare_operators addition)?
+private compare_operators
+    ::= OPERATOR_EQUAL
+    | OPERATOR_NOT_EQUAL
+    | OPERATOR_GREATERTHAN
+    | OPERATOR_LESSTHAN
+    | OPERATOR_GREATERTHAN_EQUAL
+    | OPERATOR_LESSTHAN_EQUAL
+
 addition ::= subtraction_ (OPERATOR_PLUS subtraction_)*
 private subtraction_ ::= multiplication (subtraction)*
 left subtraction ::= OPERATOR_SUBTRACT multiplication

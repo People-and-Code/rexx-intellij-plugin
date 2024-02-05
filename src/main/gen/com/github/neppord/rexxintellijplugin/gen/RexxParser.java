@@ -158,7 +158,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // addition ((OPERATOR_EQUAL|OPERATOR_NOT_EQUAL) addition)?
+  // addition (compare_operators addition)?
   public static boolean compare(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "compare")) return false;
     boolean result_;
@@ -169,30 +169,40 @@ public class RexxParser implements PsiParser, LightPsiParser {
     return result_;
   }
 
-  // ((OPERATOR_EQUAL|OPERATOR_NOT_EQUAL) addition)?
+  // (compare_operators addition)?
   private static boolean compare_1(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "compare_1")) return false;
     compare_1_0(builder_, level_ + 1);
     return true;
   }
 
-  // (OPERATOR_EQUAL|OPERATOR_NOT_EQUAL) addition
+  // compare_operators addition
   private static boolean compare_1_0(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "compare_1_0")) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_);
-    result_ = compare_1_0_0(builder_, level_ + 1);
+    result_ = compare_operators(builder_, level_ + 1);
     result_ = result_ && addition(builder_, level_ + 1);
     exit_section_(builder_, marker_, null, result_);
     return result_;
   }
 
-  // OPERATOR_EQUAL|OPERATOR_NOT_EQUAL
-  private static boolean compare_1_0_0(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "compare_1_0_0")) return false;
+  /* ********************************************************** */
+  // OPERATOR_EQUAL
+  //     | OPERATOR_NOT_EQUAL
+  //     | OPERATOR_GREATERTHAN
+  //     | OPERATOR_LESSTHAN
+  //     | OPERATOR_GREATERTHAN_EQUAL
+  //     | OPERATOR_LESSTHAN_EQUAL
+  static boolean compare_operators(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "compare_operators")) return false;
     boolean result_;
     result_ = consumeToken(builder_, OPERATOR_EQUAL);
     if (!result_) result_ = consumeToken(builder_, OPERATOR_NOT_EQUAL);
+    if (!result_) result_ = consumeToken(builder_, OPERATOR_GREATERTHAN);
+    if (!result_) result_ = consumeToken(builder_, OPERATOR_LESSTHAN);
+    if (!result_) result_ = consumeToken(builder_, OPERATOR_GREATERTHAN_EQUAL);
+    if (!result_) result_ = consumeToken(builder_, OPERATOR_LESSTHAN_EQUAL);
     return result_;
   }
 
