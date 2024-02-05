@@ -59,6 +59,10 @@ public class RexxVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitGlobal(@NotNull RexxGlobal o) {
+    visitPsiElement(o);
+  }
+
   public void visitIfInstruction(@NotNull RexxIfInstruction o) {
     visitPsiElement(o);
   }

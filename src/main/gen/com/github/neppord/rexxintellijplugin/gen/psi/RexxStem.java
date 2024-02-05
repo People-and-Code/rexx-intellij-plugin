@@ -7,7 +7,10 @@ import com.intellij.psi.PsiElement;
 
 public interface RexxStem extends PsiElement {
 
-  @NotNull
+  @Nullable
+  RexxGlobal getGlobal();
+
+  @Nullable
   RexxVariable getVariable();
 
   @NotNull

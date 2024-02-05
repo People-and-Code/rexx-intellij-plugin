@@ -28,9 +28,15 @@ public class RexxStemImpl extends ASTWrapperPsiElement implements RexxStem {
   }
 
   @Override
-  @NotNull
+  @Nullable
+  public RexxGlobal getGlobal() {
+    return findChildByClass(RexxGlobal.class);
+  }
+
+  @Override
+  @Nullable
   public RexxVariable getVariable() {
-    return findNotNullChildByClass(RexxVariable.class);
+    return findChildByClass(RexxVariable.class);
   }
 
   @Override

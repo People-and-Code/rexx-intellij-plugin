@@ -11,14 +11,14 @@ import static com.github.neppord.rexxintellijplugin.gen.RexxTokens.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.github.neppord.rexxintellijplugin.gen.psi.*;
 
-public class RexxMethodCallImpl extends ASTWrapperPsiElement implements RexxMethodCall {
+public class RexxGlobalImpl extends ASTWrapperPsiElement implements RexxGlobal {
 
-  public RexxMethodCallImpl(@NotNull ASTNode node) {
+  public RexxGlobalImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull RexxVisitor visitor) {
-    visitor.visitMethodCall(this);
+    visitor.visitGlobal(this);
   }
 
   @Override
@@ -29,32 +29,14 @@ public class RexxMethodCallImpl extends ASTWrapperPsiElement implements RexxMeth
 
   @Override
   @NotNull
-  public List<RexxExpression> getExpressionList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxExpression.class);
-  }
-
-  @Override
-  @Nullable
-  public RexxGlobal getGlobal() {
-    return findChildByClass(RexxGlobal.class);
-  }
-
-  @Override
-  @Nullable
-  public RexxVariable getVariable() {
-    return findChildByClass(RexxVariable.class);
+  public PsiElement getDot() {
+    return findNotNullChildByType(DOT);
   }
 
   @Override
   @NotNull
   public PsiElement getIdentifier() {
     return findNotNullChildByType(IDENTIFIER);
-  }
-
-  @Override
-  @NotNull
-  public PsiElement getTilde() {
-    return findNotNullChildByType(TILDE);
   }
 
 }
