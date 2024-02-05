@@ -5,24 +5,15 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface RexxStem extends PsiElement {
-
-  @Nullable
-  RexxGlobal getGlobal();
-
-  @Nullable
-  RexxVariable getVariable();
+public interface RexxNumericInstruction extends PsiElement {
 
   @NotNull
-  PsiElement getDot();
-
-  @Nullable
-  PsiElement getExclamation();
+  RexxIntegerConstant getIntegerConstant();
 
   @NotNull
   PsiElement getIdentifier();
 
-  @Nullable
-  PsiElement getNumberInt();
+  @NotNull
+  PsiElement getKeywordNumeric();
 
 }

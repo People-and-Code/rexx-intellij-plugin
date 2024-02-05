@@ -127,7 +127,7 @@
         // Numbers
         NUMBER_BINARY="regexp:0b[01]+"
         NUMBER_INT="regexp:[0-9]+"
-        NUMBER_DECIMAL="regexp:[0-9]*[.]?[0-9]+"
+        NUMBER_DECIMAL="regexp:[0-9]+[.][0-9]+"
         NUMBER_SCIENTIFIC="regexp:[0-9]*[.][0-9]+([eE][+-]?[0-9]+)"
         NUMBER_HEXADECIMAL="regexp:0[xX][0-9a-fA-F]+"
 
@@ -166,8 +166,10 @@ private instruction
     | address_instruction
     | label_instruction
     | return_instruction
+    | numeric_instruction
     | expression_instruction
 
+numeric_instruction ::= KEYWORD_NUMERIC IDENTIFIER integerConstant
 label_instruction ::= name_declaration COLON (KEYWORD_PROCEDURE KEYWORD_EXPOSE IDENTIFIER DOT?)?
 return_instruction ::= KEYWORD_RETURN expression?
 
@@ -231,7 +233,7 @@ expressionTerm
     | variable_
     | parentheticalExpression
 
-stem ::= variable_ DOT EXCLAMATION? IDENTIFIER
+stem ::= variable_ DOT EXCLAMATION? NUMBER_INT? IDENTIFIER
 functionCall ::= variable_ TOKEN_LEFT comma_seperated_arguments TOKEN_RIGHT
 private comma_seperated_arguments ::= expression? (COMMA expression?)*
 methodCall ::= variable_ TILDE IDENTIFIER TOKEN_LEFT expression? (COMMA expression?)* TOKEN_RIGHT

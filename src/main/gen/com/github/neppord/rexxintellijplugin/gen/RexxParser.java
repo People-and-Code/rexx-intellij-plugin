@@ -474,6 +474,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
   //     | address_instruction
   //     | label_instruction
   //     | return_instruction
+  //     | numeric_instruction
   //     | expression_instruction
   static boolean instruction(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "instruction")) return false;
@@ -493,6 +494,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
     if (!result_) result_ = address_instruction(builder_, level_ + 1);
     if (!result_) result_ = label_instruction(builder_, level_ + 1);
     if (!result_) result_ = return_instruction(builder_, level_ + 1);
+    if (!result_) result_ = numeric_instruction(builder_, level_ + 1);
     if (!result_) result_ = expression_instruction(builder_, level_ + 1);
     return result_;
   }
@@ -720,6 +722,19 @@ public class RexxParser implements PsiParser, LightPsiParser {
     if (!result_) result_ = decimalConstant(builder_, level_ + 1);
     if (!result_) result_ = scientificConstant(builder_, level_ + 1);
     exit_section_(builder_, level_, marker_, result_, false, null);
+    return result_;
+  }
+
+  /* ********************************************************** */
+  // KEYWORD_NUMERIC IDENTIFIER integerConstant
+  public static boolean numeric_instruction(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "numeric_instruction")) return false;
+    if (!nextTokenIs(builder_, KEYWORD_NUMERIC)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeTokens(builder_, 0, KEYWORD_NUMERIC, IDENTIFIER);
+    result_ = result_ && integerConstant(builder_, level_ + 1);
+    exit_section_(builder_, marker_, NUMERIC_INSTRUCTION, result_);
     return result_;
   }
 
@@ -968,7 +983,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // variable_ DOT EXCLAMATION? IDENTIFIER
+  // variable_ DOT EXCLAMATION? NUMBER_INT? IDENTIFIER
   public static boolean stem(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "stem")) return false;
     if (!nextTokenIs(builder_, "<stem>", DOT, IDENTIFIER)) return false;
@@ -977,6 +992,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
     result_ = variable_(builder_, level_ + 1);
     result_ = result_ && consumeToken(builder_, DOT);
     result_ = result_ && stem_2(builder_, level_ + 1);
+    result_ = result_ && stem_3(builder_, level_ + 1);
     result_ = result_ && consumeToken(builder_, IDENTIFIER);
     exit_section_(builder_, level_, marker_, result_, false, null);
     return result_;
@@ -986,6 +1002,13 @@ public class RexxParser implements PsiParser, LightPsiParser {
   private static boolean stem_2(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "stem_2")) return false;
     consumeToken(builder_, EXCLAMATION);
+    return true;
+  }
+
+  // NUMBER_INT?
+  private static boolean stem_3(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "stem_3")) return false;
+    consumeToken(builder_, NUMBER_INT);
     return true;
   }
 

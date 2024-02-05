@@ -32,6 +32,7 @@ public interface RexxTokens {
   IElementType MULTIPLICATION = new RexxElementType("MULTIPLICATION");
   IElementType NAME_DECLARATION = new RexxElementType("NAME_DECLARATION");
   IElementType NUMERIC_CONSTANT = new RexxElementType("NUMERIC_CONSTANT");
+  IElementType NUMERIC_INSTRUCTION = new RexxElementType("NUMERIC_INSTRUCTION");
   IElementType PARENTHETICAL_EXPRESSION = new RexxElementType("PARENTHETICAL_EXPRESSION");
   IElementType PARSE_ARG_INSTRUCTION = new RexxElementType("PARSE_ARG_INSTRUCTION");
   IElementType PARSE_SOURCE_INSTRUCTION = new RexxElementType("PARSE_SOURCE_INSTRUCTION");
@@ -204,6 +205,9 @@ public interface RexxTokens {
       }
       else if (type == NUMERIC_CONSTANT) {
         return new RexxNumericConstantImpl(node);
+      }
+      else if (type == NUMERIC_INSTRUCTION) {
+        return new RexxNumericInstructionImpl(node);
       }
       else if (type == PARENTHETICAL_EXPRESSION) {
         return new RexxParentheticalExpressionImpl(node);

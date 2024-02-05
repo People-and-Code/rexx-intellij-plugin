@@ -11,14 +11,14 @@ import static com.github.neppord.rexxintellijplugin.gen.RexxTokens.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.github.neppord.rexxintellijplugin.gen.psi.*;
 
-public class RexxStemImpl extends ASTWrapperPsiElement implements RexxStem {
+public class RexxNumericInstructionImpl extends ASTWrapperPsiElement implements RexxNumericInstruction {
 
-  public RexxStemImpl(@NotNull ASTNode node) {
+  public RexxNumericInstructionImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull RexxVisitor visitor) {
-    visitor.visitStem(this);
+    visitor.visitNumericInstruction(this);
   }
 
   @Override
@@ -28,27 +28,9 @@ public class RexxStemImpl extends ASTWrapperPsiElement implements RexxStem {
   }
 
   @Override
-  @Nullable
-  public RexxGlobal getGlobal() {
-    return findChildByClass(RexxGlobal.class);
-  }
-
-  @Override
-  @Nullable
-  public RexxVariable getVariable() {
-    return findChildByClass(RexxVariable.class);
-  }
-
-  @Override
   @NotNull
-  public PsiElement getDot() {
-    return findNotNullChildByType(DOT);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getExclamation() {
-    return findChildByType(EXCLAMATION);
+  public RexxIntegerConstant getIntegerConstant() {
+    return findNotNullChildByClass(RexxIntegerConstant.class);
   }
 
   @Override
@@ -58,9 +40,9 @@ public class RexxStemImpl extends ASTWrapperPsiElement implements RexxStem {
   }
 
   @Override
-  @Nullable
-  public PsiElement getNumberInt() {
-    return findChildByType(NUMBER_INT);
+  @NotNull
+  public PsiElement getKeywordNumeric() {
+    return findNotNullChildByType(KEYWORD_NUMERIC);
   }
 
 }

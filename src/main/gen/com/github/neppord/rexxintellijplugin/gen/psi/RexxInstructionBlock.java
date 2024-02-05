@@ -32,6 +32,9 @@ public interface RexxInstructionBlock extends PsiElement {
   List<RexxLabelInstruction> getLabelInstructionList();
 
   @NotNull
+  List<RexxNumericInstruction> getNumericInstructionList();
+
+  @NotNull
   List<RexxParseArgInstruction> getParseArgInstructionList();
 
   @NotNull
