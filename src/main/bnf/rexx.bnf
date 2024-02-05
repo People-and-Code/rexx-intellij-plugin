@@ -11,7 +11,7 @@
     elementTypeClass="com.github.neppord.rexxintellijplugin.RexxElementType"
     tokenTypeClass="com.github.neppord.rexxintellijplugin.RexxTokenType"
     tokens=[
-        WHITE_SPACE="regexp:[ \t]+"
+        WHITE_SPACE="regexp:([ \t]|,[\n])+"
         TERMINATOR="regexp:[\n;]+"
         // MAJOR TOKEN TYPES
         // TOKEN_NULL

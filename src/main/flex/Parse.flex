@@ -26,7 +26,7 @@ import static com.github.neppord.rexxintellijplugin.gen.RexxTokens.*;
 EOL=\R
 WHITE_SPACE=\s+
 
-WHITE_SPACE=[ \t]+
+WHITE_SPACE=([ \t]|,[\n])+
 TERMINATOR=[\n;]+
 OPERATOR_PLUS=[+]
 OPERATOR_SUBTRACT=-
