@@ -23,10 +23,11 @@ class VariableReference(private val variable: Variable) :
             it is RexxAssignment ||
                     it is RexxSayInstruction ||
                     it is RexxIfInstruction ||
+                    it is RexxCallInstruction ||
                     it is RexxInstructionBlock
         }
         val previousInstructions = instruction.flatMap {
-            it.siblings(forward = false, withSelf = false) ?: emptySequence()
+            it.siblings(forward = false, withSelf = false)
         }
         return previousInstructions.flatMap {
             when(it) {
