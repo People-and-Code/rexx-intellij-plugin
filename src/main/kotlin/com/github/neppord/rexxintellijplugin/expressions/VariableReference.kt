@@ -19,12 +19,15 @@ class VariableReference(private val variable: Variable) :
     override fun getVariants(): Array<Any> = candidates().toList().toTypedArray()
 
     private fun candidates(): Sequence<PsiNameIdentifierOwner> {
-        val instruction = variable.parents(true).firstOrNull {
+        val instruction = variable.parents(true).filter {
             it is RexxAssignment ||
                     it is RexxSayInstruction ||
-                    it is RexxIfInstruction
+                    it is RexxIfInstruction ||
+                    it is RexxInstructionBlock
         }
-        val previousInstructions = instruction?.siblings(forward = false, withSelf = false) ?: emptySequence()
+        val previousInstructions = instruction.flatMap {
+            it.siblings(forward = false, withSelf = false) ?: emptySequence()
+        }
         return previousInstructions.flatMap {
             when(it) {
                 is RexxAssignment -> sequenceOf(it.nameDeclaration)

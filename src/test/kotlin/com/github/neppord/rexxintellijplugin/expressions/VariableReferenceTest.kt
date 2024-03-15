@@ -61,4 +61,20 @@ class VariableReferenceTest : BasePlatformTestCase() {
 
         assertEquals(expected, actual)
     }
+
+    fun testFromDoBlock() {
+        val file = myFixture.configureByText(
+            "foo.rex",
+            """
+                | x = "hello"
+                | if 1 then do
+                |  say x
+                | end
+            """.trimMargin()
+        )
+        val actual = file.descendantsOfType<Variable>().first().reference?.resolve()
+        val expected = file.descendantsOfType<NameDeclaration>().first()
+
+        assertEquals(expected, actual)
+    }
 }
