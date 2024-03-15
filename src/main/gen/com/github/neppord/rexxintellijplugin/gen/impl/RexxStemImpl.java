@@ -39,28 +39,4 @@ public class RexxStemImpl extends ASTWrapperPsiElement implements RexxStem {
     return findChildByClass(RexxVariable.class);
   }
 
-  @Override
-  @NotNull
-  public PsiElement getDot() {
-    return findNotNullChildByType(DOT);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getExclamation() {
-    return findChildByType(EXCLAMATION);
-  }
-
-  @Override
-  @NotNull
-  public PsiElement getIdentifier() {
-    return findNotNullChildByType(IDENTIFIER);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getNumberInt() {
-    return findChildByType(NUMBER_INT);
-  }
-
 }

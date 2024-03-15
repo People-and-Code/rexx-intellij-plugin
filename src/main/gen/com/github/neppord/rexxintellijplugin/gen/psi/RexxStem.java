@@ -13,16 +13,4 @@ public interface RexxStem extends PsiElement {
   @Nullable
   RexxVariable getVariable();
 
-  @NotNull
-  PsiElement getDot();
-
-  @Nullable
-  PsiElement getExclamation();
-
-  @NotNull
-  PsiElement getIdentifier();
-
-  @Nullable
-  PsiElement getNumberInt();
-
 }

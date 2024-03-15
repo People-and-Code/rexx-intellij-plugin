@@ -248,7 +248,7 @@ expressionTerm
     | variable_
     | parentheticalExpression
 
-stem ::= variable_ DOT EXCLAMATION? NUMBER_INT? IDENTIFIER
+stem ::= variable_ (DOT EXCLAMATION? NUMBER_INT? IDENTIFIER)+
 functionCall ::= variable_ TOKEN_LEFT comma_seperated_arguments TOKEN_RIGHT
 private comma_seperated_arguments ::= expression? (COMMA expression?)*
 methodCall ::= variable_ TILDE IDENTIFIER TOKEN_LEFT expression? (COMMA expression?)* TOKEN_RIGHT
