@@ -189,7 +189,7 @@ expression_instruction ::= expression
 
 
 instruction_block ::= KEYWORD_DO instructions KEYWORD_END
-parse_arg_instruction ::= KEYWORD_PARSE KEYWORD_ARG parse_target*
+parse_arg_instruction ::= KEYWORD_PARSE KEYWORD_ARG parse_target* (COMMA parse_target*)*
 parse_var_instruction ::= KEYWORD_PARSE KEYWORD_VAR parse_target*
 parse_value_instruction ::= KEYWORD_PARSE KEYWORD_VALUE expression* KEYWORD_WITH parse_target*
 parse_source_instruction ::= KEYWORD_PARSE KEYWORD_SOURCE parse_target*

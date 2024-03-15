@@ -772,7 +772,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // KEYWORD_PARSE KEYWORD_ARG parse_target*
+  // KEYWORD_PARSE KEYWORD_ARG parse_target* (COMMA parse_target*)*
   public static boolean parse_arg_instruction(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "parse_arg_instruction")) return false;
     if (!nextTokenIs(builder_, KEYWORD_PARSE)) return false;
@@ -780,6 +780,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
     Marker marker_ = enter_section_(builder_);
     result_ = consumeTokens(builder_, 0, KEYWORD_PARSE, KEYWORD_ARG);
     result_ = result_ && parse_arg_instruction_2(builder_, level_ + 1);
+    result_ = result_ && parse_arg_instruction_3(builder_, level_ + 1);
     exit_section_(builder_, marker_, PARSE_ARG_INSTRUCTION, result_);
     return result_;
   }
@@ -791,6 +792,39 @@ public class RexxParser implements PsiParser, LightPsiParser {
       int pos_ = current_position_(builder_);
       if (!parse_target(builder_, level_ + 1)) break;
       if (!empty_element_parsed_guard_(builder_, "parse_arg_instruction_2", pos_)) break;
+    }
+    return true;
+  }
+
+  // (COMMA parse_target*)*
+  private static boolean parse_arg_instruction_3(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "parse_arg_instruction_3")) return false;
+    while (true) {
+      int pos_ = current_position_(builder_);
+      if (!parse_arg_instruction_3_0(builder_, level_ + 1)) break;
+      if (!empty_element_parsed_guard_(builder_, "parse_arg_instruction_3", pos_)) break;
+    }
+    return true;
+  }
+
+  // COMMA parse_target*
+  private static boolean parse_arg_instruction_3_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "parse_arg_instruction_3_0")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, COMMA);
+    result_ = result_ && parse_arg_instruction_3_0_1(builder_, level_ + 1);
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // parse_target*
+  private static boolean parse_arg_instruction_3_0_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "parse_arg_instruction_3_0_1")) return false;
+    while (true) {
+      int pos_ = current_position_(builder_);
+      if (!parse_target(builder_, level_ + 1)) break;
+      if (!empty_element_parsed_guard_(builder_, "parse_arg_instruction_3_0_1", pos_)) break;
     }
     return true;
   }
