@@ -94,6 +94,7 @@ KEYWORD_SIGNAL=SIGNAL
 KEYWORD_THEN=THEN
 KEYWORD_TRACE=TRACE
 KEYWORD_USE=USE
+KEYWORD_WHILE=WHILE
 SHEBANG=[#][!][^\n]*
 LINE_COMMENT=--[^\n]*
 MULTILINE_COMMENT=[/][*]([^*]+|[*]+[^/*])*[*]+[/]
@@ -188,6 +189,7 @@ COLON=[:]
   {KEYWORD_THEN}                                { return KEYWORD_THEN; }
   {KEYWORD_TRACE}                               { return KEYWORD_TRACE; }
   {KEYWORD_USE}                                 { return KEYWORD_USE; }
+  {KEYWORD_WHILE}                               { return KEYWORD_WHILE; }
   {SHEBANG}                                     { return SHEBANG; }
   {LINE_COMMENT}                                { return LINE_COMMENT; }
   {MULTILINE_COMMENT}                           { return MULTILINE_COMMENT; }

@@ -48,6 +48,7 @@ public interface RexxTokens {
   IElementType SUBTRACTION = new RexxElementType("SUBTRACTION");
   IElementType TRACE_INSTRUCTION = new RexxElementType("TRACE_INSTRUCTION");
   IElementType VARIABLE = new RexxElementType("VARIABLE");
+  IElementType WHILE_INSTRUCTION = new RexxElementType("WHILE_INSTRUCTION");
 
   IElementType COLON = new RexxTokenType("COLON");
   IElementType COMMA = new RexxTokenType("COMMA");
@@ -93,6 +94,7 @@ public interface RexxTokens {
   IElementType KEYWORD_USE = new RexxTokenType("KEYWORD_USE");
   IElementType KEYWORD_VALUE = new RexxTokenType("KEYWORD_VALUE");
   IElementType KEYWORD_VAR = new RexxTokenType("KEYWORD_VAR");
+  IElementType KEYWORD_WHILE = new RexxTokenType("KEYWORD_WHILE");
   IElementType KEYWORD_WITH = new RexxTokenType("KEYWORD_WITH");
   IElementType LINE_COMMENT = new RexxTokenType("LINE_COMMENT");
   IElementType MULTILINE_COMMENT = new RexxTokenType("MULTILINE_COMMENT");
@@ -253,6 +255,9 @@ public interface RexxTokens {
       }
       else if (type == VARIABLE) {
         return new RexxVariableImpl(node);
+      }
+      else if (type == WHILE_INSTRUCTION) {
+        return new RexxWhileInstructionImpl(node);
       }
       throw new AssertionError("Unknown element type: " + type);
     }

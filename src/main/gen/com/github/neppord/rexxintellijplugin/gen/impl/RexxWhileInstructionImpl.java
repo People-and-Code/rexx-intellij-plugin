@@ -11,14 +11,14 @@ import static com.github.neppord.rexxintellijplugin.gen.RexxTokens.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.github.neppord.rexxintellijplugin.gen.psi.*;
 
-public class RexxInstructionBlockImpl extends ASTWrapperPsiElement implements RexxInstructionBlock {
+public class RexxWhileInstructionImpl extends ASTWrapperPsiElement implements RexxWhileInstruction {
 
-  public RexxInstructionBlockImpl(@NotNull ASTNode node) {
+  public RexxWhileInstructionImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull RexxVisitor visitor) {
-    visitor.visitInstructionBlock(this);
+    visitor.visitWhileInstruction(this);
   }
 
   @Override
@@ -49,6 +49,12 @@ public class RexxInstructionBlockImpl extends ASTWrapperPsiElement implements Re
   @NotNull
   public List<RexxExitInstruction> getExitInstructionList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxExitInstruction.class);
+  }
+
+  @Override
+  @NotNull
+  public RexxExpression getExpression() {
+    return findNotNullChildByClass(RexxExpression.class);
   }
 
   @Override
@@ -145,6 +151,12 @@ public class RexxInstructionBlockImpl extends ASTWrapperPsiElement implements Re
   @NotNull
   public PsiElement getKeywordEnd() {
     return findNotNullChildByType(KEYWORD_END);
+  }
+
+  @Override
+  @NotNull
+  public PsiElement getKeywordWhile() {
+    return findNotNullChildByType(KEYWORD_WHILE);
   }
 
 }

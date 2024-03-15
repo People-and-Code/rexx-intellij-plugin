@@ -5,7 +5,7 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface RexxIfInstruction extends PsiElement {
+public interface RexxWhileInstruction extends PsiElement {
 
   @NotNull
   List<RexxAddressInstruction> getAddressInstructionList();
@@ -64,13 +64,13 @@ public interface RexxIfInstruction extends PsiElement {
   @NotNull
   List<RexxWhileInstruction> getWhileInstructionList();
 
-  @Nullable
-  PsiElement getKeywordElse();
+  @NotNull
+  PsiElement getKeywordDo();
 
   @NotNull
-  PsiElement getKeywordIf();
+  PsiElement getKeywordEnd();
 
   @NotNull
-  PsiElement getKeywordThen();
+  PsiElement getKeywordWhile();
 
 }

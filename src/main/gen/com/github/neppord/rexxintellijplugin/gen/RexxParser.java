@@ -476,6 +476,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
   //     | parse_value_instruction
   //     | parse_source_instruction
   //     | if_instruction
+  //     | while_instruction
   //     | instruction_block
   //     | exit_instruction
   //     | trace_instruction
@@ -496,6 +497,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
     if (!result_) result_ = parse_value_instruction(builder_, level_ + 1);
     if (!result_) result_ = parse_source_instruction(builder_, level_ + 1);
     if (!result_) result_ = if_instruction(builder_, level_ + 1);
+    if (!result_) result_ = while_instruction(builder_, level_ + 1);
     if (!result_) result_ = instruction_block(builder_, level_ + 1);
     if (!result_) result_ = exit_instruction(builder_, level_ + 1);
     if (!result_) result_ = trace_instruction(builder_, level_ + 1);
@@ -1141,6 +1143,31 @@ public class RexxParser implements PsiParser, LightPsiParser {
     result_ = variable(builder_, level_ + 1);
     if (!result_) result_ = global(builder_, level_ + 1);
     return result_;
+  }
+
+  /* ********************************************************** */
+  // KEYWORD_DO KEYWORD_WHILE expression terminator?
+  //             instructions
+  //         KEYWORD_END
+  public static boolean while_instruction(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "while_instruction")) return false;
+    if (!nextTokenIs(builder_, KEYWORD_DO)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeTokens(builder_, 0, KEYWORD_DO, KEYWORD_WHILE);
+    result_ = result_ && expression(builder_, level_ + 1);
+    result_ = result_ && while_instruction_3(builder_, level_ + 1);
+    result_ = result_ && instructions(builder_, level_ + 1);
+    result_ = result_ && consumeToken(builder_, KEYWORD_END);
+    exit_section_(builder_, marker_, WHILE_INSTRUCTION, result_);
+    return result_;
+  }
+
+  // terminator?
+  private static boolean while_instruction_3(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "while_instruction_3")) return false;
+    terminator(builder_, level_ + 1);
+    return true;
   }
 
 }
