@@ -207,7 +207,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // compare (OPERATOR_CONCATENATE compare)*
+  // compare (OPERATOR_CONCATENATE? compare)*
   public static boolean concatenation(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "concatenation")) return false;
     boolean result_;
@@ -218,7 +218,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
     return result_;
   }
 
-  // (OPERATOR_CONCATENATE compare)*
+  // (OPERATOR_CONCATENATE? compare)*
   private static boolean concatenation_1(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "concatenation_1")) return false;
     while (true) {
@@ -229,15 +229,22 @@ public class RexxParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // OPERATOR_CONCATENATE compare
+  // OPERATOR_CONCATENATE? compare
   private static boolean concatenation_1_0(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "concatenation_1_0")) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_);
-    result_ = consumeToken(builder_, OPERATOR_CONCATENATE);
+    result_ = concatenation_1_0_0(builder_, level_ + 1);
     result_ = result_ && compare(builder_, level_ + 1);
     exit_section_(builder_, marker_, null, result_);
     return result_;
+  }
+
+  // OPERATOR_CONCATENATE?
+  private static boolean concatenation_1_0_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "concatenation_1_0_0")) return false;
+    consumeToken(builder_, OPERATOR_CONCATENATE);
+    return true;
   }
 
   /* ********************************************************** */

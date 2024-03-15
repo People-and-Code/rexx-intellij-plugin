@@ -222,7 +222,7 @@ name_declaration ::= IDENTIFIER {
 say_instruction ::= KEYWORD_SAY expressions?
 private expressions ::= expression+
 expression ::= concatenation
-concatenation ::= compare (OPERATOR_CONCATENATE compare)*
+concatenation ::= compare (OPERATOR_CONCATENATE? compare)*
 compare ::= addition (compare_operators addition)?
 private compare_operators
     ::= OPERATOR_EQUAL
