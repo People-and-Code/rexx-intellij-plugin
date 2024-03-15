@@ -107,6 +107,10 @@ public class RexxVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitParsePullInstruction(@NotNull RexxParsePullInstruction o) {
+    visitPsiElement(o);
+  }
+
   public void visitParseSourceInstruction(@NotNull RexxParseSourceInstruction o) {
     visitPsiElement(o);
   }

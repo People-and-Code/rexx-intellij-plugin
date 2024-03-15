@@ -82,6 +82,7 @@ KEYWORD_OPTIONS=OPTIONS
 KEYWORD_OTHERWISE=OTHERWISE
 KEYWORD_PARSE=PARSE
 KEYWORD_PROCEDURE=PROCEDURE
+KEYWORD_PULL=PULL
 KEYWORD_PUSH=PUSH
 KEYWORD_QUEUE=QUEUE
 KEYWORD_RAISE=RAISE
@@ -177,6 +178,7 @@ COLON=[:]
   {KEYWORD_OTHERWISE}                           { return KEYWORD_OTHERWISE; }
   {KEYWORD_PARSE}                               { return KEYWORD_PARSE; }
   {KEYWORD_PROCEDURE}                           { return KEYWORD_PROCEDURE; }
+  {KEYWORD_PULL}                                { return KEYWORD_PULL; }
   {KEYWORD_PUSH}                                { return KEYWORD_PUSH; }
   {KEYWORD_QUEUE}                               { return KEYWORD_QUEUE; }
   {KEYWORD_RAISE}                               { return KEYWORD_RAISE; }

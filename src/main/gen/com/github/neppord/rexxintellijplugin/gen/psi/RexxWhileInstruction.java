@@ -41,6 +41,9 @@ public interface RexxWhileInstruction extends PsiElement {
   List<RexxParseArgInstruction> getParseArgInstructionList();
 
   @NotNull
+  List<RexxParsePullInstruction> getParsePullInstructionList();
+
+  @NotNull
   List<RexxParseSourceInstruction> getParseSourceInstructionList();
 
   @NotNull

@@ -30,6 +30,7 @@ class RexxSyntaxHighlighter: SyntaxHighlighterBase() {
         KEYWORD_EXIT,
         KEYWORD_IF,
         KEYWORD_PARSE,
+        KEYWORD_PULL,
         KEYWORD_SAY,
         KEYWORD_SOURCE,
         KEYWORD_THEN,
