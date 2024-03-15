@@ -35,6 +35,7 @@ class RexxSyntaxHighlighter: SyntaxHighlighterBase() {
         KEYWORD_THEN,
         KEYWORD_VALUE,
         KEYWORD_VAR,
+        KEYWORD_RETURN,
     )
     private val number: TokenSet = TokenSet.create(
         NUMBER_INT,
