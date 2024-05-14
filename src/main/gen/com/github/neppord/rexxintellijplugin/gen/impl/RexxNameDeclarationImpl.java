@@ -29,8 +29,8 @@ public class RexxNameDeclarationImpl extends NameDeclaration implements RexxName
 
   @Override
   @NotNull
-  public PsiElement getIdentifier() {
-    return findNotNullChildByType(IDENTIFIER);
+  public RexxIdentifier_ getIdentifier_() {
+    return findNotNullChildByClass(RexxIdentifier_.class);
   }
 
 }

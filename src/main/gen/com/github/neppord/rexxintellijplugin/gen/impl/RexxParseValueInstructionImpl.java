@@ -29,8 +29,8 @@ public class RexxParseValueInstructionImpl extends ASTWrapperPsiElement implemen
 
   @Override
   @NotNull
-  public List<RexxExpression> getExpressionList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxExpression.class);
+  public RexxExpression getExpression() {
+    return findNotNullChildByClass(RexxExpression.class);
   }
 
   @Override

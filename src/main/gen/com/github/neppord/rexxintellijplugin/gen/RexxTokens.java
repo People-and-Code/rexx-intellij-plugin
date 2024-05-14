@@ -24,6 +24,7 @@ public interface RexxTokens {
   IElementType EXPRESSION_TERM = new RexxElementType("EXPRESSION_TERM");
   IElementType FUNCTION_CALL = new RexxElementType("FUNCTION_CALL");
   IElementType GLOBAL = new RexxElementType("GLOBAL");
+  IElementType IDENTIFIER_ = new RexxElementType("IDENTIFIER_");
   IElementType IF_INSTRUCTION = new RexxElementType("IF_INSTRUCTION");
   IElementType INSTRUCTION_BLOCK = new RexxElementType("INSTRUCTION_BLOCK");
   IElementType INTEGER_CONSTANT = new RexxElementType("INTEGER_CONSTANT");
@@ -185,6 +186,9 @@ public interface RexxTokens {
       }
       else if (type == GLOBAL) {
         return new RexxGlobalImpl(node);
+      }
+      else if (type == IDENTIFIER_) {
+        return new RexxIdentifier_Impl(node);
       }
       else if (type == IF_INSTRUCTION) {
         return new RexxIfInstructionImpl(node);

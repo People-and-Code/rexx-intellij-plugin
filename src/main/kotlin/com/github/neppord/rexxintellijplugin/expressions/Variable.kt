@@ -20,13 +20,13 @@ abstract class Variable(@JvmField val node: ASTNode) :
             .createFileFromText(RexxLanguage, "${name} = 1")
             .descendantsOfType<RexxAssignment>()
             .first()
-            .nameDeclaration.identifier
-        identifier.replace(new)
+            .nameDeclaration.identifier_
+        identifier_.replace(new)
         return this
     }
 
     override fun getReference(): PsiReference? = VariableReference(this)
-    override fun getName(): String? = identifier.text
+    override fun getName(): String? = identifier_.text
 
 
 }

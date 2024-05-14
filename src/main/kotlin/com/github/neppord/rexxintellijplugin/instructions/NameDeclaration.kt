@@ -21,12 +21,12 @@ abstract class NameDeclaration(@JvmField val node: ASTNode):
             .createFileFromText(RexxLanguage, "${name} = 1")
             .descendantsOfType<RexxAssignment>()
             .first()
-            .nameDeclaration.identifier
-        identifier.replace(new)
+            .nameDeclaration.identifier_
+        identifier_.replace(new)
         return this
     }
 
-    override fun getNameIdentifier(): PsiElement = identifier
+    override fun getNameIdentifier(): PsiElement = identifier_
     override fun getName(): String? = nameIdentifier.text
     override fun getUseScope(): SearchScope = LocalSearchScope(this.containingFile)
 }

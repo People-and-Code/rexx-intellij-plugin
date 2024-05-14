@@ -29,8 +29,8 @@ public class RexxVariableImpl extends Variable implements RexxVariable {
 
   @Override
   @NotNull
-  public PsiElement getIdentifier() {
-    return findNotNullChildByType(IDENTIFIER);
+  public RexxIdentifier_ getIdentifier_() {
+    return findNotNullChildByClass(RexxIdentifier_.class);
   }
 
 }

@@ -9,4 +9,5 @@ FILE
             RexxMultiplicationImpl(MULTIPLICATION)
               RexxExpressionTermImpl(EXPRESSION_TERM)
                 RexxVariableImpl(VARIABLE)
-                  PsiElement(IDENTIFIER)('myVar')
+                  RexxIdentifier_Impl(IDENTIFIER_)
+                    PsiElement(IDENTIFIER)('myVar')

@@ -8,7 +8,7 @@ import com.intellij.psi.util.parents
 import com.intellij.psi.util.siblings
 
 class VariableReference(private val variable: Variable) :
-    PsiReferenceBase<RexxVariable>(variable, variable.identifier.textRangeInParent) {
+    PsiReferenceBase<RexxVariable>(variable, variable.identifier_.textRangeInParent) {
     override fun resolve(): PsiElement? {
         val variableName = variable.name
         return candidates().firstOrNull {

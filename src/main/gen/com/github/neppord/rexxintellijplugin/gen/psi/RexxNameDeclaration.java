@@ -8,6 +8,6 @@ import com.intellij.psi.PsiElement;
 public interface RexxNameDeclaration extends PsiElement {
 
   @NotNull
-  PsiElement getIdentifier();
+  RexxIdentifier_ getIdentifier_();
 
 }

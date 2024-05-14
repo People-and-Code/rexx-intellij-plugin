@@ -170,7 +170,7 @@ private instruction
     | label_instruction
     | return_instruction
     | numeric_instruction
-    | expression_instruction
+    | &IDENTIFIER expression_instruction
 
 numeric_instruction ::= KEYWORD_NUMERIC IDENTIFIER integerConstant
 label_instruction ::= name_declaration COLON (KEYWORD_PROCEDURE KEYWORD_EXPOSE IDENTIFIER DOT?)?
@@ -193,7 +193,7 @@ instruction_block ::= KEYWORD_DO instructions KEYWORD_END
 parse_pull_instruction ::= KEYWORD_PARSE KEYWORD_PULL parse_target* (COMMA parse_target*)*
 parse_arg_instruction ::= KEYWORD_PARSE KEYWORD_ARG parse_target* (COMMA parse_target*)*
 parse_var_instruction ::= KEYWORD_PARSE KEYWORD_VAR parse_target*
-parse_value_instruction ::= KEYWORD_PARSE KEYWORD_VALUE expression* KEYWORD_WITH parse_target*
+parse_value_instruction ::= KEYWORD_PARSE KEYWORD_VALUE expression KEYWORD_WITH parse_target*
 parse_source_instruction ::= KEYWORD_PARSE KEYWORD_SOURCE parse_target*
 private parse_target
     ::= IDENTIFIER DOT EXCLAMATION? IDENTIFIER
@@ -217,14 +217,14 @@ while_instruction
 
 assignment ::= name_declaration OPERATOR_EQUAL expressions
 
-name_declaration ::= IDENTIFIER {
+name_declaration ::= identifier_ {
    mixin="com.github.neppord.rexxintellijplugin.instructions.NameDeclaration"
 }
 
 say_instruction ::= KEYWORD_SAY expressions?
 private expressions ::= expression+
 expression ::= concatenation
-concatenation ::= compare (OPERATOR_CONCATENATE? compare)*
+concatenation ::= compare (OPERATOR_CONCATENATE? !keywords compare)*
 compare ::= addition (compare_operators addition)?
 private compare_operators
     ::= OPERATOR_EQUAL
@@ -261,8 +261,50 @@ integerConstant ::= NUMBER_INT
 decimalConstant ::= NUMBER_DECIMAL
 scientificConstant ::= NUMBER_SCIENTIFIC
 private variable_ ::= variable | global
-variable ::= IDENTIFIER {
+variable ::= identifier_ {
     mixin="com.github.neppord.rexxintellijplugin.expressions.Variable"
 }
 global ::= DOT IDENTIFIER
 
+identifier_ ::= IDENTIFIER | keywords ;
+
+private keywords
+    ::= KEYWORD_ADDRESS
+    |  KEYWORD_ARG
+    |  KEYWORD_VAR
+    |  KEYWORD_VALUE
+    |  KEYWORD_WITH
+    |  KEYWORD_CALL
+    |  KEYWORD_DO
+    |  KEYWORD_DROP
+    |  KEYWORD_ELSE
+    |  KEYWORD_END
+    |  KEYWORD_EXIT
+    |  KEYWORD_EXPOSE
+    |  KEYWORD_FORWARD
+    |  KEYWORD_GUARD
+    |  KEYWORD_IF
+    |  KEYWORD_INTERPRET
+    |  KEYWORD_ITERATE
+    |  KEYWORD_LEAVE
+    |  KEYWORD_LOOP
+    |  KEYWORD_NOP
+    |  KEYWORD_NUMERIC
+    |  KEYWORD_OPTIONS
+    |  KEYWORD_OTHERWISE
+    |  KEYWORD_PARSE
+    |  KEYWORD_PROCEDURE
+    |  KEYWORD_PULL
+    |  KEYWORD_PUSH
+    |  KEYWORD_QUEUE
+    |  KEYWORD_RAISE
+    |  KEYWORD_REPLY
+    |  KEYWORD_RETURN
+    |  KEYWORD_SAY
+    |  KEYWORD_SELECT
+    |  KEYWORD_SOURCE
+    |  KEYWORD_SIGNAL
+    |  KEYWORD_THEN
+    |  KEYWORD_TRACE
+    |  KEYWORD_USE
+    |  KEYWORD_WHILE
