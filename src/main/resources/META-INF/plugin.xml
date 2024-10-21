@@ -1,6 +1,6 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.github.neppord.rexxintellijplugin</id>
+    <id>se.peopleandcode.rexxintellijplugin</id>
     <name>Rexx</name>
     <vendor>Samuel Ytterbrink</vendor>
 
@@ -12,24 +12,24 @@
         <fileType
                 language="Rexx"
                 name="Rexx File"
-                implementationClass="com.github.neppord.rexxintellijplugin.RexxFileType"
+                implementationClass="se.peopleandcode.rexxintellijplugin.RexxFileType"
                 fieldName="INSTANCE"
                 extensions="rex"/>
         <lang.syntaxHighlighter
                 language="Rexx"
-                implementationClass="com.github.neppord.rexxintellijplugin.RexxSyntaxHighlighter"
+                implementationClass="se.peopleandcode.rexxintellijplugin.RexxSyntaxHighlighter"
         />
         <lang.parserDefinition
                 language="Rexx"
-                implementationClass="com.github.neppord.rexxintellijplugin.RexxParserDefinition"
+                implementationClass="se.peopleandcode.rexxintellijplugin.RexxParserDefinition"
         />
         <lang.refactoringSupport
                 language="Rexx"
-                implementationClass="com.github.neppord.rexxintellijplugin.refactoring.RexxRefactoringSupportProvider"
+                implementationClass="se.peopleandcode.rexxintellijplugin.refactoring.RexxRefactoringSupportProvider"
         />
         <lang.findUsagesProvider
                 language="Rexx"
-                implementationClass="com.github.neppord.rexxintellijplugin.RexxFindUsageProvider"
+                implementationClass="se.peopleandcode.rexxintellijplugin.RexxFindUsageProvider"
         />
 
     </extensions>

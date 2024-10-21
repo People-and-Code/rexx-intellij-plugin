@@ -1,15 +1,15 @@
 {
-    parserClass="com.github.neppord.rexxintellijplugin.gen.RexxParser"
+    parserClass="se.peopleandcode.rexxintellijplugin.gen.RexxParser"
 
     extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
 
     psiClassPrefix="Rexx"
     psiImplClassSuffix="Impl"
-    psiPackage="com.github.neppord.rexxintellijplugin.gen.psi"
-    psiImplPackage="com.github.neppord.rexxintellijplugin.gen.impl"
-    elementTypeHolderClass="com.github.neppord.rexxintellijplugin.gen.RexxTokens"
-    elementTypeClass="com.github.neppord.rexxintellijplugin.RexxElementType"
-    tokenTypeClass="com.github.neppord.rexxintellijplugin.RexxTokenType"
+    psiPackage="se.peopleandcode.rexxintellijplugin.gen.psi"
+    psiImplPackage="se.peopleandcode.rexxintellijplugin.gen.impl"
+    elementTypeHolderClass="se.peopleandcode.rexxintellijplugin.gen.RexxTokens"
+    elementTypeClass="se.peopleandcode.rexxintellijplugin.RexxElementType"
+    tokenTypeClass="se.peopleandcode.rexxintellijplugin.RexxTokenType"
     tokens=[
         WHITE_SPACE="regexp:([ \t]|,[\n])+"
         TERMINATOR="regexp:[\n;]+"
@@ -218,7 +218,7 @@ while_instruction
 assignment ::= name_declaration OPERATOR_EQUAL expressions
 
 name_declaration ::= identifier_ {
-   mixin="com.github.neppord.rexxintellijplugin.instructions.NameDeclaration"
+   mixin="se.peopleandcode.rexxintellijplugin.instructions.NameDeclaration"
 }
 
 say_instruction ::= KEYWORD_SAY expressions?
@@ -262,7 +262,7 @@ decimalConstant ::= NUMBER_DECIMAL
 scientificConstant ::= NUMBER_SCIENTIFIC
 private variable_ ::= variable | global
 variable ::= identifier_ {
-    mixin="com.github.neppord.rexxintellijplugin.expressions.Variable"
+    mixin="se.peopleandcode.rexxintellijplugin.expressions.Variable"
 }
 global ::= DOT IDENTIFIER
 
