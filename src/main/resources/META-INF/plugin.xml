@@ -2,7 +2,7 @@
 <idea-plugin>
     <id>se.peopleandcode.rexxintellijplugin</id>
     <name>Rexx</name>
-    <vendor>Samuel Ytterbrink</vendor>
+    <vendor>People and Code AB</vendor>
 
     <depends>com.intellij.modules.platform</depends>
 
