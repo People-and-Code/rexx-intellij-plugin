@@ -146,16 +146,16 @@
 }
 
 /*program*/
-rexx_file ::= ncl? instruction_list END?
-private ncl ::= null_clause+
-private null_clause ::= TERMINATOR label_list?
-private label_list ::= (LABEL TERMINATOR)+
-
-private terminator ::= TERMINATOR+
-private instruction_list ::=
-    instruction (terminator instruction)* terminator?
-
-private instruction
+rexx_file ::= ncl? instruction_list? END?
+private ncl ::=  <<eof>> | null_clause+
+private null_clause ::= terminator label_list?
+private label_list ::= (LABEL terminator)+
+private terminator ::= <<eof>> | TERMINATOR
+private terminators ::= terminator+
+private instruction_list ::= instruction+
+private instruction ::= group | single_instruction ncl
+private group ::= instruction_block | if_instruction /* | select */
+private single_instruction
     ::=  assignment
     | say_instruction
     | parse_arg_instruction
@@ -163,7 +163,6 @@ private instruction
     | parse_var_instruction
     | parse_value_instruction
     | parse_source_instruction
-    | if_instruction
     | while_instruction
     | instruction_block
     | exit_instruction
@@ -193,7 +192,7 @@ address_instruction ::= KEYWORD_ADDRESS expressions
 expression_instruction ::= expression
 
 
-instruction_block ::= KEYWORD_DO TERMINATOR instruction_list KEYWORD_END
+instruction_block ::= KEYWORD_DO ncl instruction_list KEYWORD_END
 parse_pull_instruction ::= KEYWORD_PARSE KEYWORD_PULL parse_target* (COMMA parse_target*)*
 parse_arg_instruction ::= KEYWORD_PARSE KEYWORD_ARG parse_target* (COMMA parse_target*)*
 parse_var_instruction ::= KEYWORD_PARSE KEYWORD_VAR parse_target*
@@ -208,14 +207,14 @@ private parse_target
 
 remainder ::= DOT
 if_instruction
-    ::= KEYWORD_IF expression terminator?
-        KEYWORD_THEN terminator?
+    ::= KEYWORD_IF expression terminators?
+        KEYWORD_THEN terminators?
             instruction
-        (terminator? KEYWORD_ELSE terminator?
+        (terminators? KEYWORD_ELSE terminators?
             instruction)?
 
 while_instruction
-    ::= KEYWORD_DO KEYWORD_WHILE expression terminator?
+    ::= KEYWORD_DO KEYWORD_WHILE expression terminators?
             instruction_list
         KEYWORD_END
 
