@@ -55,6 +55,7 @@ public interface RexxTokens {
   IElementType COLON = new RexxTokenType("COLON");
   IElementType COMMA = new RexxTokenType("COMMA");
   IElementType DOT = new RexxTokenType("DOT");
+  IElementType END = new RexxTokenType("END");
   IElementType EXCLAMATION = new RexxTokenType("EXCLAMATION");
   IElementType IDENTIFIER = new RexxTokenType("IDENTIFIER");
   IElementType KEYWORD_ADDRESS = new RexxTokenType("KEYWORD_ADDRESS");
@@ -99,6 +100,7 @@ public interface RexxTokens {
   IElementType KEYWORD_VAR = new RexxTokenType("KEYWORD_VAR");
   IElementType KEYWORD_WHILE = new RexxTokenType("KEYWORD_WHILE");
   IElementType KEYWORD_WITH = new RexxTokenType("KEYWORD_WITH");
+  IElementType LABEL = new RexxTokenType("LABEL");
   IElementType LINE_COMMENT = new RexxTokenType("LINE_COMMENT");
   IElementType MULTILINE_COMMENT = new RexxTokenType("MULTILINE_COMMENT");
   IElementType NUMBER_BINARY = new RexxTokenType("NUMBER_BINARY");

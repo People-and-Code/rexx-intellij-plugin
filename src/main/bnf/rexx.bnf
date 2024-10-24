@@ -145,11 +145,15 @@
     ]
 }
 
-
-rexx_file ::= instructions
+/*program*/
+rexx_file ::= ncl? instruction_list END?
+private ncl ::= null_clause+
+private null_clause ::= TERMINATOR label_list?
+private label_list ::= (LABEL TERMINATOR)+
 
 private terminator ::= TERMINATOR+
-private instructions ::= terminator? instruction (terminator instruction)* terminator?
+private instruction_list ::=
+    terminator? instruction (terminator instruction)* terminator?
 
 private instruction
     ::=  assignment
@@ -189,7 +193,7 @@ address_instruction ::= KEYWORD_ADDRESS expressions
 expression_instruction ::= expression
 
 
-instruction_block ::= KEYWORD_DO instructions KEYWORD_END
+instruction_block ::= KEYWORD_DO instruction_list KEYWORD_END
 parse_pull_instruction ::= KEYWORD_PARSE KEYWORD_PULL parse_target* (COMMA parse_target*)*
 parse_arg_instruction ::= KEYWORD_PARSE KEYWORD_ARG parse_target* (COMMA parse_target*)*
 parse_var_instruction ::= KEYWORD_PARSE KEYWORD_VAR parse_target*
@@ -212,7 +216,7 @@ if_instruction
 
 while_instruction
     ::= KEYWORD_DO KEYWORD_WHILE expression terminator?
-            instructions
+            instruction_list
         KEYWORD_END
 
 assignment ::= name_declaration OPERATOR_EQUAL expressions
