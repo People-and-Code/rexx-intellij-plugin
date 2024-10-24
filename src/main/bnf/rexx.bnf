@@ -153,7 +153,7 @@ private label_list ::= (LABEL TERMINATOR)+
 
 private terminator ::= TERMINATOR+
 private instruction_list ::=
-    terminator? instruction (terminator instruction)* terminator?
+    instruction (terminator instruction)* terminator?
 
 private instruction
     ::=  assignment
@@ -193,7 +193,7 @@ address_instruction ::= KEYWORD_ADDRESS expressions
 expression_instruction ::= expression
 
 
-instruction_block ::= KEYWORD_DO instruction_list KEYWORD_END
+instruction_block ::= KEYWORD_DO TERMINATOR instruction_list KEYWORD_END
 parse_pull_instruction ::= KEYWORD_PARSE KEYWORD_PULL parse_target* (COMMA parse_target*)*
 parse_arg_instruction ::= KEYWORD_PARSE KEYWORD_ARG parse_target* (COMMA parse_target*)*
 parse_var_instruction ::= KEYWORD_PARSE KEYWORD_VAR parse_target*
