@@ -155,26 +155,37 @@ private terminators ::= terminator+
 private instruction_list ::= instruction+
 private instruction ::= group | single_instruction ncl
 private group ::= instruction_block | if_instruction /* | select */
+private command ::= expression_instruction
+private keyword_instruction
+    ::= address_instruction
+    /*| arg*/
+    | call_instruction
+    /*| drop*/
+    | exit_instruction
+    /*| interop*/
+    /*| iterate*/
+    /*| leave*/
+    /*| nop*/
+    | numeric_instruction
+    /*| options*/
+    | parse_instruction
+    /*| procedure */
+    | return_instruction
+    | say_instruction
+    | signal_instruction
+    | trace_instruction
 private single_instruction
     ::=  assignment
-    | say_instruction
-    | parse_arg_instruction
+    | keyword_instruction
+    | command
+    | while_instruction
+    | label_instruction
+private parse_instruction
+    ::= parse_arg_instruction
     | parse_pull_instruction
     | parse_var_instruction
     | parse_value_instruction
     | parse_source_instruction
-    | while_instruction
-    | instruction_block
-    | exit_instruction
-    | trace_instruction
-    | signal_instruction
-    | call_instruction
-    | address_instruction
-    | label_instruction
-    | return_instruction
-    | numeric_instruction
-    | &IDENTIFIER expression_instruction
-
 numeric_instruction ::= KEYWORD_NUMERIC IDENTIFIER integerConstant
 label_instruction ::= name_declaration COLON (KEYWORD_PROCEDURE KEYWORD_EXPOSE IDENTIFIER DOT?)?
 return_instruction ::= KEYWORD_RETURN expression?
@@ -189,7 +200,9 @@ call_instruction ::= KEYWORD_CALL IDENTIFIER comma_seperated_arguments
 
 address_instruction ::= KEYWORD_ADDRESS expressions
 
-expression_instruction ::= expression
+expression_instruction
+    ::= &IDENTIFIER expression
+    | &stringLiteral expression
 
 
 instruction_block ::= KEYWORD_DO ncl instruction_list KEYWORD_END
