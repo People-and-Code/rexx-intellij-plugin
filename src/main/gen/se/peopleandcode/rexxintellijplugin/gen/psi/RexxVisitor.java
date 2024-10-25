@@ -167,10 +167,6 @@ public class RexxVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitWhileInstruction(@NotNull RexxWhileInstruction o) {
-    visitPsiElement(o);
-  }
-
   public void visitPsiElement(@NotNull PsiElement o) {
     visitElement(o);
   }

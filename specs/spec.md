@@ -174,7 +174,11 @@ condition := callable_condition | 'LOSTDIGITS' | 'NOMETHOD' | 'NOSTRING' | 'NOVA
 expression_list := expr | [expr] ',' [expression_list]
 do_specification := do_simple | do_repetitive
 do_simple := 'DO' [group_option+]
-do_repetitive := do_simple (dorep | conditional | dorep conditional)
+do_repetitive := do_simple 
+    ( dorep 
+    | conditional 
+    | dorep conditional
+    )
 dorep := 'FOREVER' | repetitor
 drop := 'DROP' variable_list
 variable_list := (vref | var_symbol)+

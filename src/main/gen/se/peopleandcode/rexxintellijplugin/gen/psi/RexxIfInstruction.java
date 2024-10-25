@@ -64,9 +64,6 @@ public interface RexxIfInstruction extends PsiElement {
   @NotNull
   List<RexxTraceInstruction> getTraceInstructionList();
 
-  @NotNull
-  List<RexxWhileInstruction> getWhileInstructionList();
-
   @Nullable
   PsiElement getKeywordElse();
 

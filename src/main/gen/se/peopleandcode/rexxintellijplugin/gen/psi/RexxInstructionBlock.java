@@ -20,6 +20,9 @@ public interface RexxInstructionBlock extends PsiElement {
   List<RexxExitInstruction> getExitInstructionList();
 
   @NotNull
+  List<RexxExpression> getExpressionList();
+
+  @NotNull
   List<RexxExpressionInstruction> getExpressionInstructionList();
 
   @NotNull
@@ -33,6 +36,9 @@ public interface RexxInstructionBlock extends PsiElement {
 
   @Nullable
   RexxNameDeclaration getNameDeclaration();
+
+  @Nullable
+  RexxNumericConstant getNumericConstant();
 
   @NotNull
   List<RexxNumericInstruction> getNumericInstructionList();
@@ -63,9 +69,6 @@ public interface RexxInstructionBlock extends PsiElement {
 
   @NotNull
   List<RexxTraceInstruction> getTraceInstructionList();
-
-  @NotNull
-  List<RexxWhileInstruction> getWhileInstructionList();
 
   @NotNull
   PsiElement getKeywordDo();

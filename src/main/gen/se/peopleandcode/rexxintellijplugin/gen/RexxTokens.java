@@ -50,7 +50,6 @@ public interface RexxTokens {
   IElementType SUBTRACTION = new RexxElementType("SUBTRACTION");
   IElementType TRACE_INSTRUCTION = new RexxElementType("TRACE_INSTRUCTION");
   IElementType VARIABLE = new RexxElementType("VARIABLE");
-  IElementType WHILE_INSTRUCTION = new RexxElementType("WHILE_INSTRUCTION");
 
   IElementType COLON = new RexxTokenType("COLON");
   IElementType COMMA = new RexxTokenType("COMMA");
@@ -143,6 +142,7 @@ public interface RexxTokens {
   IElementType TILDE = new RexxTokenType("TILDE");
   IElementType TOKEN_LEFT = new RexxTokenType("(");
   IElementType TOKEN_RIGHT = new RexxTokenType(")");
+  IElementType VAR_SYMBOL = new RexxTokenType("VAR_SYMBOL");
 
   class Factory {
     public static PsiElement createElement(ASTNode node) {
@@ -266,9 +266,6 @@ public interface RexxTokens {
       }
       else if (type == VARIABLE) {
         return new RexxVariableImpl(node);
-      }
-      else if (type == WHILE_INSTRUCTION) {
-        return new RexxWhileInstructionImpl(node);
       }
       throw new AssertionError("Unknown element type: " + type);
     }

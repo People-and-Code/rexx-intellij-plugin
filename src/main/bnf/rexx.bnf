@@ -151,7 +151,6 @@ private ncl ::=  <<eof>> | null_clause+
 private null_clause ::= terminator label_list?
 private label_list ::= (LABEL terminator)+
 private terminator ::= <<eof>> | TERMINATOR
-private terminators ::= terminator+
 private instruction_list ::= instruction+
 private instruction ::= group | single_instruction ncl
 private group ::= instruction_block | if_instruction /* | select */
@@ -179,7 +178,6 @@ private single_instruction
     | assignment
     | keyword_instruction
     | command
-    | while_instruction
 private parse_instruction
     ::= parse_arg_instruction
     | parse_pull_instruction
@@ -205,7 +203,23 @@ expression_instruction
     | &stringLiteral expression
 
 
-instruction_block ::= KEYWORD_DO ncl instruction_list? do_ending
+instruction_block ::= do_specification ncl
+    instruction_list?
+    do_ending
+private do_specification ::= KEYWORD_DO /*[group_option+]*/
+    ( dorep
+    | conditional
+    | dorep conditional
+    )?
+private conditional ::= 'WHILE' whileexpr | 'UNTIL' untilexpr
+private untilexpr ::= expression
+private whileexpr ::= expression
+private dorep ::= 'FORVER' | repetitor
+private repetitor ::= assignment | expression | over | 'FOREVER'
+private over
+    ::= VAR_SYMBOL 'OVER' expression
+    | numericConstant 'OVER'
+    /*| CONST_SYMBOL 'OVER'*/
 private do_ending ::= KEYWORD_END name_declaration? ncl
 parse_pull_instruction ::= KEYWORD_PARSE KEYWORD_PULL parse_target* (COMMA parse_target*)*
 parse_arg_instruction ::= KEYWORD_PARSE KEYWORD_ARG parse_target* (COMMA parse_target*)*
@@ -223,11 +237,6 @@ remainder ::= DOT
 if_instruction ::= KEYWORD_IF expression ncl? then else?
 private then ::= KEYWORD_THEN ncl? (instruction | END)
 private else ::= KEYWORD_ELSE ncl? (instruction | END)
-
-while_instruction
-    ::= KEYWORD_DO KEYWORD_WHILE expression terminators?
-            instruction_list
-        KEYWORD_END
 
 assignment ::= name_declaration OPERATOR_EQUAL expressions
 
