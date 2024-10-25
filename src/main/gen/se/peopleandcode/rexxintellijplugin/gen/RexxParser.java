@@ -759,7 +759,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // name_declaration COLON (KEYWORD_PROCEDURE KEYWORD_EXPOSE IDENTIFIER DOT?)?
+  // name_declaration COLON (KEYWORD_PROCEDURE (KEYWORD_EXPOSE IDENTIFIER)? DOT?)?
   public static boolean label_instruction(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "label_instruction")) return false;
     boolean result_;
@@ -771,27 +771,45 @@ public class RexxParser implements PsiParser, LightPsiParser {
     return result_;
   }
 
-  // (KEYWORD_PROCEDURE KEYWORD_EXPOSE IDENTIFIER DOT?)?
+  // (KEYWORD_PROCEDURE (KEYWORD_EXPOSE IDENTIFIER)? DOT?)?
   private static boolean label_instruction_2(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "label_instruction_2")) return false;
     label_instruction_2_0(builder_, level_ + 1);
     return true;
   }
 
-  // KEYWORD_PROCEDURE KEYWORD_EXPOSE IDENTIFIER DOT?
+  // KEYWORD_PROCEDURE (KEYWORD_EXPOSE IDENTIFIER)? DOT?
   private static boolean label_instruction_2_0(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "label_instruction_2_0")) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_);
-    result_ = consumeTokens(builder_, 0, KEYWORD_PROCEDURE, KEYWORD_EXPOSE, IDENTIFIER);
-    result_ = result_ && label_instruction_2_0_3(builder_, level_ + 1);
+    result_ = consumeToken(builder_, KEYWORD_PROCEDURE);
+    result_ = result_ && label_instruction_2_0_1(builder_, level_ + 1);
+    result_ = result_ && label_instruction_2_0_2(builder_, level_ + 1);
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // (KEYWORD_EXPOSE IDENTIFIER)?
+  private static boolean label_instruction_2_0_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "label_instruction_2_0_1")) return false;
+    label_instruction_2_0_1_0(builder_, level_ + 1);
+    return true;
+  }
+
+  // KEYWORD_EXPOSE IDENTIFIER
+  private static boolean label_instruction_2_0_1_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "label_instruction_2_0_1_0")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeTokens(builder_, 0, KEYWORD_EXPOSE, IDENTIFIER);
     exit_section_(builder_, marker_, null, result_);
     return result_;
   }
 
   // DOT?
-  private static boolean label_instruction_2_0_3(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "label_instruction_2_0_3")) return false;
+  private static boolean label_instruction_2_0_2(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "label_instruction_2_0_2")) return false;
     consumeToken(builder_, DOT);
     return true;
   }
@@ -1364,19 +1382,19 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // assignment
+  // label_instruction
+  //     | assignment
   //     | keyword_instruction
   //     | command
-  //     | while_instruction
-  //     | label_instruction
+  //     | while_instruction
   static boolean single_instruction(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "single_instruction")) return false;
     boolean result_;
-    result_ = assignment(builder_, level_ + 1);
+    result_ = label_instruction(builder_, level_ + 1);
+    if (!result_) result_ = assignment(builder_, level_ + 1);
     if (!result_) result_ = keyword_instruction(builder_, level_ + 1);
     if (!result_) result_ = command(builder_, level_ + 1);
     if (!result_) result_ = while_instruction(builder_, level_ + 1);
-    if (!result_) result_ = label_instruction(builder_, level_ + 1);
     return result_;
   }
 

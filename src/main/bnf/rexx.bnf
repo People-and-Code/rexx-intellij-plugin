@@ -175,11 +175,11 @@ private keyword_instruction
     | signal_instruction
     | trace_instruction
 private single_instruction
-    ::=  assignment
+    ::= label_instruction
+    | assignment
     | keyword_instruction
     | command
     | while_instruction
-    | label_instruction
 private parse_instruction
     ::= parse_arg_instruction
     | parse_pull_instruction
@@ -187,7 +187,7 @@ private parse_instruction
     | parse_value_instruction
     | parse_source_instruction
 numeric_instruction ::= KEYWORD_NUMERIC IDENTIFIER integerConstant
-label_instruction ::= name_declaration COLON (KEYWORD_PROCEDURE KEYWORD_EXPOSE IDENTIFIER DOT?)?
+label_instruction ::= name_declaration COLON (KEYWORD_PROCEDURE (KEYWORD_EXPOSE IDENTIFIER)? DOT?)?
 return_instruction ::= KEYWORD_RETURN expression?
 
 signal_instruction ::= KEYWORD_SIGNAL expressions

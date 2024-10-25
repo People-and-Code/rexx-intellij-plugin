@@ -26,4 +26,5 @@ class RexxParserTest : ParsingTestCase(
     fun testFunctionCalls() = doTest(true)
     fun testMethodCalls() = doTest(true)
     fun testDoWhile() = doTest(true)
+    fun testProcedures() = doTest(true)
 }
