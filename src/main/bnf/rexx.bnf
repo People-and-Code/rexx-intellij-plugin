@@ -205,7 +205,8 @@ expression_instruction
     | &stringLiteral expression
 
 
-instruction_block ::= KEYWORD_DO ncl instruction_list KEYWORD_END
+instruction_block ::= KEYWORD_DO ncl instruction_list? do_ending
+private do_ending ::= KEYWORD_END name_declaration? ncl
 parse_pull_instruction ::= KEYWORD_PARSE KEYWORD_PULL parse_target* (COMMA parse_target*)*
 parse_arg_instruction ::= KEYWORD_PARSE KEYWORD_ARG parse_target* (COMMA parse_target*)*
 parse_var_instruction ::= KEYWORD_PARSE KEYWORD_VAR parse_target*
@@ -219,12 +220,9 @@ private parse_target
     | remainder // | range | offset
 
 remainder ::= DOT
-if_instruction
-    ::= KEYWORD_IF expression terminators?
-        KEYWORD_THEN terminators?
-            instruction
-        (terminators? KEYWORD_ELSE terminators?
-            instruction)?
+if_instruction ::= KEYWORD_IF expression ncl? then else?
+private then ::= KEYWORD_THEN ncl? (instruction | END)
+private else ::= KEYWORD_ELSE ncl? (instruction | END)
 
 while_instruction
     ::= KEYWORD_DO KEYWORD_WHILE expression terminators?

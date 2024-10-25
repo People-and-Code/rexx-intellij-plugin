@@ -312,6 +312,57 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // KEYWORD_END name_declaration? ncl
+  static boolean do_ending(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "do_ending")) return false;
+    if (!nextTokenIs(builder_, KEYWORD_END)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, KEYWORD_END);
+    result_ = result_ && do_ending_1(builder_, level_ + 1);
+    result_ = result_ && ncl(builder_, level_ + 1);
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // name_declaration?
+  private static boolean do_ending_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "do_ending_1")) return false;
+    name_declaration(builder_, level_ + 1);
+    return true;
+  }
+
+  /* ********************************************************** */
+  // KEYWORD_ELSE ncl? (instruction | END)
+  static boolean else_$(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "else_$")) return false;
+    if (!nextTokenIs(builder_, KEYWORD_ELSE)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, KEYWORD_ELSE);
+    result_ = result_ && else_1(builder_, level_ + 1);
+    result_ = result_ && else_2(builder_, level_ + 1);
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // ncl?
+  private static boolean else_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "else_1")) return false;
+    ncl(builder_, level_ + 1);
+    return true;
+  }
+
+  // instruction | END
+  private static boolean else_2(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "else_2")) return false;
+    boolean result_;
+    result_ = instruction(builder_, level_ + 1);
+    if (!result_) result_ = consumeToken(builder_, END);
+    return result_;
+  }
+
+  /* ********************************************************** */
   // KEYWORD_EXIT expression?
   public static boolean exit_instruction(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "exit_instruction")) return false;
@@ -487,11 +538,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // KEYWORD_IF expression terminators?
-  //         KEYWORD_THEN terminators?
-  //             instruction
-  //         (terminators? KEYWORD_ELSE terminators?
-  //             instruction)?
+  // KEYWORD_IF expression ncl? then else?
   public static boolean if_instruction(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "if_instruction")) return false;
     if (!nextTokenIs(builder_, KEYWORD_IF)) return false;
@@ -500,61 +547,23 @@ public class RexxParser implements PsiParser, LightPsiParser {
     result_ = consumeToken(builder_, KEYWORD_IF);
     result_ = result_ && expression(builder_, level_ + 1);
     result_ = result_ && if_instruction_2(builder_, level_ + 1);
-    result_ = result_ && consumeToken(builder_, KEYWORD_THEN);
+    result_ = result_ && then(builder_, level_ + 1);
     result_ = result_ && if_instruction_4(builder_, level_ + 1);
-    result_ = result_ && instruction(builder_, level_ + 1);
-    result_ = result_ && if_instruction_6(builder_, level_ + 1);
     exit_section_(builder_, marker_, IF_INSTRUCTION, result_);
     return result_;
   }
 
-  // terminators?
+  // ncl?
   private static boolean if_instruction_2(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "if_instruction_2")) return false;
-    terminators(builder_, level_ + 1);
+    ncl(builder_, level_ + 1);
     return true;
   }
 
-  // terminators?
+  // else?
   private static boolean if_instruction_4(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "if_instruction_4")) return false;
-    terminators(builder_, level_ + 1);
-    return true;
-  }
-
-  // (terminators? KEYWORD_ELSE terminators?
-  //             instruction)?
-  private static boolean if_instruction_6(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "if_instruction_6")) return false;
-    if_instruction_6_0(builder_, level_ + 1);
-    return true;
-  }
-
-  // terminators? KEYWORD_ELSE terminators?
-  //             instruction
-  private static boolean if_instruction_6_0(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "if_instruction_6_0")) return false;
-    boolean result_;
-    Marker marker_ = enter_section_(builder_);
-    result_ = if_instruction_6_0_0(builder_, level_ + 1);
-    result_ = result_ && consumeToken(builder_, KEYWORD_ELSE);
-    result_ = result_ && if_instruction_6_0_2(builder_, level_ + 1);
-    result_ = result_ && instruction(builder_, level_ + 1);
-    exit_section_(builder_, marker_, null, result_);
-    return result_;
-  }
-
-  // terminators?
-  private static boolean if_instruction_6_0_0(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "if_instruction_6_0_0")) return false;
-    terminators(builder_, level_ + 1);
-    return true;
-  }
-
-  // terminators?
-  private static boolean if_instruction_6_0_2(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "if_instruction_6_0_2")) return false;
-    terminators(builder_, level_ + 1);
+    else_$(builder_, level_ + 1);
     return true;
   }
 
@@ -582,7 +591,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // KEYWORD_DO ncl instruction_list KEYWORD_END
+  // KEYWORD_DO ncl instruction_list? do_ending
   public static boolean instruction_block(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "instruction_block")) return false;
     if (!nextTokenIs(builder_, KEYWORD_DO)) return false;
@@ -590,10 +599,17 @@ public class RexxParser implements PsiParser, LightPsiParser {
     Marker marker_ = enter_section_(builder_);
     result_ = consumeToken(builder_, KEYWORD_DO);
     result_ = result_ && ncl(builder_, level_ + 1);
-    result_ = result_ && instruction_list(builder_, level_ + 1);
-    result_ = result_ && consumeToken(builder_, KEYWORD_END);
+    result_ = result_ && instruction_block_2(builder_, level_ + 1);
+    result_ = result_ && do_ending(builder_, level_ + 1);
     exit_section_(builder_, marker_, INSTRUCTION_BLOCK, result_);
     return result_;
+  }
+
+  // instruction_list?
+  private static boolean instruction_block_2(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "instruction_block_2")) return false;
+    instruction_list(builder_, level_ + 1);
+    return true;
   }
 
   /* ********************************************************** */
@@ -1501,6 +1517,36 @@ public class RexxParser implements PsiParser, LightPsiParser {
       if (!empty_element_parsed_guard_(builder_, "terminators", pos_)) break;
     }
     exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  /* ********************************************************** */
+  // KEYWORD_THEN ncl? (instruction | END)
+  static boolean then(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "then")) return false;
+    if (!nextTokenIs(builder_, KEYWORD_THEN)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, KEYWORD_THEN);
+    result_ = result_ && then_1(builder_, level_ + 1);
+    result_ = result_ && then_2(builder_, level_ + 1);
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // ncl?
+  private static boolean then_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "then_1")) return false;
+    ncl(builder_, level_ + 1);
+    return true;
+  }
+
+  // instruction | END
+  private static boolean then_2(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "then_2")) return false;
+    boolean result_;
+    result_ = instruction(builder_, level_ + 1);
+    if (!result_) result_ = consumeToken(builder_, END);
     return result_;
   }
 
