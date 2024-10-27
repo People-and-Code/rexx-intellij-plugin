@@ -33,40 +33,4 @@ public class RexxCompareImpl extends ASTWrapperPsiElement implements RexxCompare
     return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxAddition.class);
   }
 
-  @Override
-  @Nullable
-  public PsiElement getOperatorEqual() {
-    return findChildByType(OPERATOR_EQUAL);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getOperatorGreaterthan() {
-    return findChildByType(OPERATOR_GREATERTHAN);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getOperatorGreaterthanEqual() {
-    return findChildByType(OPERATOR_GREATERTHAN_EQUAL);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getOperatorLessthan() {
-    return findChildByType(OPERATOR_LESSTHAN);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getOperatorLessthanEqual() {
-    return findChildByType(OPERATOR_LESSTHAN_EQUAL);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getOperatorNotEqual() {
-    return findChildByType(OPERATOR_NOT_EQUAL);
-  }
-
 }

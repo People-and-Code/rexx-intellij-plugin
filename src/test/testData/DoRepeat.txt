@@ -7,7 +7,7 @@ FILE
         RexxIdentifier_Impl(IDENTIFIER_)
           PsiElement(IDENTIFIER)('i')
       PsiWhiteSpace(' ')
-      PsiElement(OPERATOR_EQUAL)('=')
+      PsiElement(=)('=')
       PsiWhiteSpace(' ')
       RexxExpressionImpl(EXPRESSION)
         RexxConcatenationImpl(CONCATENATION)

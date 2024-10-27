@@ -28,4 +28,5 @@ class RexxParserTest : ParsingTestCase(
     fun testDoWhile() = doTest(true)
     fun testProcedures() = doTest(true)
     fun testDoRepeat() = doTest(true)
+    fun testComparison() = doTest(true)
 }

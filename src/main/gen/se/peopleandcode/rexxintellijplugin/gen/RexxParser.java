@@ -83,13 +83,13 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // name_declaration OPERATOR_EQUAL expressions
+  // name_declaration '=' expressions
   public static boolean assignment(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "assignment")) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_, level_, _NONE_, ASSIGNMENT, "<assignment>");
     result_ = name_declaration(builder_, level_ + 1);
-    result_ = result_ && consumeToken(builder_, OPERATOR_EQUAL);
+    result_ = result_ && consumeToken(builder_, EQ);
     result_ = result_ && expressions(builder_, level_ + 1);
     exit_section_(builder_, level_, marker_, result_, false, null);
     return result_;
@@ -163,7 +163,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // addition (compare_operators addition)?
+  // addition (comparison_operator addition)?
   public static boolean compare(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "compare")) return false;
     boolean result_;
@@ -174,40 +174,31 @@ public class RexxParser implements PsiParser, LightPsiParser {
     return result_;
   }
 
-  // (compare_operators addition)?
+  // (comparison_operator addition)?
   private static boolean compare_1(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "compare_1")) return false;
     compare_1_0(builder_, level_ + 1);
     return true;
   }
 
-  // compare_operators addition
+  // comparison_operator addition
   private static boolean compare_1_0(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "compare_1_0")) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_);
-    result_ = compare_operators(builder_, level_ + 1);
+    result_ = comparison_operator(builder_, level_ + 1);
     result_ = result_ && addition(builder_, level_ + 1);
     exit_section_(builder_, marker_, null, result_);
     return result_;
   }
 
   /* ********************************************************** */
-  // OPERATOR_EQUAL
-  //     | OPERATOR_NOT_EQUAL
-  //     | OPERATOR_GREATERTHAN
-  //     | OPERATOR_LESSTHAN
-  //     | OPERATOR_GREATERTHAN_EQUAL
-  //     | OPERATOR_LESSTHAN_EQUAL
-  static boolean compare_operators(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "compare_operators")) return false;
+  // normal_compare | strict_compare
+  static boolean comparison_operator(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "comparison_operator")) return false;
     boolean result_;
-    result_ = consumeToken(builder_, OPERATOR_EQUAL);
-    if (!result_) result_ = consumeToken(builder_, OPERATOR_NOT_EQUAL);
-    if (!result_) result_ = consumeToken(builder_, OPERATOR_GREATERTHAN);
-    if (!result_) result_ = consumeToken(builder_, OPERATOR_LESSTHAN);
-    if (!result_) result_ = consumeToken(builder_, OPERATOR_GREATERTHAN_EQUAL);
-    if (!result_) result_ = consumeToken(builder_, OPERATOR_LESSTHAN_EQUAL);
+    result_ = normal_compare(builder_, level_ + 1);
+    if (!result_) result_ = strict_compare(builder_, level_ + 1);
     return result_;
   }
 
@@ -1036,6 +1027,24 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // EQ | NEQ1 | NEQ2 | NEQ3 | GT | LT | GTE | LTE | ALT_GT | ALT_LT
+  static boolean normal_compare(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "normal_compare")) return false;
+    boolean result_;
+    result_ = consumeToken(builder_, EQ);
+    if (!result_) result_ = consumeToken(builder_, NEQ1);
+    if (!result_) result_ = consumeToken(builder_, NEQ2);
+    if (!result_) result_ = consumeToken(builder_, NEQ3);
+    if (!result_) result_ = consumeToken(builder_, GT);
+    if (!result_) result_ = consumeToken(builder_, LT);
+    if (!result_) result_ = consumeToken(builder_, GTE);
+    if (!result_) result_ = consumeToken(builder_, LTE);
+    if (!result_) result_ = consumeToken(builder_, ALT_GT);
+    if (!result_) result_ = consumeToken(builder_, ALT_LT);
+    return result_;
+  }
+
+  /* ********************************************************** */
   // terminator
   static boolean null_clause(PsiBuilder builder_, int level_) {
     return terminator(builder_, level_ + 1);
@@ -1553,6 +1562,22 @@ public class RexxParser implements PsiParser, LightPsiParser {
     if (!recursion_guard_(builder_, level_, "stem_1_0_2")) return false;
     consumeToken(builder_, NUMBER_INT);
     return true;
+  }
+
+  /* ********************************************************** */
+  // STRICT_EQ | STRICT_NEQ | STRICT_GT | STRICT_LT | STRICT_GTE | STRICT_LTE | STRICT_ESC_GT | STRICT_ESC_LT
+  static boolean strict_compare(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "strict_compare")) return false;
+    boolean result_;
+    result_ = consumeToken(builder_, STRICT_EQ);
+    if (!result_) result_ = consumeToken(builder_, STRICT_NEQ);
+    if (!result_) result_ = consumeToken(builder_, STRICT_GT);
+    if (!result_) result_ = consumeToken(builder_, STRICT_LT);
+    if (!result_) result_ = consumeToken(builder_, STRICT_GTE);
+    if (!result_) result_ = consumeToken(builder_, STRICT_LTE);
+    if (!result_) result_ = consumeToken(builder_, STRICT_ESC_GT);
+    if (!result_) result_ = consumeToken(builder_, STRICT_ESC_LT);
+    return result_;
   }
 
   /* ********************************************************** */

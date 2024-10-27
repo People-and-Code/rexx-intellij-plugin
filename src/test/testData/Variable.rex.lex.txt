@@ -1,6 +1,6 @@
 IDENTIFIER ('userName')
 WHITE_SPACE (' ')
-OPERATOR_EQUAL ('=')
+= ('=')
 WHITE_SPACE (' ')
 STRING ('"John Doe"')
 TERMINATOR ('\n')

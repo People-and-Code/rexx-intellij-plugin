@@ -39,10 +39,4 @@ public class RexxAssignmentImpl extends ASTWrapperPsiElement implements RexxAssi
     return findNotNullChildByClass(RexxNameDeclaration.class);
   }
 
-  @Override
-  @NotNull
-  public PsiElement getOperatorEqual() {
-    return findNotNullChildByType(OPERATOR_EQUAL);
-  }
-
 }

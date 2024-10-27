@@ -13,7 +13,4 @@ public interface RexxAssignment extends PsiElement {
   @NotNull
   RexxNameDeclaration getNameDeclaration();
 
-  @NotNull
-  PsiElement getOperatorEqual();
-
 }

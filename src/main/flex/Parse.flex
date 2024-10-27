@@ -38,24 +38,6 @@ OPERATOR_AND=&&
 OPERATOR_BITWISE_AND=&
 OPERATOR_OR=[|]
 OPERATOR_XOR=\^\^
-OPERATOR_EQUAL==
-OPERATOR_NOT_EQUAL=<>|><|[\\]=|¬=
-OPERATOR_GREATERTHAN=>
-OPERATOR_BACKSLASH_GREATERTHAN=\\>
-OPERATOR_LESSTHAN=<
-OPERATOR_BACKSLASH_LESSTHAN=\\<
-OPERATOR_GREATERTHAN_EQUAL=>=
-OPERATOR_LESSTHAN_EQUAL==<
-OPERATOR_STRICT_EQUAL===
-OPERATOR_STRICT_BACKSLASH_EQUAL=\\==
-OPERATOR_STRICT_BACKSLASH_GREATERTHAN=\\==>
-OPERATOR_STRICT_LESSTHAN===<
-OPERATOR_STRICT_BACKSLASH_LESSTHAN=\\==<
-OPERATOR_STRICT_GREATERTHAN_EQUAL===>
-OPERATOR_STRICT_LESSTHAN_EQUAL===<=
-OPERATOR_LESSTHAN_GREATERTHAN=<>
-OPERATOR_GREATERTHAN_LESSTHAN=><
-OPERATOR_BACKSLASH=\\\\
 ADDRESS=[Aa][Dd][Dd][Rr][Ee][Ss][Ss]
 ARG=[Aa][Rr][Gg]
 VAR=[Vv][Aa][Rr]
@@ -116,99 +98,99 @@ COLON=[:]
 
 %%
 <YYINITIAL> {
-  {WHITE_SPACE}                                 { return WHITE_SPACE; }
+  {WHITE_SPACE}                { return WHITE_SPACE; }
 
-  "("                                           { return TOKEN_LEFT; }
-  ")"                                           { return TOKEN_RIGHT; }
+  "("                          { return TOKEN_LEFT; }
+  ")"                          { return TOKEN_RIGHT; }
+  "="                          { return EQ; }
+  "\\="                        { return NEQ1; }
+  "<>"                         { return NEQ2; }
+  "><"                         { return NEQ3; }
+  ">"                          { return GT; }
+  "<"                          { return LT; }
+  ">="                         { return GTE; }
+  "<="                         { return LTE; }
+  "\\>"                        { return ALT_GT; }
+  "\\<"                        { return ALT_LT; }
+  "=="                         { return STRICT_EQ; }
+  "\\=="                       { return STRICT_NEQ; }
+  ">>"                         { return STRICT_GT; }
+  "<<"                         { return STRICT_LT; }
+  ">>="                        { return STRICT_GTE; }
+  "<<="                        { return STRICT_LTE; }
+  "\\>>"                       { return STRICT_ESC_GT; }
+  "\\<<"                       { return STRICT_ESC_LT; }
 
-  {WHITE_SPACE}                                 { return WHITE_SPACE; }
-  {TERMINATOR}                                  { return TERMINATOR; }
-  {OPERATOR_PLUS}                               { return OPERATOR_PLUS; }
-  {OPERATOR_SUBTRACT}                           { return OPERATOR_SUBTRACT; }
-  {OPERATOR_MULTIPLY}                           { return OPERATOR_MULTIPLY; }
-  {OPERATOR_DIVIDE}                             { return OPERATOR_DIVIDE; }
-  {OPERATOR_REMAINDER}                          { return OPERATOR_REMAINDER; }
-  {OPERATOR_POWER}                              { return OPERATOR_POWER; }
-  {OPERATOR_CONCATENATE}                        { return OPERATOR_CONCATENATE; }
-  {OPERATOR_AND}                                { return OPERATOR_AND; }
-  {OPERATOR_BITWISE_AND}                        { return OPERATOR_BITWISE_AND; }
-  {OPERATOR_OR}                                 { return OPERATOR_OR; }
-  {OPERATOR_XOR}                                { return OPERATOR_XOR; }
-  {OPERATOR_EQUAL}                              { return OPERATOR_EQUAL; }
-  {OPERATOR_NOT_EQUAL}                          { return OPERATOR_NOT_EQUAL; }
-  {OPERATOR_GREATERTHAN}                        { return OPERATOR_GREATERTHAN; }
-  {OPERATOR_BACKSLASH_GREATERTHAN}              { return OPERATOR_BACKSLASH_GREATERTHAN; }
-  {OPERATOR_LESSTHAN}                           { return OPERATOR_LESSTHAN; }
-  {OPERATOR_BACKSLASH_LESSTHAN}                 { return OPERATOR_BACKSLASH_LESSTHAN; }
-  {OPERATOR_GREATERTHAN_EQUAL}                  { return OPERATOR_GREATERTHAN_EQUAL; }
-  {OPERATOR_LESSTHAN_EQUAL}                     { return OPERATOR_LESSTHAN_EQUAL; }
-  {OPERATOR_STRICT_EQUAL}                       { return OPERATOR_STRICT_EQUAL; }
-  {OPERATOR_STRICT_BACKSLASH_EQUAL}             { return OPERATOR_STRICT_BACKSLASH_EQUAL; }
-  {OPERATOR_STRICT_BACKSLASH_GREATERTHAN}       { return OPERATOR_STRICT_BACKSLASH_GREATERTHAN; }
-  {OPERATOR_STRICT_LESSTHAN}                    { return OPERATOR_STRICT_LESSTHAN; }
-  {OPERATOR_STRICT_BACKSLASH_LESSTHAN}          { return OPERATOR_STRICT_BACKSLASH_LESSTHAN; }
-  {OPERATOR_STRICT_GREATERTHAN_EQUAL}           { return OPERATOR_STRICT_GREATERTHAN_EQUAL; }
-  {OPERATOR_STRICT_LESSTHAN_EQUAL}              { return OPERATOR_STRICT_LESSTHAN_EQUAL; }
-  {OPERATOR_LESSTHAN_GREATERTHAN}               { return OPERATOR_LESSTHAN_GREATERTHAN; }
-  {OPERATOR_GREATERTHAN_LESSTHAN}               { return OPERATOR_GREATERTHAN_LESSTHAN; }
-  {OPERATOR_BACKSLASH}                          { return OPERATOR_BACKSLASH; }
-  {ADDRESS}                                     { return ADDRESS; }
-  {ARG}                                         { return ARG; }
-  {VAR}                                         { return VAR; }
-  {VALUE}                                       { return VALUE; }
-  {WITH}                                        { return WITH; }
-  {CALL}                                        { return CALL; }
-  {DO}                                          { return DO; }
-  {DROP}                                        { return DROP; }
-  {ELSE}                                        { return ELSE; }
-  {END}                                         { return END; }
-  {EXIT}                                        { return EXIT; }
-  {EXPOSE}                                      { return EXPOSE; }
-  {FORWARD}                                     { return FORWARD; }
-  {GUARD}                                       { return GUARD; }
-  {IF}                                          { return IF; }
-  {INTERPRET}                                   { return INTERPRET; }
-  {ITERATE}                                     { return ITERATE; }
-  {LEAVE}                                       { return LEAVE; }
-  {LOOP}                                        { return LOOP; }
-  {NOP}                                         { return NOP; }
-  {NUMERIC}                                     { return NUMERIC; }
-  {OPTIONS}                                     { return OPTIONS; }
-  {OTHERWISE}                                   { return OTHERWISE; }
-  {PARSE}                                       { return PARSE; }
-  {PROCEDURE}                                   { return PROCEDURE; }
-  {PULL}                                        { return PULL; }
-  {PUSH}                                        { return PUSH; }
-  {QUEUE}                                       { return QUEUE; }
-  {RAISE}                                       { return RAISE; }
-  {REPLY}                                       { return REPLY; }
-  {RETURN}                                      { return RETURN; }
-  {SAY}                                         { return SAY; }
-  {SELECT}                                      { return SELECT; }
-  {SOURCE}                                      { return SOURCE; }
-  {SIGNAL}                                      { return SIGNAL; }
-  {THEN}                                        { return THEN; }
-  {TRACE}                                       { return TRACE; }
-  {USE}                                         { return USE; }
-  {WHILE}                                       { return WHILE; }
-  {SHEBANG}                                     { return SHEBANG; }
-  {LINE_COMMENT}                                { return LINE_COMMENT; }
-  {MULTILINE_COMMENT}                           { return MULTILINE_COMMENT; }
-  {STRING}                                      { return STRING; }
-  {IDENTIFIER}                                  { return IDENTIFIER; }
-  {NUMBER_BINARY}                               { return NUMBER_BINARY; }
-  {NUMBER_INT}                                  { return NUMBER_INT; }
-  {NUMBER_DECIMAL}                              { return NUMBER_DECIMAL; }
-  {NUMBER_SCIENTIFIC}                           { return NUMBER_SCIENTIFIC; }
-  {NUMBER_HEXADECIMAL}                          { return NUMBER_HEXADECIMAL; }
-  {CLASS}                                       { return CLASS; }
-  {ATTRIBUTE}                                   { return ATTRIBUTE; }
-  {METHOD}                                      { return METHOD; }
-  {DOT}                                         { return DOT; }
-  {EXCLAMATION}                                 { return EXCLAMATION; }
-  {TILDE}                                       { return TILDE; }
-  {COMMA}                                       { return COMMA; }
-  {COLON}                                       { return COLON; }
+  {WHITE_SPACE}                { return WHITE_SPACE; }
+  {TERMINATOR}                 { return TERMINATOR; }
+  {OPERATOR_PLUS}              { return OPERATOR_PLUS; }
+  {OPERATOR_SUBTRACT}          { return OPERATOR_SUBTRACT; }
+  {OPERATOR_MULTIPLY}          { return OPERATOR_MULTIPLY; }
+  {OPERATOR_DIVIDE}            { return OPERATOR_DIVIDE; }
+  {OPERATOR_REMAINDER}         { return OPERATOR_REMAINDER; }
+  {OPERATOR_POWER}             { return OPERATOR_POWER; }
+  {OPERATOR_CONCATENATE}       { return OPERATOR_CONCATENATE; }
+  {OPERATOR_AND}               { return OPERATOR_AND; }
+  {OPERATOR_BITWISE_AND}       { return OPERATOR_BITWISE_AND; }
+  {OPERATOR_OR}                { return OPERATOR_OR; }
+  {OPERATOR_XOR}               { return OPERATOR_XOR; }
+  {ADDRESS}                    { return ADDRESS; }
+  {ARG}                        { return ARG; }
+  {VAR}                        { return VAR; }
+  {VALUE}                      { return VALUE; }
+  {WITH}                       { return WITH; }
+  {CALL}                       { return CALL; }
+  {DO}                         { return DO; }
+  {DROP}                       { return DROP; }
+  {ELSE}                       { return ELSE; }
+  {END}                        { return END; }
+  {EXIT}                       { return EXIT; }
+  {EXPOSE}                     { return EXPOSE; }
+  {FORWARD}                    { return FORWARD; }
+  {GUARD}                      { return GUARD; }
+  {IF}                         { return IF; }
+  {INTERPRET}                  { return INTERPRET; }
+  {ITERATE}                    { return ITERATE; }
+  {LEAVE}                      { return LEAVE; }
+  {LOOP}                       { return LOOP; }
+  {NOP}                        { return NOP; }
+  {NUMERIC}                    { return NUMERIC; }
+  {OPTIONS}                    { return OPTIONS; }
+  {OTHERWISE}                  { return OTHERWISE; }
+  {PARSE}                      { return PARSE; }
+  {PROCEDURE}                  { return PROCEDURE; }
+  {PULL}                       { return PULL; }
+  {PUSH}                       { return PUSH; }
+  {QUEUE}                      { return QUEUE; }
+  {RAISE}                      { return RAISE; }
+  {REPLY}                      { return REPLY; }
+  {RETURN}                     { return RETURN; }
+  {SAY}                        { return SAY; }
+  {SELECT}                     { return SELECT; }
+  {SOURCE}                     { return SOURCE; }
+  {SIGNAL}                     { return SIGNAL; }
+  {THEN}                       { return THEN; }
+  {TRACE}                      { return TRACE; }
+  {USE}                        { return USE; }
+  {WHILE}                      { return WHILE; }
+  {SHEBANG}                    { return SHEBANG; }
+  {LINE_COMMENT}               { return LINE_COMMENT; }
+  {MULTILINE_COMMENT}          { return MULTILINE_COMMENT; }
+  {STRING}                     { return STRING; }
+  {IDENTIFIER}                 { return IDENTIFIER; }
+  {NUMBER_BINARY}              { return NUMBER_BINARY; }
+  {NUMBER_INT}                 { return NUMBER_INT; }
+  {NUMBER_DECIMAL}             { return NUMBER_DECIMAL; }
+  {NUMBER_SCIENTIFIC}          { return NUMBER_SCIENTIFIC; }
+  {NUMBER_HEXADECIMAL}         { return NUMBER_HEXADECIMAL; }
+  {CLASS}                      { return CLASS; }
+  {ATTRIBUTE}                  { return ATTRIBUTE; }
+  {METHOD}                     { return METHOD; }
+  {DOT}                        { return DOT; }
+  {EXCLAMATION}                { return EXCLAMATION; }
+  {TILDE}                      { return TILDE; }
+  {COMMA}                      { return COMMA; }
+  {COLON}                      { return COLON; }
 
 }
 

@@ -45,32 +45,30 @@
         OPERATOR_CONCATENATE="regexp:[|][|]"
         OPERATOR_AND="regexp:&&"
 
+        EQ = '='
+        NEQ1 = '\='
+        NEQ2 = '<>'
+        NEQ3 = '><'
+        GT = '>'
+        LT = '<'
+        GTE = '>='
+        LTE = '<='
+        ALT_GT = '\>'
+        ALT_LT = '\<'
+        
+        STRICT_EQ = '=='
+        STRICT_NEQ = '\=='
+        STRICT_GT = '>>'
+        STRICT_LT = '<<'
+        STRICT_GTE = '>>='
+        STRICT_LTE = '<<='
+        STRICT_ESC_GT = '\>>'
+        STRICT_ESC_LT = '\<<'
+
         // Bitwise
         OPERATOR_BITWISE_AND="regexp:&"
         OPERATOR_OR="regexp:[|]"
         OPERATOR_XOR="regexp:\^\^"
-
-        OPERATOR_EQUAL="regexp:="
-        OPERATOR_NOT_EQUAL="regexp:<>|><|[\\]=|¬="
-        OPERATOR_GREATERTHAN="regexp:>"
-        OPERATOR_BACKSLASH_GREATERTHAN="regexp:\\>"
-        OPERATOR_LESSTHAN="regexp:<"
-        OPERATOR_BACKSLASH_LESSTHAN="regexp:\\<"
-        OPERATOR_GREATERTHAN_EQUAL="regexp:>="
-        OPERATOR_LESSTHAN_EQUAL="regexp:=<"
-
-        OPERATOR_STRICT_EQUAL="regexp:=="
-        OPERATOR_STRICT_BACKSLASH_EQUAL="regexp:\\=="
-        // OPERATOR_STRICT_GREATERTHAN="regexp:==>"
-        OPERATOR_STRICT_BACKSLASH_GREATERTHAN="regexp:\\==>"
-        OPERATOR_STRICT_LESSTHAN="regexp:==<"
-        OPERATOR_STRICT_BACKSLASH_LESSTHAN="regexp:\\==<"
-        OPERATOR_STRICT_GREATERTHAN_EQUAL="regexp:==>"
-        OPERATOR_STRICT_LESSTHAN_EQUAL="regexp:==<="
-        OPERATOR_LESSTHAN_GREATERTHAN="regexp:<>"
-        OPERATOR_GREATERTHAN_LESSTHAN="regexp:><"
-
-        OPERATOR_BACKSLASH="regexp:\\\\"
 
         ADDRESS="regexp:[Aa][Dd][Dd][Rr][Ee][Ss][Ss]"
         ARG="regexp:[Aa][Rr][Gg]"
@@ -238,7 +236,7 @@ if_instruction ::= IF expression ncl? then else?
 private then ::= THEN ncl? (instruction | END)
 private else ::= ELSE ncl? (instruction | END)
 
-assignment ::= name_declaration OPERATOR_EQUAL expressions
+assignment ::= name_declaration '=' expressions
 
 name_declaration ::= identifier_ {
    mixin="se.peopleandcode.rexxintellijplugin.instructions.NameDeclaration"
@@ -248,14 +246,11 @@ say_instruction ::= SAY expressions?
 private expressions ::= expression+
 expression ::= concatenation
 concatenation ::= compare (OPERATOR_CONCATENATE? !keywords compare)*
-compare ::= addition (compare_operators addition)?
-private compare_operators
-    ::= OPERATOR_EQUAL
-    | OPERATOR_NOT_EQUAL
-    | OPERATOR_GREATERTHAN
-    | OPERATOR_LESSTHAN
-    | OPERATOR_GREATERTHAN_EQUAL
-    | OPERATOR_LESSTHAN_EQUAL
+compare ::= addition (comparison_operator addition)?
+
+private comparison_operator ::= normal_compare | strict_compare
+private normal_compare ::=  EQ | NEQ1 | NEQ2 | NEQ3 | GT | LT | GTE | LTE | ALT_GT | ALT_LT
+private strict_compare ::= STRICT_EQ | STRICT_NEQ | STRICT_GT | STRICT_LT | STRICT_GTE | STRICT_LTE | STRICT_ESC_GT | STRICT_ESC_LT
 
 addition ::= subtraction_ (OPERATOR_PLUS subtraction_)*
 private subtraction_ ::= multiplication (subtraction)*
