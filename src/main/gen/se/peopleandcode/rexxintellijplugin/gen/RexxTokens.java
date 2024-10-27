@@ -99,7 +99,6 @@ public interface RexxTokens {
   IElementType KEYWORD_VAR = new RexxTokenType("KEYWORD_VAR");
   IElementType KEYWORD_WHILE = new RexxTokenType("KEYWORD_WHILE");
   IElementType KEYWORD_WITH = new RexxTokenType("KEYWORD_WITH");
-  IElementType LABEL = new RexxTokenType("LABEL");
   IElementType LINE_COMMENT = new RexxTokenType("LINE_COMMENT");
   IElementType MULTILINE_COMMENT = new RexxTokenType("MULTILINE_COMMENT");
   IElementType NUMBER_BINARY = new RexxTokenType("NUMBER_BINARY");
@@ -142,7 +141,6 @@ public interface RexxTokens {
   IElementType TILDE = new RexxTokenType("TILDE");
   IElementType TOKEN_LEFT = new RexxTokenType("(");
   IElementType TOKEN_RIGHT = new RexxTokenType(")");
-  IElementType VAR_SYMBOL = new RexxTokenType("VAR_SYMBOL");
 
   class Factory {
     public static PsiElement createElement(ASTNode node) {

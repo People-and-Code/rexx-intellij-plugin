@@ -34,8 +34,8 @@ public interface RexxInstructionBlock extends PsiElement {
   @NotNull
   List<RexxLabelInstruction> getLabelInstructionList();
 
-  @Nullable
-  RexxNameDeclaration getNameDeclaration();
+  @NotNull
+  List<RexxNameDeclaration> getNameDeclarationList();
 
   @Nullable
   RexxNumericConstant getNumericConstant();

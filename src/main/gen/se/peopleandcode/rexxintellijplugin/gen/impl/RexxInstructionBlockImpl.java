@@ -82,9 +82,9 @@ public class RexxInstructionBlockImpl extends ASTWrapperPsiElement implements Re
   }
 
   @Override
-  @Nullable
-  public RexxNameDeclaration getNameDeclaration() {
-    return findChildByClass(RexxNameDeclaration.class);
+  @NotNull
+  public List<RexxNameDeclaration> getNameDeclarationList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxNameDeclaration.class);
   }
 
   @Override
