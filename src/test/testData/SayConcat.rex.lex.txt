@@ -1,4 +1,4 @@
-KEYWORD_SAY ('say')
+SAY ('say')
 WHITE_SPACE (' ')
 STRING ('"Hello"')
 WHITE_SPACE (' ')

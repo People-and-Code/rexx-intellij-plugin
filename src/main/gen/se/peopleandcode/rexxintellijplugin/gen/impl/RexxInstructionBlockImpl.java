@@ -155,14 +155,14 @@ public class RexxInstructionBlockImpl extends ASTWrapperPsiElement implements Re
 
   @Override
   @NotNull
-  public PsiElement getKeywordDo() {
-    return findNotNullChildByType(KEYWORD_DO);
+  public PsiElement getDo() {
+    return findNotNullChildByType(DO);
   }
 
   @Override
   @NotNull
-  public PsiElement getKeywordEnd() {
-    return findNotNullChildByType(KEYWORD_END);
+  public PsiElement getEnd() {
+    return findNotNullChildByType(END);
   }
 
 }

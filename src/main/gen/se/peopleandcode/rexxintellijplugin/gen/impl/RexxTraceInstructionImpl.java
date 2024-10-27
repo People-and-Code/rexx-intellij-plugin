@@ -29,8 +29,8 @@ public class RexxTraceInstructionImpl extends ASTWrapperPsiElement implements Re
 
   @Override
   @NotNull
-  public PsiElement getKeywordTrace() {
-    return findNotNullChildByType(KEYWORD_TRACE);
+  public PsiElement getTrace() {
+    return findNotNullChildByType(TRACE);
   }
 
 }

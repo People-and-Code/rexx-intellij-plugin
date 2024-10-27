@@ -41,8 +41,8 @@ public class RexxNumericInstructionImpl extends ASTWrapperPsiElement implements 
 
   @Override
   @NotNull
-  public PsiElement getKeywordNumeric() {
-    return findNotNullChildByType(KEYWORD_NUMERIC);
+  public PsiElement getNumeric() {
+    return findNotNullChildByType(NUMERIC);
   }
 
 }

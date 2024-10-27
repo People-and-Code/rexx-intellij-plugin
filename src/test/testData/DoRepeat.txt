@@ -1,6 +1,6 @@
 FILE
   RexxInstructionBlockImpl(INSTRUCTION_BLOCK)
-    PsiElement(KEYWORD_DO)('do')
+    PsiElement(DO)('do')
     PsiWhiteSpace(' ')
     RexxAssignmentImpl(ASSIGNMENT)
       RexxNameDeclarationImpl(NAME_DECLARATION)
@@ -37,7 +37,7 @@ FILE
     PsiElement(TERMINATOR)('\n')
     PsiWhiteSpace('  ')
     RexxSayInstructionImpl(SAY_INSTRUCTION)
-      PsiElement(KEYWORD_SAY)('say')
+      PsiElement(SAY)('say')
       PsiWhiteSpace(' ')
       RexxExpressionImpl(EXPRESSION)
         RexxConcatenationImpl(CONCATENATION)
@@ -56,4 +56,4 @@ FILE
                     RexxIdentifier_Impl(IDENTIFIER_)
                       PsiElement(IDENTIFIER)('i')
     PsiElement(TERMINATOR)('\n')
-    PsiElement(KEYWORD_END)('end')
+    PsiElement(END)('end')

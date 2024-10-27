@@ -11,6 +11,6 @@ public interface RexxReturnInstruction extends PsiElement {
   RexxExpression getExpression();
 
   @NotNull
-  PsiElement getKeywordReturn();
+  PsiElement getReturn();
 
 }

@@ -35,8 +35,8 @@ public class RexxSignalInstructionImpl extends ASTWrapperPsiElement implements R
 
   @Override
   @NotNull
-  public PsiElement getKeywordSignal() {
-    return findNotNullChildByType(KEYWORD_SIGNAL);
+  public PsiElement getSignal() {
+    return findNotNullChildByType(SIGNAL);
   }
 
 }

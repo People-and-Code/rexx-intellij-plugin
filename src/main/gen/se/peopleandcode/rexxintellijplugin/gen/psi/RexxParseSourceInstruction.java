@@ -20,9 +20,9 @@ public interface RexxParseSourceInstruction extends PsiElement {
   List<RexxStringLiteral> getStringLiteralList();
 
   @NotNull
-  PsiElement getKeywordParse();
+  PsiElement getParse();
 
   @NotNull
-  PsiElement getKeywordSource();
+  PsiElement getSource();
 
 }

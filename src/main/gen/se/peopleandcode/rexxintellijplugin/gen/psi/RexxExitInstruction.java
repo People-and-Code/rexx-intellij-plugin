@@ -11,6 +11,6 @@ public interface RexxExitInstruction extends PsiElement {
   RexxExpression getExpression();
 
   @NotNull
-  PsiElement getKeywordExit();
+  PsiElement getExit();
 
 }

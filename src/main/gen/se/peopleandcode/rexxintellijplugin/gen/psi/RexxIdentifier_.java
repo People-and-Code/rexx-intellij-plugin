@@ -8,123 +8,123 @@ import com.intellij.psi.PsiElement;
 public interface RexxIdentifier_ extends PsiElement {
 
   @Nullable
+  PsiElement getAddress();
+
+  @Nullable
+  PsiElement getArg();
+
+  @Nullable
+  PsiElement getCall();
+
+  @Nullable
+  PsiElement getDo();
+
+  @Nullable
+  PsiElement getDrop();
+
+  @Nullable
+  PsiElement getElse();
+
+  @Nullable
+  PsiElement getEnd();
+
+  @Nullable
+  PsiElement getExit();
+
+  @Nullable
+  PsiElement getExpose();
+
+  @Nullable
+  PsiElement getForward();
+
+  @Nullable
+  PsiElement getGuard();
+
+  @Nullable
   PsiElement getIdentifier();
 
   @Nullable
-  PsiElement getKeywordAddress();
+  PsiElement getIf();
 
   @Nullable
-  PsiElement getKeywordArg();
+  PsiElement getInterpret();
 
   @Nullable
-  PsiElement getKeywordCall();
+  PsiElement getIterate();
 
   @Nullable
-  PsiElement getKeywordDo();
+  PsiElement getLeave();
 
   @Nullable
-  PsiElement getKeywordDrop();
+  PsiElement getLoop();
 
   @Nullable
-  PsiElement getKeywordElse();
+  PsiElement getNop();
 
   @Nullable
-  PsiElement getKeywordEnd();
+  PsiElement getNumeric();
 
   @Nullable
-  PsiElement getKeywordExit();
+  PsiElement getOptions();
 
   @Nullable
-  PsiElement getKeywordExpose();
+  PsiElement getOtherwise();
 
   @Nullable
-  PsiElement getKeywordForward();
+  PsiElement getParse();
 
   @Nullable
-  PsiElement getKeywordGuard();
+  PsiElement getProcedure();
 
   @Nullable
-  PsiElement getKeywordIf();
+  PsiElement getPull();
 
   @Nullable
-  PsiElement getKeywordInterpret();
+  PsiElement getPush();
 
   @Nullable
-  PsiElement getKeywordIterate();
+  PsiElement getQueue();
 
   @Nullable
-  PsiElement getKeywordLeave();
+  PsiElement getRaise();
 
   @Nullable
-  PsiElement getKeywordLoop();
+  PsiElement getReply();
 
   @Nullable
-  PsiElement getKeywordNop();
+  PsiElement getReturn();
 
   @Nullable
-  PsiElement getKeywordNumeric();
+  PsiElement getSay();
 
   @Nullable
-  PsiElement getKeywordOptions();
+  PsiElement getSelect();
 
   @Nullable
-  PsiElement getKeywordOtherwise();
+  PsiElement getSignal();
 
   @Nullable
-  PsiElement getKeywordParse();
+  PsiElement getSource();
 
   @Nullable
-  PsiElement getKeywordProcedure();
+  PsiElement getThen();
 
   @Nullable
-  PsiElement getKeywordPull();
+  PsiElement getTrace();
 
   @Nullable
-  PsiElement getKeywordPush();
+  PsiElement getUse();
 
   @Nullable
-  PsiElement getKeywordQueue();
+  PsiElement getValue();
 
   @Nullable
-  PsiElement getKeywordRaise();
+  PsiElement getVar();
 
   @Nullable
-  PsiElement getKeywordReply();
+  PsiElement getWhile();
 
   @Nullable
-  PsiElement getKeywordReturn();
-
-  @Nullable
-  PsiElement getKeywordSay();
-
-  @Nullable
-  PsiElement getKeywordSelect();
-
-  @Nullable
-  PsiElement getKeywordSignal();
-
-  @Nullable
-  PsiElement getKeywordSource();
-
-  @Nullable
-  PsiElement getKeywordThen();
-
-  @Nullable
-  PsiElement getKeywordTrace();
-
-  @Nullable
-  PsiElement getKeywordUse();
-
-  @Nullable
-  PsiElement getKeywordValue();
-
-  @Nullable
-  PsiElement getKeywordVar();
-
-  @Nullable
-  PsiElement getKeywordWhile();
-
-  @Nullable
-  PsiElement getKeywordWith();
+  PsiElement getWith();
 
 }

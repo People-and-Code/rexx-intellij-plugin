@@ -20,9 +20,9 @@ public interface RexxParseVarInstruction extends PsiElement {
   List<RexxStringLiteral> getStringLiteralList();
 
   @NotNull
-  PsiElement getKeywordParse();
+  PsiElement getParse();
 
   @NotNull
-  PsiElement getKeywordVar();
+  PsiElement getVar();
 
 }

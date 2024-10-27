@@ -14,6 +14,6 @@ public interface RexxNumericInstruction extends PsiElement {
   PsiElement getIdentifier();
 
   @NotNull
-  PsiElement getKeywordNumeric();
+  PsiElement getNumeric();
 
 }

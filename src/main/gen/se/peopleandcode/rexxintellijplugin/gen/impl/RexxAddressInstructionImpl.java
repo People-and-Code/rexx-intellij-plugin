@@ -35,8 +35,8 @@ public class RexxAddressInstructionImpl extends ASTWrapperPsiElement implements 
 
   @Override
   @NotNull
-  public PsiElement getKeywordAddress() {
-    return findNotNullChildByType(KEYWORD_ADDRESS);
+  public PsiElement getAddress() {
+    return findNotNullChildByType(ADDRESS);
   }
 
 }

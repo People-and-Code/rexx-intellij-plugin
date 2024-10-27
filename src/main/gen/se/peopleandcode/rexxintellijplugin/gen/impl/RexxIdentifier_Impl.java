@@ -29,242 +29,242 @@ public class RexxIdentifier_Impl extends ASTWrapperPsiElement implements RexxIde
 
   @Override
   @Nullable
+  public PsiElement getAddress() {
+    return findChildByType(ADDRESS);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getArg() {
+    return findChildByType(ARG);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getCall() {
+    return findChildByType(CALL);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getDo() {
+    return findChildByType(DO);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getDrop() {
+    return findChildByType(DROP);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getElse() {
+    return findChildByType(ELSE);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getEnd() {
+    return findChildByType(END);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getExit() {
+    return findChildByType(EXIT);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getExpose() {
+    return findChildByType(EXPOSE);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getForward() {
+    return findChildByType(FORWARD);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getGuard() {
+    return findChildByType(GUARD);
+  }
+
+  @Override
+  @Nullable
   public PsiElement getIdentifier() {
     return findChildByType(IDENTIFIER);
   }
 
   @Override
   @Nullable
-  public PsiElement getKeywordAddress() {
-    return findChildByType(KEYWORD_ADDRESS);
+  public PsiElement getIf() {
+    return findChildByType(IF);
   }
 
   @Override
   @Nullable
-  public PsiElement getKeywordArg() {
-    return findChildByType(KEYWORD_ARG);
+  public PsiElement getInterpret() {
+    return findChildByType(INTERPRET);
   }
 
   @Override
   @Nullable
-  public PsiElement getKeywordCall() {
-    return findChildByType(KEYWORD_CALL);
+  public PsiElement getIterate() {
+    return findChildByType(ITERATE);
   }
 
   @Override
   @Nullable
-  public PsiElement getKeywordDo() {
-    return findChildByType(KEYWORD_DO);
+  public PsiElement getLeave() {
+    return findChildByType(LEAVE);
   }
 
   @Override
   @Nullable
-  public PsiElement getKeywordDrop() {
-    return findChildByType(KEYWORD_DROP);
+  public PsiElement getLoop() {
+    return findChildByType(LOOP);
   }
 
   @Override
   @Nullable
-  public PsiElement getKeywordElse() {
-    return findChildByType(KEYWORD_ELSE);
+  public PsiElement getNop() {
+    return findChildByType(NOP);
   }
 
   @Override
   @Nullable
-  public PsiElement getKeywordEnd() {
-    return findChildByType(KEYWORD_END);
+  public PsiElement getNumeric() {
+    return findChildByType(NUMERIC);
   }
 
   @Override
   @Nullable
-  public PsiElement getKeywordExit() {
-    return findChildByType(KEYWORD_EXIT);
+  public PsiElement getOptions() {
+    return findChildByType(OPTIONS);
   }
 
   @Override
   @Nullable
-  public PsiElement getKeywordExpose() {
-    return findChildByType(KEYWORD_EXPOSE);
+  public PsiElement getOtherwise() {
+    return findChildByType(OTHERWISE);
   }
 
   @Override
   @Nullable
-  public PsiElement getKeywordForward() {
-    return findChildByType(KEYWORD_FORWARD);
+  public PsiElement getParse() {
+    return findChildByType(PARSE);
   }
 
   @Override
   @Nullable
-  public PsiElement getKeywordGuard() {
-    return findChildByType(KEYWORD_GUARD);
+  public PsiElement getProcedure() {
+    return findChildByType(PROCEDURE);
   }
 
   @Override
   @Nullable
-  public PsiElement getKeywordIf() {
-    return findChildByType(KEYWORD_IF);
+  public PsiElement getPull() {
+    return findChildByType(PULL);
   }
 
   @Override
   @Nullable
-  public PsiElement getKeywordInterpret() {
-    return findChildByType(KEYWORD_INTERPRET);
+  public PsiElement getPush() {
+    return findChildByType(PUSH);
   }
 
   @Override
   @Nullable
-  public PsiElement getKeywordIterate() {
-    return findChildByType(KEYWORD_ITERATE);
+  public PsiElement getQueue() {
+    return findChildByType(QUEUE);
   }
 
   @Override
   @Nullable
-  public PsiElement getKeywordLeave() {
-    return findChildByType(KEYWORD_LEAVE);
+  public PsiElement getRaise() {
+    return findChildByType(RAISE);
   }
 
   @Override
   @Nullable
-  public PsiElement getKeywordLoop() {
-    return findChildByType(KEYWORD_LOOP);
+  public PsiElement getReply() {
+    return findChildByType(REPLY);
   }
 
   @Override
   @Nullable
-  public PsiElement getKeywordNop() {
-    return findChildByType(KEYWORD_NOP);
+  public PsiElement getReturn() {
+    return findChildByType(RETURN);
   }
 
   @Override
   @Nullable
-  public PsiElement getKeywordNumeric() {
-    return findChildByType(KEYWORD_NUMERIC);
+  public PsiElement getSay() {
+    return findChildByType(SAY);
   }
 
   @Override
   @Nullable
-  public PsiElement getKeywordOptions() {
-    return findChildByType(KEYWORD_OPTIONS);
+  public PsiElement getSelect() {
+    return findChildByType(SELECT);
   }
 
   @Override
   @Nullable
-  public PsiElement getKeywordOtherwise() {
-    return findChildByType(KEYWORD_OTHERWISE);
+  public PsiElement getSignal() {
+    return findChildByType(SIGNAL);
   }
 
   @Override
   @Nullable
-  public PsiElement getKeywordParse() {
-    return findChildByType(KEYWORD_PARSE);
+  public PsiElement getSource() {
+    return findChildByType(SOURCE);
   }
 
   @Override
   @Nullable
-  public PsiElement getKeywordProcedure() {
-    return findChildByType(KEYWORD_PROCEDURE);
+  public PsiElement getThen() {
+    return findChildByType(THEN);
   }
 
   @Override
   @Nullable
-  public PsiElement getKeywordPull() {
-    return findChildByType(KEYWORD_PULL);
+  public PsiElement getTrace() {
+    return findChildByType(TRACE);
   }
 
   @Override
   @Nullable
-  public PsiElement getKeywordPush() {
-    return findChildByType(KEYWORD_PUSH);
+  public PsiElement getUse() {
+    return findChildByType(USE);
   }
 
   @Override
   @Nullable
-  public PsiElement getKeywordQueue() {
-    return findChildByType(KEYWORD_QUEUE);
+  public PsiElement getValue() {
+    return findChildByType(VALUE);
   }
 
   @Override
   @Nullable
-  public PsiElement getKeywordRaise() {
-    return findChildByType(KEYWORD_RAISE);
+  public PsiElement getVar() {
+    return findChildByType(VAR);
   }
 
   @Override
   @Nullable
-  public PsiElement getKeywordReply() {
-    return findChildByType(KEYWORD_REPLY);
+  public PsiElement getWhile() {
+    return findChildByType(WHILE);
   }
 
   @Override
   @Nullable
-  public PsiElement getKeywordReturn() {
-    return findChildByType(KEYWORD_RETURN);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getKeywordSay() {
-    return findChildByType(KEYWORD_SAY);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getKeywordSelect() {
-    return findChildByType(KEYWORD_SELECT);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getKeywordSignal() {
-    return findChildByType(KEYWORD_SIGNAL);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getKeywordSource() {
-    return findChildByType(KEYWORD_SOURCE);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getKeywordThen() {
-    return findChildByType(KEYWORD_THEN);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getKeywordTrace() {
-    return findChildByType(KEYWORD_TRACE);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getKeywordUse() {
-    return findChildByType(KEYWORD_USE);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getKeywordValue() {
-    return findChildByType(KEYWORD_VALUE);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getKeywordVar() {
-    return findChildByType(KEYWORD_VAR);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getKeywordWhile() {
-    return findChildByType(KEYWORD_WHILE);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getKeywordWith() {
-    return findChildByType(KEYWORD_WITH);
+  public PsiElement getWith() {
+    return findChildByType(WITH);
   }
 
 }

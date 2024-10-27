@@ -71,9 +71,9 @@ public interface RexxInstructionBlock extends PsiElement {
   List<RexxTraceInstruction> getTraceInstructionList();
 
   @NotNull
-  PsiElement getKeywordDo();
+  PsiElement getDo();
 
   @NotNull
-  PsiElement getKeywordEnd();
+  PsiElement getEnd();
 
 }

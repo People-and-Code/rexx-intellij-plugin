@@ -1,6 +1,6 @@
 FILE
   RexxSayInstructionImpl(SAY_INSTRUCTION)
-    PsiElement(KEYWORD_SAY)('SAY')
+    PsiElement(SAY)('SAY')
     PsiWhiteSpace(' ')
     RexxExpressionImpl(EXPRESSION)
       RexxConcatenationImpl(CONCATENATION)
@@ -12,7 +12,7 @@ FILE
                   PsiElement(STRING)('"hello world"')
   PsiElement(TERMINATOR)('\n')
   RexxSayInstructionImpl(SAY_INSTRUCTION)
-    PsiElement(KEYWORD_SAY)('say')
+    PsiElement(SAY)('say')
     PsiWhiteSpace(' ')
     RexxExpressionImpl(EXPRESSION)
       RexxConcatenationImpl(CONCATENATION)

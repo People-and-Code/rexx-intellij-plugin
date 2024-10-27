@@ -56,45 +56,45 @@ OPERATOR_STRICT_LESSTHAN_EQUAL===<=
 OPERATOR_LESSTHAN_GREATERTHAN=<>
 OPERATOR_GREATERTHAN_LESSTHAN=><
 OPERATOR_BACKSLASH=\\\\
-KEYWORD_ADDRESS=[Aa][Dd][Dd][Rr][Ee][Ss][Ss]
-KEYWORD_ARG=[Aa][Rr][Gg]
-KEYWORD_VAR=[Vv][Aa][Rr]
-KEYWORD_VALUE=[Vv][Aa][Ll][Uu][Ee]
-KEYWORD_WITH=[Ww][Ii][Tt][Hh]
-KEYWORD_CALL=[Cc][Aa][Ll][Ll]
-KEYWORD_DO=[Dd][Oo]
-KEYWORD_DROP=[Dd][Rr][Oo][Pp]
-KEYWORD_ELSE=[Ee][Ll][Ss][Ee]
-KEYWORD_END=[Ee][Nn][Dd]
-KEYWORD_EXIT=[Ee][Xx][Ii][Tt]
-KEYWORD_EXPOSE=[Ee][Xx][Pp][Oo][Ss][Ee]
-KEYWORD_FORWARD=[Ff][Oo][Rr][Ww][Aa][Rr][Dd]
-KEYWORD_GUARD=[Gg][Uu][Aa][Rr][Dd]
-KEYWORD_IF=[Ii][Ff]
-KEYWORD_INTERPRET=[Ii][Nn][Tt][Ee][Rr][Pp][Rr][Ee][Tt]
-KEYWORD_ITERATE=[Ii][Tt][Ee][Rr][Aa][Tt][Ee]
-KEYWORD_LEAVE=[Ll][Ee][Aa][Vv][Ee]
-KEYWORD_LOOP=[Ll][Oo][Oo][Pp]
-KEYWORD_NOP=[Nn][Oo][Pp]
-KEYWORD_NUMERIC=[Nn][Uu][Mm][Ee][Rr][Ii][Cc]
-KEYWORD_OPTIONS=[Oo][Pp][Tt][Ii][Oo][Nn][Ss]
-KEYWORD_OTHERWISE=[Oo][Tt][Hh][Ee][Rr][Ww][Ii][Ss][Ee]
-KEYWORD_PARSE=[Pp][Aa][Rr][Ss][Ee]
-KEYWORD_PROCEDURE=[Pp][Rr][Oo][Cc][Ee][Dd][Uu][Rr][Ee]
-KEYWORD_PULL=[Pp][Uu][Ll][Ll]
-KEYWORD_PUSH=[Pp][Uu][Ss][Hh]
-KEYWORD_QUEUE=[Qq][Uu][Ee][Uu][Ee]
-KEYWORD_RAISE=[Rr][Aa][Ii][Ss][Ee]
-KEYWORD_REPLY=[Rr][Ee][Pp][Ll][Yy]
-KEYWORD_RETURN=[Rr][Ee][Tt][Uu][Rr][Nn]
-KEYWORD_SAY=[Ss][Aa][Yy]
-KEYWORD_SELECT=[Ss][Ee][Ll][Ee][Cc][Tt]
-KEYWORD_SOURCE=[Ss][Oo][Uu][Rr][Cc][Ee]
-KEYWORD_SIGNAL=[Ss][Ii][Gg][Nn][Aa][Ll]
-KEYWORD_THEN=[Tt][Hh][Ee][Nn]
-KEYWORD_TRACE=[Tt][Rr][Aa][Cc][Ee]
-KEYWORD_USE=[Uu][Ss][Ee]
-KEYWORD_WHILE=[Ww][Hh][Ii][Ll][Ee]
+ADDRESS=[Aa][Dd][Dd][Rr][Ee][Ss][Ss]
+ARG=[Aa][Rr][Gg]
+VAR=[Vv][Aa][Rr]
+VALUE=[Vv][Aa][Ll][Uu][Ee]
+WITH=[Ww][Ii][Tt][Hh]
+CALL=[Cc][Aa][Ll][Ll]
+DO=[Dd][Oo]
+DROP=[Dd][Rr][Oo][Pp]
+ELSE=[Ee][Ll][Ss][Ee]
+END=[Ee][Nn][Dd]
+EXIT=[Ee][Xx][Ii][Tt]
+EXPOSE=[Ee][Xx][Pp][Oo][Ss][Ee]
+FORWARD=[Ff][Oo][Rr][Ww][Aa][Rr][Dd]
+GUARD=[Gg][Uu][Aa][Rr][Dd]
+IF=[Ii][Ff]
+INTERPRET=[Ii][Nn][Tt][Ee][Rr][Pp][Rr][Ee][Tt]
+ITERATE=[Ii][Tt][Ee][Rr][Aa][Tt][Ee]
+LEAVE=[Ll][Ee][Aa][Vv][Ee]
+LOOP=[Ll][Oo][Oo][Pp]
+NOP=[Nn][Oo][Pp]
+NUMERIC=[Nn][Uu][Mm][Ee][Rr][Ii][Cc]
+OPTIONS=[Oo][Pp][Tt][Ii][Oo][Nn][Ss]
+OTHERWISE=[Oo][Tt][Hh][Ee][Rr][Ww][Ii][Ss][Ee]
+PARSE=[Pp][Aa][Rr][Ss][Ee]
+PROCEDURE=[Pp][Rr][Oo][Cc][Ee][Dd][Uu][Rr][Ee]
+PULL=[Pp][Uu][Ll][Ll]
+PUSH=[Pp][Uu][Ss][Hh]
+QUEUE=[Qq][Uu][Ee][Uu][Ee]
+RAISE=[Rr][Aa][Ii][Ss][Ee]
+REPLY=[Rr][Ee][Pp][Ll][Yy]
+RETURN=[Rr][Ee][Tt][Uu][Rr][Nn]
+SAY=[Ss][Aa][Yy]
+SELECT=[Ss][Ee][Ll][Ee][Cc][Tt]
+SOURCE=[Ss][Oo][Uu][Rr][Cc][Ee]
+SIGNAL=[Ss][Ii][Gg][Nn][Aa][Ll]
+THEN=[Tt][Hh][Ee][Nn]
+TRACE=[Tt][Rr][Aa][Cc][Ee]
+USE=[Uu][Ss][Ee]
+WHILE=[Ww][Hh][Ii][Ll][Ee]
 SHEBANG=[#][!][^\n]*
 LINE_COMMENT=--[^\n]*
 MULTILINE_COMMENT=[/][*]([^*]+|[*]+[^/*])*[*]+[/]
@@ -105,9 +105,9 @@ NUMBER_INT=[0-9]+
 NUMBER_DECIMAL=[0-9]+[.][0-9]+
 NUMBER_SCIENTIFIC=[0-9]*[.][0-9]+([eE][+-]?[0-9]+)
 NUMBER_HEXADECIMAL=0[xX][0-9a-fA-F]+
-KEYWORD_CLASS=::class
-KEYWORD_ATTRIBUTE=::attribute
-KEYWORD_METHOD=::method
+CLASS=::class
+ATTRIBUTE=::attribute
+METHOD=::method
 DOT=[.]
 EXCLAMATION=[!]
 TILDE=[~]
@@ -120,7 +120,6 @@ COLON=[:]
 
   "("                                           { return TOKEN_LEFT; }
   ")"                                           { return TOKEN_RIGHT; }
-  "END"                                         { return END; }
 
   {WHITE_SPACE}                                 { return WHITE_SPACE; }
   {TERMINATOR}                                  { return TERMINATOR; }
@@ -153,45 +152,45 @@ COLON=[:]
   {OPERATOR_LESSTHAN_GREATERTHAN}               { return OPERATOR_LESSTHAN_GREATERTHAN; }
   {OPERATOR_GREATERTHAN_LESSTHAN}               { return OPERATOR_GREATERTHAN_LESSTHAN; }
   {OPERATOR_BACKSLASH}                          { return OPERATOR_BACKSLASH; }
-  {KEYWORD_ADDRESS}                             { return KEYWORD_ADDRESS; }
-  {KEYWORD_ARG}                                 { return KEYWORD_ARG; }
-  {KEYWORD_VAR}                                 { return KEYWORD_VAR; }
-  {KEYWORD_VALUE}                               { return KEYWORD_VALUE; }
-  {KEYWORD_WITH}                                { return KEYWORD_WITH; }
-  {KEYWORD_CALL}                                { return KEYWORD_CALL; }
-  {KEYWORD_DO}                                  { return KEYWORD_DO; }
-  {KEYWORD_DROP}                                { return KEYWORD_DROP; }
-  {KEYWORD_ELSE}                                { return KEYWORD_ELSE; }
-  {KEYWORD_END}                                 { return KEYWORD_END; }
-  {KEYWORD_EXIT}                                { return KEYWORD_EXIT; }
-  {KEYWORD_EXPOSE}                              { return KEYWORD_EXPOSE; }
-  {KEYWORD_FORWARD}                             { return KEYWORD_FORWARD; }
-  {KEYWORD_GUARD}                               { return KEYWORD_GUARD; }
-  {KEYWORD_IF}                                  { return KEYWORD_IF; }
-  {KEYWORD_INTERPRET}                           { return KEYWORD_INTERPRET; }
-  {KEYWORD_ITERATE}                             { return KEYWORD_ITERATE; }
-  {KEYWORD_LEAVE}                               { return KEYWORD_LEAVE; }
-  {KEYWORD_LOOP}                                { return KEYWORD_LOOP; }
-  {KEYWORD_NOP}                                 { return KEYWORD_NOP; }
-  {KEYWORD_NUMERIC}                             { return KEYWORD_NUMERIC; }
-  {KEYWORD_OPTIONS}                             { return KEYWORD_OPTIONS; }
-  {KEYWORD_OTHERWISE}                           { return KEYWORD_OTHERWISE; }
-  {KEYWORD_PARSE}                               { return KEYWORD_PARSE; }
-  {KEYWORD_PROCEDURE}                           { return KEYWORD_PROCEDURE; }
-  {KEYWORD_PULL}                                { return KEYWORD_PULL; }
-  {KEYWORD_PUSH}                                { return KEYWORD_PUSH; }
-  {KEYWORD_QUEUE}                               { return KEYWORD_QUEUE; }
-  {KEYWORD_RAISE}                               { return KEYWORD_RAISE; }
-  {KEYWORD_REPLY}                               { return KEYWORD_REPLY; }
-  {KEYWORD_RETURN}                              { return KEYWORD_RETURN; }
-  {KEYWORD_SAY}                                 { return KEYWORD_SAY; }
-  {KEYWORD_SELECT}                              { return KEYWORD_SELECT; }
-  {KEYWORD_SOURCE}                              { return KEYWORD_SOURCE; }
-  {KEYWORD_SIGNAL}                              { return KEYWORD_SIGNAL; }
-  {KEYWORD_THEN}                                { return KEYWORD_THEN; }
-  {KEYWORD_TRACE}                               { return KEYWORD_TRACE; }
-  {KEYWORD_USE}                                 { return KEYWORD_USE; }
-  {KEYWORD_WHILE}                               { return KEYWORD_WHILE; }
+  {ADDRESS}                                     { return ADDRESS; }
+  {ARG}                                         { return ARG; }
+  {VAR}                                         { return VAR; }
+  {VALUE}                                       { return VALUE; }
+  {WITH}                                        { return WITH; }
+  {CALL}                                        { return CALL; }
+  {DO}                                          { return DO; }
+  {DROP}                                        { return DROP; }
+  {ELSE}                                        { return ELSE; }
+  {END}                                         { return END; }
+  {EXIT}                                        { return EXIT; }
+  {EXPOSE}                                      { return EXPOSE; }
+  {FORWARD}                                     { return FORWARD; }
+  {GUARD}                                       { return GUARD; }
+  {IF}                                          { return IF; }
+  {INTERPRET}                                   { return INTERPRET; }
+  {ITERATE}                                     { return ITERATE; }
+  {LEAVE}                                       { return LEAVE; }
+  {LOOP}                                        { return LOOP; }
+  {NOP}                                         { return NOP; }
+  {NUMERIC}                                     { return NUMERIC; }
+  {OPTIONS}                                     { return OPTIONS; }
+  {OTHERWISE}                                   { return OTHERWISE; }
+  {PARSE}                                       { return PARSE; }
+  {PROCEDURE}                                   { return PROCEDURE; }
+  {PULL}                                        { return PULL; }
+  {PUSH}                                        { return PUSH; }
+  {QUEUE}                                       { return QUEUE; }
+  {RAISE}                                       { return RAISE; }
+  {REPLY}                                       { return REPLY; }
+  {RETURN}                                      { return RETURN; }
+  {SAY}                                         { return SAY; }
+  {SELECT}                                      { return SELECT; }
+  {SOURCE}                                      { return SOURCE; }
+  {SIGNAL}                                      { return SIGNAL; }
+  {THEN}                                        { return THEN; }
+  {TRACE}                                       { return TRACE; }
+  {USE}                                         { return USE; }
+  {WHILE}                                       { return WHILE; }
   {SHEBANG}                                     { return SHEBANG; }
   {LINE_COMMENT}                                { return LINE_COMMENT; }
   {MULTILINE_COMMENT}                           { return MULTILINE_COMMENT; }
@@ -202,9 +201,9 @@ COLON=[:]
   {NUMBER_DECIMAL}                              { return NUMBER_DECIMAL; }
   {NUMBER_SCIENTIFIC}                           { return NUMBER_SCIENTIFIC; }
   {NUMBER_HEXADECIMAL}                          { return NUMBER_HEXADECIMAL; }
-  {KEYWORD_CLASS}                               { return KEYWORD_CLASS; }
-  {KEYWORD_ATTRIBUTE}                           { return KEYWORD_ATTRIBUTE; }
-  {KEYWORD_METHOD}                              { return KEYWORD_METHOD; }
+  {CLASS}                                       { return CLASS; }
+  {ATTRIBUTE}                                   { return ATTRIBUTE; }
+  {METHOD}                                      { return METHOD; }
   {DOT}                                         { return DOT; }
   {EXCLAMATION}                                 { return EXCLAMATION; }
   {TILDE}                                       { return TILDE; }

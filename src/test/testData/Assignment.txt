@@ -50,7 +50,7 @@ FILE
                       PsiElement(NUMBER_INT)('2')
   PsiElement(TERMINATOR)('\n')
   RexxSayInstructionImpl(SAY_INSTRUCTION)
-    PsiElement(KEYWORD_SAY)('say')
+    PsiElement(SAY)('say')
     PsiWhiteSpace(' ')
     RexxExpressionImpl(EXPRESSION)
       RexxConcatenationImpl(CONCATENATION)

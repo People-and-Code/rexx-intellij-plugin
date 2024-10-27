@@ -53,14 +53,14 @@ public class RexxParsePullInstructionImpl extends ASTWrapperPsiElement implement
 
   @Override
   @NotNull
-  public PsiElement getKeywordParse() {
-    return findNotNullChildByType(KEYWORD_PARSE);
+  public PsiElement getParse() {
+    return findNotNullChildByType(PARSE);
   }
 
   @Override
   @NotNull
-  public PsiElement getKeywordPull() {
-    return findNotNullChildByType(KEYWORD_PULL);
+  public PsiElement getPull() {
+    return findNotNullChildByType(PULL);
   }
 
 }

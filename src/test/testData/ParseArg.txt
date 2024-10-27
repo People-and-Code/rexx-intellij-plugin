@@ -1,8 +1,8 @@
 FILE
   RexxParseArgInstructionImpl(PARSE_ARG_INSTRUCTION)
-    PsiElement(KEYWORD_PARSE)('parse')
+    PsiElement(PARSE)('parse')
     PsiWhiteSpace(' ')
-    PsiElement(KEYWORD_ARG)('arg')
+    PsiElement(ARG)('arg')
     PsiWhiteSpace(' ')
     RexxNameDeclarationImpl(NAME_DECLARATION)
       RexxIdentifier_Impl(IDENTIFIER_)

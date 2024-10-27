@@ -35,8 +35,8 @@ public class RexxReturnInstructionImpl extends ASTWrapperPsiElement implements R
 
   @Override
   @NotNull
-  public PsiElement getKeywordReturn() {
-    return findNotNullChildByType(KEYWORD_RETURN);
+  public PsiElement getReturn() {
+    return findNotNullChildByType(RETURN);
   }
 
 }

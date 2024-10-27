@@ -23,12 +23,12 @@ public interface RexxParseValueInstruction extends PsiElement {
   List<RexxStringLiteral> getStringLiteralList();
 
   @NotNull
-  PsiElement getKeywordParse();
+  PsiElement getParse();
 
   @NotNull
-  PsiElement getKeywordValue();
+  PsiElement getValue();
 
   @NotNull
-  PsiElement getKeywordWith();
+  PsiElement getWith();
 
 }

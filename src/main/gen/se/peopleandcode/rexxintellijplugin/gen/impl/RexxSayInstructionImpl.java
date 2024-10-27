@@ -35,8 +35,8 @@ public class RexxSayInstructionImpl extends ASTWrapperPsiElement implements Rexx
 
   @Override
   @NotNull
-  public PsiElement getKeywordSay() {
-    return findNotNullChildByType(KEYWORD_SAY);
+  public PsiElement getSay() {
+    return findNotNullChildByType(SAY);
   }
 
 }

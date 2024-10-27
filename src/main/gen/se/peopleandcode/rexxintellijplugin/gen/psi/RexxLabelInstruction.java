@@ -17,12 +17,12 @@ public interface RexxLabelInstruction extends PsiElement {
   PsiElement getDot();
 
   @Nullable
+  PsiElement getExpose();
+
+  @Nullable
   PsiElement getIdentifier();
 
   @Nullable
-  PsiElement getKeywordExpose();
-
-  @Nullable
-  PsiElement getKeywordProcedure();
+  PsiElement getProcedure();
 
 }

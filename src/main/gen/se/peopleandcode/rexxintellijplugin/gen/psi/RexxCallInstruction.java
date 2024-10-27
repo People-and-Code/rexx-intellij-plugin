@@ -11,9 +11,9 @@ public interface RexxCallInstruction extends PsiElement {
   List<RexxExpression> getExpressionList();
 
   @NotNull
-  PsiElement getIdentifier();
+  PsiElement getCall();
 
   @NotNull
-  PsiElement getKeywordCall();
+  PsiElement getIdentifier();
 
 }

@@ -11,6 +11,6 @@ public interface RexxSayInstruction extends PsiElement {
   List<RexxExpression> getExpressionList();
 
   @NotNull
-  PsiElement getKeywordSay();
+  PsiElement getSay();
 
 }

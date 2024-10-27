@@ -143,20 +143,20 @@ public class RexxIfInstructionImpl extends ASTWrapperPsiElement implements RexxI
 
   @Override
   @Nullable
-  public PsiElement getKeywordElse() {
-    return findChildByType(KEYWORD_ELSE);
+  public PsiElement getElse() {
+    return findChildByType(ELSE);
   }
 
   @Override
   @NotNull
-  public PsiElement getKeywordIf() {
-    return findNotNullChildByType(KEYWORD_IF);
+  public PsiElement getIf() {
+    return findNotNullChildByType(IF);
   }
 
   @Override
   @NotNull
-  public PsiElement getKeywordThen() {
-    return findNotNullChildByType(KEYWORD_THEN);
+  public PsiElement getThen() {
+    return findNotNullChildByType(THEN);
   }
 
 }

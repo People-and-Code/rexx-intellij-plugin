@@ -47,20 +47,20 @@ public class RexxLabelInstructionImpl extends ASTWrapperPsiElement implements Re
 
   @Override
   @Nullable
+  public PsiElement getExpose() {
+    return findChildByType(EXPOSE);
+  }
+
+  @Override
+  @Nullable
   public PsiElement getIdentifier() {
     return findChildByType(IDENTIFIER);
   }
 
   @Override
   @Nullable
-  public PsiElement getKeywordExpose() {
-    return findChildByType(KEYWORD_EXPOSE);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getKeywordProcedure() {
-    return findChildByType(KEYWORD_PROCEDURE);
+  public PsiElement getProcedure() {
+    return findChildByType(PROCEDURE);
   }
 
 }

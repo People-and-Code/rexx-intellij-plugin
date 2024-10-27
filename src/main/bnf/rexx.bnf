@@ -72,46 +72,46 @@
 
         OPERATOR_BACKSLASH="regexp:\\\\"
 
-        KEYWORD_ADDRESS="regexp:[Aa][Dd][Dd][Rr][Ee][Ss][Ss]"
-        KEYWORD_ARG="regexp:[Aa][Rr][Gg]"
-        KEYWORD_VAR="regexp:[Vv][Aa][Rr]"
-        KEYWORD_VALUE="regexp:[Vv][Aa][Ll][Uu][Ee]"
-        KEYWORD_WITH="regexp:[Ww][Ii][Tt][Hh]"
-        KEYWORD_CALL="regexp:[Cc][Aa][Ll][Ll]"
-        KEYWORD_DO="regexp:[Dd][Oo]"
-        KEYWORD_DROP="regexp:[Dd][Rr][Oo][Pp]"
-        KEYWORD_ELSE="regexp:[Ee][Ll][Ss][Ee]"
-        KEYWORD_END="regexp:[Ee][Nn][Dd]"
-        KEYWORD_EXIT="regexp:[Ee][Xx][Ii][Tt]"
-        KEYWORD_EXPOSE="regexp:[Ee][Xx][Pp][Oo][Ss][Ee]"
-        KEYWORD_FORWARD="regexp:[Ff][Oo][Rr][Ww][Aa][Rr][Dd]"
-        KEYWORD_GUARD="regexp:[Gg][Uu][Aa][Rr][Dd]"
-        KEYWORD_IF="regexp:[Ii][Ff]"
-        KEYWORD_INTERPRET="regexp:[Ii][Nn][Tt][Ee][Rr][Pp][Rr][Ee][Tt]"
-        KEYWORD_ITERATE="regexp:[Ii][Tt][Ee][Rr][Aa][Tt][Ee]"
-        KEYWORD_LEAVE="regexp:[Ll][Ee][Aa][Vv][Ee]"
-        KEYWORD_LOOP="regexp:[Ll][Oo][Oo][Pp]"
-        KEYWORD_NOP="regexp:[Nn][Oo][Pp]"
-        KEYWORD_NUMERIC="regexp:[Nn][Uu][Mm][Ee][Rr][Ii][Cc]"
-        KEYWORD_OPTIONS="regexp:[Oo][Pp][Tt][Ii][Oo][Nn][Ss]"
-        KEYWORD_OTHERWISE="regexp:[Oo][Tt][Hh][Ee][Rr][Ww][Ii][Ss][Ee]"
-        KEYWORD_PARSE="regexp:[Pp][Aa][Rr][Ss][Ee]"
-        KEYWORD_PROCEDURE="regexp:[Pp][Rr][Oo][Cc][Ee][Dd][Uu][Rr][Ee]"
-        KEYWORD_PULL="regexp:[Pp][Uu][Ll][Ll]"
-        KEYWORD_PUSH="regexp:[Pp][Uu][Ss][Hh]"
-        KEYWORD_QUEUE="regexp:[Qq][Uu][Ee][Uu][Ee]"
-        KEYWORD_RAISE="regexp:[Rr][Aa][Ii][Ss][Ee]"
-        KEYWORD_REPLY="regexp:[Rr][Ee][Pp][Ll][Yy]"
-        KEYWORD_RETURN="regexp:[Rr][Ee][Tt][Uu][Rr][Nn]"
-        KEYWORD_SAY="regexp:[Ss][Aa][Yy]"
-        KEYWORD_SELECT="regexp:[Ss][Ee][Ll][Ee][Cc][Tt]"
-        KEYWORD_SOURCE="regexp:[Ss][Oo][Uu][Rr][Cc][Ee]"
-        KEYWORD_SIGNAL="regexp:[Ss][Ii][Gg][Nn][Aa][Ll]"
-        KEYWORD_THEN="regexp:[Tt][Hh][Ee][Nn]"
-        KEYWORD_TRACE="regexp:[Tt][Rr][Aa][Cc][Ee]"
-        KEYWORD_USE="regexp:[Uu][Ss][Ee]"
-        KEYWORD_WHILE="regexp:[Ww][Hh][Ii][Ll][Ee]"
-        //KEYWORD_WHEN="regexp:WHEN"
+        ADDRESS="regexp:[Aa][Dd][Dd][Rr][Ee][Ss][Ss]"
+        ARG="regexp:[Aa][Rr][Gg]"
+        VAR="regexp:[Vv][Aa][Rr]"
+        VALUE="regexp:[Vv][Aa][Ll][Uu][Ee]"
+        WITH="regexp:[Ww][Ii][Tt][Hh]"
+        CALL="regexp:[Cc][Aa][Ll][Ll]"
+        DO="regexp:[Dd][Oo]"
+        DROP="regexp:[Dd][Rr][Oo][Pp]"
+        ELSE="regexp:[Ee][Ll][Ss][Ee]"
+        END="regexp:[Ee][Nn][Dd]"
+        EXIT="regexp:[Ee][Xx][Ii][Tt]"
+        EXPOSE="regexp:[Ee][Xx][Pp][Oo][Ss][Ee]"
+        FORWARD="regexp:[Ff][Oo][Rr][Ww][Aa][Rr][Dd]"
+        GUARD="regexp:[Gg][Uu][Aa][Rr][Dd]"
+        IF="regexp:[Ii][Ff]"
+        INTERPRET="regexp:[Ii][Nn][Tt][Ee][Rr][Pp][Rr][Ee][Tt]"
+        ITERATE="regexp:[Ii][Tt][Ee][Rr][Aa][Tt][Ee]"
+        LEAVE="regexp:[Ll][Ee][Aa][Vv][Ee]"
+        LOOP="regexp:[Ll][Oo][Oo][Pp]"
+        NOP="regexp:[Nn][Oo][Pp]"
+        NUMERIC="regexp:[Nn][Uu][Mm][Ee][Rr][Ii][Cc]"
+        OPTIONS="regexp:[Oo][Pp][Tt][Ii][Oo][Nn][Ss]"
+        OTHERWISE="regexp:[Oo][Tt][Hh][Ee][Rr][Ww][Ii][Ss][Ee]"
+        PARSE="regexp:[Pp][Aa][Rr][Ss][Ee]"
+        PROCEDURE="regexp:[Pp][Rr][Oo][Cc][Ee][Dd][Uu][Rr][Ee]"
+        PULL="regexp:[Pp][Uu][Ll][Ll]"
+        PUSH="regexp:[Pp][Uu][Ss][Hh]"
+        QUEUE="regexp:[Qq][Uu][Ee][Uu][Ee]"
+        RAISE="regexp:[Rr][Aa][Ii][Ss][Ee]"
+        REPLY="regexp:[Rr][Ee][Pp][Ll][Yy]"
+        RETURN="regexp:[Rr][Ee][Tt][Uu][Rr][Nn]"
+        SAY="regexp:[Ss][Aa][Yy]"
+        SELECT="regexp:[Ss][Ee][Ll][Ee][Cc][Tt]"
+        SOURCE="regexp:[Ss][Oo][Uu][Rr][Cc][Ee]"
+        SIGNAL="regexp:[Ss][Ii][Gg][Nn][Aa][Ll]"
+        THEN="regexp:[Tt][Hh][Ee][Nn]"
+        TRACE="regexp:[Tt][Rr][Aa][Cc][Ee]"
+        USE="regexp:[Uu][Ss][Ee]"
+        WHILE="regexp:[Ww][Hh][Ii][Ll][Ee]"
+        //WHEN="regexp:WHEN"
 
 
         // Comments
@@ -134,9 +134,9 @@
 
         // OO
 
-        KEYWORD_CLASS="regexp:::class"
-        KEYWORD_ATTRIBUTE="regexp:::attribute"
-        KEYWORD_METHOD="regexp:::method"
+        CLASS="regexp:::class"
+        ATTRIBUTE="regexp:::attribute"
+        METHOD="regexp:::method"
         DOT="regexp:[.]"
         EXCLAMATION="regexp:[!]"
         TILDE="regexp:[~]"
@@ -146,7 +146,7 @@
 }
 
 /*program*/
-rexx_file ::= ncl? instruction_list? KEYWORD_END?
+rexx_file ::= ncl? instruction_list? END?
 private ncl ::=  <<eof>> | null_clause+
 private null_clause ::= terminator /*label_list?
 private label_list ::= (label_instruction terminator)+*/
@@ -184,19 +184,19 @@ private parse_instruction
     | parse_var_instruction
     | parse_value_instruction
     | parse_source_instruction
-numeric_instruction ::= KEYWORD_NUMERIC IDENTIFIER integerConstant
-label_instruction ::= name_declaration COLON (KEYWORD_PROCEDURE (KEYWORD_EXPOSE IDENTIFIER)? DOT?)?
-return_instruction ::= KEYWORD_RETURN expression?
+numeric_instruction ::= NUMERIC IDENTIFIER integerConstant
+label_instruction ::= name_declaration COLON (PROCEDURE (EXPOSE IDENTIFIER)? DOT?)?
+return_instruction ::= RETURN expression?
 
-signal_instruction ::= KEYWORD_SIGNAL expressions
+signal_instruction ::= SIGNAL expressions
 
-trace_instruction ::= KEYWORD_TRACE ("o"|"i"|"r")
+trace_instruction ::= TRACE ("o"|"i"|"r")
 
-exit_instruction ::= KEYWORD_EXIT expression?
+exit_instruction ::= EXIT expression?
 
-call_instruction ::= KEYWORD_CALL IDENTIFIER comma_seperated_arguments
+call_instruction ::= CALL IDENTIFIER comma_seperated_arguments
 
-address_instruction ::= KEYWORD_ADDRESS expressions
+address_instruction ::= ADDRESS expressions
 
 expression_instruction
     ::= &IDENTIFIER expression
@@ -206,7 +206,7 @@ expression_instruction
 instruction_block ::= do_specification ncl
     instruction_list?
     do_ending
-private do_specification ::= KEYWORD_DO /*[group_option+]*/
+private do_specification ::= DO /*[group_option+]*/
     ( dorep
     | conditional
     | dorep conditional
@@ -220,12 +220,12 @@ private over
     ::= name_declaration 'OVER' expression
     | numericConstant 'OVER'
     /*| CONST_SYMBOL 'OVER'*/
-private do_ending ::= KEYWORD_END name_declaration? ncl
-parse_pull_instruction ::= KEYWORD_PARSE KEYWORD_PULL parse_target* (COMMA parse_target*)*
-parse_arg_instruction ::= KEYWORD_PARSE KEYWORD_ARG parse_target* (COMMA parse_target*)*
-parse_var_instruction ::= KEYWORD_PARSE KEYWORD_VAR parse_target*
-parse_value_instruction ::= KEYWORD_PARSE KEYWORD_VALUE expression KEYWORD_WITH parse_target*
-parse_source_instruction ::= KEYWORD_PARSE KEYWORD_SOURCE parse_target*
+private do_ending ::= END name_declaration? ncl
+parse_pull_instruction ::= PARSE PULL parse_target* (COMMA parse_target*)*
+parse_arg_instruction ::= PARSE ARG parse_target* (COMMA parse_target*)*
+parse_var_instruction ::= PARSE VAR parse_target*
+parse_value_instruction ::= PARSE VALUE expression WITH parse_target*
+parse_source_instruction ::= PARSE SOURCE parse_target*
 private parse_target
     ::= IDENTIFIER DOT EXCLAMATION? IDENTIFIER
     | name_declaration
@@ -234,9 +234,9 @@ private parse_target
     | remainder // | range | offset
 
 remainder ::= DOT
-if_instruction ::= KEYWORD_IF expression ncl? then else?
-private then ::= KEYWORD_THEN ncl? (instruction | END)
-private else ::= KEYWORD_ELSE ncl? (instruction | END)
+if_instruction ::= IF expression ncl? then else?
+private then ::= THEN ncl? (instruction | END)
+private else ::= ELSE ncl? (instruction | END)
 
 assignment ::= name_declaration OPERATOR_EQUAL expressions
 
@@ -244,7 +244,7 @@ name_declaration ::= identifier_ {
    mixin="se.peopleandcode.rexxintellijplugin.instructions.NameDeclaration"
 }
 
-say_instruction ::= KEYWORD_SAY expressions?
+say_instruction ::= SAY expressions?
 private expressions ::= expression+
 expression ::= concatenation
 concatenation ::= compare (OPERATOR_CONCATENATE? !keywords compare)*
@@ -292,42 +292,42 @@ global ::= DOT IDENTIFIER
 identifier_ ::= IDENTIFIER | keywords ;
 
 private keywords
-    ::= KEYWORD_ADDRESS
-    |  KEYWORD_ARG
-    |  KEYWORD_VAR
-    |  KEYWORD_VALUE
-    |  KEYWORD_WITH
-    |  KEYWORD_CALL
-    |  KEYWORD_DO
-    |  KEYWORD_DROP
-    |  KEYWORD_ELSE
-    |  KEYWORD_END
-    |  KEYWORD_EXIT
-    |  KEYWORD_EXPOSE
-    |  KEYWORD_FORWARD
-    |  KEYWORD_GUARD
-    |  KEYWORD_IF
-    |  KEYWORD_INTERPRET
-    |  KEYWORD_ITERATE
-    |  KEYWORD_LEAVE
-    |  KEYWORD_LOOP
-    |  KEYWORD_NOP
-    |  KEYWORD_NUMERIC
-    |  KEYWORD_OPTIONS
-    |  KEYWORD_OTHERWISE
-    |  KEYWORD_PARSE
-    |  KEYWORD_PROCEDURE
-    |  KEYWORD_PULL
-    |  KEYWORD_PUSH
-    |  KEYWORD_QUEUE
-    |  KEYWORD_RAISE
-    |  KEYWORD_REPLY
-    |  KEYWORD_RETURN
-    |  KEYWORD_SAY
-    |  KEYWORD_SELECT
-    |  KEYWORD_SOURCE
-    |  KEYWORD_SIGNAL
-    |  KEYWORD_THEN
-    |  KEYWORD_TRACE
-    |  KEYWORD_USE
-    |  KEYWORD_WHILE
+    ::= ADDRESS
+    |  ARG
+    |  VAR
+    |  VALUE
+    |  WITH
+    |  CALL
+    |  DO
+    |  DROP
+    |  ELSE
+    |  END
+    |  EXIT
+    |  EXPOSE
+    |  FORWARD
+    |  GUARD
+    |  IF
+    |  INTERPRET
+    |  ITERATE
+    |  LEAVE
+    |  LOOP
+    |  NOP
+    |  NUMERIC
+    |  OPTIONS
+    |  OTHERWISE
+    |  PARSE
+    |  PROCEDURE
+    |  PULL
+    |  PUSH
+    |  QUEUE
+    |  RAISE
+    |  REPLY
+    |  RETURN
+    |  SAY
+    |  SELECT
+    |  SOURCE
+    |  SIGNAL
+    |  THEN
+    |  TRACE
+    |  USE
+    |  WHILE

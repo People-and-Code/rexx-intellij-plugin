@@ -11,6 +11,6 @@ public interface RexxAddressInstruction extends PsiElement {
   List<RexxExpression> getExpressionList();
 
   @NotNull
-  PsiElement getKeywordAddress();
+  PsiElement getAddress();
 
 }

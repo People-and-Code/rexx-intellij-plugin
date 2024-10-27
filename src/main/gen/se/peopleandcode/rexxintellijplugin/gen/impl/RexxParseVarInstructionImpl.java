@@ -53,14 +53,14 @@ public class RexxParseVarInstructionImpl extends ASTWrapperPsiElement implements
 
   @Override
   @NotNull
-  public PsiElement getKeywordParse() {
-    return findNotNullChildByType(KEYWORD_PARSE);
+  public PsiElement getParse() {
+    return findNotNullChildByType(PARSE);
   }
 
   @Override
   @NotNull
-  public PsiElement getKeywordVar() {
-    return findNotNullChildByType(KEYWORD_VAR);
+  public PsiElement getVar() {
+    return findNotNullChildByType(VAR);
   }
 
 }

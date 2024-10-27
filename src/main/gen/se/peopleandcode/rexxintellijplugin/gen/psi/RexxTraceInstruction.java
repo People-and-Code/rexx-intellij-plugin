@@ -8,6 +8,6 @@ import com.intellij.psi.PsiElement;
 public interface RexxTraceInstruction extends PsiElement {
 
   @NotNull
-  PsiElement getKeywordTrace();
+  PsiElement getTrace();
 
 }

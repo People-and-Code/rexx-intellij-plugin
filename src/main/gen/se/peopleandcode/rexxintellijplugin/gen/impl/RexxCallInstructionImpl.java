@@ -35,14 +35,14 @@ public class RexxCallInstructionImpl extends ASTWrapperPsiElement implements Rex
 
   @Override
   @NotNull
-  public PsiElement getIdentifier() {
-    return findNotNullChildByType(IDENTIFIER);
+  public PsiElement getCall() {
+    return findNotNullChildByType(CALL);
   }
 
   @Override
   @NotNull
-  public PsiElement getKeywordCall() {
-    return findNotNullChildByType(KEYWORD_CALL);
+  public PsiElement getIdentifier() {
+    return findNotNullChildByType(IDENTIFIER);
   }
 
 }

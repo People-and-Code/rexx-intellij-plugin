@@ -35,8 +35,8 @@ public class RexxExitInstructionImpl extends ASTWrapperPsiElement implements Rex
 
   @Override
   @NotNull
-  public PsiElement getKeywordExit() {
-    return findNotNullChildByType(KEYWORD_EXIT);
+  public PsiElement getExit() {
+    return findNotNullChildByType(EXIT);
   }
 
 }

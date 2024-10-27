@@ -11,6 +11,6 @@ public interface RexxSignalInstruction extends PsiElement {
   List<RexxExpression> getExpressionList();
 
   @NotNull
-  PsiElement getKeywordSignal();
+  PsiElement getSignal();
 
 }
