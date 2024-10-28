@@ -28,6 +28,12 @@ public class RexxExpressionTermImpl extends ASTWrapperPsiElement implements Rexx
   }
 
   @Override
+  @NotNull
+  public List<RexxExpression> getExpressionList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxExpression.class);
+  }
+
+  @Override
   @Nullable
   public RexxFunctionCall getFunctionCall() {
     return findChildByClass(RexxFunctionCall.class);

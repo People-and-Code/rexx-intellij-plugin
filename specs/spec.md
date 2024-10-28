@@ -102,10 +102,10 @@ single_instruction
     | message_instruction
     | keyword_instruction
     | command
-assignment := VAR_SYMBOL '#' expression
-    | NUMBER '#' Msg31.1
-    | CONST_SYMBOL '#' (Msg31.2 | Msg31.3)
-message_instruction := message_term | message_term '#' expression
+assignment := VAR_SYMBOL '=' expression
+    | NUMBER '=' Msg31.1
+    | CONST_SYMBOL '=' (Msg31.2 | Msg31.3)
+message_instruction := message_term | message_term '=' expression
 keyword_instruction
     := address
     | arg
@@ -269,14 +269,19 @@ prefix_expression := ('+' | '-' | '\') prefix_expression | term | Msg35.1
 
 /* "Stub" has to be identified semantically? */
 term := simple_term [ '.' ( term | Msgnn )]
-simple_term := symbol | STRING | invoke | indexed
+simple_term 
+    := symbol 
+    | STRING 
+    | invoke 
+    | indexed
     | '(' expression ( ')' | Msg36 )
     | initializer
     | message_term '##'
 message_term
     := term ('~' | '~~') method_name [arguments]
     | term '['[ expression_list ] (']' | Msg36.2)
-method name := (taken constant | Msg19.19) [':' ( VAR_SYMBOL | Msg19.21 )]
+    
+method_name := (taken_constant | Msg19.19) [':' ( VAR_SYMBOL | Msg19.21 )]
 
 /* Method-call without arguments is syntactically like symbol. */
 /* Editor - not sure of my notes about here. */

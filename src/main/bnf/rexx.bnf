@@ -259,20 +259,7 @@ multiplication ::= division_ (OPERATOR_MULTIPLY division_)*
 private division_ ::= expressionTerm division*
 left division ::= OPERATOR_DIVIDE expressionTerm
 
-expressionTerm
-    ::= stringLiteral
-    | numericConstant
-    | functionCall
-    | methodCall
-    | stem
-    | variable_
-    | parentheticalExpression
-
-stem ::= variable_ (DOT EXCLAMATION? NUMBER_INT? IDENTIFIER)+
-functionCall ::= variable_ TOKEN_LEFT comma_seperated_arguments TOKEN_RIGHT
 private comma_seperated_arguments ::= expression? (COMMA expression?)*
-methodCall ::= variable_ TILDE IDENTIFIER TOKEN_LEFT expression? (COMMA expression?)* TOKEN_RIGHT
-parentheticalExpression ::= TOKEN_LEFT expression TOKEN_RIGHT
 stringLiteral ::= STRING
 numericConstant ::= integerConstant | decimalConstant | scientificConstant
 integerConstant ::= NUMBER_INT
@@ -283,9 +270,31 @@ variable ::= identifier_ {
     mixin="se.peopleandcode.rexxintellijplugin.expressions.Variable"
 }
 global ::= DOT IDENTIFIER
+private symbol ::= variable | global /* == const_symbol */ | numericConstant
+/*term*/ expressionTerm ::= methodCall | stem | simple_term
+stem ::= simple_term (DOT simple_term)+
+methodCall ::= (stem | simple_term) message_call+
+private simple_term
+    ::= stringLiteral
+    | functionCall
+    | symbol
+    | indexed
+    | parentheticalExpression
+    | initializer
+
+parentheticalExpression ::= TOKEN_LEFT expression TOKEN_RIGHT
+
+private message_call ::= TILDE TILDE? method_name arguments?
+private method_name ::= /*taken_constant*/ IDENTIFIER (COLON variable_)?
+/*invoke*/ functionCall ::= (symbol | stringLiteral) arguments
+private arguments ::= TOKEN_LEFT expression_list? TOKEN_RIGHT
+private expression_list ::= expression? (COMMA expression?)*
+private indexed ::= symbol | stringLiteral indices
+private indices ::= '[' expression_list? ']'
+private initializer ::= '[' expression_list ']'
+private taken_constant ::= symbol | stringLiteral
 
 identifier_ ::= IDENTIFIER | keywords ;
-
 private keywords
     ::= ADDRESS
     |  ARG

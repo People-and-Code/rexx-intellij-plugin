@@ -7,10 +7,25 @@ import com.intellij.psi.PsiElement;
 
 public interface RexxStem extends PsiElement {
 
-  @Nullable
-  RexxGlobal getGlobal();
+  @NotNull
+  List<RexxExpression> getExpressionList();
 
-  @Nullable
-  RexxVariable getVariable();
+  @NotNull
+  List<RexxFunctionCall> getFunctionCallList();
+
+  @NotNull
+  List<RexxGlobal> getGlobalList();
+
+  @NotNull
+  List<RexxNumericConstant> getNumericConstantList();
+
+  @NotNull
+  List<RexxParentheticalExpression> getParentheticalExpressionList();
+
+  @NotNull
+  List<RexxStringLiteral> getStringLiteralList();
+
+  @NotNull
+  List<RexxVariable> getVariableList();
 
 }

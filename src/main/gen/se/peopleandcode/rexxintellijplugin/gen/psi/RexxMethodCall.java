@@ -11,15 +11,24 @@ public interface RexxMethodCall extends PsiElement {
   List<RexxExpression> getExpressionList();
 
   @Nullable
-  RexxGlobal getGlobal();
+  RexxFunctionCall getFunctionCall();
+
+  @NotNull
+  List<RexxGlobal> getGlobalList();
 
   @Nullable
-  RexxVariable getVariable();
+  RexxNumericConstant getNumericConstant();
+
+  @Nullable
+  RexxParentheticalExpression getParentheticalExpression();
+
+  @Nullable
+  RexxStem getStem();
+
+  @Nullable
+  RexxStringLiteral getStringLiteral();
 
   @NotNull
-  PsiElement getIdentifier();
-
-  @NotNull
-  PsiElement getTilde();
+  List<RexxVariable> getVariableList();
 
 }

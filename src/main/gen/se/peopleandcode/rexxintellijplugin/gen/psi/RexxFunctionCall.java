@@ -14,6 +14,12 @@ public interface RexxFunctionCall extends PsiElement {
   RexxGlobal getGlobal();
 
   @Nullable
+  RexxNumericConstant getNumericConstant();
+
+  @Nullable
+  RexxStringLiteral getStringLiteral();
+
+  @Nullable
   RexxVariable getVariable();
 
 }

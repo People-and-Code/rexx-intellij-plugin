@@ -41,6 +41,18 @@ public class RexxFunctionCallImpl extends ASTWrapperPsiElement implements RexxFu
 
   @Override
   @Nullable
+  public RexxNumericConstant getNumericConstant() {
+    return findChildByClass(RexxNumericConstant.class);
+  }
+
+  @Override
+  @Nullable
+  public RexxStringLiteral getStringLiteral() {
+    return findChildByClass(RexxStringLiteral.class);
+  }
+
+  @Override
+  @Nullable
   public RexxVariable getVariable() {
     return findChildByClass(RexxVariable.class);
   }

@@ -35,26 +35,44 @@ public class RexxMethodCallImpl extends ASTWrapperPsiElement implements RexxMeth
 
   @Override
   @Nullable
-  public RexxGlobal getGlobal() {
-    return findChildByClass(RexxGlobal.class);
+  public RexxFunctionCall getFunctionCall() {
+    return findChildByClass(RexxFunctionCall.class);
+  }
+
+  @Override
+  @NotNull
+  public List<RexxGlobal> getGlobalList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxGlobal.class);
   }
 
   @Override
   @Nullable
-  public RexxVariable getVariable() {
-    return findChildByClass(RexxVariable.class);
+  public RexxNumericConstant getNumericConstant() {
+    return findChildByClass(RexxNumericConstant.class);
+  }
+
+  @Override
+  @Nullable
+  public RexxParentheticalExpression getParentheticalExpression() {
+    return findChildByClass(RexxParentheticalExpression.class);
+  }
+
+  @Override
+  @Nullable
+  public RexxStem getStem() {
+    return findChildByClass(RexxStem.class);
+  }
+
+  @Override
+  @Nullable
+  public RexxStringLiteral getStringLiteral() {
+    return findChildByClass(RexxStringLiteral.class);
   }
 
   @Override
   @NotNull
-  public PsiElement getIdentifier() {
-    return findNotNullChildByType(IDENTIFIER);
-  }
-
-  @Override
-  @NotNull
-  public PsiElement getTilde() {
-    return findNotNullChildByType(TILDE);
+  public List<RexxVariable> getVariableList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxVariable.class);
   }
 
 }
