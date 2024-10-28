@@ -244,6 +244,10 @@ name_declaration ::= identifier_ {
 
 say_instruction ::= SAY expressions?
 private expressions ::= expression+
+/*
+Compact expressions, soon ish:
+https://github.com/JetBrains/Grammar-Kit/blob/master/HOWTO.md#24-compact-expression-parsing-with-priorities
+*/
 expression ::= concatenation
 concatenation ::= compare (OPERATOR_CONCATENATE? !keywords compare)*
 compare ::= addition (comparison_operator addition)?
