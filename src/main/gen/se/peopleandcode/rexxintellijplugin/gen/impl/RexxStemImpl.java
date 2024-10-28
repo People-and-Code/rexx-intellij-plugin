@@ -35,14 +35,14 @@ public class RexxStemImpl extends ASTWrapperPsiElement implements RexxStem {
 
   @Override
   @NotNull
-  public List<RexxFunctionCall> getFunctionCallList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxFunctionCall.class);
+  public List<RexxGlobal> getGlobalList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxGlobal.class);
   }
 
   @Override
   @NotNull
-  public List<RexxGlobal> getGlobalList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxGlobal.class);
+  public List<RexxInvoke> getInvokeList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxInvoke.class);
   }
 
   @Override

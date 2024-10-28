@@ -11,14 +11,14 @@ import static se.peopleandcode.rexxintellijplugin.gen.RexxTokens.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import se.peopleandcode.rexxintellijplugin.gen.psi.*;
 
-public class RexxFunctionCallImpl extends ASTWrapperPsiElement implements RexxFunctionCall {
+public class RexxInvokeImpl extends ASTWrapperPsiElement implements RexxInvoke {
 
-  public RexxFunctionCallImpl(@NotNull ASTNode node) {
+  public RexxInvokeImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull RexxVisitor visitor) {
-    visitor.visitFunctionCall(this);
+    visitor.visitInvoke(this);
   }
 
   @Override

@@ -35,14 +35,14 @@ public class RexxExpressionTermImpl extends ASTWrapperPsiElement implements Rexx
 
   @Override
   @Nullable
-  public RexxFunctionCall getFunctionCall() {
-    return findChildByClass(RexxFunctionCall.class);
+  public RexxGlobal getGlobal() {
+    return findChildByClass(RexxGlobal.class);
   }
 
   @Override
   @Nullable
-  public RexxGlobal getGlobal() {
-    return findChildByClass(RexxGlobal.class);
+  public RexxInvoke getInvoke() {
+    return findChildByClass(RexxInvoke.class);
   }
 
   @Override

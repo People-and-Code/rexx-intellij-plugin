@@ -34,15 +34,15 @@ public class RexxMethodCallImpl extends ASTWrapperPsiElement implements RexxMeth
   }
 
   @Override
-  @Nullable
-  public RexxFunctionCall getFunctionCall() {
-    return findChildByClass(RexxFunctionCall.class);
-  }
-
-  @Override
   @NotNull
   public List<RexxGlobal> getGlobalList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxGlobal.class);
+  }
+
+  @Override
+  @Nullable
+  public RexxInvoke getInvoke() {
+    return findChildByClass(RexxInvoke.class);
   }
 
   @Override

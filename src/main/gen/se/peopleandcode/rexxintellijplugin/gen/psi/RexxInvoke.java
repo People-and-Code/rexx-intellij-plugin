@@ -5,7 +5,7 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface RexxExpressionTerm extends PsiElement {
+public interface RexxInvoke extends PsiElement {
 
   @NotNull
   List<RexxExpression> getExpressionList();
@@ -14,19 +14,7 @@ public interface RexxExpressionTerm extends PsiElement {
   RexxGlobal getGlobal();
 
   @Nullable
-  RexxInvoke getInvoke();
-
-  @Nullable
-  RexxMethodCall getMethodCall();
-
-  @Nullable
   RexxNumericConstant getNumericConstant();
-
-  @Nullable
-  RexxParentheticalExpression getParentheticalExpression();
-
-  @Nullable
-  RexxStem getStem();
 
   @Nullable
   RexxStringLiteral getStringLiteral();

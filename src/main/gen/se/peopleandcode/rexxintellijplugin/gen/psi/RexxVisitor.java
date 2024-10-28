@@ -55,10 +55,6 @@ public class RexxVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitFunctionCall(@NotNull RexxFunctionCall o) {
-    visitPsiElement(o);
-  }
-
   public void visitGlobal(@NotNull RexxGlobal o) {
     visitPsiElement(o);
   }
@@ -76,6 +72,10 @@ public class RexxVisitor extends PsiElementVisitor {
   }
 
   public void visitIntegerConstant(@NotNull RexxIntegerConstant o) {
+    visitPsiElement(o);
+  }
+
+  public void visitInvoke(@NotNull RexxInvoke o) {
     visitPsiElement(o);
   }
 

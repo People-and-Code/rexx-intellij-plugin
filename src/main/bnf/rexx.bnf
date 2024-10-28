@@ -276,7 +276,7 @@ stem ::= simple_term (DOT simple_term)+
 methodCall ::= (stem | simple_term) message_call+
 private simple_term
     ::= stringLiteral
-    | functionCall
+    | invoke
     | symbol
     | indexed
     | parentheticalExpression
@@ -286,7 +286,7 @@ parentheticalExpression ::= TOKEN_LEFT expression TOKEN_RIGHT
 
 private message_call ::= TILDE TILDE? method_name arguments?
 private method_name ::= /*taken_constant*/ IDENTIFIER (COLON variable_)?
-/*invoke*/ functionCall ::= (symbol | stringLiteral) arguments
+invoke ::= (symbol | stringLiteral) arguments
 private arguments ::= TOKEN_LEFT expression_list? TOKEN_RIGHT
 private expression_list ::= expression? (COMMA expression?)*
 private indexed ::= symbol | stringLiteral indices

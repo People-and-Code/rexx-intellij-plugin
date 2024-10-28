@@ -11,10 +11,10 @@ public interface RexxStem extends PsiElement {
   List<RexxExpression> getExpressionList();
 
   @NotNull
-  List<RexxFunctionCall> getFunctionCallList();
+  List<RexxGlobal> getGlobalList();
 
   @NotNull
-  List<RexxGlobal> getGlobalList();
+  List<RexxInvoke> getInvokeList();
 
   @NotNull
   List<RexxNumericConstant> getNumericConstantList();

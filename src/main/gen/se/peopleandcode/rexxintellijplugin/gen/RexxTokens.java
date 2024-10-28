@@ -22,12 +22,12 @@ public interface RexxTokens {
   IElementType EXPRESSION = new RexxElementType("EXPRESSION");
   IElementType EXPRESSION_INSTRUCTION = new RexxElementType("EXPRESSION_INSTRUCTION");
   IElementType EXPRESSION_TERM = new RexxElementType("EXPRESSION_TERM");
-  IElementType FUNCTION_CALL = new RexxElementType("FUNCTION_CALL");
   IElementType GLOBAL = new RexxElementType("GLOBAL");
   IElementType IDENTIFIER_ = new RexxElementType("IDENTIFIER_");
   IElementType IF_INSTRUCTION = new RexxElementType("IF_INSTRUCTION");
   IElementType INSTRUCTION_BLOCK = new RexxElementType("INSTRUCTION_BLOCK");
   IElementType INTEGER_CONSTANT = new RexxElementType("INTEGER_CONSTANT");
+  IElementType INVOKE = new RexxElementType("INVOKE");
   IElementType LABEL_INSTRUCTION = new RexxElementType("LABEL_INSTRUCTION");
   IElementType METHOD_CALL = new RexxElementType("METHOD_CALL");
   IElementType MULTIPLICATION = new RexxElementType("MULTIPLICATION");
@@ -180,9 +180,6 @@ public interface RexxTokens {
       else if (type == EXPRESSION_TERM) {
         return new RexxExpressionTermImpl(node);
       }
-      else if (type == FUNCTION_CALL) {
-        return new RexxFunctionCallImpl(node);
-      }
       else if (type == GLOBAL) {
         return new RexxGlobalImpl(node);
       }
@@ -197,6 +194,9 @@ public interface RexxTokens {
       }
       else if (type == INTEGER_CONSTANT) {
         return new RexxIntegerConstantImpl(node);
+      }
+      else if (type == INVOKE) {
+        return new RexxInvokeImpl(node);
       }
       else if (type == LABEL_INSTRUCTION) {
         return new RexxLabelInstructionImpl(node);
