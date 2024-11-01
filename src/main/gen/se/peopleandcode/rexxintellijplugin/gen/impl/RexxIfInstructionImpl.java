@@ -77,6 +77,12 @@ public class RexxIfInstructionImpl extends ASTWrapperPsiElement implements RexxI
 
   @Override
   @NotNull
+  public List<RexxIterateInstruction> getIterateInstructionList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxIterateInstruction.class);
+  }
+
+  @Override
+  @NotNull
   public List<RexxLabelInstruction> getLabelInstructionList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxLabelInstruction.class);
   }

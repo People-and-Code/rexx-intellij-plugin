@@ -77,6 +77,12 @@ public class RexxInstructionBlockImpl extends ASTWrapperPsiElement implements Re
 
   @Override
   @NotNull
+  public List<RexxIterateInstruction> getIterateInstructionList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxIterateInstruction.class);
+  }
+
+  @Override
+  @NotNull
   public List<RexxLabelInstruction> getLabelInstructionList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxLabelInstruction.class);
   }
@@ -160,9 +166,9 @@ public class RexxInstructionBlockImpl extends ASTWrapperPsiElement implements Re
   }
 
   @Override
-  @NotNull
+  @Nullable
   public PsiElement getEnd() {
-    return findNotNullChildByType(END);
+    return findChildByType(END);
   }
 
 }

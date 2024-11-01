@@ -28,6 +28,7 @@ public interface RexxTokens {
   IElementType INSTRUCTION_BLOCK = new RexxElementType("INSTRUCTION_BLOCK");
   IElementType INTEGER_CONSTANT = new RexxElementType("INTEGER_CONSTANT");
   IElementType INVOKE = new RexxElementType("INVOKE");
+  IElementType ITERATE_INSTRUCTION = new RexxElementType("ITERATE_INSTRUCTION");
   IElementType LABEL_INSTRUCTION = new RexxElementType("LABEL_INSTRUCTION");
   IElementType METHOD_CALL = new RexxElementType("METHOD_CALL");
   IElementType MULTIPLICATION = new RexxElementType("MULTIPLICATION");
@@ -197,6 +198,9 @@ public interface RexxTokens {
       }
       else if (type == INVOKE) {
         return new RexxInvokeImpl(node);
+      }
+      else if (type == ITERATE_INSTRUCTION) {
+        return new RexxIterateInstructionImpl(node);
       }
       else if (type == LABEL_INSTRUCTION) {
         return new RexxLabelInstructionImpl(node);

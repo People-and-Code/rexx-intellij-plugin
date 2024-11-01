@@ -785,14 +785,15 @@ public class RexxParser implements PsiParser, LightPsiParser {
   public static boolean instruction_block(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "instruction_block")) return false;
     if (!nextTokenIs(builder_, DO)) return false;
-    boolean result_;
-    Marker marker_ = enter_section_(builder_);
+    boolean result_, pinned_;
+    Marker marker_ = enter_section_(builder_, level_, _NONE_, INSTRUCTION_BLOCK, null);
     result_ = do_specification(builder_, level_ + 1);
-    result_ = result_ && ncl(builder_, level_ + 1);
-    result_ = result_ && instruction_block_2(builder_, level_ + 1);
-    result_ = result_ && do_ending(builder_, level_ + 1);
-    exit_section_(builder_, marker_, INSTRUCTION_BLOCK, result_);
-    return result_;
+    pinned_ = result_; // pin = do_specification
+    result_ = result_ && report_error_(builder_, ncl(builder_, level_ + 1));
+    result_ = pinned_ && report_error_(builder_, instruction_block_2(builder_, level_ + 1)) && result_;
+    result_ = pinned_ && do_ending(builder_, level_ + 1) && result_;
+    exit_section_(builder_, level_, marker_, result_, pinned_, null);
+    return result_ || pinned_;
   }
 
   // instruction_list?
@@ -852,13 +853,33 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // ITERATE variable_?
+  public static boolean iterate_instruction(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "iterate_instruction")) return false;
+    if (!nextTokenIs(builder_, ITERATE)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, ITERATE);
+    result_ = result_ && iterate_instruction_1(builder_, level_ + 1);
+    exit_section_(builder_, marker_, ITERATE_INSTRUCTION, result_);
+    return result_;
+  }
+
+  // variable_?
+  private static boolean iterate_instruction_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "iterate_instruction_1")) return false;
+    variable_(builder_, level_ + 1);
+    return true;
+  }
+
+  /* ********************************************************** */
   // address_instruction
   //     /*| arg*/
   //     | call_instruction
   //     /*| drop*/
   //     | exit_instruction
   //     /*| interop*/
-  //     /*| iterate*/
+  //     | iterate_instruction
   //     /*| leave*/
   //     /*| nop*/
   //     | numeric_instruction
@@ -875,6 +896,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
     result_ = address_instruction(builder_, level_ + 1);
     if (!result_) result_ = call_instruction(builder_, level_ + 1);
     if (!result_) result_ = exit_instruction(builder_, level_ + 1);
+    if (!result_) result_ = iterate_instruction(builder_, level_ + 1);
     if (!result_) result_ = numeric_instruction(builder_, level_ + 1);
     if (!result_) result_ = parse_instruction(builder_, level_ + 1);
     if (!result_) result_ = return_instruction(builder_, level_ + 1);

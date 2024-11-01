@@ -160,7 +160,7 @@ private keyword_instruction
     /*| drop*/
     | exit_instruction
     /*| interop*/
-    /*| iterate*/
+    | iterate_instruction
     /*| leave*/
     /*| nop*/
     | numeric_instruction
@@ -183,6 +183,7 @@ private parse_instruction
     | parse_value_instruction
     | parse_source_instruction
 numeric_instruction ::= NUMERIC IDENTIFIER integerConstant
+iterate_instruction ::= ITERATE variable_?
 label_instruction ::= name_declaration COLON (PROCEDURE (EXPOSE IDENTIFIER)? DOT?)?
 return_instruction ::= RETURN expression?
 
@@ -204,6 +205,7 @@ expression_instruction
 instruction_block ::= do_specification ncl
     instruction_list?
     do_ending
+    { pin = do_specification }
 private do_specification ::= DO /*[group_option+]*/
     ( dorep
     | conditional

@@ -32,6 +32,9 @@ public interface RexxInstructionBlock extends PsiElement {
   List<RexxInstructionBlock> getInstructionBlockList();
 
   @NotNull
+  List<RexxIterateInstruction> getIterateInstructionList();
+
+  @NotNull
   List<RexxLabelInstruction> getLabelInstructionList();
 
   @NotNull
@@ -73,7 +76,7 @@ public interface RexxInstructionBlock extends PsiElement {
   @NotNull
   PsiElement getDo();
 
-  @NotNull
+  @Nullable
   PsiElement getEnd();
 
 }
