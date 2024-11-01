@@ -12,6 +12,7 @@ public interface RexxTokens {
 
   IElementType ADDITION = new RexxElementType("ADDITION");
   IElementType ADDRESS_INSTRUCTION = new RexxElementType("ADDRESS_INSTRUCTION");
+  IElementType ARG_INSTRUCTION = new RexxElementType("ARG_INSTRUCTION");
   IElementType ASSIGNMENT = new RexxElementType("ASSIGNMENT");
   IElementType CALL_INSTRUCTION = new RexxElementType("CALL_INSTRUCTION");
   IElementType COMPARE = new RexxElementType("COMPARE");
@@ -150,6 +151,9 @@ public interface RexxTokens {
       }
       else if (type == ADDRESS_INSTRUCTION) {
         return new RexxAddressInstructionImpl(node);
+      }
+      else if (type == ARG_INSTRUCTION) {
+        return new RexxArgInstructionImpl(node);
       }
       else if (type == ASSIGNMENT) {
         return new RexxAssignmentImpl(node);

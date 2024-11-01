@@ -155,7 +155,7 @@ private group ::= instruction_block | if_instruction /* | select */
 private command ::= expression_instruction
 private keyword_instruction
     ::= address_instruction
-    /*| arg*/
+    | arg_instruction
     | call_instruction
     /*| drop*/
     | exit_instruction
@@ -176,6 +176,19 @@ private single_instruction
     | assignment
     | keyword_instruction
     | command
+arg_instruction ::= ARG template_list?
+private template_list
+    ::= template (COMMA template?)*
+    | (COMMA template?)+
+private template ::= trigger | target
+private trigger ::= pattern | positional
+private target ::= name_declaration | DOT
+private pattern ::= stringLiteral /*| vrefp*/
+private positional ::= absolute_positional | relative_positional
+private absolute_positional ::= numericConstant | EQ position
+private position ::= numericConstant  /*| vrefp*/
+private relative_positional ::= (OPERATOR_PLUS | OPERATOR_SUBTRACT) position
+
 private parse_instruction
     ::= parse_arg_instruction
     | parse_pull_instruction

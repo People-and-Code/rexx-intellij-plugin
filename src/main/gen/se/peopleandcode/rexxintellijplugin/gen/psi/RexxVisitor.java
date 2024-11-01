@@ -15,6 +15,10 @@ public class RexxVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitArgInstruction(@NotNull RexxArgInstruction o) {
+    visitPsiElement(o);
+  }
+
   public void visitAssignment(@NotNull RexxAssignment o) {
     visitPsiElement(o);
   }

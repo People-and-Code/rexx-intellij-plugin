@@ -36,6 +36,29 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // numericConstant | EQ position
+  static boolean absolute_positional(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "absolute_positional")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = numericConstant(builder_, level_ + 1);
+    if (!result_) result_ = absolute_positional_1(builder_, level_ + 1);
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // EQ position
+  private static boolean absolute_positional_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "absolute_positional_1")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, EQ);
+    result_ = result_ && position(builder_, level_ + 1);
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  /* ********************************************************** */
   // subtraction_ (OPERATOR_PLUS subtraction_)*
   public static boolean addition(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "addition")) return false;
@@ -80,6 +103,26 @@ public class RexxParser implements PsiParser, LightPsiParser {
     result_ = result_ && expressions(builder_, level_ + 1);
     exit_section_(builder_, marker_, ADDRESS_INSTRUCTION, result_);
     return result_;
+  }
+
+  /* ********************************************************** */
+  // ARG template_list?
+  public static boolean arg_instruction(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "arg_instruction")) return false;
+    if (!nextTokenIs(builder_, ARG)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, ARG);
+    result_ = result_ && arg_instruction_1(builder_, level_ + 1);
+    exit_section_(builder_, marker_, ARG_INSTRUCTION, result_);
+    return result_;
+  }
+
+  // template_list?
+  private static boolean arg_instruction_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "arg_instruction_1")) return false;
+    template_list(builder_, level_ + 1);
+    return true;
   }
 
   /* ********************************************************** */
@@ -874,7 +917,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // address_instruction
-  //     /*| arg*/
+  //     | arg_instruction
   //     | call_instruction
   //     /*| drop*/
   //     | exit_instruction
@@ -894,6 +937,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
     if (!recursion_guard_(builder_, level_, "keyword_instruction")) return false;
     boolean result_;
     result_ = address_instruction(builder_, level_ + 1);
+    if (!result_) result_ = arg_instruction(builder_, level_ + 1);
     if (!result_) result_ = call_instruction(builder_, level_ + 1);
     if (!result_) result_ = exit_instruction(builder_, level_ + 1);
     if (!result_) result_ = iterate_instruction(builder_, level_ + 1);
@@ -1562,6 +1606,50 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // stringLiteral
+  static boolean pattern(PsiBuilder builder_, int level_) {
+    return stringLiteral(builder_, level_ + 1);
+  }
+
+  /* ********************************************************** */
+  // numericConstant
+  static boolean position(PsiBuilder builder_, int level_) {
+    return numericConstant(builder_, level_ + 1);
+  }
+
+  /* ********************************************************** */
+  // absolute_positional | relative_positional
+  static boolean positional(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "positional")) return false;
+    boolean result_;
+    result_ = absolute_positional(builder_, level_ + 1);
+    if (!result_) result_ = relative_positional(builder_, level_ + 1);
+    return result_;
+  }
+
+  /* ********************************************************** */
+  // (OPERATOR_PLUS | OPERATOR_SUBTRACT) position
+  static boolean relative_positional(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "relative_positional")) return false;
+    if (!nextTokenIs(builder_, "", OPERATOR_PLUS, OPERATOR_SUBTRACT)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = relative_positional_0(builder_, level_ + 1);
+    result_ = result_ && position(builder_, level_ + 1);
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // OPERATOR_PLUS | OPERATOR_SUBTRACT
+  private static boolean relative_positional_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "relative_positional_0")) return false;
+    boolean result_;
+    result_ = consumeToken(builder_, OPERATOR_PLUS);
+    if (!result_) result_ = consumeToken(builder_, OPERATOR_SUBTRACT);
+    return result_;
+  }
+
+  /* ********************************************************** */
   // DOT
   public static boolean remainder(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "remainder")) return false;
@@ -1852,6 +1940,112 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // name_declaration | DOT
+  static boolean target(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "target")) return false;
+    boolean result_;
+    result_ = name_declaration(builder_, level_ + 1);
+    if (!result_) result_ = consumeToken(builder_, DOT);
+    return result_;
+  }
+
+  /* ********************************************************** */
+  // trigger | target
+  static boolean template(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "template")) return false;
+    boolean result_;
+    result_ = trigger(builder_, level_ + 1);
+    if (!result_) result_ = target(builder_, level_ + 1);
+    return result_;
+  }
+
+  /* ********************************************************** */
+  // template (COMMA template?)*
+  //     | (COMMA template?)+
+  static boolean template_list(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "template_list")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = template_list_0(builder_, level_ + 1);
+    if (!result_) result_ = template_list_1(builder_, level_ + 1);
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // template (COMMA template?)*
+  private static boolean template_list_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "template_list_0")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = template(builder_, level_ + 1);
+    result_ = result_ && template_list_0_1(builder_, level_ + 1);
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // (COMMA template?)*
+  private static boolean template_list_0_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "template_list_0_1")) return false;
+    while (true) {
+      int pos_ = current_position_(builder_);
+      if (!template_list_0_1_0(builder_, level_ + 1)) break;
+      if (!empty_element_parsed_guard_(builder_, "template_list_0_1", pos_)) break;
+    }
+    return true;
+  }
+
+  // COMMA template?
+  private static boolean template_list_0_1_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "template_list_0_1_0")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, COMMA);
+    result_ = result_ && template_list_0_1_0_1(builder_, level_ + 1);
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // template?
+  private static boolean template_list_0_1_0_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "template_list_0_1_0_1")) return false;
+    template(builder_, level_ + 1);
+    return true;
+  }
+
+  // (COMMA template?)+
+  private static boolean template_list_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "template_list_1")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = template_list_1_0(builder_, level_ + 1);
+    while (result_) {
+      int pos_ = current_position_(builder_);
+      if (!template_list_1_0(builder_, level_ + 1)) break;
+      if (!empty_element_parsed_guard_(builder_, "template_list_1", pos_)) break;
+    }
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // COMMA template?
+  private static boolean template_list_1_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "template_list_1_0")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, COMMA);
+    result_ = result_ && template_list_1_0_1(builder_, level_ + 1);
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // template?
+  private static boolean template_list_1_0_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "template_list_1_0_1")) return false;
+    template(builder_, level_ + 1);
+    return true;
+  }
+
+  /* ********************************************************** */
   // <<eof>> | TERMINATOR
   static boolean terminator(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "terminator")) return false;
@@ -1913,6 +2107,16 @@ public class RexxParser implements PsiParser, LightPsiParser {
     result_ = consumeToken(builder_, "o");
     if (!result_) result_ = consumeToken(builder_, "i");
     if (!result_) result_ = consumeToken(builder_, "r");
+    return result_;
+  }
+
+  /* ********************************************************** */
+  // pattern | positional
+  static boolean trigger(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "trigger")) return false;
+    boolean result_;
+    result_ = pattern(builder_, level_ + 1);
+    if (!result_) result_ = positional(builder_, level_ + 1);
     return result_;
   }
 

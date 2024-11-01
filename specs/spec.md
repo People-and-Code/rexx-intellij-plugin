@@ -158,7 +158,7 @@ resources
     | 'STEM' (VAR_SYMBOL | Msg53.2)
 vref := '(' var_symbol (')' | Msg46.1)
 var_symbol := VAR_SYMBOL | Msg20.1
-arg := 'ARG' [template list]
+arg := 'ARG' [template_list]
 call := 'CALL'
     ( callon_spec
     | (taken_constant | vref | Msg19.2) [expression_list]
