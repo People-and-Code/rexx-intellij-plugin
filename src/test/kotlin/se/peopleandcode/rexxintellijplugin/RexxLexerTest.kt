@@ -18,9 +18,6 @@ class RexxLexerTest : LexerTestCase() {
     fun testParseValue() = doFileTest("rex")
     fun testIfWithDo() = doFileTest("rex")
     fun testIterate() = doFileTest("rex")
-    override fun getPathToTestDataFile(extension: String): String {
-        val root = ""
-        val testName = getTestName(false)
-        return "$root$dirPath/$testName$extension"
-    }
+    override fun getPathToTestDataFile(extension: String): String =
+        "$dirPath/${getTestName(false)}$extension"
 }
