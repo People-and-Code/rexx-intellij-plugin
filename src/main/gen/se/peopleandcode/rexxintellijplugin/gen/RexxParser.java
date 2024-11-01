@@ -160,63 +160,46 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // CALL IDENTIFIER comma_seperated_arguments
+  // CALL
+  //     ( /*callon_spec
+  //     |*/ (taken_constant /*| vref */) expression_list?
+  //     )
   public static boolean call_instruction(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "call_instruction")) return false;
     if (!nextTokenIs(builder_, CALL)) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_);
-    result_ = consumeTokens(builder_, 0, CALL, IDENTIFIER);
-    result_ = result_ && comma_seperated_arguments(builder_, level_ + 1);
+    result_ = consumeToken(builder_, CALL);
+    result_ = result_ && call_instruction_1(builder_, level_ + 1);
     exit_section_(builder_, marker_, CALL_INSTRUCTION, result_);
     return result_;
   }
 
-  /* ********************************************************** */
-  // expression? (COMMA expression?)*
-  static boolean comma_seperated_arguments(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "comma_seperated_arguments")) return false;
+  // (taken_constant /*| vref */) expression_list?
+  private static boolean call_instruction_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "call_instruction_1")) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_);
-    result_ = comma_seperated_arguments_0(builder_, level_ + 1);
-    result_ = result_ && comma_seperated_arguments_1(builder_, level_ + 1);
+    result_ = call_instruction_1_0(builder_, level_ + 1);
+    result_ = result_ && call_instruction_1_1(builder_, level_ + 1);
     exit_section_(builder_, marker_, null, result_);
     return result_;
   }
 
-  // expression?
-  private static boolean comma_seperated_arguments_0(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "comma_seperated_arguments_0")) return false;
-    expression(builder_, level_ + 1);
-    return true;
-  }
-
-  // (COMMA expression?)*
-  private static boolean comma_seperated_arguments_1(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "comma_seperated_arguments_1")) return false;
-    while (true) {
-      int pos_ = current_position_(builder_);
-      if (!comma_seperated_arguments_1_0(builder_, level_ + 1)) break;
-      if (!empty_element_parsed_guard_(builder_, "comma_seperated_arguments_1", pos_)) break;
-    }
-    return true;
-  }
-
-  // COMMA expression?
-  private static boolean comma_seperated_arguments_1_0(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "comma_seperated_arguments_1_0")) return false;
+  // (taken_constant /*| vref */)
+  private static boolean call_instruction_1_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "call_instruction_1_0")) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_);
-    result_ = consumeToken(builder_, COMMA);
-    result_ = result_ && comma_seperated_arguments_1_0_1(builder_, level_ + 1);
+    result_ = taken_constant(builder_, level_ + 1);
     exit_section_(builder_, marker_, null, result_);
     return result_;
   }
 
-  // expression?
-  private static boolean comma_seperated_arguments_1_0_1(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "comma_seperated_arguments_1_0_1")) return false;
-    expression(builder_, level_ + 1);
+  // expression_list?
+  private static boolean call_instruction_1_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "call_instruction_1_1")) return false;
+    expression_list(builder_, level_ + 1);
     return true;
   }
 
@@ -614,33 +597,71 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // expression? (COMMA expression?)*
+  // expression (COMMA expression?)*
+  //     | (COMMA expression?)+
   static boolean expression_list(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "expression_list")) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_);
     result_ = expression_list_0(builder_, level_ + 1);
-    result_ = result_ && expression_list_1(builder_, level_ + 1);
+    if (!result_) result_ = expression_list_1(builder_, level_ + 1);
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // expression (COMMA expression?)*
+  private static boolean expression_list_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "expression_list_0")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = expression(builder_, level_ + 1);
+    result_ = result_ && expression_list_0_1(builder_, level_ + 1);
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // (COMMA expression?)*
+  private static boolean expression_list_0_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "expression_list_0_1")) return false;
+    while (true) {
+      int pos_ = current_position_(builder_);
+      if (!expression_list_0_1_0(builder_, level_ + 1)) break;
+      if (!empty_element_parsed_guard_(builder_, "expression_list_0_1", pos_)) break;
+    }
+    return true;
+  }
+
+  // COMMA expression?
+  private static boolean expression_list_0_1_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "expression_list_0_1_0")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, COMMA);
+    result_ = result_ && expression_list_0_1_0_1(builder_, level_ + 1);
     exit_section_(builder_, marker_, null, result_);
     return result_;
   }
 
   // expression?
-  private static boolean expression_list_0(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "expression_list_0")) return false;
+  private static boolean expression_list_0_1_0_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "expression_list_0_1_0_1")) return false;
     expression(builder_, level_ + 1);
     return true;
   }
 
-  // (COMMA expression?)*
+  // (COMMA expression?)+
   private static boolean expression_list_1(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "expression_list_1")) return false;
-    while (true) {
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = expression_list_1_0(builder_, level_ + 1);
+    while (result_) {
       int pos_ = current_position_(builder_);
       if (!expression_list_1_0(builder_, level_ + 1)) break;
       if (!empty_element_parsed_guard_(builder_, "expression_list_1", pos_)) break;
     }
-    return true;
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
   }
 
   // COMMA expression?

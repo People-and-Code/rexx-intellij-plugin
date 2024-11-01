@@ -10,10 +10,19 @@ public interface RexxCallInstruction extends PsiElement {
   @NotNull
   List<RexxExpression> getExpressionList();
 
-  @NotNull
-  PsiElement getCall();
+  @Nullable
+  RexxGlobal getGlobal();
+
+  @Nullable
+  RexxNumericConstant getNumericConstant();
+
+  @Nullable
+  RexxStringLiteral getStringLiteral();
+
+  @Nullable
+  RexxVariable getVariable();
 
   @NotNull
-  PsiElement getIdentifier();
+  PsiElement getCall();
 
 }

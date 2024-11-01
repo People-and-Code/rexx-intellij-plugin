@@ -34,15 +34,33 @@ public class RexxCallInstructionImpl extends ASTWrapperPsiElement implements Rex
   }
 
   @Override
-  @NotNull
-  public PsiElement getCall() {
-    return findNotNullChildByType(CALL);
+  @Nullable
+  public RexxGlobal getGlobal() {
+    return findChildByClass(RexxGlobal.class);
+  }
+
+  @Override
+  @Nullable
+  public RexxNumericConstant getNumericConstant() {
+    return findChildByClass(RexxNumericConstant.class);
+  }
+
+  @Override
+  @Nullable
+  public RexxStringLiteral getStringLiteral() {
+    return findChildByClass(RexxStringLiteral.class);
+  }
+
+  @Override
+  @Nullable
+  public RexxVariable getVariable() {
+    return findChildByClass(RexxVariable.class);
   }
 
   @Override
   @NotNull
-  public PsiElement getIdentifier() {
-    return findNotNullChildByType(IDENTIFIER);
+  public PsiElement getCall() {
+    return findNotNullChildByType(CALL);
   }
 
 }

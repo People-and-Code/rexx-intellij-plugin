@@ -205,8 +205,10 @@ signal_instruction ::= SIGNAL expressions
 trace_instruction ::= TRACE ("o"|"i"|"r")
 
 exit_instruction ::= EXIT expression?
-
-call_instruction ::= CALL IDENTIFIER comma_seperated_arguments
+call_instruction ::= CALL
+    ( /*callon_spec
+    |*/ (taken_constant /*| vref */) expression_list?
+    )
 
 address_instruction ::= ADDRESS expressions
 
@@ -278,7 +280,6 @@ multiplication ::= division_ (OPERATOR_MULTIPLY division_)*
 private division_ ::= expressionTerm division*
 left division ::= OPERATOR_DIVIDE expressionTerm
 
-private comma_seperated_arguments ::= expression? (COMMA expression?)*
 stringLiteral ::= STRING
 numericConstant ::= integerConstant | decimalConstant | scientificConstant
 integerConstant ::= NUMBER_INT
@@ -307,7 +308,9 @@ private message_call ::= TILDE TILDE? method_name arguments?
 private method_name ::= /*taken_constant*/ IDENTIFIER (COLON variable_)?
 invoke ::= (symbol | stringLiteral) arguments
 private arguments ::= TOKEN_LEFT expression_list? TOKEN_RIGHT
-private expression_list ::= expression? (COMMA expression?)*
+private expression_list
+    ::= expression (COMMA expression?)*
+    | (COMMA expression?)+
 private indexed ::= symbol | stringLiteral indices
 private indices ::= '[' expression_list? ']'
 private initializer ::= '[' expression_list ']'
