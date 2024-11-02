@@ -152,8 +152,7 @@ tasks {
     }
     generateLexer.configure {
         sourceFile.set(file("src/main/flex/Parse.flex"))
-        targetDir.set("src/main/gen/se/peopleandcode/rexxintellijplugin/gen")
-        targetClass.set("_RexxLexer")
+        targetOutputDir.set(file("src/main/gen/se/peopleandcode/rexxintellijplugin/gen"))
         purgeOldFiles.set(true)
     }
 
@@ -161,7 +160,7 @@ tasks {
         sourceFile.set(file("src/main/bnf/rexx.bnf"))
         pathToParser.set("parser")
         pathToPsiRoot.set("psi")
-        targetRoot.set("src/main/gen")
+        targetRootOutputDir.set(file("src/main/gen"))
         purgeOldFiles.set(true)
     }
 
