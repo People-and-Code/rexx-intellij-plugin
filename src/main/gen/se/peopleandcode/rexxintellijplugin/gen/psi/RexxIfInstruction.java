@@ -65,6 +65,9 @@ public interface RexxIfInstruction extends PsiElement {
   List<RexxSayInstruction> getSayInstructionList();
 
   @NotNull
+  List<RexxSelectInstruction> getSelectInstructionList();
+
+  @NotNull
   List<RexxSignalInstruction> getSignalInstructionList();
 
   @NotNull

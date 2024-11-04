@@ -5,7 +5,7 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface RexxInstructionBlock extends PsiElement {
+public interface RexxOtherwiseBranch extends PsiElement {
 
   @NotNull
   List<RexxAddressInstruction> getAddressInstructionList();
@@ -23,9 +23,6 @@ public interface RexxInstructionBlock extends PsiElement {
   List<RexxExitInstruction> getExitInstructionList();
 
   @NotNull
-  List<RexxExpression> getExpressionList();
-
-  @NotNull
   List<RexxExpressionInstruction> getExpressionInstructionList();
 
   @NotNull
@@ -39,12 +36,6 @@ public interface RexxInstructionBlock extends PsiElement {
 
   @NotNull
   List<RexxLabelInstruction> getLabelInstructionList();
-
-  @NotNull
-  List<RexxNameDeclaration> getNameDeclarationList();
-
-  @Nullable
-  RexxNumericConstant getNumericConstant();
 
   @NotNull
   List<RexxNumericInstruction> getNumericInstructionList();
@@ -80,9 +71,6 @@ public interface RexxInstructionBlock extends PsiElement {
   List<RexxTraceInstruction> getTraceInstructionList();
 
   @NotNull
-  PsiElement getDo();
-
-  @Nullable
-  PsiElement getEnd();
+  PsiElement getOtherwise();
 
 }

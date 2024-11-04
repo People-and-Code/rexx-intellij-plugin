@@ -111,6 +111,10 @@ public class RexxVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitOtherwiseBranch(@NotNull RexxOtherwiseBranch o) {
+    visitPsiElement(o);
+  }
+
   public void visitParentheticalExpression(@NotNull RexxParentheticalExpression o) {
     visitPsiElement(o);
   }
@@ -151,6 +155,14 @@ public class RexxVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitSelectBody(@NotNull RexxSelectBody o) {
+    visitPsiElement(o);
+  }
+
+  public void visitSelectInstruction(@NotNull RexxSelectInstruction o) {
+    visitPsiElement(o);
+  }
+
   public void visitSignalInstruction(@NotNull RexxSignalInstruction o) {
     visitPsiElement(o);
   }
@@ -172,6 +184,10 @@ public class RexxVisitor extends PsiElementVisitor {
   }
 
   public void visitVariable(@NotNull RexxVariable o) {
+    visitPsiElement(o);
+  }
+
+  public void visitWhenBranch(@NotNull RexxWhenBranch o) {
     visitPsiElement(o);
   }
 

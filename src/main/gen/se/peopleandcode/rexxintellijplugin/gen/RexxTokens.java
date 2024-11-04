@@ -36,6 +36,7 @@ public interface RexxTokens {
   IElementType NAME_DECLARATION = new RexxElementType("NAME_DECLARATION");
   IElementType NUMERIC_CONSTANT = new RexxElementType("NUMERIC_CONSTANT");
   IElementType NUMERIC_INSTRUCTION = new RexxElementType("NUMERIC_INSTRUCTION");
+  IElementType OTHERWISE_BRANCH = new RexxElementType("OTHERWISE_BRANCH");
   IElementType PARENTHETICAL_EXPRESSION = new RexxElementType("PARENTHETICAL_EXPRESSION");
   IElementType PARSE_ARG_INSTRUCTION = new RexxElementType("PARSE_ARG_INSTRUCTION");
   IElementType PARSE_PULL_INSTRUCTION = new RexxElementType("PARSE_PULL_INSTRUCTION");
@@ -46,12 +47,15 @@ public interface RexxTokens {
   IElementType RETURN_INSTRUCTION = new RexxElementType("RETURN_INSTRUCTION");
   IElementType SAY_INSTRUCTION = new RexxElementType("SAY_INSTRUCTION");
   IElementType SCIENTIFIC_CONSTANT = new RexxElementType("SCIENTIFIC_CONSTANT");
+  IElementType SELECT_BODY = new RexxElementType("SELECT_BODY");
+  IElementType SELECT_INSTRUCTION = new RexxElementType("SELECT_INSTRUCTION");
   IElementType SIGNAL_INSTRUCTION = new RexxElementType("SIGNAL_INSTRUCTION");
   IElementType STEM = new RexxElementType("STEM");
   IElementType STRING_LITERAL = new RexxElementType("STRING_LITERAL");
   IElementType SUBTRACTION = new RexxElementType("SUBTRACTION");
   IElementType TRACE_INSTRUCTION = new RexxElementType("TRACE_INSTRUCTION");
   IElementType VARIABLE = new RexxElementType("VARIABLE");
+  IElementType WHEN_BRANCH = new RexxElementType("WHEN_BRANCH");
 
   IElementType ADDRESS = new RexxTokenType("ADDRESS");
   IElementType ALT_GT = new RexxTokenType("\\>");
@@ -140,6 +144,7 @@ public interface RexxTokens {
   IElementType USE = new RexxTokenType("USE");
   IElementType VALUE = new RexxTokenType("VALUE");
   IElementType VAR = new RexxTokenType("VAR");
+  IElementType WHEN = new RexxTokenType("WHEN");
   IElementType WHILE = new RexxTokenType("WHILE");
   IElementType WITH = new RexxTokenType("WITH");
 
@@ -224,6 +229,9 @@ public interface RexxTokens {
       else if (type == NUMERIC_INSTRUCTION) {
         return new RexxNumericInstructionImpl(node);
       }
+      else if (type == OTHERWISE_BRANCH) {
+        return new RexxOtherwiseBranchImpl(node);
+      }
       else if (type == PARENTHETICAL_EXPRESSION) {
         return new RexxParentheticalExpressionImpl(node);
       }
@@ -254,6 +262,12 @@ public interface RexxTokens {
       else if (type == SCIENTIFIC_CONSTANT) {
         return new RexxScientificConstantImpl(node);
       }
+      else if (type == SELECT_BODY) {
+        return new RexxSelectBodyImpl(node);
+      }
+      else if (type == SELECT_INSTRUCTION) {
+        return new RexxSelectInstructionImpl(node);
+      }
       else if (type == SIGNAL_INSTRUCTION) {
         return new RexxSignalInstructionImpl(node);
       }
@@ -271,6 +285,9 @@ public interface RexxTokens {
       }
       else if (type == VARIABLE) {
         return new RexxVariableImpl(node);
+      }
+      else if (type == WHEN_BRANCH) {
+        return new RexxWhenBranchImpl(node);
       }
       throw new AssertionError("Unknown element type: " + type);
     }

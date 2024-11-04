@@ -11,14 +11,14 @@ import static se.peopleandcode.rexxintellijplugin.gen.RexxTokens.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import se.peopleandcode.rexxintellijplugin.gen.psi.*;
 
-public class RexxIfInstructionImpl extends ASTWrapperPsiElement implements RexxIfInstruction {
+public class RexxOtherwiseBranchImpl extends ASTWrapperPsiElement implements RexxOtherwiseBranch {
 
-  public RexxIfInstructionImpl(@NotNull ASTNode node) {
+  public RexxOtherwiseBranchImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull RexxVisitor visitor) {
-    visitor.visitIfInstruction(this);
+    visitor.visitOtherwiseBranch(this);
   }
 
   @Override
@@ -55,12 +55,6 @@ public class RexxIfInstructionImpl extends ASTWrapperPsiElement implements RexxI
   @NotNull
   public List<RexxExitInstruction> getExitInstructionList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxExitInstruction.class);
-  }
-
-  @Override
-  @NotNull
-  public RexxExpression getExpression() {
-    return findNotNullChildByClass(RexxExpression.class);
   }
 
   @Override
@@ -160,21 +154,9 @@ public class RexxIfInstructionImpl extends ASTWrapperPsiElement implements RexxI
   }
 
   @Override
-  @Nullable
-  public PsiElement getElse() {
-    return findChildByType(ELSE);
-  }
-
-  @Override
   @NotNull
-  public PsiElement getIf() {
-    return findNotNullChildByType(IF);
-  }
-
-  @Override
-  @NotNull
-  public PsiElement getThen() {
-    return findNotNullChildByType(THEN);
+  public PsiElement getOtherwise() {
+    return findNotNullChildByType(OTHERWISE);
   }
 
 }

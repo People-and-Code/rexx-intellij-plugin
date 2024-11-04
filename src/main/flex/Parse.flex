@@ -77,6 +77,7 @@ THEN=[Tt][Hh][Ee][Nn]
 TRACE=[Tt][Rr][Aa][Cc][Ee]
 USE=[Uu][Ss][Ee]
 WHILE=[Ww][Hh][Ii][Ll][Ee]
+WHEN=[Ww][Hh][Ee][Nn]
 SHEBANG=[#][!][^\n]*
 LINE_COMMENT=--[^\n]*
 MULTILINE_COMMENT=[/][*]([^*]+|[*]+[^/*])*[*]+[/]
@@ -173,6 +174,7 @@ COLON=[:]
   {TRACE}                      { return TRACE; }
   {USE}                        { return USE; }
   {WHILE}                      { return WHILE; }
+  {WHEN}                       { return WHEN; }
   {SHEBANG}                    { return SHEBANG; }
   {LINE_COMMENT}               { return LINE_COMMENT; }
   {MULTILINE_COMMENT}          { return MULTILINE_COMMENT; }

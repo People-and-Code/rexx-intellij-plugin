@@ -155,6 +155,12 @@ public class RexxInstructionBlockImpl extends ASTWrapperPsiElement implements Re
 
   @Override
   @NotNull
+  public List<RexxSelectInstruction> getSelectInstructionList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxSelectInstruction.class);
+  }
+
+  @Override
+  @NotNull
   public List<RexxSignalInstruction> getSignalInstructionList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxSignalInstruction.class);
   }

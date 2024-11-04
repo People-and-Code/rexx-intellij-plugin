@@ -711,13 +711,13 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // instruction_block | if_instruction
+  // instruction_block | if_instruction | select_instruction
   static boolean group(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "group")) return false;
-    if (!nextTokenIs(builder_, "", DO, IF)) return false;
     boolean result_;
     result_ = instruction_block(builder_, level_ + 1);
     if (!result_) result_ = if_instruction(builder_, level_ + 1);
+    if (!result_) result_ = select_instruction(builder_, level_ + 1);
     return result_;
   }
 
@@ -1331,6 +1331,38 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // OTHERWISE ncl? /*ncl not optional in spec*/ instruction*
+  public static boolean otherwise_branch(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "otherwise_branch")) return false;
+    if (!nextTokenIs(builder_, OTHERWISE)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, OTHERWISE);
+    result_ = result_ && otherwise_branch_1(builder_, level_ + 1);
+    result_ = result_ && otherwise_branch_2(builder_, level_ + 1);
+    exit_section_(builder_, marker_, OTHERWISE_BRANCH, result_);
+    return result_;
+  }
+
+  // ncl?
+  private static boolean otherwise_branch_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "otherwise_branch_1")) return false;
+    ncl(builder_, level_ + 1);
+    return true;
+  }
+
+  // instruction*
+  private static boolean otherwise_branch_2(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "otherwise_branch_2")) return false;
+    while (true) {
+      int pos_ = current_position_(builder_);
+      if (!instruction(builder_, level_ + 1)) break;
+      if (!empty_element_parsed_guard_(builder_, "otherwise_branch_2", pos_)) break;
+    }
+    return true;
+  }
+
+  /* ********************************************************** */
   // name_declaration 'OVER' expression
   //     | numericConstant 'OVER'
   static boolean over(PsiBuilder builder_, int level_) {
@@ -1781,6 +1813,56 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // when_branch+ otherwise_branch?
+  public static boolean select_body(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "select_body")) return false;
+    if (!nextTokenIs(builder_, WHEN)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = select_body_0(builder_, level_ + 1);
+    result_ = result_ && select_body_1(builder_, level_ + 1);
+    exit_section_(builder_, marker_, SELECT_BODY, result_);
+    return result_;
+  }
+
+  // when_branch+
+  private static boolean select_body_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "select_body_0")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = when_branch(builder_, level_ + 1);
+    while (result_) {
+      int pos_ = current_position_(builder_);
+      if (!when_branch(builder_, level_ + 1)) break;
+      if (!empty_element_parsed_guard_(builder_, "select_body_0", pos_)) break;
+    }
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // otherwise_branch?
+  private static boolean select_body_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "select_body_1")) return false;
+    otherwise_branch(builder_, level_ + 1);
+    return true;
+  }
+
+  /* ********************************************************** */
+  // SELECT /* group_option* */ ncl select_body /* group_handler? */ END
+  public static boolean select_instruction(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "select_instruction")) return false;
+    if (!nextTokenIs(builder_, SELECT)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, SELECT);
+    result_ = result_ && ncl(builder_, level_ + 1);
+    result_ = result_ && select_body(builder_, level_ + 1);
+    result_ = result_ && consumeToken(builder_, END);
+    exit_section_(builder_, marker_, SELECT_INSTRUCTION, result_);
+    return result_;
+  }
+
+  /* ********************************************************** */
   // SIGNAL expressions
   public static boolean signal_instruction(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "signal_instruction")) return false;
@@ -2160,6 +2242,28 @@ public class RexxParser implements PsiParser, LightPsiParser {
     result_ = variable(builder_, level_ + 1);
     if (!result_) result_ = global(builder_, level_ + 1);
     return result_;
+  }
+
+  /* ********************************************************** */
+  // WHEN expression ncl? then
+  public static boolean when_branch(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "when_branch")) return false;
+    if (!nextTokenIs(builder_, WHEN)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, WHEN);
+    result_ = result_ && expression(builder_, level_ + 1);
+    result_ = result_ && when_branch_2(builder_, level_ + 1);
+    result_ = result_ && then(builder_, level_ + 1);
+    exit_section_(builder_, marker_, WHEN_BRANCH, result_);
+    return result_;
+  }
+
+  // ncl?
+  private static boolean when_branch_2(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "when_branch_2")) return false;
+    ncl(builder_, level_ + 1);
+    return true;
   }
 
   /* ********************************************************** */
