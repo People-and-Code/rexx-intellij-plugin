@@ -136,30 +136,7 @@ tasks {
     publishPlugin {
         dependsOn(patchChangelog)
     }
-}
 
-intellijPlatformTesting {
-    runIde {
-        register("runIdeForUiTests") {
-            task {
-                jvmArgumentProviders += CommandLineArgumentProvider {
-                    listOf(
-                        "-Drobot-server.port=8082",
-                        "-Dide.mac.message.dialogs.as.sheets=false",
-                        "-Djb.privacy.policy.text=<!--999.999-->",
-                        "-Djb.consents.confirmation.enabled=false",
-                    )
-                }
-            }
-
-            plugins {
-                robotServerPlugin()
-            }
-        }
-    }
-}
-
-tasks {
     generateLexer.configure {
         sourceFile.set(file("src/main/flex/Parse.flex"))
         targetOutputDir.set(file("src/main/gen/se/peopleandcode/rexxintellijplugin/gen"))
@@ -180,6 +157,27 @@ tasks {
     // Ensure that these tasks are executed before compiling the tests
     compileKotlin {
         dependsOn(generateLexer, generateParser)
+    }
+}
+
+intellijPlatformTesting {
+    runIde {
+        register("runIdeForUiTests") {
+            task {
+                jvmArgumentProviders += CommandLineArgumentProvider {
+                    listOf(
+                        "-Drobot-server.port=8082",
+                        "-Dide.mac.message.dialogs.as.sheets=false",
+                        "-Djb.privacy.policy.text=<!--999.999-->",
+                        "-Djb.consents.confirmation.enabled=false",
+                    )
+                }
+            }
+
+            plugins {
+                robotServerPlugin()
+            }
+        }
     }
 }
 
