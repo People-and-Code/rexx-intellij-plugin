@@ -11,14 +11,14 @@ import static se.peopleandcode.rexxintellijplugin.gen.RexxTokens.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import se.peopleandcode.rexxintellijplugin.gen.psi.*;
 
-public class RexxAssignmentImpl extends ASTWrapperPsiElement implements RexxAssignment {
+public class RexxOrOperatorImpl extends ASTWrapperPsiElement implements RexxOrOperator {
 
-  public RexxAssignmentImpl(@NotNull ASTNode node) {
+  public RexxOrOperatorImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull RexxVisitor visitor) {
-    visitor.visitAssignment(this);
+    visitor.visitOrOperator(this);
   }
 
   @Override
@@ -28,15 +28,15 @@ public class RexxAssignmentImpl extends ASTWrapperPsiElement implements RexxAssi
   }
 
   @Override
-  @NotNull
-  public RexxExpr getExpr() {
-    return findNotNullChildByClass(RexxExpr.class);
+  @Nullable
+  public PsiElement getOperatorAnd() {
+    return findChildByType(OPERATOR_AND);
   }
 
   @Override
-  @NotNull
-  public RexxNameDeclaration getNameDeclaration() {
-    return findNotNullChildByClass(RexxNameDeclaration.class);
+  @Nullable
+  public PsiElement getOperatorOr() {
+    return findChildByType(OPERATOR_OR);
   }
 
 }

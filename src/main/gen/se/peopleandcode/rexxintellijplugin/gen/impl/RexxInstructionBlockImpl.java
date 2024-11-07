@@ -52,6 +52,12 @@ public class RexxInstructionBlockImpl extends ASTWrapperPsiElement implements Re
   }
 
   @Override
+  @Nullable
+  public RexxDecimalConstant getDecimalConstant() {
+    return findChildByClass(RexxDecimalConstant.class);
+  }
+
+  @Override
   @NotNull
   public List<RexxExitInstruction> getExitInstructionList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxExitInstruction.class);
@@ -59,8 +65,8 @@ public class RexxInstructionBlockImpl extends ASTWrapperPsiElement implements Re
 
   @Override
   @NotNull
-  public List<RexxExpression> getExpressionList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxExpression.class);
+  public List<RexxExpr> getExprList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxExpr.class);
   }
 
   @Override
@@ -82,6 +88,12 @@ public class RexxInstructionBlockImpl extends ASTWrapperPsiElement implements Re
   }
 
   @Override
+  @Nullable
+  public RexxIntegerConstant getIntegerConstant() {
+    return findChildByClass(RexxIntegerConstant.class);
+  }
+
+  @Override
   @NotNull
   public List<RexxIterateInstruction> getIterateInstructionList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxIterateInstruction.class);
@@ -100,12 +112,6 @@ public class RexxInstructionBlockImpl extends ASTWrapperPsiElement implements Re
   }
 
   @Override
-  @Nullable
-  public RexxNumericConstant getNumericConstant() {
-    return findChildByClass(RexxNumericConstant.class);
-  }
-
-  @Override
   @NotNull
   public List<RexxNumericInstruction> getNumericInstructionList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxNumericInstruction.class);
@@ -113,32 +119,8 @@ public class RexxInstructionBlockImpl extends ASTWrapperPsiElement implements Re
 
   @Override
   @NotNull
-  public List<RexxParseArgInstruction> getParseArgInstructionList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxParseArgInstruction.class);
-  }
-
-  @Override
-  @NotNull
-  public List<RexxParsePullInstruction> getParsePullInstructionList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxParsePullInstruction.class);
-  }
-
-  @Override
-  @NotNull
-  public List<RexxParseSourceInstruction> getParseSourceInstructionList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxParseSourceInstruction.class);
-  }
-
-  @Override
-  @NotNull
-  public List<RexxParseValueInstruction> getParseValueInstructionList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxParseValueInstruction.class);
-  }
-
-  @Override
-  @NotNull
-  public List<RexxParseVarInstruction> getParseVarInstructionList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxParseVarInstruction.class);
+  public List<RexxParseInstruction> getParseInstructionList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxParseInstruction.class);
   }
 
   @Override
@@ -151,6 +133,12 @@ public class RexxInstructionBlockImpl extends ASTWrapperPsiElement implements Re
   @NotNull
   public List<RexxSayInstruction> getSayInstructionList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxSayInstruction.class);
+  }
+
+  @Override
+  @Nullable
+  public RexxScientificConstant getScientificConstant() {
+    return findChildByClass(RexxScientificConstant.class);
   }
 
   @Override

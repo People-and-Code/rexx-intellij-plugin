@@ -141,6 +141,7 @@
         COMMA="regexp:[,]"
         COLON="regexp:[:]"
     ]
+    extends(".*expr")=expr
 }
 
 /*program*/
@@ -152,9 +153,9 @@ private terminator ::= TERMINATOR
 private instruction_list ::= instruction+
 private instruction ::= group | single_instruction ncl
 private group ::= instruction_block | if_instruction | select_instruction
-select_instruction ::= SELECT /* group_option* */ ncl select_body /* group_handler? */ END
+select_instruction ::= SELECT /* group_option* */ ncl select_body /* group_handler? */ END ncl?
 select_body ::= when_branch+ otherwise_branch?
-when_branch ::= WHEN expression ncl? then
+when_branch ::= WHEN expr ncl? then
 otherwise_branch ::= OTHERWISE ncl? /*ncl not optional in spec*/ instruction*
 private command ::= expression_instruction
 private keyword_instruction
@@ -192,33 +193,26 @@ private positional ::= absolute_positional | relative_positional
 private absolute_positional ::= numericConstant | EQ position
 private position ::= numericConstant  /*| vrefp*/
 private relative_positional ::= (OPERATOR_PLUS | OPERATOR_SUBTRACT) position
-
-private parse_instruction
-    ::= parse_arg_instruction
-    | parse_pull_instruction
-    | parse_var_instruction
-    | parse_value_instruction
-    | parse_source_instruction
 numeric_instruction ::= NUMERIC IDENTIFIER integerConstant
 iterate_instruction ::= ITERATE variable_?
 label_instruction ::= name_declaration COLON (PROCEDURE (EXPOSE IDENTIFIER)? DOT?)?
-return_instruction ::= RETURN expression?
+return_instruction ::= RETURN expr?
 
-signal_instruction ::= SIGNAL expressions
+signal_instruction ::= SIGNAL expr
 
 trace_instruction ::= TRACE ("o"|"i"|"r")
 
-exit_instruction ::= EXIT expression?
+exit_instruction ::= EXIT expr?
 call_instruction ::= CALL
     ( /*callon_spec
     |*/ (taken_constant /*| vref */) expression_list?
     )
 
-address_instruction ::= ADDRESS expressions
+address_instruction ::= ADDRESS expr
 
 expression_instruction
-    ::= &IDENTIFIER expression
-    | &stringLiteral expression
+    ::= &IDENTIFIER expr
+    | &stringLiteral expr
 
 
 instruction_block ::= do_specification ncl
@@ -231,61 +225,91 @@ private do_specification ::= DO /*[group_option+]*/
     | dorep conditional
     )?
 private conditional ::= 'WHILE' whileexpr | 'UNTIL' untilexpr
-private untilexpr ::= expression
-private whileexpr ::= expression
+private untilexpr ::= expr
+private whileexpr ::= expr
 private dorep ::= 'FORVER' | repetitor
-private repetitor ::= assignment | expression | over | 'FOREVER'
+private repetitor ::= assignment | expr | over | 'FOREVER'
 private over
-    ::= name_declaration 'OVER' expression
+    ::= name_declaration 'OVER' expr
     | numericConstant 'OVER'
     /*| CONST_SYMBOL 'OVER'*/
 private do_ending ::= END name_declaration? ncl
-parse_pull_instruction ::= PARSE PULL parse_target* (COMMA parse_target*)*
-parse_arg_instruction ::= PARSE ARG parse_target* (COMMA parse_target*)*
-parse_var_instruction ::= PARSE VAR parse_target*
-parse_value_instruction ::= PARSE VALUE expression WITH parse_target*
-parse_source_instruction ::= PARSE SOURCE parse_target*
-private parse_target
-    ::= IDENTIFIER DOT EXCLAMATION? IDENTIFIER
-    | name_declaration
-    | stringLiteral
-    | integerConstant
-    | remainder // | range | offset
 
-remainder ::= DOT
-if_instruction ::= IF expression ncl? then else?
+parse_instruction
+    ::= PARSE translation? parse_type template_list*
+private translation ::= 'CASELESS' ['UPPER' | 'LOWER'] | ('UPPER' | 'LOWER')
+private parse_type
+    ::= parse_key
+    | parse_value
+    | parse_var
+    | term_expr
+
+private parse_key
+    ::= ARG
+    | PULL
+    | SOURCE
+    | 'LINEIN'
+    | 'VERSION'
+
+private parse_value ::= VALUE expr? WITH
+private parse_var ::= VAR name_declaration
+
+if_instruction ::= IF expr ncl? then else?
 private then ::= THEN ncl? (instruction | END)
 private else ::= ELSE ncl? (instruction | END)
 
-assignment ::= name_declaration '=' expressions
+assignment ::= name_declaration '=' expr
 
 name_declaration ::= identifier_ {
    mixin="se.peopleandcode.rexxintellijplugin.instructions.NameDeclaration"
 }
 
-say_instruction ::= SAY expressions?
-private expressions ::= expression+
+say_instruction ::= SAY expr?
 /*
 Compact expressions, soon ish:
 https://github.com/JetBrains/Grammar-Kit/blob/master/HOWTO.md#24-compact-expression-parsing-with-priorities
 */
-expression ::= concatenation
-concatenation ::= compare (OPERATOR_CONCATENATE? !keywords compare)*
-compare ::= addition (comparison_operator addition)?
 
+
+expr
+    ::= alias_expr
+    | and_expr
+    | comparison_expr
+    | concatenation_expr
+    | addition_expr
+    | multiplication_expr
+    | power_expr
+    | prefix_expr
+    | term_expr
+
+alias_expr ::= expr or_operator expr
+or_operator ::= OPERATOR_OR | OPERATOR_AND
+and_expr ::= expr OPERATOR_BITWISE_AND expr
+comparison_expr ::= expr comparison_operator expr
+concatenation_expr ::= expr (OPERATOR_CONCATENATE | &expr ) expr
+addition_expr ::= expr additive_operator expr
+additive_operator ::= OPERATOR_PLUS | OPERATOR_SUBTRACT
+multiplication_expr ::= expr multiplicative_operator expr
+multiplicative_operator
+    ::= OPERATOR_MULTIPLY
+    | OPERATOR_DIVIDE
+    | '//'
+    | OPERATOR_REMAINDER
+power_expr ::= expr '**' expr
+prefix_expr ::= prefix  expr
+private prefix
+    ::= OPERATOR_PLUS
+    | OPERATOR_SUBTRACT
+    | "\\"
+term_expr ::=
+    simple_term (DOT simple_term?)* message_call*
 private comparison_operator ::= normal_compare | strict_compare
 private normal_compare ::=  EQ | NEQ1 | NEQ2 | NEQ3 | GT | LT | GTE | LTE | ALT_GT | ALT_LT
 private strict_compare ::= STRICT_EQ | STRICT_NEQ | STRICT_GT | STRICT_LT | STRICT_GTE | STRICT_LTE | STRICT_ESC_GT | STRICT_ESC_LT
 
-addition ::= subtraction_ (OPERATOR_PLUS subtraction_)*
-private subtraction_ ::= multiplication (subtraction)*
-left subtraction ::= OPERATOR_SUBTRACT multiplication
-multiplication ::= division_ (OPERATOR_MULTIPLY division_)*
-private division_ ::= expressionTerm division*
-left division ::= OPERATOR_DIVIDE expressionTerm
 
 stringLiteral ::= STRING
-numericConstant ::= integerConstant | decimalConstant | scientificConstant
+private numericConstant ::= integerConstant | decimalConstant | scientificConstant
 integerConstant ::= NUMBER_INT
 decimalConstant ::= NUMBER_DECIMAL
 scientificConstant ::= NUMBER_SCIENTIFIC
@@ -295,9 +319,7 @@ variable ::= identifier_ {
 }
 global ::= DOT IDENTIFIER
 private symbol ::= variable | global /* == const_symbol */ | numericConstant
-/*term*/ expressionTerm ::= methodCall | stem | simple_term
-stem ::= simple_term (DOT simple_term)+
-methodCall ::= (stem | simple_term) message_call+
+
 private simple_term
     ::= stringLiteral
     | invoke
@@ -306,15 +328,15 @@ private simple_term
     | parentheticalExpression
     | initializer
 
-parentheticalExpression ::= TOKEN_LEFT expression TOKEN_RIGHT
+parentheticalExpression ::= TOKEN_LEFT expr TOKEN_RIGHT
 
 private message_call ::= TILDE TILDE? method_name arguments?
 private method_name ::= /*taken_constant*/ IDENTIFIER (COLON variable_)?
 invoke ::= (symbol | stringLiteral) arguments
 private arguments ::= TOKEN_LEFT expression_list? TOKEN_RIGHT
 private expression_list
-    ::= expression (COMMA expression?)*
-    | (COMMA expression?)+
+    ::= expr (COMMA expr?)*
+    | (COMMA expr?)+
 private indexed ::= symbol | stringLiteral indices
 private indices ::= '[' expression_list? ']'
 private initializer ::= '[' expression_list ']'
@@ -326,7 +348,6 @@ private keywords
     |  ARG
     |  VAR
     |  VALUE
-    |  WITH
     |  CALL
     |  DO
     |  DROP
@@ -357,7 +378,6 @@ private keywords
     |  SELECT
     |  SOURCE
     |  SIGNAL
-    |  THEN
     |  TRACE
     |  USE
     |  WHILE

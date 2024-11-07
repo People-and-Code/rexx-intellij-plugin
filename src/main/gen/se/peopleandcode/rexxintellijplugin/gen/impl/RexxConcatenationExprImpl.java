@@ -8,17 +8,17 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static se.peopleandcode.rexxintellijplugin.gen.RexxTokens.*;
-import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import se.peopleandcode.rexxintellijplugin.gen.psi.*;
 
-public class RexxAssignmentImpl extends ASTWrapperPsiElement implements RexxAssignment {
+public class RexxConcatenationExprImpl extends RexxExprImpl implements RexxConcatenationExpr {
 
-  public RexxAssignmentImpl(@NotNull ASTNode node) {
+  public RexxConcatenationExprImpl(@NotNull ASTNode node) {
     super(node);
   }
 
+  @Override
   public void accept(@NotNull RexxVisitor visitor) {
-    visitor.visitAssignment(this);
+    visitor.visitConcatenationExpr(this);
   }
 
   @Override
@@ -29,14 +29,14 @@ public class RexxAssignmentImpl extends ASTWrapperPsiElement implements RexxAssi
 
   @Override
   @NotNull
-  public RexxExpr getExpr() {
-    return findNotNullChildByClass(RexxExpr.class);
+  public List<RexxExpr> getExprList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxExpr.class);
   }
 
   @Override
-  @NotNull
-  public RexxNameDeclaration getNameDeclaration() {
-    return findNotNullChildByClass(RexxNameDeclaration.class);
+  @Nullable
+  public PsiElement getOperatorConcatenate() {
+    return findChildByType(OPERATOR_CONCATENATE);
   }
 
 }

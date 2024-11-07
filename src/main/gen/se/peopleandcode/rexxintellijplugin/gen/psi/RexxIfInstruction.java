@@ -23,7 +23,7 @@ public interface RexxIfInstruction extends PsiElement {
   List<RexxExitInstruction> getExitInstructionList();
 
   @NotNull
-  RexxExpression getExpression();
+  RexxExpr getExpr();
 
   @NotNull
   List<RexxExpressionInstruction> getExpressionInstructionList();
@@ -44,19 +44,7 @@ public interface RexxIfInstruction extends PsiElement {
   List<RexxNumericInstruction> getNumericInstructionList();
 
   @NotNull
-  List<RexxParseArgInstruction> getParseArgInstructionList();
-
-  @NotNull
-  List<RexxParsePullInstruction> getParsePullInstructionList();
-
-  @NotNull
-  List<RexxParseSourceInstruction> getParseSourceInstructionList();
-
-  @NotNull
-  List<RexxParseValueInstruction> getParseValueInstructionList();
-
-  @NotNull
-  List<RexxParseVarInstruction> getParseVarInstructionList();
+  List<RexxParseInstruction> getParseInstructionList();
 
   @NotNull
   List<RexxReturnInstruction> getReturnInstructionList();

@@ -29,8 +29,8 @@ public class RexxSignalInstructionImpl extends ASTWrapperPsiElement implements R
 
   @Override
   @NotNull
-  public List<RexxExpression> getExpressionList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxExpression.class);
+  public RexxExpr getExpr() {
+    return findNotNullChildByClass(RexxExpr.class);
   }
 
   @Override

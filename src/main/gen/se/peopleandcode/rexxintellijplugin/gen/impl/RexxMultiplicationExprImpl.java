@@ -8,17 +8,17 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static se.peopleandcode.rexxintellijplugin.gen.RexxTokens.*;
-import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import se.peopleandcode.rexxintellijplugin.gen.psi.*;
 
-public class RexxDivisionImpl extends ASTWrapperPsiElement implements RexxDivision {
+public class RexxMultiplicationExprImpl extends RexxExprImpl implements RexxMultiplicationExpr {
 
-  public RexxDivisionImpl(@NotNull ASTNode node) {
+  public RexxMultiplicationExprImpl(@NotNull ASTNode node) {
     super(node);
   }
 
+  @Override
   public void accept(@NotNull RexxVisitor visitor) {
-    visitor.visitDivision(this);
+    visitor.visitMultiplicationExpr(this);
   }
 
   @Override
@@ -28,21 +28,15 @@ public class RexxDivisionImpl extends ASTWrapperPsiElement implements RexxDivisi
   }
 
   @Override
-  @Nullable
-  public RexxDivision getDivision() {
-    return findChildByClass(RexxDivision.class);
+  @NotNull
+  public List<RexxExpr> getExprList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxExpr.class);
   }
 
   @Override
   @NotNull
-  public List<RexxExpressionTerm> getExpressionTermList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxExpressionTerm.class);
-  }
-
-  @Override
-  @NotNull
-  public PsiElement getOperatorDivide() {
-    return findNotNullChildByType(OPERATOR_DIVIDE);
+  public RexxMultiplicativeOperator getMultiplicativeOperator() {
+    return findNotNullChildByClass(RexxMultiplicativeOperator.class);
   }
 
 }

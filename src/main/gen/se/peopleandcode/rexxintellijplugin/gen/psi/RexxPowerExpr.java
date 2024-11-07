@@ -5,15 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface RexxSubtraction extends PsiElement {
+public interface RexxPowerExpr extends RexxExpr {
 
   @NotNull
-  List<RexxMultiplication> getMultiplicationList();
-
-  @Nullable
-  RexxSubtraction getSubtraction();
-
-  @NotNull
-  PsiElement getOperatorSubtract();
+  List<RexxExpr> getExprList();
 
 }

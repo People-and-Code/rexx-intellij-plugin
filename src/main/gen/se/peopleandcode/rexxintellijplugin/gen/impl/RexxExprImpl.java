@@ -11,38 +11,20 @@ import static se.peopleandcode.rexxintellijplugin.gen.RexxTokens.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import se.peopleandcode.rexxintellijplugin.gen.psi.*;
 
-public class RexxNumericConstantImpl extends ASTWrapperPsiElement implements RexxNumericConstant {
+public abstract class RexxExprImpl extends ASTWrapperPsiElement implements RexxExpr {
 
-  public RexxNumericConstantImpl(@NotNull ASTNode node) {
+  public RexxExprImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull RexxVisitor visitor) {
-    visitor.visitNumericConstant(this);
+    visitor.visitExpr(this);
   }
 
   @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof RexxVisitor) accept((RexxVisitor)visitor);
     else super.accept(visitor);
-  }
-
-  @Override
-  @Nullable
-  public RexxDecimalConstant getDecimalConstant() {
-    return findChildByClass(RexxDecimalConstant.class);
-  }
-
-  @Override
-  @Nullable
-  public RexxIntegerConstant getIntegerConstant() {
-    return findChildByClass(RexxIntegerConstant.class);
-  }
-
-  @Override
-  @Nullable
-  public RexxScientificConstant getScientificConstant() {
-    return findChildByClass(RexxScientificConstant.class);
   }
 
 }

@@ -5,9 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface RexxCompare extends PsiElement {
+public interface RexxComparisonExpr extends RexxExpr {
 
   @NotNull
-  List<RexxAddition> getAdditionList();
+  List<RexxExpr> getExprList();
 
 }

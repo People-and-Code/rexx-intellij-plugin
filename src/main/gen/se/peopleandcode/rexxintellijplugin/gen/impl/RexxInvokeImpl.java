@@ -28,9 +28,15 @@ public class RexxInvokeImpl extends ASTWrapperPsiElement implements RexxInvoke {
   }
 
   @Override
+  @Nullable
+  public RexxDecimalConstant getDecimalConstant() {
+    return findChildByClass(RexxDecimalConstant.class);
+  }
+
+  @Override
   @NotNull
-  public List<RexxExpression> getExpressionList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxExpression.class);
+  public List<RexxExpr> getExprList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxExpr.class);
   }
 
   @Override
@@ -41,8 +47,14 @@ public class RexxInvokeImpl extends ASTWrapperPsiElement implements RexxInvoke {
 
   @Override
   @Nullable
-  public RexxNumericConstant getNumericConstant() {
-    return findChildByClass(RexxNumericConstant.class);
+  public RexxIntegerConstant getIntegerConstant() {
+    return findChildByClass(RexxIntegerConstant.class);
+  }
+
+  @Override
+  @Nullable
+  public RexxScientificConstant getScientificConstant() {
+    return findChildByClass(RexxScientificConstant.class);
   }
 
   @Override

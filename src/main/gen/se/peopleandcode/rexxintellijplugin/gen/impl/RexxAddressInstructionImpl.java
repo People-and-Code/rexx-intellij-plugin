@@ -29,8 +29,8 @@ public class RexxAddressInstructionImpl extends ASTWrapperPsiElement implements 
 
   @Override
   @NotNull
-  public List<RexxExpression> getExpressionList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxExpression.class);
+  public RexxExpr getExpr() {
+    return findNotNullChildByClass(RexxExpr.class);
   }
 
   @Override

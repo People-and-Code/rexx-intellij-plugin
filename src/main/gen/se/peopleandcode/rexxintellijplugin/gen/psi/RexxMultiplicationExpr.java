@@ -5,9 +5,12 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface RexxConcatenation extends PsiElement {
+public interface RexxMultiplicationExpr extends RexxExpr {
 
   @NotNull
-  List<RexxCompare> getCompareList();
+  List<RexxExpr> getExprList();
+
+  @NotNull
+  RexxMultiplicativeOperator getMultiplicativeOperator();
 
 }

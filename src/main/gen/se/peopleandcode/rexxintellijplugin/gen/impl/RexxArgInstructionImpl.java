@@ -29,14 +29,26 @@ public class RexxArgInstructionImpl extends ASTWrapperPsiElement implements Rexx
 
   @Override
   @NotNull
+  public List<RexxDecimalConstant> getDecimalConstantList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxDecimalConstant.class);
+  }
+
+  @Override
+  @NotNull
+  public List<RexxIntegerConstant> getIntegerConstantList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxIntegerConstant.class);
+  }
+
+  @Override
+  @NotNull
   public List<RexxNameDeclaration> getNameDeclarationList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxNameDeclaration.class);
   }
 
   @Override
   @NotNull
-  public List<RexxNumericConstant> getNumericConstantList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxNumericConstant.class);
+  public List<RexxScientificConstant> getScientificConstantList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxScientificConstant.class);
   }
 
   @Override

@@ -5,12 +5,12 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface RexxAddition extends PsiElement {
+public interface RexxAdditiveOperator extends PsiElement {
 
-  @NotNull
-  List<RexxMultiplication> getMultiplicationList();
+  @Nullable
+  PsiElement getOperatorPlus();
 
-  @NotNull
-  List<RexxSubtraction> getSubtractionList();
+  @Nullable
+  PsiElement getOperatorSubtract();
 
 }

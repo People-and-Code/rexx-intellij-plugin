@@ -29,8 +29,8 @@ public class RexxExpressionInstructionImpl extends ASTWrapperPsiElement implemen
 
   @Override
   @NotNull
-  public RexxExpression getExpression() {
-    return findNotNullChildByClass(RexxExpression.class);
+  public RexxExpr getExpr() {
+    return findNotNullChildByClass(RexxExpr.class);
   }
 
 }

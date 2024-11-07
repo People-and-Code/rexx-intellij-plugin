@@ -8,10 +8,16 @@ import com.intellij.psi.PsiElement;
 public interface RexxArgInstruction extends PsiElement {
 
   @NotNull
+  List<RexxDecimalConstant> getDecimalConstantList();
+
+  @NotNull
+  List<RexxIntegerConstant> getIntegerConstantList();
+
+  @NotNull
   List<RexxNameDeclaration> getNameDeclarationList();
 
   @NotNull
-  List<RexxNumericConstant> getNumericConstantList();
+  List<RexxScientificConstant> getScientificConstantList();
 
   @NotNull
   List<RexxStringLiteral> getStringLiteralList();

@@ -23,7 +23,7 @@ public interface RexxWhenBranch extends PsiElement {
   RexxExitInstruction getExitInstruction();
 
   @NotNull
-  RexxExpression getExpression();
+  RexxExpr getExpr();
 
   @Nullable
   RexxExpressionInstruction getExpressionInstruction();
@@ -44,19 +44,7 @@ public interface RexxWhenBranch extends PsiElement {
   RexxNumericInstruction getNumericInstruction();
 
   @Nullable
-  RexxParseArgInstruction getParseArgInstruction();
-
-  @Nullable
-  RexxParsePullInstruction getParsePullInstruction();
-
-  @Nullable
-  RexxParseSourceInstruction getParseSourceInstruction();
-
-  @Nullable
-  RexxParseValueInstruction getParseValueInstruction();
-
-  @Nullable
-  RexxParseVarInstruction getParseVarInstruction();
+  RexxParseInstruction getParseInstruction();
 
   @Nullable
   RexxReturnInstruction getReturnInstruction();

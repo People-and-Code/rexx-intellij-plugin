@@ -29,8 +29,8 @@ public class RexxReturnInstructionImpl extends ASTWrapperPsiElement implements R
 
   @Override
   @Nullable
-  public RexxExpression getExpression() {
-    return findChildByClass(RexxExpression.class);
+  public RexxExpr getExpr() {
+    return findChildByClass(RexxExpr.class);
   }
 
   @Override

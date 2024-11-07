@@ -5,10 +5,13 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface RexxParseValueInstruction extends PsiElement {
+public interface RexxParseInstruction extends PsiElement {
 
   @NotNull
-  RexxExpression getExpression();
+  List<RexxDecimalConstant> getDecimalConstantList();
+
+  @Nullable
+  RexxExpr getExpr();
 
   @NotNull
   List<RexxIntegerConstant> getIntegerConstantList();
@@ -17,18 +20,30 @@ public interface RexxParseValueInstruction extends PsiElement {
   List<RexxNameDeclaration> getNameDeclarationList();
 
   @NotNull
-  List<RexxRemainder> getRemainderList();
+  List<RexxScientificConstant> getScientificConstantList();
 
   @NotNull
   List<RexxStringLiteral> getStringLiteralList();
 
+  @Nullable
+  PsiElement getArg();
+
   @NotNull
   PsiElement getParse();
 
-  @NotNull
+  @Nullable
+  PsiElement getPull();
+
+  @Nullable
+  PsiElement getSource();
+
+  @Nullable
   PsiElement getValue();
 
-  @NotNull
+  @Nullable
+  PsiElement getVar();
+
+  @Nullable
   PsiElement getWith();
 
 }

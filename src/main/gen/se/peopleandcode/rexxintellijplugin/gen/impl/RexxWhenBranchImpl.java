@@ -59,8 +59,8 @@ public class RexxWhenBranchImpl extends ASTWrapperPsiElement implements RexxWhen
 
   @Override
   @NotNull
-  public RexxExpression getExpression() {
-    return findNotNullChildByClass(RexxExpression.class);
+  public RexxExpr getExpr() {
+    return findNotNullChildByClass(RexxExpr.class);
   }
 
   @Override
@@ -101,32 +101,8 @@ public class RexxWhenBranchImpl extends ASTWrapperPsiElement implements RexxWhen
 
   @Override
   @Nullable
-  public RexxParseArgInstruction getParseArgInstruction() {
-    return findChildByClass(RexxParseArgInstruction.class);
-  }
-
-  @Override
-  @Nullable
-  public RexxParsePullInstruction getParsePullInstruction() {
-    return findChildByClass(RexxParsePullInstruction.class);
-  }
-
-  @Override
-  @Nullable
-  public RexxParseSourceInstruction getParseSourceInstruction() {
-    return findChildByClass(RexxParseSourceInstruction.class);
-  }
-
-  @Override
-  @Nullable
-  public RexxParseValueInstruction getParseValueInstruction() {
-    return findChildByClass(RexxParseValueInstruction.class);
-  }
-
-  @Override
-  @Nullable
-  public RexxParseVarInstruction getParseVarInstruction() {
-    return findChildByClass(RexxParseVarInstruction.class);
+  public RexxParseInstruction getParseInstruction() {
+    return findChildByClass(RexxParseInstruction.class);
   }
 
   @Override

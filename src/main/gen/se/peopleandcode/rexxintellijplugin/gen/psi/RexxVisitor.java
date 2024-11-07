@@ -7,12 +7,24 @@ import com.intellij.psi.PsiElement;
 
 public class RexxVisitor extends PsiElementVisitor {
 
-  public void visitAddition(@NotNull RexxAddition o) {
+  public void visitAdditionExpr(@NotNull RexxAdditionExpr o) {
+    visitExpr(o);
+  }
+
+  public void visitAdditiveOperator(@NotNull RexxAdditiveOperator o) {
     visitPsiElement(o);
   }
 
   public void visitAddressInstruction(@NotNull RexxAddressInstruction o) {
     visitPsiElement(o);
+  }
+
+  public void visitAliasExpr(@NotNull RexxAliasExpr o) {
+    visitExpr(o);
+  }
+
+  public void visitAndExpr(@NotNull RexxAndExpr o) {
+    visitExpr(o);
   }
 
   public void visitArgInstruction(@NotNull RexxArgInstruction o) {
@@ -27,19 +39,15 @@ public class RexxVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitCompare(@NotNull RexxCompare o) {
-    visitPsiElement(o);
+  public void visitComparisonExpr(@NotNull RexxComparisonExpr o) {
+    visitExpr(o);
   }
 
-  public void visitConcatenation(@NotNull RexxConcatenation o) {
-    visitPsiElement(o);
+  public void visitConcatenationExpr(@NotNull RexxConcatenationExpr o) {
+    visitExpr(o);
   }
 
   public void visitDecimalConstant(@NotNull RexxDecimalConstant o) {
-    visitPsiElement(o);
-  }
-
-  public void visitDivision(@NotNull RexxDivision o) {
     visitPsiElement(o);
   }
 
@@ -47,11 +55,7 @@ public class RexxVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitExpression(@NotNull RexxExpression o) {
-    visitPsiElement(o);
-  }
-
-  public void visitExpressionTerm(@NotNull RexxExpressionTerm o) {
+  public void visitExpr(@NotNull RexxExpr o) {
     visitPsiElement(o);
   }
 
@@ -91,11 +95,11 @@ public class RexxVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitMethodCall(@NotNull RexxMethodCall o) {
-    visitPsiElement(o);
+  public void visitMultiplicationExpr(@NotNull RexxMultiplicationExpr o) {
+    visitExpr(o);
   }
 
-  public void visitMultiplication(@NotNull RexxMultiplication o) {
+  public void visitMultiplicativeOperator(@NotNull RexxMultiplicativeOperator o) {
     visitPsiElement(o);
   }
 
@@ -103,11 +107,11 @@ public class RexxVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitNumericConstant(@NotNull RexxNumericConstant o) {
+  public void visitNumericInstruction(@NotNull RexxNumericInstruction o) {
     visitPsiElement(o);
   }
 
-  public void visitNumericInstruction(@NotNull RexxNumericInstruction o) {
+  public void visitOrOperator(@NotNull RexxOrOperator o) {
     visitPsiElement(o);
   }
 
@@ -119,24 +123,16 @@ public class RexxVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitParseArgInstruction(@NotNull RexxParseArgInstruction o) {
+  public void visitParseInstruction(@NotNull RexxParseInstruction o) {
     visitPsiElement(o);
   }
 
-  public void visitParsePullInstruction(@NotNull RexxParsePullInstruction o) {
-    visitPsiElement(o);
+  public void visitPowerExpr(@NotNull RexxPowerExpr o) {
+    visitExpr(o);
   }
 
-  public void visitParseSourceInstruction(@NotNull RexxParseSourceInstruction o) {
-    visitPsiElement(o);
-  }
-
-  public void visitParseValueInstruction(@NotNull RexxParseValueInstruction o) {
-    visitPsiElement(o);
-  }
-
-  public void visitParseVarInstruction(@NotNull RexxParseVarInstruction o) {
-    visitPsiElement(o);
+  public void visitPrefixExpr(@NotNull RexxPrefixExpr o) {
+    visitExpr(o);
   }
 
   public void visitRemainder(@NotNull RexxRemainder o) {
@@ -167,16 +163,12 @@ public class RexxVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitStem(@NotNull RexxStem o) {
-    visitPsiElement(o);
-  }
-
   public void visitStringLiteral(@NotNull RexxStringLiteral o) {
     visitPsiElement(o);
   }
 
-  public void visitSubtraction(@NotNull RexxSubtraction o) {
-    visitPsiElement(o);
+  public void visitTermExpr(@NotNull RexxTermExpr o) {
+    visitExpr(o);
   }
 
   public void visitTraceInstruction(@NotNull RexxTraceInstruction o) {

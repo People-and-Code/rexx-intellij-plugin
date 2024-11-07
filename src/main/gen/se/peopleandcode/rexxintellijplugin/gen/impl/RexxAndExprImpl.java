@@ -8,17 +8,17 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static se.peopleandcode.rexxintellijplugin.gen.RexxTokens.*;
-import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import se.peopleandcode.rexxintellijplugin.gen.psi.*;
 
-public class RexxExpressionImpl extends ASTWrapperPsiElement implements RexxExpression {
+public class RexxAndExprImpl extends RexxExprImpl implements RexxAndExpr {
 
-  public RexxExpressionImpl(@NotNull ASTNode node) {
+  public RexxAndExprImpl(@NotNull ASTNode node) {
     super(node);
   }
 
+  @Override
   public void accept(@NotNull RexxVisitor visitor) {
-    visitor.visitExpression(this);
+    visitor.visitAndExpr(this);
   }
 
   @Override
@@ -29,8 +29,14 @@ public class RexxExpressionImpl extends ASTWrapperPsiElement implements RexxExpr
 
   @Override
   @NotNull
-  public RexxConcatenation getConcatenation() {
-    return findNotNullChildByClass(RexxConcatenation.class);
+  public List<RexxExpr> getExprList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxExpr.class);
+  }
+
+  @Override
+  @NotNull
+  public PsiElement getOperatorBitwiseAnd() {
+    return findNotNullChildByType(OPERATOR_BITWISE_AND);
   }
 
 }

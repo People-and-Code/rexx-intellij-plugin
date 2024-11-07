@@ -227,12 +227,6 @@ public class RexxIdentifier_Impl extends ASTWrapperPsiElement implements RexxIde
 
   @Override
   @Nullable
-  public PsiElement getThen() {
-    return findChildByType(THEN);
-  }
-
-  @Override
-  @Nullable
   public PsiElement getTrace() {
     return findChildByType(TRACE);
   }
@@ -259,12 +253,6 @@ public class RexxIdentifier_Impl extends ASTWrapperPsiElement implements RexxIde
   @Nullable
   public PsiElement getWhile() {
     return findChildByType(WHILE);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getWith() {
-    return findChildByType(WITH);
   }
 
 }

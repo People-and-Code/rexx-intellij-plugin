@@ -8,7 +8,7 @@ import com.intellij.psi.PsiElement;
 public interface RexxAssignment extends PsiElement {
 
   @NotNull
-  List<RexxExpression> getExpressionList();
+  RexxExpr getExpr();
 
   @NotNull
   RexxNameDeclaration getNameDeclaration();

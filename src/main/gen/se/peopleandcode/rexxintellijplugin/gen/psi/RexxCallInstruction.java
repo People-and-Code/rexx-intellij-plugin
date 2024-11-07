@@ -7,14 +7,20 @@ import com.intellij.psi.PsiElement;
 
 public interface RexxCallInstruction extends PsiElement {
 
+  @Nullable
+  RexxDecimalConstant getDecimalConstant();
+
   @NotNull
-  List<RexxExpression> getExpressionList();
+  List<RexxExpr> getExprList();
 
   @Nullable
   RexxGlobal getGlobal();
 
   @Nullable
-  RexxNumericConstant getNumericConstant();
+  RexxIntegerConstant getIntegerConstant();
+
+  @Nullable
+  RexxScientificConstant getScientificConstant();
 
   @Nullable
   RexxStringLiteral getStringLiteral();

@@ -8,17 +8,17 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static se.peopleandcode.rexxintellijplugin.gen.RexxTokens.*;
-import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import se.peopleandcode.rexxintellijplugin.gen.psi.*;
 
-public class RexxStemImpl extends ASTWrapperPsiElement implements RexxStem {
+public class RexxTermExprImpl extends RexxExprImpl implements RexxTermExpr {
 
-  public RexxStemImpl(@NotNull ASTNode node) {
+  public RexxTermExprImpl(@NotNull ASTNode node) {
     super(node);
   }
 
+  @Override
   public void accept(@NotNull RexxVisitor visitor) {
-    visitor.visitStem(this);
+    visitor.visitTermExpr(this);
   }
 
   @Override
@@ -29,8 +29,14 @@ public class RexxStemImpl extends ASTWrapperPsiElement implements RexxStem {
 
   @Override
   @NotNull
-  public List<RexxExpression> getExpressionList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxExpression.class);
+  public List<RexxDecimalConstant> getDecimalConstantList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxDecimalConstant.class);
+  }
+
+  @Override
+  @NotNull
+  public List<RexxExpr> getExprList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxExpr.class);
   }
 
   @Override
@@ -41,20 +47,26 @@ public class RexxStemImpl extends ASTWrapperPsiElement implements RexxStem {
 
   @Override
   @NotNull
+  public List<RexxIntegerConstant> getIntegerConstantList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxIntegerConstant.class);
+  }
+
+  @Override
+  @NotNull
   public List<RexxInvoke> getInvokeList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxInvoke.class);
   }
 
   @Override
   @NotNull
-  public List<RexxNumericConstant> getNumericConstantList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxNumericConstant.class);
+  public List<RexxParentheticalExpression> getParentheticalExpressionList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxParentheticalExpression.class);
   }
 
   @Override
   @NotNull
-  public List<RexxParentheticalExpression> getParentheticalExpressionList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxParentheticalExpression.class);
+  public List<RexxScientificConstant> getScientificConstantList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxScientificConstant.class);
   }
 
   @Override

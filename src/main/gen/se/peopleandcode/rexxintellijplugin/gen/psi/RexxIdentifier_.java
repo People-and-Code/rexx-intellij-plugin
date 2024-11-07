@@ -107,9 +107,6 @@ public interface RexxIdentifier_ extends PsiElement {
   PsiElement getSource();
 
   @Nullable
-  PsiElement getThen();
-
-  @Nullable
   PsiElement getTrace();
 
   @Nullable
@@ -123,8 +120,5 @@ public interface RexxIdentifier_ extends PsiElement {
 
   @Nullable
   PsiElement getWhile();
-
-  @Nullable
-  PsiElement getWith();
 
 }

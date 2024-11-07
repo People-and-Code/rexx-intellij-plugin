@@ -29,8 +29,8 @@ public class RexxExitInstructionImpl extends ASTWrapperPsiElement implements Rex
 
   @Override
   @Nullable
-  public RexxExpression getExpression() {
-    return findChildByClass(RexxExpression.class);
+  public RexxExpr getExpr() {
+    return findChildByClass(RexxExpr.class);
   }
 
   @Override

@@ -10,19 +10,20 @@ import se.peopleandcode.rexxintellijplugin.gen.impl.*;
 
 public interface RexxTokens {
 
-  IElementType ADDITION = new RexxElementType("ADDITION");
+  IElementType ADDITION_EXPR = new RexxElementType("ADDITION_EXPR");
+  IElementType ADDITIVE_OPERATOR = new RexxElementType("ADDITIVE_OPERATOR");
   IElementType ADDRESS_INSTRUCTION = new RexxElementType("ADDRESS_INSTRUCTION");
+  IElementType ALIAS_EXPR = new RexxElementType("ALIAS_EXPR");
+  IElementType AND_EXPR = new RexxElementType("AND_EXPR");
   IElementType ARG_INSTRUCTION = new RexxElementType("ARG_INSTRUCTION");
   IElementType ASSIGNMENT = new RexxElementType("ASSIGNMENT");
   IElementType CALL_INSTRUCTION = new RexxElementType("CALL_INSTRUCTION");
-  IElementType COMPARE = new RexxElementType("COMPARE");
-  IElementType CONCATENATION = new RexxElementType("CONCATENATION");
+  IElementType COMPARISON_EXPR = new RexxElementType("COMPARISON_EXPR");
+  IElementType CONCATENATION_EXPR = new RexxElementType("CONCATENATION_EXPR");
   IElementType DECIMAL_CONSTANT = new RexxElementType("DECIMAL_CONSTANT");
-  IElementType DIVISION = new RexxElementType("DIVISION");
   IElementType EXIT_INSTRUCTION = new RexxElementType("EXIT_INSTRUCTION");
-  IElementType EXPRESSION = new RexxElementType("EXPRESSION");
+  IElementType EXPR = new RexxElementType("EXPR");
   IElementType EXPRESSION_INSTRUCTION = new RexxElementType("EXPRESSION_INSTRUCTION");
-  IElementType EXPRESSION_TERM = new RexxElementType("EXPRESSION_TERM");
   IElementType GLOBAL = new RexxElementType("GLOBAL");
   IElementType IDENTIFIER_ = new RexxElementType("IDENTIFIER_");
   IElementType IF_INSTRUCTION = new RexxElementType("IF_INSTRUCTION");
@@ -31,18 +32,16 @@ public interface RexxTokens {
   IElementType INVOKE = new RexxElementType("INVOKE");
   IElementType ITERATE_INSTRUCTION = new RexxElementType("ITERATE_INSTRUCTION");
   IElementType LABEL_INSTRUCTION = new RexxElementType("LABEL_INSTRUCTION");
-  IElementType METHOD_CALL = new RexxElementType("METHOD_CALL");
-  IElementType MULTIPLICATION = new RexxElementType("MULTIPLICATION");
+  IElementType MULTIPLICATION_EXPR = new RexxElementType("MULTIPLICATION_EXPR");
+  IElementType MULTIPLICATIVE_OPERATOR = new RexxElementType("MULTIPLICATIVE_OPERATOR");
   IElementType NAME_DECLARATION = new RexxElementType("NAME_DECLARATION");
-  IElementType NUMERIC_CONSTANT = new RexxElementType("NUMERIC_CONSTANT");
   IElementType NUMERIC_INSTRUCTION = new RexxElementType("NUMERIC_INSTRUCTION");
+  IElementType OR_OPERATOR = new RexxElementType("OR_OPERATOR");
   IElementType OTHERWISE_BRANCH = new RexxElementType("OTHERWISE_BRANCH");
   IElementType PARENTHETICAL_EXPRESSION = new RexxElementType("PARENTHETICAL_EXPRESSION");
-  IElementType PARSE_ARG_INSTRUCTION = new RexxElementType("PARSE_ARG_INSTRUCTION");
-  IElementType PARSE_PULL_INSTRUCTION = new RexxElementType("PARSE_PULL_INSTRUCTION");
-  IElementType PARSE_SOURCE_INSTRUCTION = new RexxElementType("PARSE_SOURCE_INSTRUCTION");
-  IElementType PARSE_VALUE_INSTRUCTION = new RexxElementType("PARSE_VALUE_INSTRUCTION");
-  IElementType PARSE_VAR_INSTRUCTION = new RexxElementType("PARSE_VAR_INSTRUCTION");
+  IElementType PARSE_INSTRUCTION = new RexxElementType("PARSE_INSTRUCTION");
+  IElementType POWER_EXPR = new RexxElementType("POWER_EXPR");
+  IElementType PREFIX_EXPR = new RexxElementType("PREFIX_EXPR");
   IElementType REMAINDER = new RexxElementType("REMAINDER");
   IElementType RETURN_INSTRUCTION = new RexxElementType("RETURN_INSTRUCTION");
   IElementType SAY_INSTRUCTION = new RexxElementType("SAY_INSTRUCTION");
@@ -50,9 +49,8 @@ public interface RexxTokens {
   IElementType SELECT_BODY = new RexxElementType("SELECT_BODY");
   IElementType SELECT_INSTRUCTION = new RexxElementType("SELECT_INSTRUCTION");
   IElementType SIGNAL_INSTRUCTION = new RexxElementType("SIGNAL_INSTRUCTION");
-  IElementType STEM = new RexxElementType("STEM");
   IElementType STRING_LITERAL = new RexxElementType("STRING_LITERAL");
-  IElementType SUBTRACTION = new RexxElementType("SUBTRACTION");
+  IElementType TERM_EXPR = new RexxElementType("TERM_EXPR");
   IElementType TRACE_INSTRUCTION = new RexxElementType("TRACE_INSTRUCTION");
   IElementType VARIABLE = new RexxElementType("VARIABLE");
   IElementType WHEN_BRANCH = new RexxElementType("WHEN_BRANCH");
@@ -151,11 +149,20 @@ public interface RexxTokens {
   class Factory {
     public static PsiElement createElement(ASTNode node) {
       IElementType type = node.getElementType();
-      if (type == ADDITION) {
-        return new RexxAdditionImpl(node);
+      if (type == ADDITION_EXPR) {
+        return new RexxAdditionExprImpl(node);
+      }
+      else if (type == ADDITIVE_OPERATOR) {
+        return new RexxAdditiveOperatorImpl(node);
       }
       else if (type == ADDRESS_INSTRUCTION) {
         return new RexxAddressInstructionImpl(node);
+      }
+      else if (type == ALIAS_EXPR) {
+        return new RexxAliasExprImpl(node);
+      }
+      else if (type == AND_EXPR) {
+        return new RexxAndExprImpl(node);
       }
       else if (type == ARG_INSTRUCTION) {
         return new RexxArgInstructionImpl(node);
@@ -166,29 +173,20 @@ public interface RexxTokens {
       else if (type == CALL_INSTRUCTION) {
         return new RexxCallInstructionImpl(node);
       }
-      else if (type == COMPARE) {
-        return new RexxCompareImpl(node);
+      else if (type == COMPARISON_EXPR) {
+        return new RexxComparisonExprImpl(node);
       }
-      else if (type == CONCATENATION) {
-        return new RexxConcatenationImpl(node);
+      else if (type == CONCATENATION_EXPR) {
+        return new RexxConcatenationExprImpl(node);
       }
       else if (type == DECIMAL_CONSTANT) {
         return new RexxDecimalConstantImpl(node);
       }
-      else if (type == DIVISION) {
-        return new RexxDivisionImpl(node);
-      }
       else if (type == EXIT_INSTRUCTION) {
         return new RexxExitInstructionImpl(node);
       }
-      else if (type == EXPRESSION) {
-        return new RexxExpressionImpl(node);
-      }
       else if (type == EXPRESSION_INSTRUCTION) {
         return new RexxExpressionInstructionImpl(node);
-      }
-      else if (type == EXPRESSION_TERM) {
-        return new RexxExpressionTermImpl(node);
       }
       else if (type == GLOBAL) {
         return new RexxGlobalImpl(node);
@@ -214,20 +212,20 @@ public interface RexxTokens {
       else if (type == LABEL_INSTRUCTION) {
         return new RexxLabelInstructionImpl(node);
       }
-      else if (type == METHOD_CALL) {
-        return new RexxMethodCallImpl(node);
+      else if (type == MULTIPLICATION_EXPR) {
+        return new RexxMultiplicationExprImpl(node);
       }
-      else if (type == MULTIPLICATION) {
-        return new RexxMultiplicationImpl(node);
+      else if (type == MULTIPLICATIVE_OPERATOR) {
+        return new RexxMultiplicativeOperatorImpl(node);
       }
       else if (type == NAME_DECLARATION) {
         return new RexxNameDeclarationImpl(node);
       }
-      else if (type == NUMERIC_CONSTANT) {
-        return new RexxNumericConstantImpl(node);
-      }
       else if (type == NUMERIC_INSTRUCTION) {
         return new RexxNumericInstructionImpl(node);
+      }
+      else if (type == OR_OPERATOR) {
+        return new RexxOrOperatorImpl(node);
       }
       else if (type == OTHERWISE_BRANCH) {
         return new RexxOtherwiseBranchImpl(node);
@@ -235,20 +233,14 @@ public interface RexxTokens {
       else if (type == PARENTHETICAL_EXPRESSION) {
         return new RexxParentheticalExpressionImpl(node);
       }
-      else if (type == PARSE_ARG_INSTRUCTION) {
-        return new RexxParseArgInstructionImpl(node);
+      else if (type == PARSE_INSTRUCTION) {
+        return new RexxParseInstructionImpl(node);
       }
-      else if (type == PARSE_PULL_INSTRUCTION) {
-        return new RexxParsePullInstructionImpl(node);
+      else if (type == POWER_EXPR) {
+        return new RexxPowerExprImpl(node);
       }
-      else if (type == PARSE_SOURCE_INSTRUCTION) {
-        return new RexxParseSourceInstructionImpl(node);
-      }
-      else if (type == PARSE_VALUE_INSTRUCTION) {
-        return new RexxParseValueInstructionImpl(node);
-      }
-      else if (type == PARSE_VAR_INSTRUCTION) {
-        return new RexxParseVarInstructionImpl(node);
+      else if (type == PREFIX_EXPR) {
+        return new RexxPrefixExprImpl(node);
       }
       else if (type == REMAINDER) {
         return new RexxRemainderImpl(node);
@@ -271,14 +263,11 @@ public interface RexxTokens {
       else if (type == SIGNAL_INSTRUCTION) {
         return new RexxSignalInstructionImpl(node);
       }
-      else if (type == STEM) {
-        return new RexxStemImpl(node);
-      }
       else if (type == STRING_LITERAL) {
         return new RexxStringLiteralImpl(node);
       }
-      else if (type == SUBTRACTION) {
-        return new RexxSubtractionImpl(node);
+      else if (type == TERM_EXPR) {
+        return new RexxTermExprImpl(node);
       }
       else if (type == TRACE_INSTRUCTION) {
         return new RexxTraceInstructionImpl(node);

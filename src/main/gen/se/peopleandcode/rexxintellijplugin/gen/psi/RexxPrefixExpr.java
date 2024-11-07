@@ -5,15 +5,15 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface RexxNumericConstant extends PsiElement {
+public interface RexxPrefixExpr extends RexxExpr {
 
   @Nullable
-  RexxDecimalConstant getDecimalConstant();
+  RexxExpr getExpr();
 
   @Nullable
-  RexxIntegerConstant getIntegerConstant();
+  PsiElement getOperatorPlus();
 
   @Nullable
-  RexxScientificConstant getScientificConstant();
+  PsiElement getOperatorSubtract();
 
 }

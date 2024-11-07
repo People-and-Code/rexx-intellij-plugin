@@ -5,12 +5,12 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface RexxSignalInstruction extends PsiElement {
+public interface RexxAliasExpr extends RexxExpr {
 
   @NotNull
-  RexxExpr getExpr();
+  List<RexxExpr> getExprList();
 
   @NotNull
-  PsiElement getSignal();
+  RexxOrOperator getOrOperator();
 
 }

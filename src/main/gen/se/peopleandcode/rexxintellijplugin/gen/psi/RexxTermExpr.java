@@ -5,22 +5,28 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface RexxStem extends PsiElement {
+public interface RexxTermExpr extends RexxExpr {
 
   @NotNull
-  List<RexxExpression> getExpressionList();
+  List<RexxDecimalConstant> getDecimalConstantList();
+
+  @NotNull
+  List<RexxExpr> getExprList();
 
   @NotNull
   List<RexxGlobal> getGlobalList();
 
   @NotNull
+  List<RexxIntegerConstant> getIntegerConstantList();
+
+  @NotNull
   List<RexxInvoke> getInvokeList();
 
   @NotNull
-  List<RexxNumericConstant> getNumericConstantList();
+  List<RexxParentheticalExpression> getParentheticalExpressionList();
 
   @NotNull
-  List<RexxParentheticalExpression> getParentheticalExpressionList();
+  List<RexxScientificConstant> getScientificConstantList();
 
   @NotNull
   List<RexxStringLiteral> getStringLiteralList();

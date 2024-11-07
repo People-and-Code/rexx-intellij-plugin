@@ -8,6 +8,6 @@ import com.intellij.psi.PsiElement;
 public interface RexxParentheticalExpression extends PsiElement {
 
   @NotNull
-  RexxExpression getExpression();
+  RexxExpr getExpr();
 
 }

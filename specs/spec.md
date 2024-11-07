@@ -249,7 +249,6 @@ relative_positional:= ('+' | '-') position
 
 /* Note: The final part specifies the various forms of symbol, and
 expression. */
-symbol := VAR_SYMBOL | CONST_SYMBOL | NUMBER
 expression := expr [(',' Msg37.1) | (')' Msg37.2 )]
 expr := expr_alias
 expr_alias := and_expression | expr_alias or_operator and_expression
@@ -280,7 +279,8 @@ simple_term
 message_term
     := term ('~' | '~~') method_name [arguments]
     | term '['[ expression_list ] (']' | Msg36.2)
-    
+symbol := VAR_SYMBOL | CONST_SYMBOL | NUMBER
+
 method_name := (taken_constant | Msg19.19) [':' ( VAR_SYMBOL | Msg19.21 )]
 
 /* Method-call without arguments is syntactically like symbol. */

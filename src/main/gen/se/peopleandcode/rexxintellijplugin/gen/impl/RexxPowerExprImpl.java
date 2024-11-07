@@ -8,17 +8,17 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static se.peopleandcode.rexxintellijplugin.gen.RexxTokens.*;
-import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import se.peopleandcode.rexxintellijplugin.gen.psi.*;
 
-public class RexxMultiplicationImpl extends ASTWrapperPsiElement implements RexxMultiplication {
+public class RexxPowerExprImpl extends RexxExprImpl implements RexxPowerExpr {
 
-  public RexxMultiplicationImpl(@NotNull ASTNode node) {
+  public RexxPowerExprImpl(@NotNull ASTNode node) {
     super(node);
   }
 
+  @Override
   public void accept(@NotNull RexxVisitor visitor) {
-    visitor.visitMultiplication(this);
+    visitor.visitPowerExpr(this);
   }
 
   @Override
@@ -29,14 +29,8 @@ public class RexxMultiplicationImpl extends ASTWrapperPsiElement implements Rexx
 
   @Override
   @NotNull
-  public List<RexxDivision> getDivisionList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxDivision.class);
-  }
-
-  @Override
-  @NotNull
-  public List<RexxExpressionTerm> getExpressionTermList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxExpressionTerm.class);
+  public List<RexxExpr> getExprList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxExpr.class);
   }
 
 }

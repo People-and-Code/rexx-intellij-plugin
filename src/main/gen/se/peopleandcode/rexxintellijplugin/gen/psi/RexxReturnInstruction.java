@@ -8,7 +8,7 @@ import com.intellij.psi.PsiElement;
 public interface RexxReturnInstruction extends PsiElement {
 
   @Nullable
-  RexxExpression getExpression();
+  RexxExpr getExpr();
 
   @NotNull
   PsiElement getReturn();

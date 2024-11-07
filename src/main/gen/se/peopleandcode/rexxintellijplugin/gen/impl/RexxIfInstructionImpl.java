@@ -59,8 +59,8 @@ public class RexxIfInstructionImpl extends ASTWrapperPsiElement implements RexxI
 
   @Override
   @NotNull
-  public RexxExpression getExpression() {
-    return findNotNullChildByClass(RexxExpression.class);
+  public RexxExpr getExpr() {
+    return findNotNullChildByClass(RexxExpr.class);
   }
 
   @Override
@@ -101,32 +101,8 @@ public class RexxIfInstructionImpl extends ASTWrapperPsiElement implements RexxI
 
   @Override
   @NotNull
-  public List<RexxParseArgInstruction> getParseArgInstructionList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxParseArgInstruction.class);
-  }
-
-  @Override
-  @NotNull
-  public List<RexxParsePullInstruction> getParsePullInstructionList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxParsePullInstruction.class);
-  }
-
-  @Override
-  @NotNull
-  public List<RexxParseSourceInstruction> getParseSourceInstructionList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxParseSourceInstruction.class);
-  }
-
-  @Override
-  @NotNull
-  public List<RexxParseValueInstruction> getParseValueInstructionList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxParseValueInstruction.class);
-  }
-
-  @Override
-  @NotNull
-  public List<RexxParseVarInstruction> getParseVarInstructionList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxParseVarInstruction.class);
+  public List<RexxParseInstruction> getParseInstructionList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxParseInstruction.class);
   }
 
   @Override

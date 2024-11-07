@@ -8,6 +8,6 @@ import com.intellij.psi.PsiElement;
 public interface RexxExpressionInstruction extends PsiElement {
 
   @NotNull
-  RexxExpression getExpression();
+  RexxExpr getExpr();
 
 }

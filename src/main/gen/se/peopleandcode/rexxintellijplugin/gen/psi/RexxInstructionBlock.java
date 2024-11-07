@@ -19,11 +19,14 @@ public interface RexxInstructionBlock extends PsiElement {
   @NotNull
   List<RexxCallInstruction> getCallInstructionList();
 
+  @Nullable
+  RexxDecimalConstant getDecimalConstant();
+
   @NotNull
   List<RexxExitInstruction> getExitInstructionList();
 
   @NotNull
-  List<RexxExpression> getExpressionList();
+  List<RexxExpr> getExprList();
 
   @NotNull
   List<RexxExpressionInstruction> getExpressionInstructionList();
@@ -34,6 +37,9 @@ public interface RexxInstructionBlock extends PsiElement {
   @NotNull
   List<RexxInstructionBlock> getInstructionBlockList();
 
+  @Nullable
+  RexxIntegerConstant getIntegerConstant();
+
   @NotNull
   List<RexxIterateInstruction> getIterateInstructionList();
 
@@ -43,32 +49,20 @@ public interface RexxInstructionBlock extends PsiElement {
   @NotNull
   List<RexxNameDeclaration> getNameDeclarationList();
 
-  @Nullable
-  RexxNumericConstant getNumericConstant();
-
   @NotNull
   List<RexxNumericInstruction> getNumericInstructionList();
 
   @NotNull
-  List<RexxParseArgInstruction> getParseArgInstructionList();
-
-  @NotNull
-  List<RexxParsePullInstruction> getParsePullInstructionList();
-
-  @NotNull
-  List<RexxParseSourceInstruction> getParseSourceInstructionList();
-
-  @NotNull
-  List<RexxParseValueInstruction> getParseValueInstructionList();
-
-  @NotNull
-  List<RexxParseVarInstruction> getParseVarInstructionList();
+  List<RexxParseInstruction> getParseInstructionList();
 
   @NotNull
   List<RexxReturnInstruction> getReturnInstructionList();
 
   @NotNull
   List<RexxSayInstruction> getSayInstructionList();
+
+  @Nullable
+  RexxScientificConstant getScientificConstant();
 
   @NotNull
   List<RexxSelectInstruction> getSelectInstructionList();

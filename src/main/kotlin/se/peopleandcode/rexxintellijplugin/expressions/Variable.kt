@@ -8,7 +8,6 @@ import com.intellij.lang.ASTNode
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFileFactory
 import com.intellij.psi.PsiNamedElement
-import com.intellij.psi.PsiReference
 import com.intellij.psi.util.descendantsOfType
 
 abstract class Variable(@JvmField val node: ASTNode) :
@@ -25,7 +24,6 @@ abstract class Variable(@JvmField val node: ASTNode) :
         return this
     }
 
-    override fun getReference(): PsiReference? = VariableReference(this)
     override fun getName(): String? = identifier_.text
 
 

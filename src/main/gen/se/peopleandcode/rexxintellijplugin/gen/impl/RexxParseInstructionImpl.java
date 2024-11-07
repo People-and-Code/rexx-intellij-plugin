@@ -11,14 +11,14 @@ import static se.peopleandcode.rexxintellijplugin.gen.RexxTokens.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import se.peopleandcode.rexxintellijplugin.gen.psi.*;
 
-public class RexxParseValueInstructionImpl extends ASTWrapperPsiElement implements RexxParseValueInstruction {
+public class RexxParseInstructionImpl extends ASTWrapperPsiElement implements RexxParseInstruction {
 
-  public RexxParseValueInstructionImpl(@NotNull ASTNode node) {
+  public RexxParseInstructionImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull RexxVisitor visitor) {
-    visitor.visitParseValueInstruction(this);
+    visitor.visitParseInstruction(this);
   }
 
   @Override
@@ -29,8 +29,14 @@ public class RexxParseValueInstructionImpl extends ASTWrapperPsiElement implemen
 
   @Override
   @NotNull
-  public RexxExpression getExpression() {
-    return findNotNullChildByClass(RexxExpression.class);
+  public List<RexxDecimalConstant> getDecimalConstantList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxDecimalConstant.class);
+  }
+
+  @Override
+  @Nullable
+  public RexxExpr getExpr() {
+    return findChildByClass(RexxExpr.class);
   }
 
   @Override
@@ -47,8 +53,8 @@ public class RexxParseValueInstructionImpl extends ASTWrapperPsiElement implemen
 
   @Override
   @NotNull
-  public List<RexxRemainder> getRemainderList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxRemainder.class);
+  public List<RexxScientificConstant> getScientificConstantList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxScientificConstant.class);
   }
 
   @Override
@@ -58,21 +64,45 @@ public class RexxParseValueInstructionImpl extends ASTWrapperPsiElement implemen
   }
 
   @Override
+  @Nullable
+  public PsiElement getArg() {
+    return findChildByType(ARG);
+  }
+
+  @Override
   @NotNull
   public PsiElement getParse() {
     return findNotNullChildByType(PARSE);
   }
 
   @Override
-  @NotNull
-  public PsiElement getValue() {
-    return findNotNullChildByType(VALUE);
+  @Nullable
+  public PsiElement getPull() {
+    return findChildByType(PULL);
   }
 
   @Override
-  @NotNull
+  @Nullable
+  public PsiElement getSource() {
+    return findChildByType(SOURCE);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getValue() {
+    return findChildByType(VALUE);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getVar() {
+    return findChildByType(VAR);
+  }
+
+  @Override
+  @Nullable
   public PsiElement getWith() {
-    return findNotNullChildByType(WITH);
+    return findChildByType(WITH);
   }
 
 }
