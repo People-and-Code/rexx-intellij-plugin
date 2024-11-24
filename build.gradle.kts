@@ -154,7 +154,7 @@ tasks {
     val generateLexer by getting
     val generateParser by getting
 
-    // TODO: Ensure that these tasks are executed before compiling the tests
+    //Ensure that these tasks are executed before compiling the tests
     compileKotlin {
         dependsOn(generateLexer, generateParser)
     }
