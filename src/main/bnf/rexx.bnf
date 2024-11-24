@@ -115,7 +115,7 @@
         // Comments
         SHEBANG="regexp:[#][!][^\n]*"
         LINE_COMMENT="regexp:--[^\n]*|,[ \t]*--[^\n]*\n"
-        MULTILINE_COMMENT="regexp:[/][*]([^*]+|[*]+[^/*])*[*]+[/]"
+        MULTILINE_COMMENT="regexp:/[*]([^*]+|[*]+[^/*])*[*]+/"
 
         // complex
 

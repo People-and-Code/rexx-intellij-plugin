@@ -139,7 +139,7 @@ tasks {
 
     generateLexer.configure {
         sourceFile.set(file("src/main/flex/Parse.flex"))
-        targetOutputDir.set(file("src/main/gen/se/peopleandcode/rexxintellijplugin/gen"))
+        targetOutputDir.set(file("src/main/lexer/se/peopleandcode/rexxintellijplugin/gen"))
         purgeOldFiles.set(true)
     }
 
@@ -147,7 +147,7 @@ tasks {
         sourceFile.set(file("src/main/bnf/rexx.bnf"))
         pathToParser.set("parser")
         pathToPsiRoot.set("psi")
-        targetRootOutputDir.set(file("src/main/gen"))
+        targetRootOutputDir.set(file("src/main/parser"))
         purgeOldFiles.set(true)
     }
 
@@ -155,9 +155,9 @@ tasks {
     val generateParser by getting
 
     // TODO: Ensure that these tasks are executed before compiling the tests
-    // compileKotlin {
-    //     dependsOn(generateLexer, generateParser)
-    // }
+    compileKotlin {
+        dependsOn(generateLexer, generateParser)
+    }
 }
 
 intellijPlatformTesting {
@@ -184,7 +184,8 @@ intellijPlatformTesting {
 sourceSets {
     main {
         java {
-            srcDir("src/main/gen")
+            srcDir("src/main/parser")
+            srcDir("src/main/lexer")
         }
     }
 }
