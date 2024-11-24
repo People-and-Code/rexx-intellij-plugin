@@ -38,6 +38,9 @@ public interface RexxOtherwiseBranch extends PsiElement {
   List<RexxLabelInstruction> getLabelInstructionList();
 
   @NotNull
+  List<RexxNopInstruction> getNopInstructionList();
+
+  @NotNull
   List<RexxNumericInstruction> getNumericInstructionList();
 
   @NotNull

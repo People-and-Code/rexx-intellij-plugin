@@ -41,6 +41,9 @@ public interface RexxWhenBranch extends PsiElement {
   RexxLabelInstruction getLabelInstruction();
 
   @Nullable
+  RexxNopInstruction getNopInstruction();
+
+  @Nullable
   RexxNumericInstruction getNumericInstruction();
 
   @Nullable

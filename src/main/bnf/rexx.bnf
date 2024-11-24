@@ -115,7 +115,7 @@
         // Comments
         SHEBANG="regexp:[#][!][^\n]*"
         LINE_COMMENT="regexp:--[^\n]*|,[ \t]*--[^\n]*\n"
-        MULTILINE_COMMENT="regexp:/[*]([^*]+|[*]+[^/*])*[*]+/"
+        MULTILINE_COMMENT="regexp:/[*]([^*]+|[*]+[^/*])*[*]+/|,([ \t]*/[*]([^*]+|[*]+[^/*])*[*]+/)*\n"
 
         // complex
 
@@ -167,7 +167,7 @@ private keyword_instruction
     /*| interop*/
     | iterate_instruction
     /*| leave*/
-    /*| nop*/
+    | nop_instruction
     | numeric_instruction
     /*| options*/
     | parse_instruction
@@ -197,6 +197,7 @@ numeric_instruction ::= NUMERIC IDENTIFIER integerConstant
 iterate_instruction ::= ITERATE variable_?
 label_instruction ::= name_declaration COLON (PROCEDURE (EXPOSE IDENTIFIER)? DOT?)?
 return_instruction ::= RETURN expr?
+nop_instruction ::= NOP
 
 signal_instruction ::= SIGNAL expr
 

@@ -35,6 +35,7 @@ public interface RexxTokens {
   IElementType MULTIPLICATION_EXPR = new RexxElementType("MULTIPLICATION_EXPR");
   IElementType MULTIPLICATIVE_OPERATOR = new RexxElementType("MULTIPLICATIVE_OPERATOR");
   IElementType NAME_DECLARATION = new RexxElementType("NAME_DECLARATION");
+  IElementType NOP_INSTRUCTION = new RexxElementType("NOP_INSTRUCTION");
   IElementType NUMERIC_INSTRUCTION = new RexxElementType("NUMERIC_INSTRUCTION");
   IElementType OR_OPERATOR = new RexxElementType("OR_OPERATOR");
   IElementType OTHERWISE_BRANCH = new RexxElementType("OTHERWISE_BRANCH");
@@ -219,6 +220,9 @@ public interface RexxTokens {
       }
       else if (type == NAME_DECLARATION) {
         return new RexxNameDeclarationImpl(node);
+      }
+      else if (type == NOP_INSTRUCTION) {
+        return new RexxNopInstructionImpl(node);
       }
       else if (type == NUMERIC_INSTRUCTION) {
         return new RexxNumericInstructionImpl(node);

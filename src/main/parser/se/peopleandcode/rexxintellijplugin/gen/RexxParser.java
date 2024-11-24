@@ -772,7 +772,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
   //     /*| interop*/
   //     | iterate_instruction
   //     /*| leave*/
-  //     /*| nop*/
+  //     | nop_instruction
   //     | numeric_instruction
   //     /*| options*/
   //     | parse_instruction
@@ -789,6 +789,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
     if (!result_) result_ = call_instruction(builder_, level_ + 1);
     if (!result_) result_ = exit_instruction(builder_, level_ + 1);
     if (!result_) result_ = iterate_instruction(builder_, level_ + 1);
+    if (!result_) result_ = nop_instruction(builder_, level_ + 1);
     if (!result_) result_ = numeric_instruction(builder_, level_ + 1);
     if (!result_) result_ = parse_instruction(builder_, level_ + 1);
     if (!result_) result_ = return_instruction(builder_, level_ + 1);
@@ -1047,6 +1048,18 @@ public class RexxParser implements PsiParser, LightPsiParser {
       if (!empty_element_parsed_guard_(builder_, "ncl_1", pos_)) break;
     }
     exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  /* ********************************************************** */
+  // NOP
+  public static boolean nop_instruction(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "nop_instruction")) return false;
+    if (!nextTokenIs(builder_, NOP)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, NOP);
+    exit_section_(builder_, marker_, NOP_INSTRUCTION, result_);
     return result_;
   }
 

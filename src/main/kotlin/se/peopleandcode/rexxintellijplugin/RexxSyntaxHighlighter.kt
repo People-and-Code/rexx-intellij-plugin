@@ -38,6 +38,9 @@ class RexxSyntaxHighlighter: SyntaxHighlighterBase() {
         VAR,
         RETURN,
         WHILE,
+        SELECT,
+        WHEN,
+        OTHERWISE,
     )
     private val number: TokenSet = TokenSet.create(
         NUMBER_INT,

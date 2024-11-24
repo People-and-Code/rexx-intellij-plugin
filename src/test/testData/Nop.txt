@@ -1,0 +1,3 @@
+FILE
+  RexxNopInstructionImpl(NOP_INSTRUCTION)
+    PsiElement(NOP)('nop')

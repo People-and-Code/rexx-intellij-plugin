@@ -8,3 +8,9 @@ say 'Hello, World!'  -- This is an in-line comment
 
 if true, -- comment should not break line continuation
 & false then say 'false'
+
+if true, /*comment should not break line continuation*/
+& false then say 'false'
+
+if true, /*comments should*/ /*not break line continuation*/
+& false then say 'false'

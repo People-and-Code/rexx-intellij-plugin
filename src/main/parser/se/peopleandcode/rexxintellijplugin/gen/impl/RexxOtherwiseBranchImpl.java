@@ -89,6 +89,12 @@ public class RexxOtherwiseBranchImpl extends ASTWrapperPsiElement implements Rex
 
   @Override
   @NotNull
+  public List<RexxNopInstruction> getNopInstructionList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxNopInstruction.class);
+  }
+
+  @Override
+  @NotNull
   public List<RexxNumericInstruction> getNumericInstructionList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxNumericInstruction.class);
   }
