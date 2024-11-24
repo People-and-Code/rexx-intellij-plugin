@@ -154,10 +154,10 @@ tasks {
     val generateLexer by getting
     val generateParser by getting
 
-    // Ensure that these tasks are executed before compiling the tests
-    compileKotlin {
-        dependsOn(generateLexer, generateParser)
-    }
+    // TODO: Ensure that these tasks are executed before compiling the tests
+    // compileKotlin {
+    //     dependsOn(generateLexer, generateParser)
+    // }
 }
 
 intellijPlatformTesting {
