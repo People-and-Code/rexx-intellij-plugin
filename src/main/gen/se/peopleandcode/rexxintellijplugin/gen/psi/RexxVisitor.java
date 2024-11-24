@@ -135,10 +135,6 @@ public class RexxVisitor extends PsiElementVisitor {
     visitExpr(o);
   }
 
-  public void visitRemainder(@NotNull RexxRemainder o) {
-    visitPsiElement(o);
-  }
-
   public void visitReturnInstruction(@NotNull RexxReturnInstruction o) {
     visitPsiElement(o);
   }

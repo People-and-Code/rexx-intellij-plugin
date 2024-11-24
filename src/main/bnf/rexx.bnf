@@ -11,7 +11,7 @@
     elementTypeClass="se.peopleandcode.rexxintellijplugin.RexxElementType"
     tokenTypeClass="se.peopleandcode.rexxintellijplugin.RexxTokenType"
     tokens=[
-        WHITE_SPACE="regexp:([ \t]|,[\n])+"
+        WHITE_SPACE="regexp:([ \t]|,\n)+"
         TERMINATOR="regexp:[\n;]+"
         // MAJOR TOKEN TYPES
         // TOKEN_NULL
@@ -114,7 +114,7 @@
 
         // Comments
         SHEBANG="regexp:[#][!][^\n]*"
-        LINE_COMMENT="regexp:--[^\n]*"
+        LINE_COMMENT="regexp:--[^\n]*|,[ \t]*--[^\n]*\n"
         MULTILINE_COMMENT="regexp:[/][*]([^*]+|[*]+[^/*])*[*]+[/]"
 
         // complex

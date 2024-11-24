@@ -25,7 +25,7 @@ import static se.peopleandcode.rexxintellijplugin.gen.RexxTokens.*;
 EOL=\R
 WHITE_SPACE=\s+
 
-WHITE_SPACE=([ \t]|,[\n])+
+WHITE_SPACE=([ \t]|,\n)+
 TERMINATOR=[\n;]+
 OPERATOR_PLUS=[+]
 OPERATOR_SUBTRACT=-
@@ -79,7 +79,7 @@ USE=[Uu][Ss][Ee]
 WHILE=[Ww][Hh][Ii][Ll][Ee]
 WHEN=[Ww][Hh][Ee][Nn]
 SHEBANG=[#][!][^\n]*
-LINE_COMMENT=--[^\n]*
+LINE_COMMENT=--[^\n]*|,[ \t]*--[^\n]*\n
 MULTILINE_COMMENT=[/][*]([^*]+|[*]+[^/*])*[*]+[/]
 STRING=\"[^\"\n]*\"|'[^'\n]*'
 IDENTIFIER=[_!?a-zA-Z][a-zA-Z0-9_]*

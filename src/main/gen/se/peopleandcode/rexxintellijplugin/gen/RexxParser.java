@@ -1350,18 +1350,6 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // DOT
-  public static boolean remainder(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "remainder")) return false;
-    if (!nextTokenIs(builder_, DOT)) return false;
-    boolean result_;
-    Marker marker_ = enter_section_(builder_);
-    result_ = consumeToken(builder_, DOT);
-    exit_section_(builder_, marker_, REMAINDER, result_);
-    return result_;
-  }
-
-  /* ********************************************************** */
   // assignment | expr | over | 'FOREVER'
   static boolean repetitor(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "repetitor")) return false;

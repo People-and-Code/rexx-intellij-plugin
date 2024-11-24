@@ -42,7 +42,6 @@ public interface RexxTokens {
   IElementType PARSE_INSTRUCTION = new RexxElementType("PARSE_INSTRUCTION");
   IElementType POWER_EXPR = new RexxElementType("POWER_EXPR");
   IElementType PREFIX_EXPR = new RexxElementType("PREFIX_EXPR");
-  IElementType REMAINDER = new RexxElementType("REMAINDER");
   IElementType RETURN_INSTRUCTION = new RexxElementType("RETURN_INSTRUCTION");
   IElementType SAY_INSTRUCTION = new RexxElementType("SAY_INSTRUCTION");
   IElementType SCIENTIFIC_CONSTANT = new RexxElementType("SCIENTIFIC_CONSTANT");
@@ -241,9 +240,6 @@ public interface RexxTokens {
       }
       else if (type == PREFIX_EXPR) {
         return new RexxPrefixExprImpl(node);
-      }
-      else if (type == REMAINDER) {
-        return new RexxRemainderImpl(node);
       }
       else if (type == RETURN_INSTRUCTION) {
         return new RexxReturnInstructionImpl(node);
