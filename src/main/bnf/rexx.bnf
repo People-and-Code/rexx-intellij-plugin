@@ -163,6 +163,7 @@ private keyword_instruction
     | arg_instruction
     | call_instruction
     | drop_instruction
+    | pull_instruction
     | exit_instruction
     /*| interop*/
     | iterate_instruction
@@ -216,6 +217,7 @@ trace_instruction ::= TRACE ("o"|"i"|"r")
 
 exit_instruction ::= EXIT expr?
 drop_instruction ::= DROP expr
+pull_instruction ::= PULL template_list?
 call_instruction ::= CALL
     ( /*callon_spec
     |*/ (taken_constant /*| vref */) expression_list?

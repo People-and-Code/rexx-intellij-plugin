@@ -781,6 +781,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
   //     | arg_instruction
   //     | call_instruction
   //     | drop_instruction
+  //     | pull_instruction
   //     | exit_instruction
   //     /*| interop*/
   //     | iterate_instruction
@@ -801,6 +802,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
     if (!result_) result_ = arg_instruction(builder_, level_ + 1);
     if (!result_) result_ = call_instruction(builder_, level_ + 1);
     if (!result_) result_ = drop_instruction(builder_, level_ + 1);
+    if (!result_) result_ = pull_instruction(builder_, level_ + 1);
     if (!result_) result_ = exit_instruction(builder_, level_ + 1);
     if (!result_) result_ = iterate_instruction(builder_, level_ + 1);
     if (!result_) result_ = nop_instruction(builder_, level_ + 1);
@@ -1361,6 +1363,26 @@ public class RexxParser implements PsiParser, LightPsiParser {
     if (!result_) result_ = consumeToken(builder_, OPERATOR_SUBTRACT);
     if (!result_) result_ = consumeToken(builder_, "\\");
     return result_;
+  }
+
+  /* ********************************************************** */
+  // PULL template_list?
+  public static boolean pull_instruction(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "pull_instruction")) return false;
+    if (!nextTokenIs(builder_, PULL)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, PULL);
+    result_ = result_ && pull_instruction_1(builder_, level_ + 1);
+    exit_section_(builder_, marker_, PULL_INSTRUCTION, result_);
+    return result_;
+  }
+
+  // template_list?
+  private static boolean pull_instruction_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "pull_instruction_1")) return false;
+    template_list(builder_, level_ + 1);
+    return true;
   }
 
   /* ********************************************************** */

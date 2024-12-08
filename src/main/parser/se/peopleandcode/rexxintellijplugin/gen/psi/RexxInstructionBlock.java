@@ -62,6 +62,9 @@ public interface RexxInstructionBlock extends PsiElement {
   List<RexxParseInstruction> getParseInstructionList();
 
   @NotNull
+  List<RexxPullInstruction> getPullInstructionList();
+
+  @NotNull
   List<RexxReturnInstruction> getReturnInstructionList();
 
   @NotNull
