@@ -34,9 +34,9 @@ public class RexxParseInstructionImpl extends ASTWrapperPsiElement implements Re
   }
 
   @Override
-  @Nullable
-  public RexxExpr getExpr() {
-    return findChildByClass(RexxExpr.class);
+  @NotNull
+  public List<RexxExpr> getExprList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxExpr.class);
   }
 
   @Override
@@ -64,9 +64,9 @@ public class RexxParseInstructionImpl extends ASTWrapperPsiElement implements Re
   }
 
   @Override
-  @NotNull
-  public List<RexxVariable> getVariableList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxVariable.class);
+  @Nullable
+  public RexxVariable getVariable() {
+    return findChildByClass(RexxVariable.class);
   }
 
   @Override

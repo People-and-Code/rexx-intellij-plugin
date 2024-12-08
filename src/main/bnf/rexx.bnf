@@ -193,8 +193,16 @@ private positional ::= absolute_positional | relative_positional
 private absolute_positional ::= numericConstant | EQ position
 private position ::= numericConstant  | vrefp
 // vrefp, variable reference (position?) uses a variables content to parse.
-// dont know if this should be variable or symbol
-private vrefp ::= TOKEN_LEFT variable TOKEN_RIGHT
+// This should only match "variables" but our varibale support is lacking
+// so in the meantime we are supporting all expressions
+// the case we are struggling with is when the variable is in the form of
+// name.43name_
+// this is a valid variable name, im not sure if this should be interpreted as
+// stem: name
+// index: 43
+// member: name_
+// or if this is indeed its own name.
+private vrefp ::= TOKEN_LEFT expr TOKEN_RIGHT
 private relative_positional ::= (OPERATOR_PLUS | OPERATOR_SUBTRACT) position
 numeric_instruction ::= NUMERIC IDENTIFIER integerConstant
 iterate_instruction ::= ITERATE variable_?

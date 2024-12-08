@@ -11,6 +11,9 @@ public interface RexxArgInstruction extends PsiElement {
   List<RexxDecimalConstant> getDecimalConstantList();
 
   @NotNull
+  List<RexxExpr> getExprList();
+
+  @NotNull
   List<RexxIntegerConstant> getIntegerConstantList();
 
   @NotNull
@@ -21,9 +24,6 @@ public interface RexxArgInstruction extends PsiElement {
 
   @NotNull
   List<RexxStringLiteral> getStringLiteralList();
-
-  @NotNull
-  List<RexxVariable> getVariableList();
 
   @NotNull
   PsiElement getArg();

@@ -10,8 +10,8 @@ public interface RexxParseInstruction extends PsiElement {
   @NotNull
   List<RexxDecimalConstant> getDecimalConstantList();
 
-  @Nullable
-  RexxExpr getExpr();
+  @NotNull
+  List<RexxExpr> getExprList();
 
   @NotNull
   List<RexxIntegerConstant> getIntegerConstantList();
@@ -25,8 +25,8 @@ public interface RexxParseInstruction extends PsiElement {
   @NotNull
   List<RexxStringLiteral> getStringLiteralList();
 
-  @NotNull
-  List<RexxVariable> getVariableList();
+  @Nullable
+  RexxVariable getVariable();
 
   @Nullable
   PsiElement getArg();

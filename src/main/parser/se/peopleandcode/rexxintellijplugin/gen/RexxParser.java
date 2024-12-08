@@ -1874,14 +1874,14 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // TOKEN_LEFT variable TOKEN_RIGHT
+  // TOKEN_LEFT expr TOKEN_RIGHT
   static boolean vrefp(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "vrefp")) return false;
     if (!nextTokenIs(builder_, TOKEN_LEFT)) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_);
     result_ = consumeToken(builder_, TOKEN_LEFT);
-    result_ = result_ && variable(builder_, level_ + 1);
+    result_ = result_ && expr(builder_, level_ + 1, -1);
     result_ = result_ && consumeToken(builder_, TOKEN_RIGHT);
     exit_section_(builder_, marker_, null, result_);
     return result_;
