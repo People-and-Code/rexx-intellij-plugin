@@ -20,6 +20,9 @@ public interface RexxOtherwiseBranch extends PsiElement {
   List<RexxCallInstruction> getCallInstructionList();
 
   @NotNull
+  List<RexxDropInstruction> getDropInstructionList();
+
+  @NotNull
   List<RexxExitInstruction> getExitInstructionList();
 
   @NotNull

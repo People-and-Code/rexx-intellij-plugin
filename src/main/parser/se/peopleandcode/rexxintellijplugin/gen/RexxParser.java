@@ -334,6 +334,19 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // DROP expr
+  public static boolean drop_instruction(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "drop_instruction")) return false;
+    if (!nextTokenIs(builder_, DROP)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, DROP);
+    result_ = result_ && expr(builder_, level_ + 1, -1);
+    exit_section_(builder_, marker_, DROP_INSTRUCTION, result_);
+    return result_;
+  }
+
+  /* ********************************************************** */
   // ELSE ncl? (instruction | END)
   static boolean else_$(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "else_$")) return false;
@@ -767,7 +780,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
   // address_instruction
   //     | arg_instruction
   //     | call_instruction
-  //     /*| drop*/
+  //     | drop_instruction
   //     | exit_instruction
   //     /*| interop*/
   //     | iterate_instruction
@@ -787,6 +800,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
     result_ = address_instruction(builder_, level_ + 1);
     if (!result_) result_ = arg_instruction(builder_, level_ + 1);
     if (!result_) result_ = call_instruction(builder_, level_ + 1);
+    if (!result_) result_ = drop_instruction(builder_, level_ + 1);
     if (!result_) result_ = exit_instruction(builder_, level_ + 1);
     if (!result_) result_ = iterate_instruction(builder_, level_ + 1);
     if (!result_) result_ = nop_instruction(builder_, level_ + 1);

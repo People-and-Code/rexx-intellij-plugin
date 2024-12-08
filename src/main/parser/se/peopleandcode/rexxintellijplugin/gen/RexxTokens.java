@@ -21,6 +21,7 @@ public interface RexxTokens {
   IElementType COMPARISON_EXPR = new RexxElementType("COMPARISON_EXPR");
   IElementType CONCATENATION_EXPR = new RexxElementType("CONCATENATION_EXPR");
   IElementType DECIMAL_CONSTANT = new RexxElementType("DECIMAL_CONSTANT");
+  IElementType DROP_INSTRUCTION = new RexxElementType("DROP_INSTRUCTION");
   IElementType EXIT_INSTRUCTION = new RexxElementType("EXIT_INSTRUCTION");
   IElementType EXPR = new RexxElementType("EXPR");
   IElementType EXPRESSION_INSTRUCTION = new RexxElementType("EXPRESSION_INSTRUCTION");
@@ -181,6 +182,9 @@ public interface RexxTokens {
       }
       else if (type == DECIMAL_CONSTANT) {
         return new RexxDecimalConstantImpl(node);
+      }
+      else if (type == DROP_INSTRUCTION) {
+        return new RexxDropInstructionImpl(node);
       }
       else if (type == EXIT_INSTRUCTION) {
         return new RexxExitInstructionImpl(node);

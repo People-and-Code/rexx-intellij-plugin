@@ -162,7 +162,7 @@ private keyword_instruction
     ::= address_instruction
     | arg_instruction
     | call_instruction
-    /*| drop*/
+    | drop_instruction
     | exit_instruction
     /*| interop*/
     | iterate_instruction
@@ -215,6 +215,7 @@ signal_instruction ::= SIGNAL expr
 trace_instruction ::= TRACE ("o"|"i"|"r")
 
 exit_instruction ::= EXIT expr?
+drop_instruction ::= DROP expr
 call_instruction ::= CALL
     ( /*callon_spec
     |*/ (taken_constant /*| vref */) expression_list?

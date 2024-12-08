@@ -36,4 +36,5 @@ class RexxParserTest : ParsingTestCase(
     fun testComments() = doTest(true, true)
     fun testNop() = doTest(true, true)
     fun testParseVrefp() = doTest(true, true)
+    fun testDrop() = doTest(true, true)
 }

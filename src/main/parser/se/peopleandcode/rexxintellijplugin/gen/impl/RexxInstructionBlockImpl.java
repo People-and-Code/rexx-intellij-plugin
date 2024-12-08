@@ -59,6 +59,12 @@ public class RexxInstructionBlockImpl extends ASTWrapperPsiElement implements Re
 
   @Override
   @NotNull
+  public List<RexxDropInstruction> getDropInstructionList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxDropInstruction.class);
+  }
+
+  @Override
+  @NotNull
   public List<RexxExitInstruction> getExitInstructionList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxExitInstruction.class);
   }

@@ -23,6 +23,9 @@ public interface RexxInstructionBlock extends PsiElement {
   RexxDecimalConstant getDecimalConstant();
 
   @NotNull
+  List<RexxDropInstruction> getDropInstructionList();
+
+  @NotNull
   List<RexxExitInstruction> getExitInstructionList();
 
   @NotNull

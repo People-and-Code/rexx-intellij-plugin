@@ -53,6 +53,12 @@ public class RexxOtherwiseBranchImpl extends ASTWrapperPsiElement implements Rex
 
   @Override
   @NotNull
+  public List<RexxDropInstruction> getDropInstructionList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxDropInstruction.class);
+  }
+
+  @Override
+  @NotNull
   public List<RexxExitInstruction> getExitInstructionList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxExitInstruction.class);
   }
