@@ -1293,28 +1293,37 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // VAR name_declaration
+  // VAR variable
   static boolean parse_var(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "parse_var")) return false;
     if (!nextTokenIs(builder_, VAR)) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_);
     result_ = consumeToken(builder_, VAR);
-    result_ = result_ && name_declaration(builder_, level_ + 1);
+    result_ = result_ && variable(builder_, level_ + 1);
     exit_section_(builder_, marker_, null, result_);
     return result_;
   }
 
   /* ********************************************************** */
-  // stringLiteral
+  // stringLiteral | vrefp
   static boolean pattern(PsiBuilder builder_, int level_) {
-    return stringLiteral(builder_, level_ + 1);
+    if (!recursion_guard_(builder_, level_, "pattern")) return false;
+    if (!nextTokenIs(builder_, "", STRING, TOKEN_LEFT)) return false;
+    boolean result_;
+    result_ = stringLiteral(builder_, level_ + 1);
+    if (!result_) result_ = vrefp(builder_, level_ + 1);
+    return result_;
   }
 
   /* ********************************************************** */
-  // numericConstant
+  // numericConstant  | vrefp
   static boolean position(PsiBuilder builder_, int level_) {
-    return numericConstant(builder_, level_ + 1);
+    if (!recursion_guard_(builder_, level_, "position")) return false;
+    boolean result_;
+    result_ = numericConstant(builder_, level_ + 1);
+    if (!result_) result_ = vrefp(builder_, level_ + 1);
+    return result_;
   }
 
   /* ********************************************************** */
@@ -1861,6 +1870,20 @@ public class RexxParser implements PsiParser, LightPsiParser {
     boolean result_;
     result_ = variable(builder_, level_ + 1);
     if (!result_) result_ = global(builder_, level_ + 1);
+    return result_;
+  }
+
+  /* ********************************************************** */
+  // TOKEN_LEFT variable TOKEN_RIGHT
+  static boolean vrefp(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "vrefp")) return false;
+    if (!nextTokenIs(builder_, TOKEN_LEFT)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, TOKEN_LEFT);
+    result_ = result_ && variable(builder_, level_ + 1);
+    result_ = result_ && consumeToken(builder_, TOKEN_RIGHT);
+    exit_section_(builder_, marker_, null, result_);
     return result_;
   }
 

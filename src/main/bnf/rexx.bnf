@@ -188,10 +188,13 @@ private template_list
 private template ::= trigger | target
 private trigger ::= pattern | positional
 private target ::= name_declaration | DOT
-private pattern ::= stringLiteral /*| vrefp*/
+private pattern ::= stringLiteral | vrefp
 private positional ::= absolute_positional | relative_positional
 private absolute_positional ::= numericConstant | EQ position
-private position ::= numericConstant  /*| vrefp*/
+private position ::= numericConstant  | vrefp
+// vrefp, variable reference (position?) uses a variables content to parse.
+// dont know if this should be variable or symbol
+private vrefp ::= TOKEN_LEFT variable TOKEN_RIGHT
 private relative_positional ::= (OPERATOR_PLUS | OPERATOR_SUBTRACT) position
 numeric_instruction ::= NUMERIC IDENTIFIER integerConstant
 iterate_instruction ::= ITERATE variable_?
@@ -253,7 +256,7 @@ private parse_key
     | 'VERSION'
 
 private parse_value ::= VALUE expr? WITH
-private parse_var ::= VAR name_declaration
+private parse_var ::= VAR variable
 
 if_instruction ::= IF expr ncl? then else?
 private then ::= THEN ncl? (instruction | END)

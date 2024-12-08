@@ -25,6 +25,9 @@ public interface RexxParseInstruction extends PsiElement {
   @NotNull
   List<RexxStringLiteral> getStringLiteralList();
 
+  @NotNull
+  List<RexxVariable> getVariableList();
+
   @Nullable
   PsiElement getArg();
 

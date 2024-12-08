@@ -23,6 +23,9 @@ public interface RexxArgInstruction extends PsiElement {
   List<RexxStringLiteral> getStringLiteralList();
 
   @NotNull
+  List<RexxVariable> getVariableList();
+
+  @NotNull
   PsiElement getArg();
 
 }

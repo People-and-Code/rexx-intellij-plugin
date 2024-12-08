@@ -64,6 +64,12 @@ public class RexxParseInstructionImpl extends ASTWrapperPsiElement implements Re
   }
 
   @Override
+  @NotNull
+  public List<RexxVariable> getVariableList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxVariable.class);
+  }
+
+  @Override
   @Nullable
   public PsiElement getArg() {
     return findChildByType(ARG);
