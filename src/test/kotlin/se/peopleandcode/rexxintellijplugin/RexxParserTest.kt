@@ -38,4 +38,5 @@ class RexxParserTest : ParsingTestCase(
     fun testParseVrefp() = doTest(true, true)
     fun testDrop() = doTest(true, true)
     fun testProcedureWithExpose() = doTest(true, true)
+    fun testProcedureWithExposeStem() = doTest(true, true)
 }

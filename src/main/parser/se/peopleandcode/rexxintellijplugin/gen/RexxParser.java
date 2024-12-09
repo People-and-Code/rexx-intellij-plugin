@@ -1880,9 +1880,22 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // variable
+  // variable DOT?
   static boolean var_symbol(PsiBuilder builder_, int level_) {
-    return variable(builder_, level_ + 1);
+    if (!recursion_guard_(builder_, level_, "var_symbol")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = variable(builder_, level_ + 1);
+    result_ = result_ && var_symbol_1(builder_, level_ + 1);
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // DOT?
+  private static boolean var_symbol_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "var_symbol_1")) return false;
+    consumeToken(builder_, DOT);
+    return true;
   }
 
   /* ********************************************************** */

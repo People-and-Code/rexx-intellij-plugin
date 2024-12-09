@@ -273,7 +273,8 @@ procedure_instruction ::= PROCEDURE expose?
 private expose ::= EXPOSE variable_list
 private variable_list ::= (vref | var_symbol)+
 private vref ::= TOKEN_LEFT var_symbol TOKEN_RIGHT
-private var_symbol ::= variable
+// TODO: parse variables properly and consistently separating stems from non stems
+private var_symbol ::= variable DOT?
 if_instruction ::= IF expr ncl? then else?
 private then ::= THEN ncl? (instruction | END)
 private else ::= ELSE ncl? (instruction | END)
