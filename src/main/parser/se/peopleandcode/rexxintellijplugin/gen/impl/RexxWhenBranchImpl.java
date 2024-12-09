@@ -94,9 +94,9 @@ public class RexxWhenBranchImpl extends ASTWrapperPsiElement implements RexxWhen
   }
 
   @Override
-  @Nullable
-  public RexxLabelInstruction getLabelInstruction() {
-    return findChildByClass(RexxLabelInstruction.class);
+  @NotNull
+  public List<RexxLabel> getLabelList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxLabel.class);
   }
 
   @Override

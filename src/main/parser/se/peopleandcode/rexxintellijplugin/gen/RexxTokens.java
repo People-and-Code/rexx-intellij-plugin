@@ -32,7 +32,7 @@ public interface RexxTokens {
   IElementType INTEGER_CONSTANT = new RexxElementType("INTEGER_CONSTANT");
   IElementType INVOKE = new RexxElementType("INVOKE");
   IElementType ITERATE_INSTRUCTION = new RexxElementType("ITERATE_INSTRUCTION");
-  IElementType LABEL_INSTRUCTION = new RexxElementType("LABEL_INSTRUCTION");
+  IElementType LABEL = new RexxElementType("LABEL");
   IElementType MULTIPLICATION_EXPR = new RexxElementType("MULTIPLICATION_EXPR");
   IElementType MULTIPLICATIVE_OPERATOR = new RexxElementType("MULTIPLICATIVE_OPERATOR");
   IElementType NAME_DECLARATION = new RexxElementType("NAME_DECLARATION");
@@ -215,8 +215,8 @@ public interface RexxTokens {
       else if (type == ITERATE_INSTRUCTION) {
         return new RexxIterateInstructionImpl(node);
       }
-      else if (type == LABEL_INSTRUCTION) {
-        return new RexxLabelInstructionImpl(node);
+      else if (type == LABEL) {
+        return new RexxLabelImpl(node);
       }
       else if (type == MULTIPLICATION_EXPR) {
         return new RexxMultiplicationExprImpl(node);

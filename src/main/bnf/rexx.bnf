@@ -151,7 +151,8 @@ private null_clause ::= terminator /*label_list?
 private label_list ::= (label_instruction terminator)+*/
 private terminator ::= TERMINATOR
 private instruction_list ::= instruction+
-private instruction ::= group | single_instruction ncl
+// this is not where the label is according to the specs, see: null_clause
+private instruction ::= (label terminator?)* (group | single_instruction ncl)
 private group ::= instruction_block | if_instruction | select_instruction
 select_instruction ::= SELECT /* group_option* */ ncl select_body /* group_handler? */ END ncl?
 select_body ::= when_branch+ otherwise_branch?
@@ -178,8 +179,7 @@ private keyword_instruction
     | signal_instruction
     | trace_instruction
 private single_instruction
-    ::= label_instruction
-    | assignment
+    ::= assignment
     | keyword_instruction
     | command
 arg_instruction ::= ARG template_list?
@@ -207,7 +207,7 @@ private vrefp ::= TOKEN_LEFT expr TOKEN_RIGHT
 private relative_positional ::= (OPERATOR_PLUS | OPERATOR_SUBTRACT) position
 numeric_instruction ::= NUMERIC IDENTIFIER integerConstant
 iterate_instruction ::= ITERATE variable_?
-label_instruction ::= name_declaration COLON single_instruction
+label ::= name_declaration COLON
 return_instruction ::= RETURN expr?
 nop_instruction ::= NOP
 

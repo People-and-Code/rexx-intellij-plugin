@@ -95,7 +95,7 @@ public class RexxVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitLabelInstruction(@NotNull RexxLabelInstruction o) {
+  public void visitLabel(@NotNull RexxLabel o) {
     visitPsiElement(o);
   }
 

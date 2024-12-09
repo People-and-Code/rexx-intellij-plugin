@@ -673,20 +673,60 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // group | single_instruction ncl
+  // (label terminator?)* (group | single_instruction ncl)
   static boolean instruction(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "instruction")) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_);
+    result_ = instruction_0(builder_, level_ + 1);
+    result_ = result_ && instruction_1(builder_, level_ + 1);
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // (label terminator?)*
+  private static boolean instruction_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "instruction_0")) return false;
+    while (true) {
+      int pos_ = current_position_(builder_);
+      if (!instruction_0_0(builder_, level_ + 1)) break;
+      if (!empty_element_parsed_guard_(builder_, "instruction_0", pos_)) break;
+    }
+    return true;
+  }
+
+  // label terminator?
+  private static boolean instruction_0_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "instruction_0_0")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = label(builder_, level_ + 1);
+    result_ = result_ && instruction_0_0_1(builder_, level_ + 1);
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // terminator?
+  private static boolean instruction_0_0_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "instruction_0_0_1")) return false;
+    terminator(builder_, level_ + 1);
+    return true;
+  }
+
+  // group | single_instruction ncl
+  private static boolean instruction_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "instruction_1")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
     result_ = group(builder_, level_ + 1);
-    if (!result_) result_ = instruction_1(builder_, level_ + 1);
+    if (!result_) result_ = instruction_1_1(builder_, level_ + 1);
     exit_section_(builder_, marker_, null, result_);
     return result_;
   }
 
   // single_instruction ncl
-  private static boolean instruction_1(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "instruction_1")) return false;
+  private static boolean instruction_1_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "instruction_1_1")) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_);
     result_ = single_instruction(builder_, level_ + 1);
@@ -911,14 +951,13 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // name_declaration COLON single_instruction
-  public static boolean label_instruction(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "label_instruction")) return false;
+  // name_declaration COLON
+  public static boolean label(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "label")) return false;
     boolean result_;
-    Marker marker_ = enter_section_(builder_, level_, _NONE_, LABEL_INSTRUCTION, "<label instruction>");
+    Marker marker_ = enter_section_(builder_, level_, _NONE_, LABEL, "<label>");
     result_ = name_declaration(builder_, level_ + 1);
     result_ = result_ && consumeToken(builder_, COLON);
-    result_ = result_ && single_instruction(builder_, level_ + 1);
     exit_section_(builder_, level_, marker_, result_, false, null);
     return result_;
   }
@@ -1587,15 +1626,13 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // label_instruction
-  //     | assignment
+  // assignment
   //     | keyword_instruction
   //     | command
   static boolean single_instruction(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "single_instruction")) return false;
     boolean result_;
-    result_ = label_instruction(builder_, level_ + 1);
-    if (!result_) result_ = assignment(builder_, level_ + 1);
+    result_ = assignment(builder_, level_ + 1);
     if (!result_) result_ = keyword_instruction(builder_, level_ + 1);
     if (!result_) result_ = command(builder_, level_ + 1);
     return result_;
