@@ -44,6 +44,7 @@ public interface RexxTokens {
   IElementType PARSE_INSTRUCTION = new RexxElementType("PARSE_INSTRUCTION");
   IElementType POWER_EXPR = new RexxElementType("POWER_EXPR");
   IElementType PREFIX_EXPR = new RexxElementType("PREFIX_EXPR");
+  IElementType PROCEDURE_INSTRUCTION = new RexxElementType("PROCEDURE_INSTRUCTION");
   IElementType PULL_INSTRUCTION = new RexxElementType("PULL_INSTRUCTION");
   IElementType RETURN_INSTRUCTION = new RexxElementType("RETURN_INSTRUCTION");
   IElementType SAY_INSTRUCTION = new RexxElementType("SAY_INSTRUCTION");
@@ -249,6 +250,9 @@ public interface RexxTokens {
       }
       else if (type == PREFIX_EXPR) {
         return new RexxPrefixExprImpl(node);
+      }
+      else if (type == PROCEDURE_INSTRUCTION) {
+        return new RexxProcedureInstructionImpl(node);
       }
       else if (type == PULL_INSTRUCTION) {
         return new RexxPullInstructionImpl(node);

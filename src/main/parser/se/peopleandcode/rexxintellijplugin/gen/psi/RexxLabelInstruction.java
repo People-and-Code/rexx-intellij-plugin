@@ -7,22 +7,64 @@ import com.intellij.psi.PsiElement;
 
 public interface RexxLabelInstruction extends PsiElement {
 
+  @Nullable
+  RexxAddressInstruction getAddressInstruction();
+
+  @Nullable
+  RexxArgInstruction getArgInstruction();
+
+  @Nullable
+  RexxAssignment getAssignment();
+
+  @Nullable
+  RexxCallInstruction getCallInstruction();
+
+  @Nullable
+  RexxDropInstruction getDropInstruction();
+
+  @Nullable
+  RexxExitInstruction getExitInstruction();
+
+  @Nullable
+  RexxExpressionInstruction getExpressionInstruction();
+
+  @Nullable
+  RexxIterateInstruction getIterateInstruction();
+
+  @Nullable
+  RexxLabelInstruction getLabelInstruction();
+
   @NotNull
   RexxNameDeclaration getNameDeclaration();
 
+  @Nullable
+  RexxNopInstruction getNopInstruction();
+
+  @Nullable
+  RexxNumericInstruction getNumericInstruction();
+
+  @Nullable
+  RexxParseInstruction getParseInstruction();
+
+  @Nullable
+  RexxProcedureInstruction getProcedureInstruction();
+
+  @Nullable
+  RexxPullInstruction getPullInstruction();
+
+  @Nullable
+  RexxReturnInstruction getReturnInstruction();
+
+  @Nullable
+  RexxSayInstruction getSayInstruction();
+
+  @Nullable
+  RexxSignalInstruction getSignalInstruction();
+
+  @Nullable
+  RexxTraceInstruction getTraceInstruction();
+
   @NotNull
   PsiElement getColon();
-
-  @Nullable
-  PsiElement getDot();
-
-  @Nullable
-  PsiElement getExpose();
-
-  @Nullable
-  PsiElement getIdentifier();
-
-  @Nullable
-  PsiElement getProcedure();
 
 }

@@ -397,6 +397,19 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // EXPOSE variable_list
+  static boolean expose(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "expose")) return false;
+    if (!nextTokenIs(builder_, EXPOSE)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, EXPOSE);
+    result_ = result_ && variable_list(builder_, level_ + 1);
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  /* ********************************************************** */
   // &IDENTIFIER expr
   //     | &stringLiteral expr
   public static boolean expression_instruction(PsiBuilder builder_, int level_) {
@@ -790,7 +803,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
   //     | numeric_instruction
   //     /*| options*/
   //     | parse_instruction
-  //     /*| procedure */
+  //     | procedure_instruction
   //     | return_instruction
   //     | say_instruction
   //     | signal_instruction
@@ -808,6 +821,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
     if (!result_) result_ = nop_instruction(builder_, level_ + 1);
     if (!result_) result_ = numeric_instruction(builder_, level_ + 1);
     if (!result_) result_ = parse_instruction(builder_, level_ + 1);
+    if (!result_) result_ = procedure_instruction(builder_, level_ + 1);
     if (!result_) result_ = return_instruction(builder_, level_ + 1);
     if (!result_) result_ = say_instruction(builder_, level_ + 1);
     if (!result_) result_ = signal_instruction(builder_, level_ + 1);
@@ -897,59 +911,16 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // name_declaration COLON (PROCEDURE (EXPOSE IDENTIFIER)? DOT?)?
+  // name_declaration COLON single_instruction
   public static boolean label_instruction(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "label_instruction")) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_, level_, _NONE_, LABEL_INSTRUCTION, "<label instruction>");
     result_ = name_declaration(builder_, level_ + 1);
     result_ = result_ && consumeToken(builder_, COLON);
-    result_ = result_ && label_instruction_2(builder_, level_ + 1);
+    result_ = result_ && single_instruction(builder_, level_ + 1);
     exit_section_(builder_, level_, marker_, result_, false, null);
     return result_;
-  }
-
-  // (PROCEDURE (EXPOSE IDENTIFIER)? DOT?)?
-  private static boolean label_instruction_2(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "label_instruction_2")) return false;
-    label_instruction_2_0(builder_, level_ + 1);
-    return true;
-  }
-
-  // PROCEDURE (EXPOSE IDENTIFIER)? DOT?
-  private static boolean label_instruction_2_0(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "label_instruction_2_0")) return false;
-    boolean result_;
-    Marker marker_ = enter_section_(builder_);
-    result_ = consumeToken(builder_, PROCEDURE);
-    result_ = result_ && label_instruction_2_0_1(builder_, level_ + 1);
-    result_ = result_ && label_instruction_2_0_2(builder_, level_ + 1);
-    exit_section_(builder_, marker_, null, result_);
-    return result_;
-  }
-
-  // (EXPOSE IDENTIFIER)?
-  private static boolean label_instruction_2_0_1(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "label_instruction_2_0_1")) return false;
-    label_instruction_2_0_1_0(builder_, level_ + 1);
-    return true;
-  }
-
-  // EXPOSE IDENTIFIER
-  private static boolean label_instruction_2_0_1_0(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "label_instruction_2_0_1_0")) return false;
-    boolean result_;
-    Marker marker_ = enter_section_(builder_);
-    result_ = consumeTokens(builder_, 0, EXPOSE, IDENTIFIER);
-    exit_section_(builder_, marker_, null, result_);
-    return result_;
-  }
-
-  // DOT?
-  private static boolean label_instruction_2_0_2(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "label_instruction_2_0_2")) return false;
-    consumeToken(builder_, DOT);
-    return true;
   }
 
   /* ********************************************************** */
@@ -1363,6 +1334,26 @@ public class RexxParser implements PsiParser, LightPsiParser {
     if (!result_) result_ = consumeToken(builder_, OPERATOR_SUBTRACT);
     if (!result_) result_ = consumeToken(builder_, "\\");
     return result_;
+  }
+
+  /* ********************************************************** */
+  // PROCEDURE expose?
+  public static boolean procedure_instruction(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "procedure_instruction")) return false;
+    if (!nextTokenIs(builder_, PROCEDURE)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, PROCEDURE);
+    result_ = result_ && procedure_instruction_1(builder_, level_ + 1);
+    exit_section_(builder_, marker_, PROCEDURE_INSTRUCTION, result_);
+    return result_;
+  }
+
+  // expose?
+  private static boolean procedure_instruction_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "procedure_instruction_1")) return false;
+    expose(builder_, level_ + 1);
+    return true;
   }
 
   /* ********************************************************** */
@@ -1889,6 +1880,12 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // variable
+  static boolean var_symbol(PsiBuilder builder_, int level_) {
+    return variable(builder_, level_ + 1);
+  }
+
+  /* ********************************************************** */
   // identifier_
   public static boolean variable(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "variable")) return false;
@@ -1906,6 +1903,45 @@ public class RexxParser implements PsiParser, LightPsiParser {
     boolean result_;
     result_ = variable(builder_, level_ + 1);
     if (!result_) result_ = global(builder_, level_ + 1);
+    return result_;
+  }
+
+  /* ********************************************************** */
+  // (vref | var_symbol)+
+  static boolean variable_list(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "variable_list")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = variable_list_0(builder_, level_ + 1);
+    while (result_) {
+      int pos_ = current_position_(builder_);
+      if (!variable_list_0(builder_, level_ + 1)) break;
+      if (!empty_element_parsed_guard_(builder_, "variable_list", pos_)) break;
+    }
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // vref | var_symbol
+  private static boolean variable_list_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "variable_list_0")) return false;
+    boolean result_;
+    result_ = vref(builder_, level_ + 1);
+    if (!result_) result_ = var_symbol(builder_, level_ + 1);
+    return result_;
+  }
+
+  /* ********************************************************** */
+  // TOKEN_LEFT var_symbol TOKEN_RIGHT
+  static boolean vref(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "vref")) return false;
+    if (!nextTokenIs(builder_, TOKEN_LEFT)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, TOKEN_LEFT);
+    result_ = result_ && var_symbol(builder_, level_ + 1);
+    result_ = result_ && consumeToken(builder_, TOKEN_RIGHT);
+    exit_section_(builder_, marker_, null, result_);
     return result_;
   }
 

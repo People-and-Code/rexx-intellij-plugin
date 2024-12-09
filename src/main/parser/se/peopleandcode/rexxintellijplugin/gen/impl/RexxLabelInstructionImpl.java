@@ -28,39 +28,123 @@ public class RexxLabelInstructionImpl extends ASTWrapperPsiElement implements Re
   }
 
   @Override
+  @Nullable
+  public RexxAddressInstruction getAddressInstruction() {
+    return findChildByClass(RexxAddressInstruction.class);
+  }
+
+  @Override
+  @Nullable
+  public RexxArgInstruction getArgInstruction() {
+    return findChildByClass(RexxArgInstruction.class);
+  }
+
+  @Override
+  @Nullable
+  public RexxAssignment getAssignment() {
+    return findChildByClass(RexxAssignment.class);
+  }
+
+  @Override
+  @Nullable
+  public RexxCallInstruction getCallInstruction() {
+    return findChildByClass(RexxCallInstruction.class);
+  }
+
+  @Override
+  @Nullable
+  public RexxDropInstruction getDropInstruction() {
+    return findChildByClass(RexxDropInstruction.class);
+  }
+
+  @Override
+  @Nullable
+  public RexxExitInstruction getExitInstruction() {
+    return findChildByClass(RexxExitInstruction.class);
+  }
+
+  @Override
+  @Nullable
+  public RexxExpressionInstruction getExpressionInstruction() {
+    return findChildByClass(RexxExpressionInstruction.class);
+  }
+
+  @Override
+  @Nullable
+  public RexxIterateInstruction getIterateInstruction() {
+    return findChildByClass(RexxIterateInstruction.class);
+  }
+
+  @Override
+  @Nullable
+  public RexxLabelInstruction getLabelInstruction() {
+    return findChildByClass(RexxLabelInstruction.class);
+  }
+
+  @Override
   @NotNull
   public RexxNameDeclaration getNameDeclaration() {
     return findNotNullChildByClass(RexxNameDeclaration.class);
   }
 
   @Override
+  @Nullable
+  public RexxNopInstruction getNopInstruction() {
+    return findChildByClass(RexxNopInstruction.class);
+  }
+
+  @Override
+  @Nullable
+  public RexxNumericInstruction getNumericInstruction() {
+    return findChildByClass(RexxNumericInstruction.class);
+  }
+
+  @Override
+  @Nullable
+  public RexxParseInstruction getParseInstruction() {
+    return findChildByClass(RexxParseInstruction.class);
+  }
+
+  @Override
+  @Nullable
+  public RexxProcedureInstruction getProcedureInstruction() {
+    return findChildByClass(RexxProcedureInstruction.class);
+  }
+
+  @Override
+  @Nullable
+  public RexxPullInstruction getPullInstruction() {
+    return findChildByClass(RexxPullInstruction.class);
+  }
+
+  @Override
+  @Nullable
+  public RexxReturnInstruction getReturnInstruction() {
+    return findChildByClass(RexxReturnInstruction.class);
+  }
+
+  @Override
+  @Nullable
+  public RexxSayInstruction getSayInstruction() {
+    return findChildByClass(RexxSayInstruction.class);
+  }
+
+  @Override
+  @Nullable
+  public RexxSignalInstruction getSignalInstruction() {
+    return findChildByClass(RexxSignalInstruction.class);
+  }
+
+  @Override
+  @Nullable
+  public RexxTraceInstruction getTraceInstruction() {
+    return findChildByClass(RexxTraceInstruction.class);
+  }
+
+  @Override
   @NotNull
   public PsiElement getColon() {
     return findNotNullChildByType(COLON);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getDot() {
-    return findChildByType(DOT);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getExpose() {
-    return findChildByType(EXPOSE);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getIdentifier() {
-    return findChildByType(IDENTIFIER);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getProcedure() {
-    return findChildByType(PROCEDURE);
   }
 
 }

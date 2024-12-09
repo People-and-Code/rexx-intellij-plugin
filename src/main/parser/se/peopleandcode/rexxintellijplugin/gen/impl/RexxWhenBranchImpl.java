@@ -119,6 +119,12 @@ public class RexxWhenBranchImpl extends ASTWrapperPsiElement implements RexxWhen
 
   @Override
   @Nullable
+  public RexxProcedureInstruction getProcedureInstruction() {
+    return findChildByClass(RexxProcedureInstruction.class);
+  }
+
+  @Override
+  @Nullable
   public RexxPullInstruction getPullInstruction() {
     return findChildByClass(RexxPullInstruction.class);
   }

@@ -53,6 +53,9 @@ public interface RexxWhenBranch extends PsiElement {
   RexxParseInstruction getParseInstruction();
 
   @Nullable
+  RexxProcedureInstruction getProcedureInstruction();
+
+  @Nullable
   RexxPullInstruction getPullInstruction();
 
   @Nullable
