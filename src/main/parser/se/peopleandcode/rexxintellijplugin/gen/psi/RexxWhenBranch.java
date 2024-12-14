@@ -74,6 +74,9 @@ public interface RexxWhenBranch extends PsiElement {
   RexxTraceInstruction getTraceInstruction();
 
   @Nullable
+  RexxUseInstruction getUseInstruction();
+
+  @Nullable
   PsiElement getEnd();
 
   @NotNull

@@ -155,6 +155,12 @@ public class RexxOtherwiseBranchImpl extends ASTWrapperPsiElement implements Rex
 
   @Override
   @NotNull
+  public List<RexxUseInstruction> getUseInstructionList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxUseInstruction.class);
+  }
+
+  @Override
+  @NotNull
   public PsiElement getOtherwise() {
     return findNotNullChildByType(OTHERWISE);
   }

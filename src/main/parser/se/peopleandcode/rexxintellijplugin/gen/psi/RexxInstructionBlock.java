@@ -86,6 +86,9 @@ public interface RexxInstructionBlock extends PsiElement {
   List<RexxTraceInstruction> getTraceInstructionList();
 
   @NotNull
+  List<RexxUseInstruction> getUseInstructionList();
+
+  @NotNull
   PsiElement getDo();
 
   @Nullable

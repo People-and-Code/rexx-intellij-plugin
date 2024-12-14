@@ -55,6 +55,7 @@ public interface RexxTokens {
   IElementType STRING_LITERAL = new RexxElementType("STRING_LITERAL");
   IElementType TERM_EXPR = new RexxElementType("TERM_EXPR");
   IElementType TRACE_INSTRUCTION = new RexxElementType("TRACE_INSTRUCTION");
+  IElementType USE_INSTRUCTION = new RexxElementType("USE_INSTRUCTION");
   IElementType VARIABLE = new RexxElementType("VARIABLE");
   IElementType WHEN_BRANCH = new RexxElementType("WHEN_BRANCH");
 
@@ -283,6 +284,9 @@ public interface RexxTokens {
       }
       else if (type == TRACE_INSTRUCTION) {
         return new RexxTraceInstructionImpl(node);
+      }
+      else if (type == USE_INSTRUCTION) {
+        return new RexxUseInstructionImpl(node);
       }
       else if (type == VARIABLE) {
         return new RexxVariableImpl(node);

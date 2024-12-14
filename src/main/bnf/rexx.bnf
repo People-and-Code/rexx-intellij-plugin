@@ -178,6 +178,7 @@ private keyword_instruction
     | say_instruction
     | signal_instruction
     | trace_instruction
+    | use_instruction
 private single_instruction
     ::= assignment
     | keyword_instruction
@@ -214,6 +215,8 @@ nop_instruction ::= NOP
 signal_instruction ::= SIGNAL expr
 
 trace_instruction ::= TRACE ("o"|"i"|"r")
+use_instruction ::= USE ARG use_list
+private use_list ::= var_symbol | var_symbol? (COMMA var_symbol?)+
 
 exit_instruction ::= EXIT expr?
 drop_instruction ::= DROP expr

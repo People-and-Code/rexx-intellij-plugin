@@ -160,6 +160,12 @@ public class RexxIfInstructionImpl extends ASTWrapperPsiElement implements RexxI
   }
 
   @Override
+  @NotNull
+  public List<RexxUseInstruction> getUseInstructionList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxUseInstruction.class);
+  }
+
+  @Override
   @Nullable
   public PsiElement getElse() {
     return findChildByType(ELSE);

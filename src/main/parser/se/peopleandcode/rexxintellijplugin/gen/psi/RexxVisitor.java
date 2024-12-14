@@ -187,6 +187,10 @@ public class RexxVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitUseInstruction(@NotNull RexxUseInstruction o) {
+    visitPsiElement(o);
+  }
+
   public void visitVariable(@NotNull RexxVariable o) {
     visitPsiElement(o);
   }

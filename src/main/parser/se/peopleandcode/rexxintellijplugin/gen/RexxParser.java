@@ -847,7 +847,8 @@ public class RexxParser implements PsiParser, LightPsiParser {
   //     | return_instruction
   //     | say_instruction
   //     | signal_instruction
-  //     | trace_instruction
+  //     | trace_instruction
+  //     | use_instruction
   static boolean keyword_instruction(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "keyword_instruction")) return false;
     boolean result_;
@@ -866,6 +867,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
     if (!result_) result_ = say_instruction(builder_, level_ + 1);
     if (!result_) result_ = signal_instruction(builder_, level_ + 1);
     if (!result_) result_ = trace_instruction(builder_, level_ + 1);
+    if (!result_) result_ = use_instruction(builder_, level_ + 1);
     return result_;
   }
 
@@ -1914,6 +1916,82 @@ public class RexxParser implements PsiParser, LightPsiParser {
   // expr
   static boolean untilexpr(PsiBuilder builder_, int level_) {
     return expr(builder_, level_ + 1, -1);
+  }
+
+  /* ********************************************************** */
+  // USE ARG use_list
+  public static boolean use_instruction(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "use_instruction")) return false;
+    if (!nextTokenIs(builder_, USE)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeTokens(builder_, 0, USE, ARG);
+    result_ = result_ && use_list(builder_, level_ + 1);
+    exit_section_(builder_, marker_, USE_INSTRUCTION, result_);
+    return result_;
+  }
+
+  /* ********************************************************** */
+  // var_symbol | var_symbol? (COMMA var_symbol?)+
+  static boolean use_list(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "use_list")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = var_symbol(builder_, level_ + 1);
+    if (!result_) result_ = use_list_1(builder_, level_ + 1);
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // var_symbol? (COMMA var_symbol?)+
+  private static boolean use_list_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "use_list_1")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = use_list_1_0(builder_, level_ + 1);
+    result_ = result_ && use_list_1_1(builder_, level_ + 1);
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // var_symbol?
+  private static boolean use_list_1_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "use_list_1_0")) return false;
+    var_symbol(builder_, level_ + 1);
+    return true;
+  }
+
+  // (COMMA var_symbol?)+
+  private static boolean use_list_1_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "use_list_1_1")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = use_list_1_1_0(builder_, level_ + 1);
+    while (result_) {
+      int pos_ = current_position_(builder_);
+      if (!use_list_1_1_0(builder_, level_ + 1)) break;
+      if (!empty_element_parsed_guard_(builder_, "use_list_1_1", pos_)) break;
+    }
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // COMMA var_symbol?
+  private static boolean use_list_1_1_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "use_list_1_1_0")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, COMMA);
+    result_ = result_ && use_list_1_1_0_1(builder_, level_ + 1);
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // var_symbol?
+  private static boolean use_list_1_1_0_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "use_list_1_1_0_1")) return false;
+    var_symbol(builder_, level_ + 1);
+    return true;
   }
 
   /* ********************************************************** */

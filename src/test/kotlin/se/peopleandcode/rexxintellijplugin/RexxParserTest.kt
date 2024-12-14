@@ -40,4 +40,5 @@ class RexxParserTest : ParsingTestCase(
     fun testProcedureWithExpose() = doTest(true, true)
     fun testProcedureWithExposeStem() = doTest(true, true)
     fun testNakedLabel() = doTest(true, true)
+    fun testUseArg() = doTest(true, true)
 }
