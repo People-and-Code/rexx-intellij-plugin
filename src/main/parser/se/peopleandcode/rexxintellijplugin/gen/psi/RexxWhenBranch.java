@@ -14,7 +14,7 @@ public interface RexxWhenBranch extends PsiElement {
   RexxArgInstruction getArgInstruction();
 
   @Nullable
-  RexxAssignment getAssignment();
+  RexxAssignmentInstruction getAssignmentInstruction();
 
   @Nullable
   RexxCallInstruction getCallInstruction();

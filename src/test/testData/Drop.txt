@@ -1,5 +1,5 @@
 FILE
-  RexxAssignmentImpl(ASSIGNMENT)
+  RexxAssignmentInstructionImpl(ASSIGNMENT_INSTRUCTION)
     RexxNameDeclarationImpl(NAME_DECLARATION)
       RexxIdentifier_Impl(IDENTIFIER_)
         PsiElement(IDENTIFIER)('a')

@@ -16,7 +16,7 @@ public interface RexxTokens {
   IElementType ALIAS_EXPR = new RexxElementType("ALIAS_EXPR");
   IElementType AND_EXPR = new RexxElementType("AND_EXPR");
   IElementType ARG_INSTRUCTION = new RexxElementType("ARG_INSTRUCTION");
-  IElementType ASSIGNMENT = new RexxElementType("ASSIGNMENT");
+  IElementType ASSIGNMENT_INSTRUCTION = new RexxElementType("ASSIGNMENT_INSTRUCTION");
   IElementType CALL_INSTRUCTION = new RexxElementType("CALL_INSTRUCTION");
   IElementType COMPARISON_EXPR = new RexxElementType("COMPARISON_EXPR");
   IElementType CONCATENATION_EXPR = new RexxElementType("CONCATENATION_EXPR");
@@ -171,8 +171,8 @@ public interface RexxTokens {
       else if (type == ARG_INSTRUCTION) {
         return new RexxArgInstructionImpl(node);
       }
-      else if (type == ASSIGNMENT) {
-        return new RexxAssignmentImpl(node);
+      else if (type == ASSIGNMENT_INSTRUCTION) {
+        return new RexxAssignmentInstructionImpl(node);
       }
       else if (type == CALL_INSTRUCTION) {
         return new RexxCallInstructionImpl(node);

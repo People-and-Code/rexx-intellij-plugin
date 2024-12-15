@@ -133,10 +133,10 @@ public class RexxParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // name_declaration '=' expr
-  public static boolean assignment(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "assignment")) return false;
+  public static boolean assignment_instruction(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "assignment_instruction")) return false;
     boolean result_;
-    Marker marker_ = enter_section_(builder_, level_, _NONE_, ASSIGNMENT, "<assignment>");
+    Marker marker_ = enter_section_(builder_, level_, _NONE_, ASSIGNMENT_INSTRUCTION, "<assignment instruction>");
     result_ = name_declaration(builder_, level_ + 1);
     result_ = result_ && consumeToken(builder_, EQ);
     result_ = result_ && expr(builder_, level_ + 1, -1);
@@ -1444,11 +1444,11 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // assignment | expr | over | 'FOREVER'
+  // assignment_instruction | expr | over | 'FOREVER'
   static boolean repetitor(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "repetitor")) return false;
     boolean result_;
-    result_ = assignment(builder_, level_ + 1);
+    result_ = assignment_instruction(builder_, level_ + 1);
     if (!result_) result_ = expr(builder_, level_ + 1, -1);
     if (!result_) result_ = over(builder_, level_ + 1);
     if (!result_) result_ = consumeToken(builder_, "FOREVER");
@@ -1640,13 +1640,13 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // assignment
+  // assignment_instruction
   //     | keyword_instruction
   //     | command
   static boolean single_instruction(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "single_instruction")) return false;
     boolean result_;
-    result_ = assignment(builder_, level_ + 1);
+    result_ = assignment_instruction(builder_, level_ + 1);
     if (!result_) result_ = keyword_instruction(builder_, level_ + 1);
     if (!result_) result_ = command(builder_, level_ + 1);
     return result_;

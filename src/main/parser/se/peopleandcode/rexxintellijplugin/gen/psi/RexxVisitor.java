@@ -31,7 +31,7 @@ public class RexxVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitAssignment(@NotNull RexxAssignment o) {
+  public void visitAssignmentInstruction(@NotNull RexxAssignmentInstruction o) {
     visitPsiElement(o);
   }
 

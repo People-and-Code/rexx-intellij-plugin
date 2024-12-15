@@ -2,7 +2,7 @@ FILE
   RexxInstructionBlockImpl(INSTRUCTION_BLOCK)
     PsiElement(DO)('do')
     PsiWhiteSpace(' ')
-    RexxAssignmentImpl(ASSIGNMENT)
+    RexxAssignmentInstructionImpl(ASSIGNMENT_INSTRUCTION)
       RexxNameDeclarationImpl(NAME_DECLARATION)
         RexxIdentifier_Impl(IDENTIFIER_)
           PsiElement(IDENTIFIER)('i')

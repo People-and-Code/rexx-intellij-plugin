@@ -11,14 +11,14 @@ import static se.peopleandcode.rexxintellijplugin.gen.RexxTokens.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import se.peopleandcode.rexxintellijplugin.gen.psi.*;
 
-public class RexxAssignmentImpl extends ASTWrapperPsiElement implements RexxAssignment {
+public class RexxAssignmentInstructionImpl extends ASTWrapperPsiElement implements RexxAssignmentInstruction {
 
-  public RexxAssignmentImpl(@NotNull ASTNode node) {
+  public RexxAssignmentInstructionImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull RexxVisitor visitor) {
-    visitor.visitAssignment(this);
+    visitor.visitAssignmentInstruction(this);
   }
 
   @Override

@@ -1,7 +1,7 @@
 package se.peopleandcode.rexxintellijplugin.instructions
 
 import se.peopleandcode.rexxintellijplugin.RexxLanguage
-import se.peopleandcode.rexxintellijplugin.gen.psi.RexxAssignment
+import se.peopleandcode.rexxintellijplugin.gen.psi.RexxAssignmentInstruction
 import se.peopleandcode.rexxintellijplugin.gen.psi.RexxNameDeclaration
 import com.intellij.extapi.psi.ASTWrapperPsiElement
 import com.intellij.lang.ASTNode
@@ -19,7 +19,7 @@ abstract class NameDeclaration(@JvmField val node: ASTNode):
     override fun setName(name: String): PsiElement {
         val new = PsiFileFactory.getInstance(project)
             .createFileFromText(RexxLanguage, "${name} = 1")
-            .descendantsOfType<RexxAssignment>()
+            .descendantsOfType<RexxAssignmentInstruction>()
             .first()
             .nameDeclaration.identifier_
         identifier_.replace(new)

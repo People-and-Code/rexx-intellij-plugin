@@ -180,7 +180,7 @@ private keyword_instruction
     | trace_instruction
     | use_instruction
 private single_instruction
-    ::= assignment
+    ::= assignment_instruction
     | keyword_instruction
     | command
 arg_instruction ::= ARG template_list?
@@ -246,7 +246,7 @@ private conditional ::= 'WHILE' whileexpr | 'UNTIL' untilexpr
 private untilexpr ::= expr
 private whileexpr ::= expr
 private dorep ::= 'FORVER' | repetitor
-private repetitor ::= assignment | expr | over | 'FOREVER'
+private repetitor ::= assignment_instruction | expr | over | 'FOREVER'
 private over
     ::= name_declaration 'OVER' expr
     | numericConstant 'OVER'
@@ -282,7 +282,7 @@ if_instruction ::= IF expr ncl? then else?
 private then ::= THEN ncl? (instruction | END)
 private else ::= ELSE ncl? (instruction | END)
 
-assignment ::= name_declaration '=' expr
+assignment_instruction ::= name_declaration '=' expr
 
 name_declaration ::= identifier_ {
    mixin="se.peopleandcode.rexxintellijplugin.instructions.NameDeclaration"
