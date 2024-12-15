@@ -62,5 +62,5 @@ FILE
             RexxVariableImpl(VARIABLE)
               RexxIdentifier_Impl(IDENTIFIER_)
                 PsiElement(IDENTIFIER)('count')
-      PsiElement(TERMINATOR)('\n')
+    PsiElement(TERMINATOR)('\n')
     PsiElement(END)('END')

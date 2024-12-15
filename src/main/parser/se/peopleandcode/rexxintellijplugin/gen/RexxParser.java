@@ -365,29 +365,29 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // ELSE ncl? (instruction | END)
+  // ncl ELSE ncl? (instruction | END)
   static boolean else_$(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "else_$")) return false;
-    if (!nextTokenIs(builder_, ELSE)) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_);
-    result_ = consumeToken(builder_, ELSE);
-    result_ = result_ && else_1(builder_, level_ + 1);
+    result_ = ncl(builder_, level_ + 1);
+    result_ = result_ && consumeToken(builder_, ELSE);
     result_ = result_ && else_2(builder_, level_ + 1);
+    result_ = result_ && else_3(builder_, level_ + 1);
     exit_section_(builder_, marker_, null, result_);
     return result_;
   }
 
   // ncl?
-  private static boolean else_1(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "else_1")) return false;
+  private static boolean else_2(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "else_2")) return false;
     ncl(builder_, level_ + 1);
     return true;
   }
 
   // instruction | END
-  private static boolean else_2(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "else_2")) return false;
+  private static boolean else_3(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "else_3")) return false;
     boolean result_;
     result_ = instruction(builder_, level_ + 1);
     if (!result_) result_ = consumeToken(builder_, END);
@@ -582,41 +582,6 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // do_instruction ncl | if_instruction | select_instruction ncl
-  static boolean group(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "group")) return false;
-    boolean result_;
-    Marker marker_ = enter_section_(builder_);
-    result_ = group_0(builder_, level_ + 1);
-    if (!result_) result_ = if_instruction(builder_, level_ + 1);
-    if (!result_) result_ = group_2(builder_, level_ + 1);
-    exit_section_(builder_, marker_, null, result_);
-    return result_;
-  }
-
-  // do_instruction ncl
-  private static boolean group_0(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "group_0")) return false;
-    boolean result_;
-    Marker marker_ = enter_section_(builder_);
-    result_ = do_instruction(builder_, level_ + 1);
-    result_ = result_ && ncl(builder_, level_ + 1);
-    exit_section_(builder_, marker_, null, result_);
-    return result_;
-  }
-
-  // select_instruction ncl
-  private static boolean group_2(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "group_2")) return false;
-    boolean result_;
-    Marker marker_ = enter_section_(builder_);
-    result_ = select_instruction(builder_, level_ + 1);
-    result_ = result_ && ncl(builder_, level_ + 1);
-    exit_section_(builder_, marker_, null, result_);
-    return result_;
-  }
-
-  /* ********************************************************** */
   // IDENTIFIER | keywords
   public static boolean identifier_(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "identifier_")) return false;
@@ -715,40 +680,44 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // group | single_instruction ncl
+  // do_instruction
+  //     | if_instruction
+  //     | select_instruction
+  //     | single_instruction
   static boolean instruction(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "instruction")) return false;
     boolean result_;
-    Marker marker_ = enter_section_(builder_);
-    result_ = group(builder_, level_ + 1);
-    if (!result_) result_ = instruction_1(builder_, level_ + 1);
-    exit_section_(builder_, marker_, null, result_);
+    result_ = do_instruction(builder_, level_ + 1);
+    if (!result_) result_ = if_instruction(builder_, level_ + 1);
+    if (!result_) result_ = select_instruction(builder_, level_ + 1);
+    if (!result_) result_ = single_instruction(builder_, level_ + 1);
     return result_;
   }
 
-  // single_instruction ncl
-  private static boolean instruction_1(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "instruction_1")) return false;
+  /* ********************************************************** */
+  // instruction_with_ncl+
+  static boolean instruction_list(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "instruction_list")) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_);
-    result_ = single_instruction(builder_, level_ + 1);
-    result_ = result_ && ncl(builder_, level_ + 1);
+    result_ = instruction_with_ncl(builder_, level_ + 1);
+    while (result_) {
+      int pos_ = current_position_(builder_);
+      if (!instruction_with_ncl(builder_, level_ + 1)) break;
+      if (!empty_element_parsed_guard_(builder_, "instruction_list", pos_)) break;
+    }
     exit_section_(builder_, marker_, null, result_);
     return result_;
   }
 
   /* ********************************************************** */
-  // instruction+
-  static boolean instruction_list(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "instruction_list")) return false;
+  // instruction ncl
+  static boolean instruction_with_ncl(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "instruction_with_ncl")) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_);
     result_ = instruction(builder_, level_ + 1);
-    while (result_) {
-      int pos_ = current_position_(builder_);
-      if (!instruction(builder_, level_ + 1)) break;
-      if (!empty_element_parsed_guard_(builder_, "instruction_list", pos_)) break;
-    }
+    result_ = result_ && ncl(builder_, level_ + 1);
     exit_section_(builder_, marker_, null, result_);
     return result_;
   }
@@ -1174,7 +1143,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // OTHERWISE ncl? /*ncl not optional in spec*/ instruction*
+  // OTHERWISE ncl? /*ncl not optional in spec*/ instruction_with_ncl*
   public static boolean otherwise_branch(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "otherwise_branch")) return false;
     if (!nextTokenIs(builder_, OTHERWISE)) return false;
@@ -1194,12 +1163,12 @@ public class RexxParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // instruction*
+  // instruction_with_ncl*
   private static boolean otherwise_branch_2(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "otherwise_branch_2")) return false;
     while (true) {
       int pos_ = current_position_(builder_);
-      if (!instruction(builder_, level_ + 1)) break;
+      if (!instruction_with_ncl(builder_, level_ + 1)) break;
       if (!empty_element_parsed_guard_(builder_, "otherwise_branch_2", pos_)) break;
     }
     return true;
@@ -2110,7 +2079,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // WHEN expr ncl? then
+  // WHEN expr ncl? then ncl
   public static boolean when_branch(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "when_branch")) return false;
     if (!nextTokenIs(builder_, WHEN)) return false;
@@ -2120,6 +2089,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
     result_ = result_ && expr(builder_, level_ + 1, -1);
     result_ = result_ && when_branch_2(builder_, level_ + 1);
     result_ = result_ && then(builder_, level_ + 1);
+    result_ = result_ && ncl(builder_, level_ + 1);
     exit_section_(builder_, marker_, WHEN_BRANCH, result_);
     return result_;
   }

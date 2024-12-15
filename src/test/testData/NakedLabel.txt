@@ -44,6 +44,6 @@ FILE
         RexxVariableImpl(VARIABLE)
           RexxIdentifier_Impl(IDENTIFIER_)
             PsiElement(IDENTIFIER)('false')
-    PsiElement(TERMINATOR)('\n')
+  PsiElement(TERMINATOR)('\n')
   RexxReturnInstructionImpl(RETURN_INSTRUCTION)
     PsiElement(RETURN)('return')
