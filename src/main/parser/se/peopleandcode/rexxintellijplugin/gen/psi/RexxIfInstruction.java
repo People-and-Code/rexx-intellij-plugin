@@ -20,6 +20,9 @@ public interface RexxIfInstruction extends PsiElement {
   List<RexxCallInstruction> getCallInstructionList();
 
   @NotNull
+  List<RexxDoInstruction> getDoInstructionList();
+
+  @NotNull
   List<RexxDropInstruction> getDropInstructionList();
 
   @NotNull
@@ -33,9 +36,6 @@ public interface RexxIfInstruction extends PsiElement {
 
   @NotNull
   List<RexxIfInstruction> getIfInstructionList();
-
-  @NotNull
-  List<RexxInstructionBlock> getInstructionBlockList();
 
   @NotNull
   List<RexxIterateInstruction> getIterateInstructionList();

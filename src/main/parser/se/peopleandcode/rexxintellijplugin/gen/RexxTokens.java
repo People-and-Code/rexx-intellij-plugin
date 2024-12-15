@@ -21,6 +21,7 @@ public interface RexxTokens {
   IElementType COMPARISON_EXPR = new RexxElementType("COMPARISON_EXPR");
   IElementType CONCATENATION_EXPR = new RexxElementType("CONCATENATION_EXPR");
   IElementType DECIMAL_CONSTANT = new RexxElementType("DECIMAL_CONSTANT");
+  IElementType DO_INSTRUCTION = new RexxElementType("DO_INSTRUCTION");
   IElementType DROP_INSTRUCTION = new RexxElementType("DROP_INSTRUCTION");
   IElementType EXIT_INSTRUCTION = new RexxElementType("EXIT_INSTRUCTION");
   IElementType EXPR = new RexxElementType("EXPR");
@@ -28,7 +29,6 @@ public interface RexxTokens {
   IElementType GLOBAL = new RexxElementType("GLOBAL");
   IElementType IDENTIFIER_ = new RexxElementType("IDENTIFIER_");
   IElementType IF_INSTRUCTION = new RexxElementType("IF_INSTRUCTION");
-  IElementType INSTRUCTION_BLOCK = new RexxElementType("INSTRUCTION_BLOCK");
   IElementType INTEGER_CONSTANT = new RexxElementType("INTEGER_CONSTANT");
   IElementType INVOKE = new RexxElementType("INVOKE");
   IElementType ITERATE_INSTRUCTION = new RexxElementType("ITERATE_INSTRUCTION");
@@ -186,6 +186,9 @@ public interface RexxTokens {
       else if (type == DECIMAL_CONSTANT) {
         return new RexxDecimalConstantImpl(node);
       }
+      else if (type == DO_INSTRUCTION) {
+        return new RexxDoInstructionImpl(node);
+      }
       else if (type == DROP_INSTRUCTION) {
         return new RexxDropInstructionImpl(node);
       }
@@ -203,9 +206,6 @@ public interface RexxTokens {
       }
       else if (type == IF_INSTRUCTION) {
         return new RexxIfInstructionImpl(node);
-      }
-      else if (type == INSTRUCTION_BLOCK) {
-        return new RexxInstructionBlockImpl(node);
       }
       else if (type == INTEGER_CONSTANT) {
         return new RexxIntegerConstantImpl(node);

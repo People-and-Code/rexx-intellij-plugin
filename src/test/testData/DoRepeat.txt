@@ -1,5 +1,5 @@
 FILE
-  RexxInstructionBlockImpl(INSTRUCTION_BLOCK)
+  RexxDoInstructionImpl(DO_INSTRUCTION)
     PsiElement(DO)('do')
     PsiWhiteSpace(' ')
     RexxAssignmentInstructionImpl(ASSIGNMENT_INSTRUCTION)

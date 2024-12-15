@@ -9,7 +9,7 @@ FILE
     PsiWhiteSpace('  ')
     PsiElement(THEN)('then')
     PsiWhiteSpace(' ')
-    RexxInstructionBlockImpl(INSTRUCTION_BLOCK)
+    RexxDoInstructionImpl(DO_INSTRUCTION)
       PsiElement(DO)('do')
       PsiElement(TERMINATOR)('\n')
       PsiWhiteSpace('    ')

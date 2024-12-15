@@ -153,7 +153,7 @@ private terminator ::= TERMINATOR
 private instruction_list ::= instruction+
 // this is not where the label is according to the specs, see: null_clause
 private instruction ::=  (group | single_instruction ncl)
-private group ::= instruction_block | if_instruction | select_instruction
+private group ::= do_instruction | if_instruction | select_instruction
 select_instruction ::= SELECT /* group_option* */ ncl select_body /* group_handler? */ END ncl?
 select_body ::= when_branch+ otherwise_branch?
 when_branch ::= WHEN expr ncl? then
@@ -235,7 +235,7 @@ expression_instruction
     | &stringLiteral expr
 
 
-instruction_block ::= do_specification ncl
+do_instruction ::= do_specification ncl
     instruction_list?
     do_ending
     { pin = do_specification }

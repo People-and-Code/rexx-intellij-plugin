@@ -53,6 +53,12 @@ public class RexxWhenBranchImpl extends ASTWrapperPsiElement implements RexxWhen
 
   @Override
   @Nullable
+  public RexxDoInstruction getDoInstruction() {
+    return findChildByClass(RexxDoInstruction.class);
+  }
+
+  @Override
+  @Nullable
   public RexxDropInstruction getDropInstruction() {
     return findChildByClass(RexxDropInstruction.class);
   }
@@ -79,12 +85,6 @@ public class RexxWhenBranchImpl extends ASTWrapperPsiElement implements RexxWhen
   @Nullable
   public RexxIfInstruction getIfInstruction() {
     return findChildByClass(RexxIfInstruction.class);
-  }
-
-  @Override
-  @Nullable
-  public RexxInstructionBlock getInstructionBlock() {
-    return findChildByClass(RexxInstructionBlock.class);
   }
 
   @Override

@@ -11,14 +11,14 @@ import static se.peopleandcode.rexxintellijplugin.gen.RexxTokens.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import se.peopleandcode.rexxintellijplugin.gen.psi.*;
 
-public class RexxInstructionBlockImpl extends ASTWrapperPsiElement implements RexxInstructionBlock {
+public class RexxDoInstructionImpl extends ASTWrapperPsiElement implements RexxDoInstruction {
 
-  public RexxInstructionBlockImpl(@NotNull ASTNode node) {
+  public RexxDoInstructionImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull RexxVisitor visitor) {
-    visitor.visitInstructionBlock(this);
+    visitor.visitDoInstruction(this);
   }
 
   @Override
@@ -59,6 +59,12 @@ public class RexxInstructionBlockImpl extends ASTWrapperPsiElement implements Re
 
   @Override
   @NotNull
+  public List<RexxDoInstruction> getDoInstructionList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxDoInstruction.class);
+  }
+
+  @Override
+  @NotNull
   public List<RexxDropInstruction> getDropInstructionList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxDropInstruction.class);
   }
@@ -85,12 +91,6 @@ public class RexxInstructionBlockImpl extends ASTWrapperPsiElement implements Re
   @NotNull
   public List<RexxIfInstruction> getIfInstructionList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxIfInstruction.class);
-  }
-
-  @Override
-  @NotNull
-  public List<RexxInstructionBlock> getInstructionBlockList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxInstructionBlock.class);
   }
 
   @Override

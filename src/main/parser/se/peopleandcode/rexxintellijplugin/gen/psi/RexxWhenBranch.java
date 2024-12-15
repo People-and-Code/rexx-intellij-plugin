@@ -20,6 +20,9 @@ public interface RexxWhenBranch extends PsiElement {
   RexxCallInstruction getCallInstruction();
 
   @Nullable
+  RexxDoInstruction getDoInstruction();
+
+  @Nullable
   RexxDropInstruction getDropInstruction();
 
   @Nullable
@@ -33,9 +36,6 @@ public interface RexxWhenBranch extends PsiElement {
 
   @Nullable
   RexxIfInstruction getIfInstruction();
-
-  @Nullable
-  RexxInstructionBlock getInstructionBlock();
 
   @Nullable
   RexxIterateInstruction getIterateInstruction();
