@@ -142,6 +142,7 @@
         COLON="regexp:[:]"
     ]
     extends(".*expr")=expr
+    extends(".*instruction")=instruction
 }
 
 /*program*/
@@ -153,7 +154,7 @@ private terminator ::= TERMINATOR
 private instruction_list ::= instruction_with_ncl+
 // this is not where the label is according to the specs, see: null_clause
 private instruction_with_ncl ::=  instruction ncl
-private instruction
+instruction
     ::= do_instruction
     | if_instruction
     | select_instruction

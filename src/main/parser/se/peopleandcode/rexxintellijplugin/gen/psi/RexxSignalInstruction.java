@@ -5,7 +5,7 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface RexxSignalInstruction extends PsiElement {
+public interface RexxSignalInstruction extends RexxInstruction {
 
   @NotNull
   RexxExpr getExpr();

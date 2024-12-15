@@ -5,7 +5,7 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface RexxNumericInstruction extends PsiElement {
+public interface RexxNumericInstruction extends RexxInstruction {
 
   @NotNull
   RexxIntegerConstant getIntegerConstant();

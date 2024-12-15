@@ -39,6 +39,12 @@ public class RexxParser implements PsiParser, LightPsiParser {
     create_token_set_(ADDITION_EXPR, ALIAS_EXPR, AND_EXPR, COMPARISON_EXPR,
       CONCATENATION_EXPR, EXPR, MULTIPLICATION_EXPR, POWER_EXPR,
       PREFIX_EXPR, TERM_EXPR),
+    create_token_set_(ADDRESS_INSTRUCTION, ARG_INSTRUCTION, ASSIGNMENT_INSTRUCTION, CALL_INSTRUCTION,
+      DO_INSTRUCTION, DROP_INSTRUCTION, EXIT_INSTRUCTION, EXPRESSION_INSTRUCTION,
+      IF_INSTRUCTION, INSTRUCTION, ITERATE_INSTRUCTION, NOP_INSTRUCTION,
+      NUMERIC_INSTRUCTION, PARSE_INSTRUCTION, PROCEDURE_INSTRUCTION, PULL_INSTRUCTION,
+      RETURN_INSTRUCTION, SAY_INSTRUCTION, SELECT_INSTRUCTION, SIGNAL_INSTRUCTION,
+      TRACE_INSTRUCTION, USE_INSTRUCTION),
   };
 
   /* ********************************************************** */
@@ -684,13 +690,15 @@ public class RexxParser implements PsiParser, LightPsiParser {
   //     | if_instruction
   //     | select_instruction
   //     | single_instruction
-  static boolean instruction(PsiBuilder builder_, int level_) {
+  public static boolean instruction(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "instruction")) return false;
     boolean result_;
+    Marker marker_ = enter_section_(builder_, level_, _COLLAPSE_, INSTRUCTION, "<instruction>");
     result_ = do_instruction(builder_, level_ + 1);
     if (!result_) result_ = if_instruction(builder_, level_ + 1);
     if (!result_) result_ = select_instruction(builder_, level_ + 1);
     if (!result_) result_ = single_instruction(builder_, level_ + 1);
+    exit_section_(builder_, level_, marker_, result_, false, null);
     return result_;
   }
 

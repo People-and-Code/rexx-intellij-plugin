@@ -8,15 +8,15 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static se.peopleandcode.rexxintellijplugin.gen.RexxTokens.*;
-import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import se.peopleandcode.rexxintellijplugin.gen.psi.*;
 
-public class RexxArgInstructionImpl extends ASTWrapperPsiElement implements RexxArgInstruction {
+public class RexxArgInstructionImpl extends RexxInstructionImpl implements RexxArgInstruction {
 
   public RexxArgInstructionImpl(@NotNull ASTNode node) {
     super(node);
   }
 
+  @Override
   public void accept(@NotNull RexxVisitor visitor) {
     visitor.visitArgInstruction(this);
   }

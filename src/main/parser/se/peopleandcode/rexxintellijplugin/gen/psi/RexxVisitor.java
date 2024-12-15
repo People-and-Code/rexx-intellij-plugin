@@ -16,7 +16,7 @@ public class RexxVisitor extends PsiElementVisitor {
   }
 
   public void visitAddressInstruction(@NotNull RexxAddressInstruction o) {
-    visitPsiElement(o);
+    visitInstruction(o);
   }
 
   public void visitAliasExpr(@NotNull RexxAliasExpr o) {
@@ -28,15 +28,15 @@ public class RexxVisitor extends PsiElementVisitor {
   }
 
   public void visitArgInstruction(@NotNull RexxArgInstruction o) {
-    visitPsiElement(o);
+    visitInstruction(o);
   }
 
   public void visitAssignmentInstruction(@NotNull RexxAssignmentInstruction o) {
-    visitPsiElement(o);
+    visitInstruction(o);
   }
 
   public void visitCallInstruction(@NotNull RexxCallInstruction o) {
-    visitPsiElement(o);
+    visitInstruction(o);
   }
 
   public void visitComparisonExpr(@NotNull RexxComparisonExpr o) {
@@ -52,15 +52,15 @@ public class RexxVisitor extends PsiElementVisitor {
   }
 
   public void visitDoInstruction(@NotNull RexxDoInstruction o) {
-    visitPsiElement(o);
+    visitInstruction(o);
   }
 
   public void visitDropInstruction(@NotNull RexxDropInstruction o) {
-    visitPsiElement(o);
+    visitInstruction(o);
   }
 
   public void visitExitInstruction(@NotNull RexxExitInstruction o) {
-    visitPsiElement(o);
+    visitInstruction(o);
   }
 
   public void visitExpr(@NotNull RexxExpr o) {
@@ -68,7 +68,7 @@ public class RexxVisitor extends PsiElementVisitor {
   }
 
   public void visitExpressionInstruction(@NotNull RexxExpressionInstruction o) {
-    visitPsiElement(o);
+    visitInstruction(o);
   }
 
   public void visitGlobal(@NotNull RexxGlobal o) {
@@ -80,6 +80,10 @@ public class RexxVisitor extends PsiElementVisitor {
   }
 
   public void visitIfInstruction(@NotNull RexxIfInstruction o) {
+    visitInstruction(o);
+  }
+
+  public void visitInstruction(@NotNull RexxInstruction o) {
     visitPsiElement(o);
   }
 
@@ -92,7 +96,7 @@ public class RexxVisitor extends PsiElementVisitor {
   }
 
   public void visitIterateInstruction(@NotNull RexxIterateInstruction o) {
-    visitPsiElement(o);
+    visitInstruction(o);
   }
 
   public void visitLabel(@NotNull RexxLabel o) {
@@ -112,11 +116,11 @@ public class RexxVisitor extends PsiElementVisitor {
   }
 
   public void visitNopInstruction(@NotNull RexxNopInstruction o) {
-    visitPsiElement(o);
+    visitInstruction(o);
   }
 
   public void visitNumericInstruction(@NotNull RexxNumericInstruction o) {
-    visitPsiElement(o);
+    visitInstruction(o);
   }
 
   public void visitOrOperator(@NotNull RexxOrOperator o) {
@@ -132,7 +136,7 @@ public class RexxVisitor extends PsiElementVisitor {
   }
 
   public void visitParseInstruction(@NotNull RexxParseInstruction o) {
-    visitPsiElement(o);
+    visitInstruction(o);
   }
 
   public void visitPowerExpr(@NotNull RexxPowerExpr o) {
@@ -144,19 +148,19 @@ public class RexxVisitor extends PsiElementVisitor {
   }
 
   public void visitProcedureInstruction(@NotNull RexxProcedureInstruction o) {
-    visitPsiElement(o);
+    visitInstruction(o);
   }
 
   public void visitPullInstruction(@NotNull RexxPullInstruction o) {
-    visitPsiElement(o);
+    visitInstruction(o);
   }
 
   public void visitReturnInstruction(@NotNull RexxReturnInstruction o) {
-    visitPsiElement(o);
+    visitInstruction(o);
   }
 
   public void visitSayInstruction(@NotNull RexxSayInstruction o) {
-    visitPsiElement(o);
+    visitInstruction(o);
   }
 
   public void visitScientificConstant(@NotNull RexxScientificConstant o) {
@@ -168,11 +172,11 @@ public class RexxVisitor extends PsiElementVisitor {
   }
 
   public void visitSelectInstruction(@NotNull RexxSelectInstruction o) {
-    visitPsiElement(o);
+    visitInstruction(o);
   }
 
   public void visitSignalInstruction(@NotNull RexxSignalInstruction o) {
-    visitPsiElement(o);
+    visitInstruction(o);
   }
 
   public void visitStringLiteral(@NotNull RexxStringLiteral o) {
@@ -184,11 +188,11 @@ public class RexxVisitor extends PsiElementVisitor {
   }
 
   public void visitTraceInstruction(@NotNull RexxTraceInstruction o) {
-    visitPsiElement(o);
+    visitInstruction(o);
   }
 
   public void visitUseInstruction(@NotNull RexxUseInstruction o) {
-    visitPsiElement(o);
+    visitInstruction(o);
   }
 
   public void visitVariable(@NotNull RexxVariable o) {

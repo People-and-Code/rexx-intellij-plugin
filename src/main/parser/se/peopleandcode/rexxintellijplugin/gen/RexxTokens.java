@@ -29,6 +29,7 @@ public interface RexxTokens {
   IElementType GLOBAL = new RexxElementType("GLOBAL");
   IElementType IDENTIFIER_ = new RexxElementType("IDENTIFIER_");
   IElementType IF_INSTRUCTION = new RexxElementType("IF_INSTRUCTION");
+  IElementType INSTRUCTION = new RexxElementType("INSTRUCTION");
   IElementType INTEGER_CONSTANT = new RexxElementType("INTEGER_CONSTANT");
   IElementType INVOKE = new RexxElementType("INVOKE");
   IElementType ITERATE_INSTRUCTION = new RexxElementType("ITERATE_INSTRUCTION");

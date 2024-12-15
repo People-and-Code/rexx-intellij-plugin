@@ -8,70 +8,10 @@ import com.intellij.psi.PsiElement;
 public interface RexxOtherwiseBranch extends PsiElement {
 
   @NotNull
-  List<RexxAddressInstruction> getAddressInstructionList();
-
-  @NotNull
-  List<RexxArgInstruction> getArgInstructionList();
-
-  @NotNull
-  List<RexxAssignmentInstruction> getAssignmentInstructionList();
-
-  @NotNull
-  List<RexxCallInstruction> getCallInstructionList();
-
-  @NotNull
-  List<RexxDoInstruction> getDoInstructionList();
-
-  @NotNull
-  List<RexxDropInstruction> getDropInstructionList();
-
-  @NotNull
-  List<RexxExitInstruction> getExitInstructionList();
-
-  @NotNull
-  List<RexxExpressionInstruction> getExpressionInstructionList();
-
-  @NotNull
-  List<RexxIfInstruction> getIfInstructionList();
-
-  @NotNull
-  List<RexxIterateInstruction> getIterateInstructionList();
+  List<RexxInstruction> getInstructionList();
 
   @NotNull
   List<RexxLabel> getLabelList();
-
-  @NotNull
-  List<RexxNopInstruction> getNopInstructionList();
-
-  @NotNull
-  List<RexxNumericInstruction> getNumericInstructionList();
-
-  @NotNull
-  List<RexxParseInstruction> getParseInstructionList();
-
-  @NotNull
-  List<RexxProcedureInstruction> getProcedureInstructionList();
-
-  @NotNull
-  List<RexxPullInstruction> getPullInstructionList();
-
-  @NotNull
-  List<RexxReturnInstruction> getReturnInstructionList();
-
-  @NotNull
-  List<RexxSayInstruction> getSayInstructionList();
-
-  @NotNull
-  List<RexxSelectInstruction> getSelectInstructionList();
-
-  @NotNull
-  List<RexxSignalInstruction> getSignalInstructionList();
-
-  @NotNull
-  List<RexxTraceInstruction> getTraceInstructionList();
-
-  @NotNull
-  List<RexxUseInstruction> getUseInstructionList();
 
   @NotNull
   PsiElement getOtherwise();

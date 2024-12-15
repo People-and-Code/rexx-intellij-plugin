@@ -5,7 +5,7 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface RexxProcedureInstruction extends PsiElement {
+public interface RexxProcedureInstruction extends RexxInstruction {
 
   @NotNull
   List<RexxVariable> getVariableList();

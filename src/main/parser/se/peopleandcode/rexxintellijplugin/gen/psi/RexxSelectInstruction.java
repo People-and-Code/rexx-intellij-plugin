@@ -5,7 +5,7 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface RexxSelectInstruction extends PsiElement {
+public interface RexxSelectInstruction extends RexxInstruction {
 
   @NotNull
   List<RexxLabel> getLabelList();

@@ -5,46 +5,19 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface RexxDoInstruction extends PsiElement {
-
-  @NotNull
-  List<RexxAddressInstruction> getAddressInstructionList();
-
-  @NotNull
-  List<RexxArgInstruction> getArgInstructionList();
-
-  @NotNull
-  List<RexxAssignmentInstruction> getAssignmentInstructionList();
-
-  @NotNull
-  List<RexxCallInstruction> getCallInstructionList();
+public interface RexxDoInstruction extends RexxInstruction {
 
   @Nullable
   RexxDecimalConstant getDecimalConstant();
 
   @NotNull
-  List<RexxDoInstruction> getDoInstructionList();
-
-  @NotNull
-  List<RexxDropInstruction> getDropInstructionList();
-
-  @NotNull
-  List<RexxExitInstruction> getExitInstructionList();
-
-  @NotNull
   List<RexxExpr> getExprList();
 
   @NotNull
-  List<RexxExpressionInstruction> getExpressionInstructionList();
-
-  @NotNull
-  List<RexxIfInstruction> getIfInstructionList();
+  List<RexxInstruction> getInstructionList();
 
   @Nullable
   RexxIntegerConstant getIntegerConstant();
-
-  @NotNull
-  List<RexxIterateInstruction> getIterateInstructionList();
 
   @NotNull
   List<RexxLabel> getLabelList();
@@ -52,41 +25,8 @@ public interface RexxDoInstruction extends PsiElement {
   @NotNull
   List<RexxNameDeclaration> getNameDeclarationList();
 
-  @NotNull
-  List<RexxNopInstruction> getNopInstructionList();
-
-  @NotNull
-  List<RexxNumericInstruction> getNumericInstructionList();
-
-  @NotNull
-  List<RexxParseInstruction> getParseInstructionList();
-
-  @NotNull
-  List<RexxProcedureInstruction> getProcedureInstructionList();
-
-  @NotNull
-  List<RexxPullInstruction> getPullInstructionList();
-
-  @NotNull
-  List<RexxReturnInstruction> getReturnInstructionList();
-
-  @NotNull
-  List<RexxSayInstruction> getSayInstructionList();
-
   @Nullable
   RexxScientificConstant getScientificConstant();
-
-  @NotNull
-  List<RexxSelectInstruction> getSelectInstructionList();
-
-  @NotNull
-  List<RexxSignalInstruction> getSignalInstructionList();
-
-  @NotNull
-  List<RexxTraceInstruction> getTraceInstructionList();
-
-  @NotNull
-  List<RexxUseInstruction> getUseInstructionList();
 
   @NotNull
   PsiElement getDo();

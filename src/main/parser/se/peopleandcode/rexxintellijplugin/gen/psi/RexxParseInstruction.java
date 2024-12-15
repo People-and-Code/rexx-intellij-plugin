@@ -5,7 +5,7 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface RexxParseInstruction extends PsiElement {
+public interface RexxParseInstruction extends RexxInstruction {
 
   @NotNull
   List<RexxDecimalConstant> getDecimalConstantList();
