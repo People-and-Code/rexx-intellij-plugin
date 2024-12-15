@@ -153,8 +153,8 @@ private terminator ::= TERMINATOR
 private instruction_list ::= instruction+
 // this is not where the label is according to the specs, see: null_clause
 private instruction ::=  (group | single_instruction ncl)
-private group ::= do_instruction | if_instruction | select_instruction
-select_instruction ::= SELECT /* group_option* */ ncl select_body /* group_handler? */ END ncl?
+private group ::= do_instruction ncl | if_instruction | select_instruction ncl
+select_instruction ::= SELECT /* group_option* */ ncl select_body /* group_handler? */ END
 select_body ::= when_branch+ otherwise_branch?
 when_branch ::= WHEN expr ncl? then
 otherwise_branch ::= OTHERWISE ncl? /*ncl not optional in spec*/ instruction*
@@ -253,7 +253,7 @@ private over
     ::= name_declaration 'OVER' expr
     | numericConstant 'OVER'
     /*| CONST_SYMBOL 'OVER'*/
-private do_ending ::= END name_declaration? ncl
+private do_ending ::= END name_declaration?
 
 parse_instruction
     ::= PARSE translation? parse_type template_list*

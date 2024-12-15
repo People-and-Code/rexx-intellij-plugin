@@ -27,7 +27,7 @@ FILE
       PsiElement(TERMINATOR)('\n')
       PsiWhiteSpace('  ')
       PsiElement(END)('end')
-      PsiElement(TERMINATOR)('\n\n')
+    PsiElement(TERMINATOR)('\n\n')
   PsiWhiteSpace('  ')
   RexxSayInstructionImpl(SAY_INSTRUCTION)
     PsiElement(SAY)('say')
