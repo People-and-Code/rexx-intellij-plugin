@@ -29,6 +29,12 @@ public class RexxSelectInstructionImpl extends ASTWrapperPsiElement implements R
 
   @Override
   @NotNull
+  public List<RexxLabel> getLabelList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxLabel.class);
+  }
+
+  @Override
+  @NotNull
   public RexxSelectBody getSelectBody() {
     return findNotNullChildByClass(RexxSelectBody.class);
   }

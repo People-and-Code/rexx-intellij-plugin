@@ -145,14 +145,14 @@
 }
 
 /*program*/
-rexx_file ::= ncl? instruction_list? END?
+rexx_file ::= label_list? ncl? instruction_list? END?
 private ncl ::=  <<eof>> | null_clause+
-private null_clause ::= terminator /*label_list?
-private label_list ::= (label_instruction terminator)+*/
+private null_clause ::= terminator label_list?
+private label_list ::= (label terminator?)*
 private terminator ::= TERMINATOR
 private instruction_list ::= instruction+
 // this is not where the label is according to the specs, see: null_clause
-private instruction ::= (label terminator?)* (group | single_instruction ncl)
+private instruction ::=  (group | single_instruction ncl)
 private group ::= instruction_block | if_instruction | select_instruction
 select_instruction ::= SELECT /* group_option* */ ncl select_body /* group_handler? */ END ncl?
 select_body ::= when_branch+ otherwise_branch?
