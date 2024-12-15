@@ -158,7 +158,6 @@ select_instruction ::= SELECT /* group_option* */ ncl select_body /* group_handl
 select_body ::= when_branch+ otherwise_branch?
 when_branch ::= WHEN expr ncl? then
 otherwise_branch ::= OTHERWISE ncl? /*ncl not optional in spec*/ instruction*
-private command ::= expression_instruction
 private keyword_instruction
     ::= address_instruction
     | arg_instruction
@@ -179,10 +178,13 @@ private keyword_instruction
     | signal_instruction
     | trace_instruction
     | use_instruction
+
 private single_instruction
     ::= assignment_instruction
     | keyword_instruction
-    | command
+    /* "expression_instruction" has the name "command" in the spec*/
+    | expression_instruction
+
 arg_instruction ::= ARG template_list?
 private template_list
     ::= template (COMMA template?)*

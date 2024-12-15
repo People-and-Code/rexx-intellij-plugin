@@ -189,12 +189,6 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // expression_instruction
-  static boolean command(PsiBuilder builder_, int level_) {
-    return expression_instruction(builder_, level_ + 1);
-  }
-
-  /* ********************************************************** */
   // normal_compare | strict_compare
   static boolean comparison_operator(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "comparison_operator")) return false;
@@ -1642,13 +1636,13 @@ public class RexxParser implements PsiParser, LightPsiParser {
   /* ********************************************************** */
   // assignment_instruction
   //     | keyword_instruction
-  //     | command
+  //     | expression_instruction
   static boolean single_instruction(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "single_instruction")) return false;
     boolean result_;
     result_ = assignment_instruction(builder_, level_ + 1);
     if (!result_) result_ = keyword_instruction(builder_, level_ + 1);
-    if (!result_) result_ = command(builder_, level_ + 1);
+    if (!result_) result_ = expression_instruction(builder_, level_ + 1);
     return result_;
   }
 
