@@ -31,6 +31,12 @@ public interface RexxParseInstruction extends RexxInstruction {
   @Nullable
   PsiElement getArg();
 
+  @Nullable
+  PsiElement getCaseless();
+
+  @Nullable
+  PsiElement getLower();
+
   @NotNull
   PsiElement getParse();
 
@@ -39,6 +45,9 @@ public interface RexxParseInstruction extends RexxInstruction {
 
   @Nullable
   PsiElement getSource();
+
+  @Nullable
+  PsiElement getUpper();
 
   @Nullable
   PsiElement getValue();

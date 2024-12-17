@@ -76,6 +76,18 @@ public class RexxParseInstructionImpl extends RexxInstructionImpl implements Rex
   }
 
   @Override
+  @Nullable
+  public PsiElement getCaseless() {
+    return findChildByType(CASELESS);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getLower() {
+    return findChildByType(LOWER);
+  }
+
+  @Override
   @NotNull
   public PsiElement getParse() {
     return findNotNullChildByType(PARSE);
@@ -91,6 +103,12 @@ public class RexxParseInstructionImpl extends RexxInstructionImpl implements Rex
   @Nullable
   public PsiElement getSource() {
     return findChildByType(SOURCE);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getUpper() {
+    return findChildByType(UPPER);
   }
 
   @Override

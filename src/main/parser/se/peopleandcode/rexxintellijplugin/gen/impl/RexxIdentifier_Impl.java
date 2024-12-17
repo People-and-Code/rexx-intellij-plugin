@@ -47,6 +47,12 @@ public class RexxIdentifier_Impl extends ASTWrapperPsiElement implements RexxIde
 
   @Override
   @Nullable
+  public PsiElement getCaseless() {
+    return findChildByType(CASELESS);
+  }
+
+  @Override
+  @Nullable
   public PsiElement getDo() {
     return findChildByType(DO);
   }
@@ -127,6 +133,12 @@ public class RexxIdentifier_Impl extends ASTWrapperPsiElement implements RexxIde
   @Nullable
   public PsiElement getLoop() {
     return findChildByType(LOOP);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getLower() {
+    return findChildByType(LOWER);
   }
 
   @Override
@@ -229,6 +241,12 @@ public class RexxIdentifier_Impl extends ASTWrapperPsiElement implements RexxIde
   @Nullable
   public PsiElement getTrace() {
     return findChildByType(TRACE);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getUpper() {
+    return findChildByType(UPPER);
   }
 
   @Override

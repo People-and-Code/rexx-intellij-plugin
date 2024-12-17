@@ -78,6 +78,9 @@ TRACE=[Tt][Rr][Aa][Cc][Ee]
 USE=[Uu][Ss][Ee]
 WHILE=[Ww][Hh][Ii][Ll][Ee]
 WHEN=[Ww][Hh][Ee][Nn]
+UPPER=[Uu][Pp][Pp][Ee][Rr]
+CASELESS=[Cc][Aa][Ss][Ee][Ll][Ee][Ss][Ss]
+LOWER=[Ll][Oo][Ww][Ee][Rr]
 SHEBANG=[#][!][^\n]*
 LINE_COMMENT=--[^\n]*|,[ \t]*--[^\n]*\n
 MULTILINE_COMMENT="/"[*]([^*]+|[*]+[^/*])*[*]+"/"|,([ \t]*"/"[*]([^*]+|[*]+[^/*])*[*]+"/")*\n
@@ -175,6 +178,9 @@ COLON=[:]
   {USE}                        { return USE; }
   {WHILE}                      { return WHILE; }
   {WHEN}                       { return WHEN; }
+  {UPPER}                      { return UPPER; }
+  {CASELESS}                   { return CASELESS; }
+  {LOWER}                      { return LOWER; }
   {SHEBANG}                    { return SHEBANG; }
   {LINE_COMMENT}               { return LINE_COMMENT; }
   {MULTILINE_COMMENT}          { return MULTILINE_COMMENT; }

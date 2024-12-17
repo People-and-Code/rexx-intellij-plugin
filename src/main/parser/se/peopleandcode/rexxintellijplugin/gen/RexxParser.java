@@ -862,7 +862,10 @@ public class RexxParser implements PsiParser, LightPsiParser {
   //     |  SIGNAL
   //     |  TRACE
   //     |  USE
-  //     |  WHILE
+  //     |  WHILE
+  //     |  UPPER
+  //     |  LOWER
+  //     |  CASELESS
   static boolean keywords(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "keywords")) return false;
     boolean result_;
@@ -903,6 +906,9 @@ public class RexxParser implements PsiParser, LightPsiParser {
     if (!result_) result_ = consumeToken(builder_, TRACE);
     if (!result_) result_ = consumeToken(builder_, USE);
     if (!result_) result_ = consumeToken(builder_, WHILE);
+    if (!result_) result_ = consumeToken(builder_, UPPER);
+    if (!result_) result_ = consumeToken(builder_, LOWER);
+    if (!result_) result_ = consumeToken(builder_, CASELESS);
     return result_;
   }
 
@@ -1854,7 +1860,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // 'CASELESS' ['UPPER' | 'LOWER'] | ('UPPER' | 'LOWER')
+  // CASELESS [UPPER | LOWER] | (UPPER | LOWER)
   static boolean translation(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "translation")) return false;
     boolean result_;
@@ -1865,39 +1871,39 @@ public class RexxParser implements PsiParser, LightPsiParser {
     return result_;
   }
 
-  // 'CASELESS' ['UPPER' | 'LOWER']
+  // CASELESS [UPPER | LOWER]
   private static boolean translation_0(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "translation_0")) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_);
-    result_ = consumeToken(builder_, "CASELESS");
+    result_ = consumeToken(builder_, CASELESS);
     result_ = result_ && translation_0_1(builder_, level_ + 1);
     exit_section_(builder_, marker_, null, result_);
     return result_;
   }
 
-  // ['UPPER' | 'LOWER']
+  // [UPPER | LOWER]
   private static boolean translation_0_1(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "translation_0_1")) return false;
     translation_0_1_0(builder_, level_ + 1);
     return true;
   }
 
-  // 'UPPER' | 'LOWER'
+  // UPPER | LOWER
   private static boolean translation_0_1_0(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "translation_0_1_0")) return false;
     boolean result_;
-    result_ = consumeToken(builder_, "UPPER");
-    if (!result_) result_ = consumeToken(builder_, "LOWER");
+    result_ = consumeToken(builder_, UPPER);
+    if (!result_) result_ = consumeToken(builder_, LOWER);
     return result_;
   }
 
-  // 'UPPER' | 'LOWER'
+  // UPPER | LOWER
   private static boolean translation_1(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "translation_1")) return false;
     boolean result_;
-    result_ = consumeToken(builder_, "UPPER");
-    if (!result_) result_ = consumeToken(builder_, "LOWER");
+    result_ = consumeToken(builder_, UPPER);
+    if (!result_) result_ = consumeToken(builder_, LOWER);
     return result_;
   }
 

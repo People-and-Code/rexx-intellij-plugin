@@ -66,6 +66,7 @@ public interface RexxTokens {
   IElementType ARG = new RexxTokenType("ARG");
   IElementType ATTRIBUTE = new RexxTokenType("ATTRIBUTE");
   IElementType CALL = new RexxTokenType("CALL");
+  IElementType CASELESS = new RexxTokenType("CASELESS");
   IElementType CLASS = new RexxTokenType("CLASS");
   IElementType COLON = new RexxTokenType("COLON");
   IElementType COMMA = new RexxTokenType("COMMA");
@@ -89,6 +90,7 @@ public interface RexxTokens {
   IElementType LEAVE = new RexxTokenType("LEAVE");
   IElementType LINE_COMMENT = new RexxTokenType("LINE_COMMENT");
   IElementType LOOP = new RexxTokenType("LOOP");
+  IElementType LOWER = new RexxTokenType("LOWER");
   IElementType LT = new RexxTokenType("<");
   IElementType LTE = new RexxTokenType("<=");
   IElementType METHOD = new RexxTokenType("METHOD");
@@ -144,6 +146,7 @@ public interface RexxTokens {
   IElementType TOKEN_LEFT = new RexxTokenType("(");
   IElementType TOKEN_RIGHT = new RexxTokenType(")");
   IElementType TRACE = new RexxTokenType("TRACE");
+  IElementType UPPER = new RexxTokenType("UPPER");
   IElementType USE = new RexxTokenType("USE");
   IElementType VALUE = new RexxTokenType("VALUE");
   IElementType VAR = new RexxTokenType("VAR");

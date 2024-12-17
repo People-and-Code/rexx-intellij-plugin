@@ -110,6 +110,9 @@
         USE="regexp:[Uu][Ss][Ee]"
         WHILE="regexp:[Ww][Hh][Ii][Ll][Ee]"
         WHEN="regexp:[Ww][Hh][Ee][Nn]"
+        UPPER="regexp:[Uu][Pp][Pp][Ee][Rr]"
+        CASELESS="regexp:[Cc][Aa][Ss][Ee][Ll][Ee][Ss][Ss]"
+        LOWER="regexp:[Ll][Oo][Ww][Ee][Rr]"
 
 
         // Comments
@@ -262,7 +265,7 @@ private do_ending ::= END name_declaration?
 
 parse_instruction
     ::= PARSE translation? parse_type template_list*
-private translation ::= 'CASELESS' ['UPPER' | 'LOWER'] | ('UPPER' | 'LOWER')
+private translation ::= CASELESS [UPPER | LOWER] | (UPPER | LOWER)
 private parse_type
     ::= parse_key
     | parse_value
@@ -412,3 +415,6 @@ private keywords
     |  TRACE
     |  USE
     |  WHILE
+    |  UPPER
+    |  LOWER
+    |  CASELESS

@@ -17,6 +17,9 @@ public interface RexxIdentifier_ extends PsiElement {
   PsiElement getCall();
 
   @Nullable
+  PsiElement getCaseless();
+
+  @Nullable
   PsiElement getDo();
 
   @Nullable
@@ -57,6 +60,9 @@ public interface RexxIdentifier_ extends PsiElement {
 
   @Nullable
   PsiElement getLoop();
+
+  @Nullable
+  PsiElement getLower();
 
   @Nullable
   PsiElement getNop();
@@ -108,6 +114,9 @@ public interface RexxIdentifier_ extends PsiElement {
 
   @Nullable
   PsiElement getTrace();
+
+  @Nullable
+  PsiElement getUpper();
 
   @Nullable
   PsiElement getUse();
