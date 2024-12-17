@@ -119,6 +119,7 @@ public interface RexxTokens {
   IElementType OPTIONS = new RexxTokenType("OPTIONS");
   IElementType OTHERWISE = new RexxTokenType("OTHERWISE");
   IElementType PARSE = new RexxTokenType("PARSE");
+  IElementType PLUS_EQ = new RexxTokenType("+=");
   IElementType PROCEDURE = new RexxTokenType("PROCEDURE");
   IElementType PULL = new RexxTokenType("PULL");
   IElementType PUSH = new RexxTokenType("PUSH");

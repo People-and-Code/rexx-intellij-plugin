@@ -107,6 +107,7 @@ COLON=[:]
   "("                          { return TOKEN_LEFT; }
   ")"                          { return TOKEN_RIGHT; }
   "="                          { return EQ; }
+  "+="                         { return PLUS_EQ; }
   "\\="                        { return NEQ1; }
   "<>"                         { return NEQ2; }
   "><"                         { return NEQ3; }

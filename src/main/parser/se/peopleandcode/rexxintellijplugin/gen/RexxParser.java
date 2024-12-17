@@ -138,15 +138,24 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // name_declaration '=' expr
+  // name_declaration (EQ | PLUS_EQ) expr
   public static boolean assignment_instruction(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "assignment_instruction")) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_, level_, _NONE_, ASSIGNMENT_INSTRUCTION, "<assignment instruction>");
     result_ = name_declaration(builder_, level_ + 1);
-    result_ = result_ && consumeToken(builder_, EQ);
+    result_ = result_ && assignment_instruction_1(builder_, level_ + 1);
     result_ = result_ && expr(builder_, level_ + 1, -1);
     exit_section_(builder_, level_, marker_, result_, false, null);
+    return result_;
+  }
+
+  // EQ | PLUS_EQ
+  private static boolean assignment_instruction_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "assignment_instruction_1")) return false;
+    boolean result_;
+    result_ = consumeToken(builder_, EQ);
+    if (!result_) result_ = consumeToken(builder_, PLUS_EQ);
     return result_;
   }
 

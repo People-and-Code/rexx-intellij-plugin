@@ -46,6 +46,7 @@
         OPERATOR_AND="regexp:&&"
 
         EQ = '='
+        PLUS_EQ = '+='
         NEQ1 = '\='
         NEQ2 = '<>'
         NEQ3 = '><'
@@ -292,7 +293,7 @@ if_instruction ::= IF expr ncl? then else?
 private then ::= THEN ncl? (instruction | END)
 private else ::= ncl ELSE ncl? (instruction | END)
 
-assignment_instruction ::= name_declaration '=' expr
+assignment_instruction ::= name_declaration (EQ | PLUS_EQ) expr
 
 name_declaration ::= identifier_ {
    mixin="se.peopleandcode.rexxintellijplugin.instructions.NameDeclaration"
