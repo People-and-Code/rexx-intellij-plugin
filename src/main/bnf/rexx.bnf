@@ -176,7 +176,7 @@ private keyword_instruction
     | exit_instruction
     /*| interop*/
     | iterate_instruction
-    /*| leave*/
+    | leave_instruction
     | nop_instruction
     | numeric_instruction
     /*| options*/
@@ -219,6 +219,7 @@ private vrefp ::= TOKEN_LEFT expr TOKEN_RIGHT
 private relative_positional ::= (OPERATOR_PLUS | OPERATOR_SUBTRACT) position
 numeric_instruction ::= NUMERIC IDENTIFIER integerConstant
 iterate_instruction ::= ITERATE variable_?
+leave_instruction ::= LEAVE variable_?
 label ::= name_declaration COLON
 return_instruction ::= RETURN expr?
 nop_instruction ::= NOP
