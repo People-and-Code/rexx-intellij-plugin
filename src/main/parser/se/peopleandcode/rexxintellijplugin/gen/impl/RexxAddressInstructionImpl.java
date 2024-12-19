@@ -28,9 +28,9 @@ public class RexxAddressInstructionImpl extends RexxInstructionImpl implements R
   }
 
   @Override
-  @NotNull
+  @Nullable
   public RexxExpr getExpr() {
-    return findNotNullChildByClass(RexxExpr.class);
+    return findChildByClass(RexxExpr.class);
   }
 
   @Override

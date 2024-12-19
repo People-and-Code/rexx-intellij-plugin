@@ -1,0 +1,5 @@
+FILE
+  RexxExpressionInstructionImpl(EXPRESSION_INSTRUCTION)
+    RexxTermExprImpl(TERM_EXPR)
+      RexxStringLiteralImpl(STRING_LITERAL)
+        PsiElement(STRING)(''ls'')

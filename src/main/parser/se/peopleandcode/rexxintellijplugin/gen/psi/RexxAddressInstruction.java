@@ -7,7 +7,7 @@ import com.intellij.psi.PsiElement;
 
 public interface RexxAddressInstruction extends RexxInstruction {
 
-  @NotNull
+  @Nullable
   RexxExpr getExpr();
 
   @NotNull

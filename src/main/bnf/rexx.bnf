@@ -238,7 +238,7 @@ call_instruction ::= CALL
     |*/ (taken_constant /*| vref */) expression_list?
     )
 
-address_instruction ::= ADDRESS expr
+address_instruction ::= ADDRESS expr {pin=1}
 
 expression_instruction
     ::= &IDENTIFIER expr

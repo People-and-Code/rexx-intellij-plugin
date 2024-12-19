@@ -88,12 +88,13 @@ public class RexxParser implements PsiParser, LightPsiParser {
   public static boolean address_instruction(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "address_instruction")) return false;
     if (!nextTokenIs(builder_, ADDRESS)) return false;
-    boolean result_;
-    Marker marker_ = enter_section_(builder_);
+    boolean result_, pinned_;
+    Marker marker_ = enter_section_(builder_, level_, _NONE_, ADDRESS_INSTRUCTION, null);
     result_ = consumeToken(builder_, ADDRESS);
+    pinned_ = result_; // pin = 1
     result_ = result_ && expr(builder_, level_ + 1, -1);
-    exit_section_(builder_, marker_, ADDRESS_INSTRUCTION, result_);
-    return result_;
+    exit_section_(builder_, level_, marker_, result_, pinned_, null);
+    return result_ || pinned_;
   }
 
   /* ********************************************************** */

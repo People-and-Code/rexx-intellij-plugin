@@ -1,0 +1,6 @@
+FILE
+  RexxExpressionInstructionImpl(EXPRESSION_INSTRUCTION)
+    RexxTermExprImpl(TERM_EXPR)
+      RexxVariableImpl(VARIABLE)
+        RexxIdentifier_Impl(IDENTIFIER_)
+          PsiElement(IDENTIFIER)('ls')

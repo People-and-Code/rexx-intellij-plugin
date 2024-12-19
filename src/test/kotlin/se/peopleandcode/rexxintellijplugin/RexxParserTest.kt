@@ -43,4 +43,6 @@ class RexxParserTest : ParsingTestCase(
     fun testUseArg() = doTest(true, true)
     fun testStemDefault() = doTest(true, true)
     fun testLeave() = doTest(true, true)
+    fun testStringCommand() = doTest(true, true)
+    fun testVariableCommand() = doTest(true, true)
 }
