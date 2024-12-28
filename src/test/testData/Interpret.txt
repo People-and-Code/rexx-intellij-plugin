@@ -1,0 +1,7 @@
+FILE
+  RexxInterpretInstructionImpl(INTERPRET_INSTRUCTION)
+    PsiElement(INTERPRET)('interpret')
+    PsiWhiteSpace(' ')
+    RexxTermExprImpl(TERM_EXPR)
+      RexxStringLiteralImpl(STRING_LITERAL)
+        PsiElement(STRING)('"nop"')

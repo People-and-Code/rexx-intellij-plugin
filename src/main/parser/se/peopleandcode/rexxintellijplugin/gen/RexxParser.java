@@ -41,10 +41,11 @@ public class RexxParser implements PsiParser, LightPsiParser {
       PREFIX_EXPR, TERM_EXPR),
     create_token_set_(ADDRESS_INSTRUCTION, ARG_INSTRUCTION, ASSIGNMENT_INSTRUCTION, CALL_INSTRUCTION,
       DO_INSTRUCTION, DROP_INSTRUCTION, EXIT_INSTRUCTION, EXPRESSION_INSTRUCTION,
-      IF_INSTRUCTION, INSTRUCTION, ITERATE_INSTRUCTION, LEAVE_INSTRUCTION,
-      NOP_INSTRUCTION, NUMERIC_INSTRUCTION, OPTIONS_INSTRUCTION, PARSE_INSTRUCTION,
-      PROCEDURE_INSTRUCTION, PULL_INSTRUCTION, RETURN_INSTRUCTION, SAY_INSTRUCTION,
-      SELECT_INSTRUCTION, SIGNAL_INSTRUCTION, TRACE_INSTRUCTION, USE_INSTRUCTION),
+      IF_INSTRUCTION, INSTRUCTION, INTERPRET_INSTRUCTION, ITERATE_INSTRUCTION,
+      LEAVE_INSTRUCTION, NOP_INSTRUCTION, NUMERIC_INSTRUCTION, OPTIONS_INSTRUCTION,
+      PARSE_INSTRUCTION, PROCEDURE_INSTRUCTION, PULL_INSTRUCTION, RETURN_INSTRUCTION,
+      SAY_INSTRUCTION, SELECT_INSTRUCTION, SIGNAL_INSTRUCTION, TRACE_INSTRUCTION,
+      USE_INSTRUCTION),
   };
 
   /* ********************************************************** */
@@ -753,6 +754,20 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // INTERPRET expr
+  public static boolean interpret_instruction(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "interpret_instruction")) return false;
+    if (!nextTokenIs(builder_, INTERPRET)) return false;
+    boolean result_, pinned_;
+    Marker marker_ = enter_section_(builder_, level_, _NONE_, INTERPRET_INSTRUCTION, null);
+    result_ = consumeToken(builder_, INTERPRET);
+    pinned_ = result_; // pin = 1
+    result_ = result_ && expr(builder_, level_ + 1, -1);
+    exit_section_(builder_, level_, marker_, result_, pinned_, null);
+    return result_ || pinned_;
+  }
+
+  /* ********************************************************** */
   // (symbol | stringLiteral) arguments
   public static boolean invoke(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "invoke")) return false;
@@ -800,7 +815,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
   //     | drop_instruction
   //     | pull_instruction
   //     | exit_instruction
-  //     /*| interop*/
+  //     | interpret_instruction
   //     | iterate_instruction
   //     | leave_instruction
   //     | nop_instruction
@@ -822,6 +837,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
     if (!result_) result_ = drop_instruction(builder_, level_ + 1);
     if (!result_) result_ = pull_instruction(builder_, level_ + 1);
     if (!result_) result_ = exit_instruction(builder_, level_ + 1);
+    if (!result_) result_ = interpret_instruction(builder_, level_ + 1);
     if (!result_) result_ = iterate_instruction(builder_, level_ + 1);
     if (!result_) result_ = leave_instruction(builder_, level_ + 1);
     if (!result_) result_ = nop_instruction(builder_, level_ + 1);

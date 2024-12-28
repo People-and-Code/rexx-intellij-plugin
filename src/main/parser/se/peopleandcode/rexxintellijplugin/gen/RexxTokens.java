@@ -31,6 +31,7 @@ public interface RexxTokens {
   IElementType IF_INSTRUCTION = new RexxElementType("IF_INSTRUCTION");
   IElementType INSTRUCTION = new RexxElementType("INSTRUCTION");
   IElementType INTEGER_CONSTANT = new RexxElementType("INTEGER_CONSTANT");
+  IElementType INTERPRET_INSTRUCTION = new RexxElementType("INTERPRET_INSTRUCTION");
   IElementType INVOKE = new RexxElementType("INVOKE");
   IElementType ITERATE_INSTRUCTION = new RexxElementType("ITERATE_INSTRUCTION");
   IElementType LABEL = new RexxElementType("LABEL");
@@ -216,6 +217,9 @@ public interface RexxTokens {
       }
       else if (type == INTEGER_CONSTANT) {
         return new RexxIntegerConstantImpl(node);
+      }
+      else if (type == INTERPRET_INSTRUCTION) {
+        return new RexxInterpretInstructionImpl(node);
       }
       else if (type == INVOKE) {
         return new RexxInvokeImpl(node);

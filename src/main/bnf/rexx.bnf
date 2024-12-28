@@ -173,7 +173,7 @@ private keyword_instruction
     | drop_instruction
     | pull_instruction
     | exit_instruction
-    /*| interop*/
+    | interpret_instruction
     | iterate_instruction
     | leave_instruction
     | nop_instruction
@@ -186,6 +186,8 @@ private keyword_instruction
     | signal_instruction
     | trace_instruction
     | use_instruction
+
+interpret_instruction ::= INTERPRET expr {pin=1}
 
 options_instruction ::= OPTIONS symbol+ {pin=1}
 
