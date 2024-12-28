@@ -150,7 +150,8 @@
 }
 
 /*program*/
-rexx_file ::= label_list? ncl? instruction_list? END?
+rexx_file ::= program
+private program ::= label_list? ncl? instruction_list? END?
 private ncl ::=  <<eof>> | null_clause+
 private null_clause ::= terminator label_list?
 private label_list ::= (label terminator?)*
