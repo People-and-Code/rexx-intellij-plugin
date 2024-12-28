@@ -178,7 +178,7 @@ private keyword_instruction
     | leave_instruction
     | nop_instruction
     | numeric_instruction
-    /*| options*/
+    | options_instruction
     | parse_instruction
     | procedure_instruction
     | return_instruction
@@ -186,6 +186,8 @@ private keyword_instruction
     | signal_instruction
     | trace_instruction
     | use_instruction
+
+options_instruction ::= OPTIONS symbol+ {pin=1}
 
 private single_instruction
     ::= assignment_instruction

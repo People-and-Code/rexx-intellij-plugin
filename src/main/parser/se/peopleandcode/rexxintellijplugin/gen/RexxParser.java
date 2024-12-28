@@ -42,9 +42,9 @@ public class RexxParser implements PsiParser, LightPsiParser {
     create_token_set_(ADDRESS_INSTRUCTION, ARG_INSTRUCTION, ASSIGNMENT_INSTRUCTION, CALL_INSTRUCTION,
       DO_INSTRUCTION, DROP_INSTRUCTION, EXIT_INSTRUCTION, EXPRESSION_INSTRUCTION,
       IF_INSTRUCTION, INSTRUCTION, ITERATE_INSTRUCTION, LEAVE_INSTRUCTION,
-      NOP_INSTRUCTION, NUMERIC_INSTRUCTION, PARSE_INSTRUCTION, PROCEDURE_INSTRUCTION,
-      PULL_INSTRUCTION, RETURN_INSTRUCTION, SAY_INSTRUCTION, SELECT_INSTRUCTION,
-      SIGNAL_INSTRUCTION, TRACE_INSTRUCTION, USE_INSTRUCTION),
+      NOP_INSTRUCTION, NUMERIC_INSTRUCTION, OPTIONS_INSTRUCTION, PARSE_INSTRUCTION,
+      PROCEDURE_INSTRUCTION, PULL_INSTRUCTION, RETURN_INSTRUCTION, SAY_INSTRUCTION,
+      SELECT_INSTRUCTION, SIGNAL_INSTRUCTION, TRACE_INSTRUCTION, USE_INSTRUCTION),
   };
 
   /* ********************************************************** */
@@ -805,7 +805,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
   //     | leave_instruction
   //     | nop_instruction
   //     | numeric_instruction
-  //     /*| options*/
+  //     | options_instruction
   //     | parse_instruction
   //     | procedure_instruction
   //     | return_instruction
@@ -826,6 +826,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
     if (!result_) result_ = leave_instruction(builder_, level_ + 1);
     if (!result_) result_ = nop_instruction(builder_, level_ + 1);
     if (!result_) result_ = numeric_instruction(builder_, level_ + 1);
+    if (!result_) result_ = options_instruction(builder_, level_ + 1);
     if (!result_) result_ = parse_instruction(builder_, level_ + 1);
     if (!result_) result_ = procedure_instruction(builder_, level_ + 1);
     if (!result_) result_ = return_instruction(builder_, level_ + 1);
@@ -1171,6 +1172,35 @@ public class RexxParser implements PsiParser, LightPsiParser {
     result_ = consumeTokens(builder_, 0, NUMERIC, IDENTIFIER);
     result_ = result_ && integerConstant(builder_, level_ + 1);
     exit_section_(builder_, marker_, NUMERIC_INSTRUCTION, result_);
+    return result_;
+  }
+
+  /* ********************************************************** */
+  // OPTIONS symbol+
+  public static boolean options_instruction(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "options_instruction")) return false;
+    if (!nextTokenIs(builder_, OPTIONS)) return false;
+    boolean result_, pinned_;
+    Marker marker_ = enter_section_(builder_, level_, _NONE_, OPTIONS_INSTRUCTION, null);
+    result_ = consumeToken(builder_, OPTIONS);
+    pinned_ = result_; // pin = 1
+    result_ = result_ && options_instruction_1(builder_, level_ + 1);
+    exit_section_(builder_, level_, marker_, result_, pinned_, null);
+    return result_ || pinned_;
+  }
+
+  // symbol+
+  private static boolean options_instruction_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "options_instruction_1")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = symbol(builder_, level_ + 1);
+    while (result_) {
+      int pos_ = current_position_(builder_);
+      if (!symbol(builder_, level_ + 1)) break;
+      if (!empty_element_parsed_guard_(builder_, "options_instruction_1", pos_)) break;
+    }
+    exit_section_(builder_, marker_, null, result_);
     return result_;
   }
 

@@ -127,6 +127,10 @@ public class RexxVisitor extends PsiElementVisitor {
     visitInstruction(o);
   }
 
+  public void visitOptionsInstruction(@NotNull RexxOptionsInstruction o) {
+    visitInstruction(o);
+  }
+
   public void visitOrOperator(@NotNull RexxOrOperator o) {
     visitPsiElement(o);
   }

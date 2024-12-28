@@ -1,0 +1,7 @@
+FILE
+  RexxOptionsInstructionImpl(OPTIONS_INSTRUCTION)
+    PsiElement(OPTIONS)('OPTIONS')
+    PsiWhiteSpace(' ')
+    RexxVariableImpl(VARIABLE)
+      RexxIdentifier_Impl(IDENTIFIER_)
+        PsiElement(IDENTIFIER)('AREXX_BIFS')

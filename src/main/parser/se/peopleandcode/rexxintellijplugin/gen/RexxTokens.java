@@ -40,6 +40,7 @@ public interface RexxTokens {
   IElementType NAME_DECLARATION = new RexxElementType("NAME_DECLARATION");
   IElementType NOP_INSTRUCTION = new RexxElementType("NOP_INSTRUCTION");
   IElementType NUMERIC_INSTRUCTION = new RexxElementType("NUMERIC_INSTRUCTION");
+  IElementType OPTIONS_INSTRUCTION = new RexxElementType("OPTIONS_INSTRUCTION");
   IElementType OR_OPERATOR = new RexxElementType("OR_OPERATOR");
   IElementType OTHERWISE_BRANCH = new RexxElementType("OTHERWISE_BRANCH");
   IElementType PARENTHETICAL_EXPRESSION = new RexxElementType("PARENTHETICAL_EXPRESSION");
@@ -242,6 +243,9 @@ public interface RexxTokens {
       }
       else if (type == NUMERIC_INSTRUCTION) {
         return new RexxNumericInstructionImpl(node);
+      }
+      else if (type == OPTIONS_INSTRUCTION) {
+        return new RexxOptionsInstructionImpl(node);
       }
       else if (type == OR_OPERATOR) {
         return new RexxOrOperatorImpl(node);
