@@ -34,9 +34,15 @@ public class RexxAliasExprImpl extends RexxExprImpl implements RexxAliasExpr {
   }
 
   @Override
-  @NotNull
-  public RexxOrOperator getOrOperator() {
-    return findNotNullChildByClass(RexxOrOperator.class);
+  @Nullable
+  public PsiElement getOperatorAnd() {
+    return findChildByType(OPERATOR_AND);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getOperatorOr() {
+    return findChildByType(OPERATOR_OR);
   }
 
 }

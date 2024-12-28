@@ -8,9 +8,12 @@ import com.intellij.psi.PsiElement;
 public interface RexxAdditionExpr extends RexxExpr {
 
   @NotNull
-  RexxAdditiveOperator getAdditiveOperator();
-
-  @NotNull
   List<RexxExpr> getExprList();
+
+  @Nullable
+  PsiElement getOperatorPlus();
+
+  @Nullable
+  PsiElement getOperatorSubtract();
 
 }

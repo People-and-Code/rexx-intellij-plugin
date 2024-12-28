@@ -29,14 +29,20 @@ public class RexxAdditionExprImpl extends RexxExprImpl implements RexxAdditionEx
 
   @Override
   @NotNull
-  public RexxAdditiveOperator getAdditiveOperator() {
-    return findNotNullChildByClass(RexxAdditiveOperator.class);
+  public List<RexxExpr> getExprList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxExpr.class);
   }
 
   @Override
-  @NotNull
-  public List<RexxExpr> getExprList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxExpr.class);
+  @Nullable
+  public PsiElement getOperatorPlus() {
+    return findChildByType(OPERATOR_PLUS);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getOperatorSubtract() {
+    return findChildByType(OPERATOR_SUBTRACT);
   }
 
 }

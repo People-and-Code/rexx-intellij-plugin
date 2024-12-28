@@ -34,9 +34,21 @@ public class RexxMultiplicationExprImpl extends RexxExprImpl implements RexxMult
   }
 
   @Override
-  @NotNull
-  public RexxMultiplicativeOperator getMultiplicativeOperator() {
-    return findNotNullChildByClass(RexxMultiplicativeOperator.class);
+  @Nullable
+  public PsiElement getOperatorDivide() {
+    return findChildByType(OPERATOR_DIVIDE);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getOperatorMultiply() {
+    return findChildByType(OPERATOR_MULTIPLY);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getOperatorRemainder() {
+    return findChildByType(OPERATOR_REMAINDER);
   }
 
 }

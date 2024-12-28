@@ -332,14 +332,14 @@ expr
     | term_expr
 
 alias_expr ::= expr or_operator expr
-or_operator ::= OPERATOR_OR | OPERATOR_AND
+private or_operator ::= OPERATOR_OR | OPERATOR_AND
 and_expr ::= expr OPERATOR_BITWISE_AND expr
 comparison_expr ::= expr comparison_operator expr
-concatenation_expr ::= expr (OPERATOR_CONCATENATE | &expr ) expr
+concatenation_expr ::= expr (OPERATOR_CONCATENATE | &term_expr ) expr
 addition_expr ::= expr additive_operator expr
-additive_operator ::= OPERATOR_PLUS | OPERATOR_SUBTRACT
+private additive_operator ::= OPERATOR_PLUS | OPERATOR_SUBTRACT
 multiplication_expr ::= expr multiplicative_operator expr
-multiplicative_operator
+private multiplicative_operator
     ::= OPERATOR_MULTIPLY
     | OPERATOR_DIVIDE
     | '//'
@@ -377,7 +377,8 @@ private simple_term
     | parentheticalExpression
     | initializer
 
-parentheticalExpression ::= TOKEN_LEFT expr TOKEN_RIGHT
+parentheticalExpression ::= TOKEN_LEFT expr TOKEN_RIGHT // {pin=1; recoverWhile=recoverParentheticalExpression}
+private recoverParentheticalExpression ::= !terminator
 
 private message_call ::= TILDE TILDE? method_name arguments?
 private method_name ::= /*taken_constant*/ IDENTIFIER (COLON variable_)?

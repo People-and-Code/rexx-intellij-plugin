@@ -11,10 +11,6 @@ public class RexxVisitor extends PsiElementVisitor {
     visitExpr(o);
   }
 
-  public void visitAdditiveOperator(@NotNull RexxAdditiveOperator o) {
-    visitPsiElement(o);
-  }
-
   public void visitAddressInstruction(@NotNull RexxAddressInstruction o) {
     visitInstruction(o);
   }
@@ -115,10 +111,6 @@ public class RexxVisitor extends PsiElementVisitor {
     visitExpr(o);
   }
 
-  public void visitMultiplicativeOperator(@NotNull RexxMultiplicativeOperator o) {
-    visitPsiElement(o);
-  }
-
   public void visitNameDeclaration(@NotNull RexxNameDeclaration o) {
     visitPsiElement(o);
   }
@@ -133,10 +125,6 @@ public class RexxVisitor extends PsiElementVisitor {
 
   public void visitOptionsInstruction(@NotNull RexxOptionsInstruction o) {
     visitInstruction(o);
-  }
-
-  public void visitOrOperator(@NotNull RexxOrOperator o) {
-    visitPsiElement(o);
   }
 
   public void visitOtherwiseBranch(@NotNull RexxOtherwiseBranch o) {

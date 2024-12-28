@@ -10,7 +10,13 @@ public interface RexxMultiplicationExpr extends RexxExpr {
   @NotNull
   List<RexxExpr> getExprList();
 
-  @NotNull
-  RexxMultiplicativeOperator getMultiplicativeOperator();
+  @Nullable
+  PsiElement getOperatorDivide();
+
+  @Nullable
+  PsiElement getOperatorMultiply();
+
+  @Nullable
+  PsiElement getOperatorRemainder();
 
 }

@@ -11,7 +11,6 @@ import se.peopleandcode.rexxintellijplugin.gen.impl.*;
 public interface RexxTokens {
 
   IElementType ADDITION_EXPR = new RexxElementType("ADDITION_EXPR");
-  IElementType ADDITIVE_OPERATOR = new RexxElementType("ADDITIVE_OPERATOR");
   IElementType ADDRESS_INSTRUCTION = new RexxElementType("ADDRESS_INSTRUCTION");
   IElementType ALIAS_EXPR = new RexxElementType("ALIAS_EXPR");
   IElementType AND_EXPR = new RexxElementType("AND_EXPR");
@@ -37,12 +36,10 @@ public interface RexxTokens {
   IElementType LABEL = new RexxElementType("LABEL");
   IElementType LEAVE_INSTRUCTION = new RexxElementType("LEAVE_INSTRUCTION");
   IElementType MULTIPLICATION_EXPR = new RexxElementType("MULTIPLICATION_EXPR");
-  IElementType MULTIPLICATIVE_OPERATOR = new RexxElementType("MULTIPLICATIVE_OPERATOR");
   IElementType NAME_DECLARATION = new RexxElementType("NAME_DECLARATION");
   IElementType NOP_INSTRUCTION = new RexxElementType("NOP_INSTRUCTION");
   IElementType NUMERIC_INSTRUCTION = new RexxElementType("NUMERIC_INSTRUCTION");
   IElementType OPTIONS_INSTRUCTION = new RexxElementType("OPTIONS_INSTRUCTION");
-  IElementType OR_OPERATOR = new RexxElementType("OR_OPERATOR");
   IElementType OTHERWISE_BRANCH = new RexxElementType("OTHERWISE_BRANCH");
   IElementType PARENTHETICAL_EXPRESSION = new RexxElementType("PARENTHETICAL_EXPRESSION");
   IElementType PARSE_INSTRUCTION = new RexxElementType("PARSE_INSTRUCTION");
@@ -164,9 +161,6 @@ public interface RexxTokens {
       if (type == ADDITION_EXPR) {
         return new RexxAdditionExprImpl(node);
       }
-      else if (type == ADDITIVE_OPERATOR) {
-        return new RexxAdditiveOperatorImpl(node);
-      }
       else if (type == ADDRESS_INSTRUCTION) {
         return new RexxAddressInstructionImpl(node);
       }
@@ -236,9 +230,6 @@ public interface RexxTokens {
       else if (type == MULTIPLICATION_EXPR) {
         return new RexxMultiplicationExprImpl(node);
       }
-      else if (type == MULTIPLICATIVE_OPERATOR) {
-        return new RexxMultiplicativeOperatorImpl(node);
-      }
       else if (type == NAME_DECLARATION) {
         return new RexxNameDeclarationImpl(node);
       }
@@ -250,9 +241,6 @@ public interface RexxTokens {
       }
       else if (type == OPTIONS_INSTRUCTION) {
         return new RexxOptionsInstructionImpl(node);
-      }
-      else if (type == OR_OPERATOR) {
-        return new RexxOrOperatorImpl(node);
       }
       else if (type == OTHERWISE_BRANCH) {
         return new RexxOtherwiseBranchImpl(node);

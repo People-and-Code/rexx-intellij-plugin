@@ -10,7 +10,10 @@ public interface RexxAliasExpr extends RexxExpr {
   @NotNull
   List<RexxExpr> getExprList();
 
-  @NotNull
-  RexxOrOperator getOrOperator();
+  @Nullable
+  PsiElement getOperatorAnd();
+
+  @Nullable
+  PsiElement getOperatorOr();
 
 }
