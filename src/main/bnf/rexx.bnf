@@ -155,8 +155,12 @@ private program ::=
     [label_list]
     [ncl]
     /*[requires+]*/
-    instruction_list?
-    END?
+    /*[prolog_instruction+]*/
+    (
+        instruction_list?
+        END?
+        /* | (class_definition [requires+])+ */
+    )
 private ncl ::=  <<eof>> | null_clause+
 private null_clause ::= terminator label_list?
 private label_list ::= (label terminator?)*
