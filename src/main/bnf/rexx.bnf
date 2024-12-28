@@ -151,7 +151,12 @@
 
 /*program*/
 rexx_file ::= program
-private program ::= label_list? ncl? instruction_list? END?
+private program ::=
+    [label_list]
+    [ncl]
+    /*[requires+]*/
+    instruction_list?
+    END?
 private ncl ::=  <<eof>> | null_clause+
 private null_clause ::= terminator label_list?
 private label_list ::= (label terminator?)*

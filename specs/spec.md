@@ -1,7 +1,11 @@
 from [extended_rexx_standard.pdf]
 ```ebf
-program := [label_list] [ncl] [requires+] [prolog_instruction+]
- (class_definition [requires+])+
+program := 
+    [label_list] 
+    [ncl] 
+    [requires+] 
+    [prolog_instruction+]
+    (class_definition [requires+])+
 requires := 'REQUIRES' ( taken_constant | Msg19.8 ) ';'+
 prolog_instruction:= (package | import | options) ncl
 package := 'PACKAGE'( NAME | Msgnn )
