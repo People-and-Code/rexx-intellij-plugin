@@ -17,6 +17,7 @@ public interface RexxTokens {
   IElementType ARG_INSTRUCTION = new RexxElementType("ARG_INSTRUCTION");
   IElementType ASSIGNMENT_INSTRUCTION = new RexxElementType("ASSIGNMENT_INSTRUCTION");
   IElementType CALL_INSTRUCTION = new RexxElementType("CALL_INSTRUCTION");
+  IElementType CLASS_DEFINITION = new RexxElementType("CLASS_DEFINITION");
   IElementType COMPARISON_EXPR = new RexxElementType("COMPARISON_EXPR");
   IElementType CONCATENATION_EXPR = new RexxElementType("CONCATENATION_EXPR");
   IElementType DECIMAL_CONSTANT = new RexxElementType("DECIMAL_CONSTANT");
@@ -35,6 +36,7 @@ public interface RexxTokens {
   IElementType ITERATE_INSTRUCTION = new RexxElementType("ITERATE_INSTRUCTION");
   IElementType LABEL = new RexxElementType("LABEL");
   IElementType LEAVE_INSTRUCTION = new RexxElementType("LEAVE_INSTRUCTION");
+  IElementType METHOD_DEFINITION = new RexxElementType("METHOD_DEFINITION");
   IElementType MULTIPLICATION_EXPR = new RexxElementType("MULTIPLICATION_EXPR");
   IElementType NAME_DECLARATION = new RexxElementType("NAME_DECLARATION");
   IElementType NOP_INSTRUCTION = new RexxElementType("NOP_INSTRUCTION");
@@ -67,7 +69,7 @@ public interface RexxTokens {
   IElementType ATTRIBUTE = new RexxTokenType("ATTRIBUTE");
   IElementType CALL = new RexxTokenType("CALL");
   IElementType CASELESS = new RexxTokenType("CASELESS");
-  IElementType CLASS = new RexxTokenType("CLASS");
+  IElementType CLASS_TOKEN = new RexxTokenType("CLASS_TOKEN");
   IElementType COLON = new RexxTokenType("COLON");
   IElementType COMMA = new RexxTokenType("COMMA");
   IElementType DO = new RexxTokenType("DO");
@@ -179,6 +181,9 @@ public interface RexxTokens {
       else if (type == CALL_INSTRUCTION) {
         return new RexxCallInstructionImpl(node);
       }
+      else if (type == CLASS_DEFINITION) {
+        return new RexxClassDefinitionImpl(node);
+      }
       else if (type == COMPARISON_EXPR) {
         return new RexxComparisonExprImpl(node);
       }
@@ -226,6 +231,9 @@ public interface RexxTokens {
       }
       else if (type == LEAVE_INSTRUCTION) {
         return new RexxLeaveInstructionImpl(node);
+      }
+      else if (type == METHOD_DEFINITION) {
+        return new RexxMethodDefinitionImpl(node);
       }
       else if (type == MULTIPLICATION_EXPR) {
         return new RexxMultiplicationExprImpl(node);

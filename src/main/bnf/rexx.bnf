@@ -136,9 +136,9 @@
 
         // OO
 
-        CLASS="regexp:::class"
-        ATTRIBUTE="regexp:::attribute"
-        METHOD="regexp:::method"
+        CLASS_TOKEN="regexp:::[Cc][Ll][Aa][Ss][Ss]"
+        ATTRIBUTE="regexp:::[Aa][Tt][Tt][Rr][Ii][Bb][Uu][Tt][Ee]"
+        METHOD="regexp:::[Mm][Ee][Tt][Hh][Oo][Dd]"
         DOT="regexp:[.]"
         EXCLAMATION="regexp:[!]"
         TILDE="regexp:[~]"
@@ -156,11 +156,19 @@ private program ::=
     [ncl]
     /*[requires+]*/
     /*[prolog_instruction+]*/
-    (
-        instruction_list?
-        END?
-        /* | (class_definition [requires+])+ */
-    )
+    ( instruction_list | (class_definition /*[requires+]*/) )*
+    END?
+class_definition ::= class_header /*[property_info]*/ method_definition*
+method_definition ::= (method [expose ncl] /*| routine*/) instruction_list
+private method ::= METHOD taken_constant
+    /* [ '(' assigncommalist | Msgnn ( ')' | Msgnn )]
+     [method_option+] */
+    ncl
+private class_header
+    ::= CLASS_TOKEN taken_constant
+    /* [class_option+]
+    ['INHERIT' ( taken_constant | Msg19.13 )+]*/
+    ncl
 private ncl ::=  <<eof>> | null_clause+
 private null_clause ::= terminator label_list?
 private label_list ::= (label terminator?)*

@@ -91,9 +91,9 @@ NUMBER_INT=[0-9]+
 NUMBER_DECIMAL=[0-9]+[.][0-9]+
 NUMBER_SCIENTIFIC=[0-9]*[.][0-9]+([eE][+-]?[0-9]+)
 NUMBER_HEXADECIMAL=0[xX][0-9a-fA-F]+
-CLASS=::class
-ATTRIBUTE=::attribute
-METHOD=::method
+CLASS_TOKEN=::[Cc][Ll][Aa][Ss][Ss]
+ATTRIBUTE=::[Aa][Tt][Tt][Rr][Ii][Bb][Uu][Tt][Ee]
+METHOD=::[Mm][Ee][Tt][Hh][Oo][Dd]
 DOT=[.]
 EXCLAMATION=[!]
 TILDE=[~]
@@ -192,7 +192,7 @@ COLON=[:]
   {NUMBER_DECIMAL}             { return NUMBER_DECIMAL; }
   {NUMBER_SCIENTIFIC}          { return NUMBER_SCIENTIFIC; }
   {NUMBER_HEXADECIMAL}         { return NUMBER_HEXADECIMAL; }
-  {CLASS}                      { return CLASS; }
+  {CLASS_TOKEN}                { return CLASS_TOKEN; }
   {ATTRIBUTE}                  { return ATTRIBUTE; }
   {METHOD}                     { return METHOD; }
   {DOT}                        { return DOT; }

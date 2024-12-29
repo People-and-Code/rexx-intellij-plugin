@@ -1,4 +1,4 @@
-CLASS ('::class')
+CLASS_TOKEN ('::class')
 WHITE_SPACE (' ')
 STRING (''DemoClass'')
 TERMINATOR ('\n')

@@ -35,6 +35,10 @@ public class RexxVisitor extends PsiElementVisitor {
     visitInstruction(o);
   }
 
+  public void visitClassDefinition(@NotNull RexxClassDefinition o) {
+    visitPsiElement(o);
+  }
+
   public void visitComparisonExpr(@NotNull RexxComparisonExpr o) {
     visitExpr(o);
   }
@@ -105,6 +109,10 @@ public class RexxVisitor extends PsiElementVisitor {
 
   public void visitLeaveInstruction(@NotNull RexxLeaveInstruction o) {
     visitInstruction(o);
+  }
+
+  public void visitMethodDefinition(@NotNull RexxMethodDefinition o) {
+    visitPsiElement(o);
   }
 
   public void visitMultiplicationExpr(@NotNull RexxMultiplicationExpr o) {

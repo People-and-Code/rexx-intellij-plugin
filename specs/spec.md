@@ -16,8 +16,10 @@ null_clause := ';' [label_list]
 label_list := (LABEL ';')+
 class_definition := class [property_info] [method_definition+]
 class 
-    := 'CLASS' ( taken_constant | Msg19.12 ) [class_option+]
-    ['INHERIT' ( taken_constant | Msg19.13 )+] ncl
+    := 'CLASS' ( taken_constant | Msg19.12 )
+    [class_option+]
+    ['INHERIT' ( taken_constant | Msg19.13 )+]
+    ncl
 class_option := visibility | modifier | 'BINARY' | 'DEPRECATED'
     | 'EXTENDS' ( NAME | Msgnn )
     | 'USES' ( NAMElist | Msgnn )
@@ -44,7 +46,8 @@ method_definition := (method [expose ncl]| routine) balanced
 expose := 'EXPOSE' variable_list
 method := 'METHOD' (taken_constant | Msg19.9)
  [ '(' assigncommalist | Msgnn ( ')' | Msgnn )]
- [method_option+] ncl
+ [method_option+]
+ ncl
 assigncommalist := assignment [(',' ( assignment | Msgnn ) )+]
 method_option := method_visibility | method_modifier | 'PROTECT'
     | 'RETURNS' ( term | Msgnn )
