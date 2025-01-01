@@ -49,6 +49,7 @@ public interface RexxTokens {
   IElementType PREFIX_EXPR = new RexxElementType("PREFIX_EXPR");
   IElementType PROCEDURE_INSTRUCTION = new RexxElementType("PROCEDURE_INSTRUCTION");
   IElementType PULL_INSTRUCTION = new RexxElementType("PULL_INSTRUCTION");
+  IElementType REQUIRES_DIRECTIVE = new RexxElementType("REQUIRES_DIRECTIVE");
   IElementType RETURN_INSTRUCTION = new RexxElementType("RETURN_INSTRUCTION");
   IElementType SAY_INSTRUCTION = new RexxElementType("SAY_INSTRUCTION");
   IElementType SCIENTIFIC_CONSTANT = new RexxElementType("SCIENTIFIC_CONSTANT");
@@ -128,6 +129,7 @@ public interface RexxTokens {
   IElementType QUEUE = new RexxTokenType("QUEUE");
   IElementType RAISE = new RexxTokenType("RAISE");
   IElementType REPLY = new RexxTokenType("REPLY");
+  IElementType REQUIRES = new RexxTokenType("REQUIRES");
   IElementType RETURN = new RexxTokenType("RETURN");
   IElementType SAY = new RexxTokenType("SAY");
   IElementType SELECT = new RexxTokenType("SELECT");
@@ -270,6 +272,9 @@ public interface RexxTokens {
       }
       else if (type == PULL_INSTRUCTION) {
         return new RexxPullInstructionImpl(node);
+      }
+      else if (type == REQUIRES_DIRECTIVE) {
+        return new RexxRequiresDirectiveImpl(node);
       }
       else if (type == RETURN_INSTRUCTION) {
         return new RexxReturnInstructionImpl(node);

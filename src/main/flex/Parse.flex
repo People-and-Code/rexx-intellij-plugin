@@ -99,6 +99,7 @@ EXCLAMATION=[!]
 TILDE=[~]
 COMMA=[,]
 COLON=[:]
+REQUIRES=::[Rr][Ee][Qq][Uu][Ii][Rr][Ee][Ss]
 
 %%
 <YYINITIAL> {
@@ -200,6 +201,7 @@ COLON=[:]
   {TILDE}                      { return TILDE; }
   {COMMA}                      { return COMMA; }
   {COLON}                      { return COLON; }
+  {REQUIRES}                   { return REQUIRES; }
 
 }
 

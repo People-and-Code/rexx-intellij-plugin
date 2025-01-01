@@ -1,0 +1,6 @@
+FILE
+  RexxRequiresDirectiveImpl(REQUIRES_DIRECTIVE)
+    PsiElement(REQUIRES)('::requires')
+    PsiWhiteSpace(' ')
+    RexxStringLiteralImpl(STRING_LITERAL)
+      PsiElement(STRING)('"rxftp.cls"')

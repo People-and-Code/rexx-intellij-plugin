@@ -163,6 +163,10 @@ public class RexxVisitor extends PsiElementVisitor {
     visitInstruction(o);
   }
 
+  public void visitRequiresDirective(@NotNull RexxRequiresDirective o) {
+    visitPsiElement(o);
+  }
+
   public void visitReturnInstruction(@NotNull RexxReturnInstruction o) {
     visitInstruction(o);
   }
