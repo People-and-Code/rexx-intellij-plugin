@@ -1575,7 +1575,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
   /* ********************************************************** */
   // [label_list]
   //     [ncl]
-  //     [requires_directive+]
+  //     (requires_directive ncl)*
   //     /*[prolog_instruction+]*/
   //     ( instruction_list | (class_definition /*[requires_directive+]*/) )*
   //     END?
@@ -1606,24 +1606,24 @@ public class RexxParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // [requires_directive+]
+  // (requires_directive ncl)*
   private static boolean program_2(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "program_2")) return false;
-    program_2_0(builder_, level_ + 1);
+    while (true) {
+      int pos_ = current_position_(builder_);
+      if (!program_2_0(builder_, level_ + 1)) break;
+      if (!empty_element_parsed_guard_(builder_, "program_2", pos_)) break;
+    }
     return true;
   }
 
-  // requires_directive+
+  // requires_directive ncl
   private static boolean program_2_0(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "program_2_0")) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_);
     result_ = requires_directive(builder_, level_ + 1);
-    while (result_) {
-      int pos_ = current_position_(builder_);
-      if (!requires_directive(builder_, level_ + 1)) break;
-      if (!empty_element_parsed_guard_(builder_, "program_2_0", pos_)) break;
-    }
+    result_ = result_ && ncl(builder_, level_ + 1);
     exit_section_(builder_, marker_, null, result_);
     return result_;
   }
