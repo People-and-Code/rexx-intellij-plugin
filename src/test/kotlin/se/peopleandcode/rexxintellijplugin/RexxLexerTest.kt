@@ -19,6 +19,7 @@ class RexxLexerTest : LexerTestCase() {
     fun testIfWithDo() = doFileTest("rex")
     fun testIterate() = doFileTest("rex")
     fun testNop() = doFileTest("rex")
+    fun testExpressionInstruction() = doFileTest("rex")
     override fun getPathToTestDataFile(extension: String): String =
         "$dirPath/${getTestName(false)}$extension"
 }

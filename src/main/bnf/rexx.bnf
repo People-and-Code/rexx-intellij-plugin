@@ -267,6 +267,7 @@ address_instruction ::= ADDRESS expr {pin=1}
 
 expression_instruction
     ::= &IDENTIFIER expr
+    | &invoke expr
     | &stringLiteral expr
 
 
