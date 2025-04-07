@@ -1186,13 +1186,12 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // IDENTIFIER (COLON variable_)?
+  // identifier_ (COLON variable_)?
   static boolean method_name(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "method_name")) return false;
-    if (!nextTokenIs(builder_, IDENTIFIER)) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_);
-    result_ = consumeToken(builder_, IDENTIFIER);
+    result_ = identifier_(builder_, level_ + 1);
     result_ = result_ && method_name_1(builder_, level_ + 1);
     exit_section_(builder_, marker_, null, result_);
     return result_;

@@ -412,7 +412,7 @@ parentheticalExpression ::= TOKEN_LEFT expr TOKEN_RIGHT // {pin=1; recoverWhile=
 private recoverParentheticalExpression ::= !terminator
 
 private message_call ::= TILDE TILDE? method_name arguments?
-private method_name ::= /*taken_constant*/ IDENTIFIER (COLON variable_)?
+private method_name ::= identifier_ (COLON variable_)?
 invoke ::= (symbol | stringLiteral) arguments
 private arguments ::= TOKEN_LEFT expression_list? TOKEN_RIGHT
 private expression_list

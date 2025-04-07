@@ -17,6 +17,9 @@ public interface RexxTermExpr extends RexxExpr {
   List<RexxGlobal> getGlobalList();
 
   @NotNull
+  List<RexxIdentifier_> getIdentifier_List();
+
+  @NotNull
   List<RexxIntegerConstant> getIntegerConstantList();
 
   @NotNull

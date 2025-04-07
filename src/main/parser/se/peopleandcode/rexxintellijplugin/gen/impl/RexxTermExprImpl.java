@@ -47,6 +47,12 @@ public class RexxTermExprImpl extends RexxExprImpl implements RexxTermExpr {
 
   @Override
   @NotNull
+  public List<RexxIdentifier_> getIdentifier_List() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxIdentifier_.class);
+  }
+
+  @Override
+  @NotNull
   public List<RexxIntegerConstant> getIntegerConstantList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxIntegerConstant.class);
   }
