@@ -157,9 +157,8 @@ rexx_file ::= program
 private program ::=
     [label_list]
     [ncl]
-    (requires_directive ncl)*
     /*[prolog_instruction+]*/
-    ( instruction_list | (class_definition /*[requires_directive+]*/) )*
+    ( (requires_directive ncl) | instruction_list | (class_definition /*[requires_directive+]*/) )*
     END?
 requires_directive ::= REQUIRES taken_constant {pin=1}
 class_definition ::= class_header /*[property_info]*/ method_definition*

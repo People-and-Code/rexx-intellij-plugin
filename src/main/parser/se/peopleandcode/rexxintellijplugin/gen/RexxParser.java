@@ -1597,9 +1597,8 @@ public class RexxParser implements PsiParser, LightPsiParser {
   /* ********************************************************** */
   // [label_list]
   //     [ncl]
-  //     (requires_directive ncl)*
   //     /*[prolog_instruction+]*/
-  //     ( instruction_list | (class_definition /*[requires_directive+]*/) )*
+  //     ( (requires_directive ncl) | instruction_list | (class_definition /*[requires_directive+]*/) )*
   //     END?
   static boolean program(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "program")) return false;
@@ -1609,7 +1608,6 @@ public class RexxParser implements PsiParser, LightPsiParser {
     result_ = result_ && program_1(builder_, level_ + 1);
     result_ = result_ && program_2(builder_, level_ + 1);
     result_ = result_ && program_3(builder_, level_ + 1);
-    result_ = result_ && program_4(builder_, level_ + 1);
     exit_section_(builder_, marker_, null, result_);
     return result_;
   }
@@ -1628,7 +1626,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // (requires_directive ncl)*
+  // ( (requires_directive ncl) | instruction_list | (class_definition /*[requires_directive+]*/) )*
   private static boolean program_2(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "program_2")) return false;
     while (true) {
@@ -1639,9 +1637,21 @@ public class RexxParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // requires_directive ncl
+  // (requires_directive ncl) | instruction_list | (class_definition /*[requires_directive+]*/)
   private static boolean program_2_0(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "program_2_0")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = program_2_0_0(builder_, level_ + 1);
+    if (!result_) result_ = instruction_list(builder_, level_ + 1);
+    if (!result_) result_ = program_2_0_2(builder_, level_ + 1);
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // requires_directive ncl
+  private static boolean program_2_0_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "program_2_0_0")) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_);
     result_ = requires_directive(builder_, level_ + 1);
@@ -1650,31 +1660,9 @@ public class RexxParser implements PsiParser, LightPsiParser {
     return result_;
   }
 
-  // ( instruction_list | (class_definition /*[requires_directive+]*/) )*
-  private static boolean program_3(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "program_3")) return false;
-    while (true) {
-      int pos_ = current_position_(builder_);
-      if (!program_3_0(builder_, level_ + 1)) break;
-      if (!empty_element_parsed_guard_(builder_, "program_3", pos_)) break;
-    }
-    return true;
-  }
-
-  // instruction_list | (class_definition /*[requires_directive+]*/)
-  private static boolean program_3_0(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "program_3_0")) return false;
-    boolean result_;
-    Marker marker_ = enter_section_(builder_);
-    result_ = instruction_list(builder_, level_ + 1);
-    if (!result_) result_ = program_3_0_1(builder_, level_ + 1);
-    exit_section_(builder_, marker_, null, result_);
-    return result_;
-  }
-
   // (class_definition /*[requires_directive+]*/)
-  private static boolean program_3_0_1(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "program_3_0_1")) return false;
+  private static boolean program_2_0_2(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "program_2_0_2")) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_);
     result_ = class_definition(builder_, level_ + 1);
@@ -1683,8 +1671,8 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   // END?
-  private static boolean program_4(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "program_4")) return false;
+  private static boolean program_3(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "program_3")) return false;
     consumeToken(builder_, END);
     return true;
   }

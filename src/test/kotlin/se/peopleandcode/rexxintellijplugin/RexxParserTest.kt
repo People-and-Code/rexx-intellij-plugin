@@ -49,5 +49,6 @@ class RexxParserTest : ParsingTestCase(
     fun testInterpret() = doTest(true, true)
     fun testClass() = doTest(true, true)
     fun testRequires() = doTest(true, true)
+    fun testRequiresAtEndOfFile() = doTest(true, true)
     fun testExpressionInstruction() = doTest(true, true)
 }

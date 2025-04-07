@@ -1,0 +1,13 @@
+FILE
+  RexxSayInstructionImpl(SAY_INSTRUCTION)
+    PsiElement(SAY)('say')
+    PsiWhiteSpace(' ')
+    RexxTermExprImpl(TERM_EXPR)
+      RexxStringLiteralImpl(STRING_LITERAL)
+        PsiElement(STRING)('"hey"')
+  PsiElement(TERMINATOR)('\n')
+  RexxRequiresDirectiveImpl(REQUIRES_DIRECTIVE)
+    PsiElement(REQUIRES)('::REQUIRES')
+    PsiWhiteSpace(' ')
+    RexxStringLiteralImpl(STRING_LITERAL)
+      PsiElement(STRING)(''file.rex'')
