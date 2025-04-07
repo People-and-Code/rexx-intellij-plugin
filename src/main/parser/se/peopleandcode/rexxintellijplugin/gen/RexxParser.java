@@ -228,10 +228,9 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // CLASS_TOKEN taken_constant
-  //     /* [class_option+]
-  //     ['INHERIT' ( taken_constant | Msg19.13 )+]*/
-  //     ncl
+  // CLASS_TOKEN taken_constant [class_option+] 
+  //     /*['INHERIT' ( taken_constant | Msg19.13 )+]*/
+  //      ncl
   static boolean class_header(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "class_header")) return false;
     if (!nextTokenIs(builder_, CLASS_TOKEN)) return false;
@@ -239,8 +238,43 @@ public class RexxParser implements PsiParser, LightPsiParser {
     Marker marker_ = enter_section_(builder_);
     result_ = consumeToken(builder_, CLASS_TOKEN);
     result_ = result_ && taken_constant(builder_, level_ + 1);
+    result_ = result_ && class_header_2(builder_, level_ + 1);
     result_ = result_ && ncl(builder_, level_ + 1);
     exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // [class_option+]
+  private static boolean class_header_2(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "class_header_2")) return false;
+    class_header_2_0(builder_, level_ + 1);
+    return true;
+  }
+
+  // class_option+
+  private static boolean class_header_2_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "class_header_2_0")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = class_option(builder_, level_ + 1);
+    while (result_) {
+      int pos_ = current_position_(builder_);
+      if (!class_option(builder_, level_ + 1)) break;
+      if (!empty_element_parsed_guard_(builder_, "class_header_2_0", pos_)) break;
+    }
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  /* ********************************************************** */
+  // submix
+  //     | PUBLIC
+  static boolean class_option(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "class_option")) return false;
+    if (!nextTokenIs(builder_, "", PUBLIC, SUBCLASS)) return false;
+    boolean result_;
+    result_ = submix(builder_, level_ + 1);
+    if (!result_) result_ = consumeToken(builder_, PUBLIC);
     return result_;
   }
 
@@ -1936,6 +1970,20 @@ public class RexxParser implements PsiParser, LightPsiParser {
     result_ = consumeToken(builder_, STRING);
     exit_section_(builder_, marker_, STRING_LITERAL, result_);
     return result_;
+  }
+
+  /* ********************************************************** */
+  // SUBCLASS taken_constant
+  static boolean submix(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "submix")) return false;
+    if (!nextTokenIs(builder_, SUBCLASS)) return false;
+    boolean result_, pinned_;
+    Marker marker_ = enter_section_(builder_, level_, _NONE_);
+    result_ = consumeToken(builder_, SUBCLASS);
+    pinned_ = result_; // pin = 1
+    result_ = result_ && taken_constant(builder_, level_ + 1);
+    exit_section_(builder_, level_, marker_, result_, pinned_, null);
+    return result_ || pinned_;
   }
 
   /* ********************************************************** */

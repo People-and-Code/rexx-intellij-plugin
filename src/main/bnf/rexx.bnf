@@ -124,7 +124,6 @@
         // complex
 
         STRING="regexp:\"[^\"\n]*\"|'[^'\n]*'"
-        IDENTIFIER="regexp:[_!?a-zA-Z][a-zA-Z0-9_]*"
 
 
         // Numbers
@@ -137,6 +136,9 @@
         // OO
 
         CLASS_TOKEN="regexp:::[Cc][Ll][Aa][Ss][Ss]"
+        // SUBCLASS
+        SUBCLASS="regexp:[Ss][Uu][Bb][Cc][Ll][Aa][Ss][Ss]"
+        PUBLIC="regexp:[Pp][Uu][Bb][Ll][Ii][Cc]"
         ATTRIBUTE="regexp:::[Aa][Tt][Tt][Rr][Ii][Bb][Uu][Tt][Ee]"
         METHOD="regexp:::[Mm][Ee][Tt][Hh][Oo][Dd]"
         DOT="regexp:[.]"
@@ -147,6 +149,9 @@
         
         // DIRECTIVE
         REQUIRES="regexp:::[Rr][Ee][Qq][Uu][Ii][Rr][Ee][Ss]"
+
+        // match identifiers last
+        IDENTIFIER="regexp:[_!?a-zA-Z][a-zA-Z0-9_]*"
     ]
     extends(".*expr")=expr
     extends(".*instruction")=instruction
@@ -168,10 +173,24 @@ private method ::= METHOD taken_constant
      [method_option+] */
     ncl
 private class_header
-    ::= CLASS_TOKEN taken_constant
-    /* [class_option+]
-    ['INHERIT' ( taken_constant | Msg19.13 )+]*/
-    ncl
+    ::= CLASS_TOKEN taken_constant [class_option+] 
+    /*['INHERIT' ( taken_constant | Msg19.13 )+]*/
+     ncl
+private class_option
+    ::= /* visibility
+    | modifier
+    | 'BINARY'
+    | 'DEPRECATED'
+    | 'EXTENDS' ( NAME | Msgnn )
+    | 'USES' ( NAMElist | Msgnn )
+    | 'IMPLEMENTS' ( NAMElist | Msgnn )
+    | external
+    | metaclass
+    | */ submix
+    | PUBLIC
+private submix
+    ::= /*'MIXINCLASS' taken_constant
+    |*/ SUBCLASS taken_constant {pin=1}
 private ncl ::=  <<eof>> | null_clause+
 private null_clause ::= terminator label_list?
 private label_list ::= (label terminator?)*

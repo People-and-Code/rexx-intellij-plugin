@@ -124,6 +124,7 @@ public interface RexxTokens {
   IElementType PARSE = new RexxTokenType("PARSE");
   IElementType PLUS_EQ = new RexxTokenType("+=");
   IElementType PROCEDURE = new RexxTokenType("PROCEDURE");
+  IElementType PUBLIC = new RexxTokenType("PUBLIC");
   IElementType PULL = new RexxTokenType("PULL");
   IElementType PUSH = new RexxTokenType("PUSH");
   IElementType QUEUE = new RexxTokenType("QUEUE");
@@ -145,6 +146,7 @@ public interface RexxTokens {
   IElementType STRICT_LTE = new RexxTokenType("<<=");
   IElementType STRICT_NEQ = new RexxTokenType("\\==");
   IElementType STRING = new RexxTokenType("STRING");
+  IElementType SUBCLASS = new RexxTokenType("SUBCLASS");
   IElementType TERMINATOR = new RexxTokenType("TERMINATOR");
   IElementType THEN = new RexxTokenType("THEN");
   IElementType TILDE = new RexxTokenType("TILDE");

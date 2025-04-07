@@ -28,21 +28,21 @@ public class RexxClassDefinitionImpl extends ASTWrapperPsiElement implements Rex
   }
 
   @Override
-  @Nullable
-  public RexxDecimalConstant getDecimalConstant() {
-    return findChildByClass(RexxDecimalConstant.class);
+  @NotNull
+  public List<RexxDecimalConstant> getDecimalConstantList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxDecimalConstant.class);
   }
 
   @Override
-  @Nullable
-  public RexxGlobal getGlobal() {
-    return findChildByClass(RexxGlobal.class);
+  @NotNull
+  public List<RexxGlobal> getGlobalList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxGlobal.class);
   }
 
   @Override
-  @Nullable
-  public RexxIntegerConstant getIntegerConstant() {
-    return findChildByClass(RexxIntegerConstant.class);
+  @NotNull
+  public List<RexxIntegerConstant> getIntegerConstantList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxIntegerConstant.class);
   }
 
   @Override
@@ -58,21 +58,21 @@ public class RexxClassDefinitionImpl extends ASTWrapperPsiElement implements Rex
   }
 
   @Override
-  @Nullable
-  public RexxScientificConstant getScientificConstant() {
-    return findChildByClass(RexxScientificConstant.class);
+  @NotNull
+  public List<RexxScientificConstant> getScientificConstantList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxScientificConstant.class);
   }
 
   @Override
-  @Nullable
-  public RexxStringLiteral getStringLiteral() {
-    return findChildByClass(RexxStringLiteral.class);
+  @NotNull
+  public List<RexxStringLiteral> getStringLiteralList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxStringLiteral.class);
   }
 
   @Override
-  @Nullable
-  public RexxVariable getVariable() {
-    return findChildByClass(RexxVariable.class);
+  @NotNull
+  public List<RexxVariable> getVariableList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, RexxVariable.class);
   }
 
   @Override

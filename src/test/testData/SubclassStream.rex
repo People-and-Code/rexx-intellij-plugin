@@ -1,0 +1,1 @@
+::Class SubclassStream SUBCLASS STREAM PUBLIC

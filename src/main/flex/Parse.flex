@@ -85,13 +85,14 @@ SHEBANG=[#][!][^\n]*
 LINE_COMMENT=--[^\n]*|,[ \t]*--[^\n]*\n
 MULTILINE_COMMENT="/"[*]([^*]+|[*]+[^/*])*[*]+"/"|,([ \t]*"/"[*]([^*]+|[*]+[^/*])*[*]+"/")*\n
 STRING=\"[^\"\n]*\"|'[^'\n]*'
-IDENTIFIER=[_!?a-zA-Z][a-zA-Z0-9_]*
 NUMBER_BINARY=0b[01]+
 NUMBER_INT=[0-9]+
 NUMBER_DECIMAL=[0-9]+[.][0-9]+
 NUMBER_SCIENTIFIC=[0-9]*[.][0-9]+([eE][+-]?[0-9]+)
 NUMBER_HEXADECIMAL=0[xX][0-9a-fA-F]+
 CLASS_TOKEN=::[Cc][Ll][Aa][Ss][Ss]
+SUBCLASS=[Ss][Uu][Bb][Cc][Ll][Aa][Ss][Ss]
+PUBLIC=[Pp][Uu][Bb][Ll][Ii][Cc]
 ATTRIBUTE=::[Aa][Tt][Tt][Rr][Ii][Bb][Uu][Tt][Ee]
 METHOD=::[Mm][Ee][Tt][Hh][Oo][Dd]
 DOT=[.]
@@ -100,6 +101,7 @@ TILDE=[~]
 COMMA=[,]
 COLON=[:]
 REQUIRES=::[Rr][Ee][Qq][Uu][Ii][Rr][Ee][Ss]
+IDENTIFIER=[_!?a-zA-Z][a-zA-Z0-9_]*
 
 %%
 <YYINITIAL> {
@@ -187,13 +189,14 @@ REQUIRES=::[Rr][Ee][Qq][Uu][Ii][Rr][Ee][Ss]
   {LINE_COMMENT}               { return LINE_COMMENT; }
   {MULTILINE_COMMENT}          { return MULTILINE_COMMENT; }
   {STRING}                     { return STRING; }
-  {IDENTIFIER}                 { return IDENTIFIER; }
   {NUMBER_BINARY}              { return NUMBER_BINARY; }
   {NUMBER_INT}                 { return NUMBER_INT; }
   {NUMBER_DECIMAL}             { return NUMBER_DECIMAL; }
   {NUMBER_SCIENTIFIC}          { return NUMBER_SCIENTIFIC; }
   {NUMBER_HEXADECIMAL}         { return NUMBER_HEXADECIMAL; }
   {CLASS_TOKEN}                { return CLASS_TOKEN; }
+  {SUBCLASS}                   { return SUBCLASS; }
+  {PUBLIC}                     { return PUBLIC; }
   {ATTRIBUTE}                  { return ATTRIBUTE; }
   {METHOD}                     { return METHOD; }
   {DOT}                        { return DOT; }
@@ -202,6 +205,7 @@ REQUIRES=::[Rr][Ee][Qq][Uu][Ii][Rr][Ee][Ss]
   {COMMA}                      { return COMMA; }
   {COLON}                      { return COLON; }
   {REQUIRES}                   { return REQUIRES; }
+  {IDENTIFIER}                 { return IDENTIFIER; }
 
 }
 

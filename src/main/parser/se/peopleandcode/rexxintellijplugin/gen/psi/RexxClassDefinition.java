@@ -7,14 +7,14 @@ import com.intellij.psi.PsiElement;
 
 public interface RexxClassDefinition extends PsiElement {
 
-  @Nullable
-  RexxDecimalConstant getDecimalConstant();
+  @NotNull
+  List<RexxDecimalConstant> getDecimalConstantList();
 
-  @Nullable
-  RexxGlobal getGlobal();
+  @NotNull
+  List<RexxGlobal> getGlobalList();
 
-  @Nullable
-  RexxIntegerConstant getIntegerConstant();
+  @NotNull
+  List<RexxIntegerConstant> getIntegerConstantList();
 
   @NotNull
   List<RexxLabel> getLabelList();
@@ -22,14 +22,14 @@ public interface RexxClassDefinition extends PsiElement {
   @NotNull
   List<RexxMethodDefinition> getMethodDefinitionList();
 
-  @Nullable
-  RexxScientificConstant getScientificConstant();
+  @NotNull
+  List<RexxScientificConstant> getScientificConstantList();
 
-  @Nullable
-  RexxStringLiteral getStringLiteral();
+  @NotNull
+  List<RexxStringLiteral> getStringLiteralList();
 
-  @Nullable
-  RexxVariable getVariable();
+  @NotNull
+  List<RexxVariable> getVariableList();
 
   @NotNull
   PsiElement getClassToken();
