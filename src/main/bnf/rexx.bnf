@@ -237,7 +237,7 @@ private single_instruction
     /* "expression_instruction" has the name "command" in the spec*/
     | expression_instruction
 
-arg_instruction ::= ARG template_list?
+arg_instruction ::= ARG template_list* // this is not to spec, but works in OORexx
 private template_list
     ::= template (COMMA template?)*
     | (COMMA template?)+

@@ -1,0 +1,11 @@
+FILE
+  RexxArgInstructionImpl(ARG_INSTRUCTION)
+    PsiElement(ARG)('arg')
+    PsiWhiteSpace(' ')
+    RexxNameDeclarationImpl(NAME_DECLARATION)
+      RexxIdentifier_Impl(IDENTIFIER_)
+        PsiElement(IDENTIFIER)('first')
+    PsiWhiteSpace(' ')
+    RexxNameDeclarationImpl(NAME_DECLARATION)
+      RexxIdentifier_Impl(IDENTIFIER_)
+        PsiElement(IDENTIFIER)('second')

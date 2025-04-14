@@ -97,7 +97,7 @@ public class RexxParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // ARG template_list?
+  // ARG template_list*
   public static boolean arg_instruction(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "arg_instruction")) return false;
     if (!nextTokenIs(builder_, ARG)) return false;
@@ -109,10 +109,14 @@ public class RexxParser implements PsiParser, LightPsiParser {
     return result_;
   }
 
-  // template_list?
+  // template_list*
   private static boolean arg_instruction_1(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "arg_instruction_1")) return false;
-    template_list(builder_, level_ + 1);
+    while (true) {
+      int pos_ = current_position_(builder_);
+      if (!template_list(builder_, level_ + 1)) break;
+      if (!empty_element_parsed_guard_(builder_, "arg_instruction_1", pos_)) break;
+    }
     return true;
   }
 
